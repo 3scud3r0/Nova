@@ -1,5 +1,18 @@
 # NOVA
 
+A versão 0.2 acrescenta memória adaptativa, inferência por equilíbrio/AdEx no caminho efetivo do latente e planejamento por energia, com configurações `adaptive` e `brain`. Veja [o projeto e suas equações](docs/adaptive-energy.md) e [o estado desta revisão](reports/adaptive/STATUS.md). Os novos componentes são experimentais; não foram executados novos testes ou benchmarks, conforme solicitado.
+
+```bash
+# Instalação NumPy/SciPy; PyTorch é opcional para esses perfis
+pip install -e .
+nova demo --profile adaptive --ticks 100 --checkpoint checkpoints/adaptive.npz
+nova demo --profile brain --ticks 100 --checkpoint checkpoints/brain.npz
+nova demo --resume checkpoints/adaptive.npz --ticks 100
+```
+
+Os comandos acima são instruções para reprodução futura. Sem checkpoint de mundo treinado, o demo usa pesos iniciais. Para o baseline anterior, instale `pip install -e '.[torch]'` e use `--profile baseline`. O script CPU de setup continua preparando todas as dependências do baseline.
+
+
 Plataforma experimental de aprendizado contínuo, previsão latente e simulação cognitiva, em Python 3.11+ e Rust/PyO3. Especificação fornecida em [docs/specification-v2.md](docs/specification-v2.md).
 
 **Regra de honestidade:** nenhum módulo experimental é promovido ao fluxo padrão sem ganho mensurável contra baseline predefinido. Resultados negativos, limites de capacidade e dependências de hardware são parte da entrega. Inspiração biológica não equivale a validação contra dados biológicos.
@@ -54,7 +67,7 @@ nova benchmark 5
 nova benchmark 9
 ```
 
-`nova demo` sem `--world` usa um encoder não treinado para demonstrar integração. O checkpoint inclui estado cognitivo, modelos, cascata, memórias, RNGs e estado do corpo virtual. A restauração usa NPZ/JSON, sem pickle. Alterar o encoder após consolidar memória é rejeitado, pois invalida as coordenadas protegidas.
+`nova demo` sem `--world` usa um encoder não treinado para demonstrar integração. O checkpoint v2 inclui estado cognitivo, modelos, cascata, memórias, RNGs, versões das características, trajetória do solver e estado do corpo virtual; o carregador reconhece o formato v1 anterior. A restauração usa NPZ/JSON, sem pickle. Alterar o encoder após consolidar memória é rejeitado, pois invalida as coordenadas protegidas.
 
 Busca deliberada é habilitada por `--planning`. O modo determinístico usa orçamento de operações fixo; o modo com orçamento de tempo pode truncar a busca, sem prometer tempo real. Neuromoduladores e hipóteses opcionais não são promovidos automaticamente pelo demonstrador.
 
@@ -90,6 +103,8 @@ A extensão exporta pesos ternários empacotados, Hadamard, AdEx, Kuramoto e cas
 | 7 | N0/N1/N2, percepção multimodal, microcircuito | F–I e espectro simulados; comparação com dados biológicos pendente: [relatório](reports/fase7.md) |
 | 8 | Ciclo, busca, calculadora, calibração, valores, checkpoint | Domínios finitos e integração: [relatório](reports/fase8.md) |
 | 9 | Cofre de identidade, proveniência, revisão, exclusão, linguagem | Perfis sintéticos; fidelidade de pessoa real e naturalidade não medidas: [relatório](reports/fase9.md) |
+
+Os experimentos novos 10–12 estão implementados para saturação adaptativa, EqProp não linear e planejamento em latentes maiores; seus resultados ainda não foram gerados. Use `nova benchmark 10`, `11` ou `12` apenas quando desejar executá-los.
 
 O [estado de aceitação](reports/STATUS.md) separa implementação de aprovação científica. Os protocolos completos, benchmarks de hardware, escalabilidade distribuída e validação com registros biológicos não são substituídos pelos ensaios reduzidos. CIFAR-100 requer acesso ao servidor oficial `www.cs.toronto.edu`, bloqueado pelo proxy nesta execução.
 

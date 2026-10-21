@@ -17,11 +17,15 @@ FILES = (
     "pyproject.toml",
     "requirements-cpu.txt",
     "nova-core/Cargo.toml",
+    "nova-core/pyproject.toml",
     "nova-core/Cargo.lock",
     ".gitignore",
     "README.md",
     "DEVIATIONS.md",
     "docs/identity.md",
+    "docs/adaptive-energy.md",
+    "reports/adaptive/STATUS.md",
+    "reports/adaptive/status.json",
     "reports/STATUS.md",
 )
 EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json"}

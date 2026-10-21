@@ -1,0 +1,18 @@
+# The AdEx microcircuit produces the actual latent used by policy and planner.
+world_backend: adex
+world_online_learning: true
+spiking_units: 100
+spiking_steps: 100
+spiking_backend: numpy
+spiking_plasticity: false
+adaptive_memory: true
+memory_policy: hybrid
+max_memory_features: 128
+planning: true
+planner_backend: energy
+planner_horizon: 6
+planner_iterations: 8
+solver_max_calls: 512
+neuromodulation: true
+sleep_every: 32
+history_limit: 2048

@@ -18,6 +18,9 @@ PHASES = {
     7: "07_brain_perception",
     8: "08_cognition",
     9: "09_identity_fidelity",
+    10: "10_adaptive_capacity",
+    11: "11_equilibrium_world",
+    12: "12_energy_planning",
 }
 
 
@@ -31,11 +34,27 @@ def main(argv=None):
     demo.add_argument("--resume")
     demo.add_argument("--world")
     demo.add_argument("--metrics", default="reports/demo.jsonl")
-    demo.add_argument("--planning", action="store_true")
+    demo.add_argument("--planning", action="store_true", default=None)
+    demo.add_argument(
+        "--profile", choices=["baseline", "adaptive", "brain"], default="baseline"
+    )
+    demo.add_argument("--config", help="YAML runtime configuration")
+    demo.add_argument("--world-backend", choices=["torch", "equilibrium", "adex"])
+    demo.add_argument("--planner", choices=["cem", "energy"])
+    demo.add_argument(
+        "--memory-policy", choices=["strict", "relax", "expand", "hybrid"]
+    )
+    demo.add_argument(
+        "--online-learning", action=argparse.BooleanOptionalAction, default=None
+    )
     train = sub.add_parser("train-world")
     train.add_argument("--output", default="checkpoints/world.npz")
     train.add_argument("--steps", type=int, default=900)
     train.add_argument("--seed", type=int, default=0)
+    train.add_argument(
+        "--backend", choices=["torch", "equilibrium", "adex"], default="torch"
+    )
+    train.add_argument("--train-encoder", action="store_true")
     bench = sub.add_parser("benchmark")
     bench.add_argument("phase", type=int, choices=PHASES)
     bench.add_argument("args", nargs=argparse.REMAINDER)
@@ -69,22 +88,53 @@ def main(argv=None):
     if args.command == "train-world":
         from nova.training import train_world
 
-        result = train_world(args.output, args.steps, args.seed)
+        result = train_world(
+            args.output,
+            args.steps,
+            args.seed,
+            backend=args.backend,
+            train_encoder=args.train_encoder,
+        )
     elif args.command == "demo":
-        import torch
         import numpy as np
-        from nova.runtime import CognitiveRuntime, RuntimeConfig
+        from nova.runtime import CognitiveRuntime
+        from nova.profiles import runtime_config
         from nova.environments import LinearPoint
         from nova.training import load_world
 
-        torch.set_num_threads(2)
         if args.ticks < 1:
             parser.error("--ticks must be positive")
+        overrides = {"seed": args.seed}
+        if args.config:
+            import yaml
+
+            content = yaml.safe_load(Path(args.config).read_text())
+            if not isinstance(content, dict):
+                parser.error("configuration must be a mapping")
+            overrides.update(content.get("runtime", content))
+        for field, value in (
+            ("planning", args.planning),
+            ("world_backend", args.world_backend),
+            ("planner_backend", args.planner),
+            ("world_online_learning", args.online_learning),
+        ):
+            if value is not None:
+                overrides[field] = value
+        if args.memory_policy:
+            overrides.update(adaptive_memory=True, memory_policy=args.memory_policy)
         runtime = (
             CognitiveRuntime.load(args.resume)
             if args.resume
-            else CognitiveRuntime(RuntimeConfig(seed=args.seed, planning=args.planning))
+            else CognitiveRuntime(runtime_config(args.profile, overrides))
         )
+        if runtime.config.world_backend == "torch":
+            import torch
+
+            torch.set_num_threads(2)
+        if runtime.config.observation_dim != 12 or runtime.config.action_dim != 2:
+            parser.error(
+                "the built-in LinearPoint demo requires observation_dim=12 and action_dim=2"
+            )
         if args.world:
             load_world(runtime, args.world)
         env = LinearPoint(seed=args.seed)
@@ -110,6 +160,10 @@ def main(argv=None):
         Path(args.metrics).parent.mkdir(parents=True, exist_ok=True)
         runtime.write_metrics(args.metrics)
         result = {
+            "profile": "resumed" if args.resume else args.profile,
+            "world_backend": runtime.config.world_backend,
+            "planner_backend": runtime.config.planner_backend,
+            "adaptive_memory": runtime.config.adaptive_memory,
             "ticks": runtime.tick_index,
             "checkpoint": args.checkpoint,
             "metrics": args.metrics,

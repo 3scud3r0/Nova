@@ -1,0 +1,19 @@
+# Opt-in hypothesis. No new benchmark results are claimed for this profile.
+world_backend: equilibrium
+world_online_learning: true
+adaptive_memory: true
+memory_policy: hybrid
+memory_growth: 8
+max_memory_features: 128
+max_memory_bytes: 33554432
+memory_reserve: 0.2
+planning: true
+planner_backend: energy
+planner_horizon: 8
+planner_iterations: 12
+solver_max_calls: 1024
+sheaf_weight: 0.01
+neuromodulation: true
+sleep_every: 32
+deterministic: true
+history_limit: 2048

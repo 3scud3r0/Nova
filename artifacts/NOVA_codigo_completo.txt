@@ -4,11 +4,14 @@ Pacote textual; não é um executável. Binários nativos são gerados por Matur
 Não inclui dados, chaves, ambientes virtuais, dependências baixadas ou checkpoints.
 
 ÍNDICE
-.github/workflows/tests.yml | 906 bytes | sha256=9da5c792530b1a11c7f16c28be068827a92c20ded0250790d71ca792364c8f4a
+.github/workflows/tests.yml | 926 bytes | sha256=57615b70c3ba4842b3ff75477cf89cd53c6a074918b16a241b93fa5abe781aee
 .gitignore | 137 bytes | sha256=bcd14e59f264480fcb4209d27a31bc52099650b3d81d3f6c1ce89e863e3c2046
-DEVIATIONS.md | 3915 bytes | sha256=c84a33c0c8de1fbf3e6bb53d96e468d9da4399d6dec31a5b2647eb0dce0668f3
-README.md | 6736 bytes | sha256=6f1b02b83e6571d39d83bd37c86e51853eb8023b7e6554779139011d0a128294
+DEVIATIONS.md | 6093 bytes | sha256=ced90ee092af5f8b1c7b4dc6cfd1554452f0ff4d525cc4ef7c1decedf0c6b69c
+README.md | 8097 bytes | sha256=219502d714585e9fa6ea017b1792d2187f3f57dc3dc68a580cfb34ef5afe886c
+configs/adaptive.yaml | 465 bytes | sha256=6bfff1f3ed42e433f4d7741f710fe09fcd1a72ca25f8d21a2c1d4a8c670b4d20
+configs/brain.yaml | 443 bytes | sha256=4426a2539785f74ccfc8d020d9cde0b1f43ad1d3c654326ebd76581ba008c278
 configs/lab.yaml | 378 bytes | sha256=37fb1eee4059de730922977e92bc1d5413e8c7f018c0a06c83bd6bfb7084cd3a
+docs/adaptive-energy.md | 10599 bytes | sha256=1e8d117553920f77742167a67de90bb1ec6dfb2a3e1b6bf07fca73ad432ff743
 docs/identity.md | 3884 bytes | sha256=64bc943882f08b57cd50110eeec7510f073a89acc6fa76cc209ed4c4e647ef02
 experiments/01_linear_nullspace_audit.py | 2749 bytes | sha256=c759d0e2f49a5cff9f68cd3de423b37056553d3fde7f1a48a4e83d7d92d18031
 experiments/02_jepa_latent_world.py | 3081 bytes | sha256=f1d19a859f1b46e8c93cf40d92df7fb6a215958c2a58a33bea528d8466df35a1
@@ -19,17 +22,24 @@ experiments/06_research_ablation.py | 1992 bytes | sha256=dd17f73f085f93c62f40aa
 experiments/07_brain_perception.py | 2120 bytes | sha256=3231927876c940a2ef508c5568f635f2a5b5e853f3ff1581f031717706d9eec3
 experiments/08_cognition.py | 2762 bytes | sha256=785cc48c01dcf67e59d099e4cc8b6967431894ce1d9f4872898cb2137a27c448
 experiments/09_identity_fidelity.py | 3863 bytes | sha256=295b7926d579d3acdd20fd6e3e92d5817ff2169c08c57fdebdb76dd10b3fd3e6
+experiments/10_adaptive_capacity.py | 4684 bytes | sha256=4dc3432902d605469ac6dd01df35b22ad7ae670fcdc6da1aafebfc3ebfc4557c
+experiments/11_equilibrium_world.py | 3333 bytes | sha256=fecb8c82222d20fbd10a2a480b1d7b118ee478803471121c89e8ccb3a3137795
+experiments/12_energy_planning.py | 3932 bytes | sha256=7a082fb0d83359c2c9b9a3f6061631d78b24c3e2154bb8caac041037fc633e47
 experiments/__init__.py | 85 bytes | sha256=2eb76f0e0f32f0e8f00b67d21442e3d068eb53887b41afd1fef4f803e74ae89d
-experiments/common.py | 3384 bytes | sha256=2cfff8f4272458b31b9d925c989a261f045616c840ac8c11f3b3103e99cfb205
+experiments/common.py | 3487 bytes | sha256=e838b6e802e09fdd83095251b115b1a43c4eda319ea41f9dc07cf83beb2ed8a3
 experiments/plot_reports.py | 2310 bytes | sha256=5d1e0031c046ede4df7babf6ce5cb2a9b9c0fe119195a5007c3f38f77845a843
-experiments/refresh_reports.py | 1345 bytes | sha256=1971f89082d7cdab60006d0dca87cf82a60e353390bc62d2a023bf419e5b1d31
+experiments/refresh_reports.py | 1345 bytes | sha256=a94780523c4b154ba3a006e42a0c550a2b7588d4ed0c5da7a675a3a0903a46f6
 nova-core/Cargo.lock | 8283 bytes | sha256=caae41ec27d1ffb0ed91838b935e8747c31d491044a372dfbb04137d35abf592
 nova-core/Cargo.toml | 206 bytes | sha256=69b1bba05b5cb5c1b3f6792301e199bc99f9b82d7ae43729664c241e9868831f
+nova-core/pyproject.toml | 226 bytes | sha256=dd43178822714bdc41ae7d04ee0c9197c892c6a471f97d2dcb0e160f5e1f4e6c
 nova-core/src/lib.rs | 7194 bytes | sha256=baad5b63d373eceb28451b9464485ee27e117bf8ffc8699b2461f3e89d5bc19d
-nova/__init__.py | 104 bytes | sha256=61f6d9733b182979dddad523ca72acfe7bd7aa9e200e213b62bbd2a628fdef38
+nova/__init__.py | 104 bytes | sha256=629dfc082c20680fa12b17061e1dddfef9754315a94ecb17c248a2ebbd0a0a6b
 nova/brain/__init__.py | 3945 bytes | sha256=7c39213eb83db1b1e428db982c50eee4a28168bebce30dc2c7560e4e696df333
-nova/cli.py | 6465 bytes | sha256=5ab06759e865cc4744e8be0573f7711e5b27c7c24965a65d7400541372cf6011
-nova/continual/__init__.py | 161 bytes | sha256=7344deefb4f45ea5ae2a7383ccb71c630f42a708b6e50a85ad074b6399dc629c
+nova/brain/latent.py | 8210 bytes | sha256=a769bca8574dd7ea036875d6362bd6748a83ecb52bc4f1fe6af6933773c1ad6e
+nova/checkpoint.py | 4314 bytes | sha256=e792ecb53ba9db55cfea5b4f3c73570ba790c664af6de702ba1d46523b0db114
+nova/cli.py | 8722 bytes | sha256=ba4397a10d7169ba8e6db36fae5b42b7220a2ef92756d03787afa279d9c6f4c0
+nova/continual/__init__.py | 280 bytes | sha256=af35abe8fbc1a89958e06e2939caf7fa836ff29b85a70d009a4d33521213733c
+nova/continual/adaptive.py | 15934 bytes | sha256=a4ae7ba11527055d173951cbc16652836d992de6e8eb40ea281308520ea66a5f
 nova/continual/deep.py | 4950 bytes | sha256=5102e7a21f2f1556e6fb7ee274f0dd05d57e367a51abe886ae4b4ab814420080
 nova/continual/protected.py | 5726 bytes | sha256=c72420f128628fd382a157e5d9b5795cab3d18975580bc7a517e7e67dab80f2d
 nova/core/__init__.py | 1147 bytes | sha256=c49c23cf72482ed5807c1ecce033953f600b91a4f26ee6633265558fb7f85eec
@@ -37,31 +47,43 @@ nova/environments.py | 5619 bytes | sha256=8b499fddc33761098b7772970db630a8d9987
 nova/identity/__init__.py | 214 bytes | sha256=d58b72fab38f89fb10c225c7f89b1862ce8de485c77b7255d239c6c44d870ea5
 nova/identity/media.py | 931 bytes | sha256=d4adf046a09fbed7326788c06320b59d34711c7c38848c7072b86f64d3381a51
 nova/identity/store.py | 15629 bytes | sha256=bb3d2cfc2df2839ad67ee4c7a7a18a662c7ccbf910850fcb06d60477f5cdb164
-nova/jepa/__init__.py | 3077 bytes | sha256=764e0165af1ff3ab59abe7b965e3d90e09cd2bcbd7b291772fe9508a3f9df3fa
+nova/jepa/__init__.py | 653 bytes | sha256=2c523b2618392f7bb514502f39b339c20c9dbcea502ba48f71e8c9cc787249bf
+nova/jepa/equilibrium.py | 16609 bytes | sha256=8ac114c249236be8a3ab271b738348500f72186c780dbad0d5f318b4552fdfb8
+nova/jepa/torch_backend.py | 3077 bytes | sha256=764e0165af1ff3ab59abe7b965e3d90e09cd2bcbd7b291772fe9508a3f9df3fa
 nova/kernels/__init__.py | 136 bytes | sha256=bf2443947099253d7a276844c1098702ca5b82aa989c177538b60cade7779374
 nova/kernels/triton_ternary.py | 2140 bytes | sha256=1b9354ec0daa6e39084700ef70948a5a26316a46ada46146d05c86d7186d3977
 nova/language/__init__.py | 3529 bytes | sha256=c82e90bf1e0fe19ec0b415f5b7fd1201fc2ad1f77b56c8214c717b7eea6c2255
-nova/memory/__init__.py | 5817 bytes | sha256=911b26240702a84ec751a299667e555b6f96fde494ee837eb9b82ab1405b2ae6
+nova/memory/__init__.py | 6523 bytes | sha256=061b8e53acdb03c70c5914d80282c53c7fcfe0d2ce3e836a51952a9b4d1f662f
 nova/neuromod/__init__.py | 1539 bytes | sha256=d5933a1bc451431a0b1f46c683191f93f00c5457b010201697c0962ca8ac8db1
 nova/neuron/__init__.py | 247 bytes | sha256=ae229b009c0bf284ea4e0d8af692f59b07b3eb1e83ba10053d2910090ee4290a
 nova/neuron/models.py | 8127 bytes | sha256=f78d2541320f53287b1d4fce03afac8d4048af2b364662c5eaed17d5596aea8b
-nova/observability.py | 2316 bytes | sha256=0fe77e8444c79e1a59a563b7e3171bd4063adc8235018ac0536cf81f8ce4ed95
+nova/observability.py | 2535 bytes | sha256=48a449a986cd23e6480fd5842a7c191344593fefdc7832215a9c81e6ed7ef422
 nova/perception/__init__.py | 8690 bytes | sha256=b1d5ab67e75984836c8c51ea1b0531a77c2dd13cb819e9676522538aa01fe687
-nova/planning/__init__.py | 3056 bytes | sha256=1b8b5b51ad3effa11e49bbd1cfffe57d8f4c3a2d258365b494a661432a38ded7
+nova/planning/__init__.py | 6947 bytes | sha256=8f2071c0d2cb74d68158729ca3771bc233839c0ae0254c83f1559f2b3107827e
+nova/planning/energy.py | 13311 bytes | sha256=6fbd7ccfaa9b2f4fb7d8ef77f33016a00767f3e76bc5acfdbe4d750cdb1e80b0
+nova/profiles.py | 1578 bytes | sha256=afe0f0fab911c3442e92fdf96596c56964974986cde16a1b6ba312e2cefd7026
 nova/reasoning/__init__.py | 5656 bytes | sha256=c408a63e9ed7a1b090e95df3d8be1a0eac7d7c0fc027f5800ce2c046b26f7524
+nova/reasoning/local_policy.py | 2123 bytes | sha256=dfda00abfade3d5bf6918638ff9db11f182b407815fd1862e2fa234ae52f5f65
 nova/research/__init__.py | 5088 bytes | sha256=26c97e0b9b0adb98843f61e5e11cf9e3134c187bb0a0d7e3313c445cefb643d3
-nova/runtime.py | 12897 bytes | sha256=87f8668ca3a90e6497f043cae0146767c50e81c872caa00703522f75421c971b
+nova/runtime.py | 28469 bytes | sha256=2337b19f5d22be56c230e8a5c5f3d7bd9700c2f6dded7a4a927c220a23f707a4
 nova/synapse/__init__.py | 4525 bytes | sha256=3db492edbc67babae7eca8e1aa98435b5b7f5fb35b8af7aacefe847c65bbe73b
-nova/training.py | 2071 bytes | sha256=64a706b2d0cad1b1fc7aa7bf384a9bd48cef4cc290eed1201611b35d6abb67fa
-nova/values/__init__.py | 2234 bytes | sha256=e22739bf08567181b41c71f467f5aed59b8d0c49820d73a21311cec55e505c5e
-pyproject.toml | 811 bytes | sha256=96b9a15346970a10c31494404b9f6e09f525f9f74fb8dad92ddc295de532e8e2
-reports/STATUS.md | 2548 bytes | sha256=c7339e376544be4fd8cd54d9e7573dba65d85b536861ff3a4267dfb714eb3094
+nova/training.py | 4813 bytes | sha256=d75ca65998c4d2aec10364006a67c184b9453e036a4c61f198c42b399b108d11
+nova/values/__init__.py | 2231 bytes | sha256=ae2afff413a842dd865c7ebddbb202e0228591a1604d051a0f139ce0202c2151
+nova/values/progress.py | 2333 bytes | sha256=7ecb34501588400a11974bc14e7dcfe0ca271b5850a5b4fdb3129123bd017dd6
+pyproject.toml | 891 bytes | sha256=6f9642de08a50f98ceafcfd9c3774a6e74892d60d1376e5fb18c9eefe7979cee
+reports/STATUS.md | 2923 bytes | sha256=dbc7194298400222f58db926fe2257d07dba53cbfe8e08d53c4107ecc1d4b3fa
+reports/adaptive/STATUS.md | 1378 bytes | sha256=21fbbe2330e2aa9dd4218acb72d232ce345c8f9eec5f5af895ce3ac2842e2245
+reports/adaptive/status.json | 627 bytes | sha256=0cb4c92dc887f7a81d9558850557730511a6f6f319f17b73602ba6dae9265504
 requirements-cpu.txt | 189 bytes | sha256=4eeb65b52c6ab8fca7d0950cadaced39230dbdf6b63b8dd0955cfa4b984fc66d
-scripts/bundle_source.py | 1922 bytes | sha256=5f9208776b94e2fda57a66f9741d6cd1cadf063fb4af4b1c8d7ad6f8651dec09
+scripts/bundle_source.py | 2055 bytes | sha256=b7a8174ec86edac3f393079e4da56770d0f1376a3987eb6d91c9d327084ec1f3
 scripts/setup.sh | 1005 bytes | sha256=486ab4cf9b040a65120d424c3af572dadb34dae965d1cd3240050414ce16c08f
 scripts/test.sh | 165 bytes | sha256=8b14118530adc404729f27014a33a5464151a0d6c1a12631a0143de257b0e4e0
+tests/test_adaptive_checkpoint.py | 1194 bytes | sha256=554f9f8a4b1c31ae9968ee82c860abf8ac722a619187a618691f30fb75f8b392
+tests/test_adaptive_subspace.py | 1809 bytes | sha256=6866f4319fae4cdd131955c8d56d69527fb92280df97a356d521afb76998c68c
 tests/test_cli.py | 1509 bytes | sha256=49d5221aad4a41e505ad3c7745271de2dd0c420e601116e0bad13fe891d2e3c6
 tests/test_deep.py | 1544 bytes | sha256=21b43d905cb729fb4ca8a46c91fd18f4dc3da363a903e0eb1f0b2595f6125cb8
+tests/test_energy_control.py | 1775 bytes | sha256=4c75e9b58895b6493b06a974588c8131ba171f2268c7a29299e523beb34518f4
+tests/test_equilibrium_world.py | 1177 bytes | sha256=d45e152231715954ad47f9e60951de9a6c272cdbf4923d6a471d1bdde205d4d5
 tests/test_identity.py | 4642 bytes | sha256=eadcd763bd166dd0672f205e2401d7b8790d50cea9b3bbf286c9d8db0940bf4a
 tests/test_jepa.py | 1108 bytes | sha256=a759876a6e7d2f76f45b693ad370a92a3a5b6e6377feb31eab43f6e0f2b7a1f0
 tests/test_memory_planning.py | 2216 bytes | sha256=f79595db63a2094e16a182a28ddac26aae4ad3f3ffd62f0b1e8fdcdc523aa018
@@ -86,7 +108,7 @@ jobs:
           python-version: '3.11'
       - run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
       - run: pip install -e '.[dev]'
-      - run: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 pytest -q
+      - run: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -m pytest -q
   native:
     runs-on: ubuntu-latest
     steps:
@@ -99,7 +121,7 @@ jobs:
       - run: cargo test --manifest-path nova-core/Cargo.toml --locked
       - run: maturin build --manifest-path nova-core/Cargo.toml --release --locked -o wheels
       - run: pip install wheels/*.whl
-      - run: pytest tests/test_native.py -q
+      - run: python -m pytest tests/test_native.py -q
 
 
 ========================================================================================
@@ -144,10 +166,36 @@ ARQUIVO: DEVIATIONS.md
 - O pedido posterior de implementar todas as fases permite entregar os módulos experimentais após executar e registrar cada ensaio, mesmo quando o critério científico não é atingido. Isso não promove hipóteses reprovadas a resultados aceitos.
 
 
+## Revisão 0.2 — análise de capacidade, inferência e busca
+
+- `AdaptiveSubspaceLinear` separa projeção exata atual, decaimento de evidência, liberação explícita e recrutamento limitado. Não promete aprender infinitamente com retenção irrestrita. Âncoras são reinseridas mesmo após envelhecimento de evidência; não são descartadas por truncamento relativo silencioso.
+- Recrutamento usa blocos não lineares versionados. A preservação dos dados antigos depende de sua versão de características. Re-encoding com novos blocos é um protocolo diferente e pode alterar a resposta.
+- A evidência da variante adaptativa é diagonal e transportada por sobreposições entre bases. Não equivale à covariância histórica exata após rotações/liberações; a camada `ProtectedLinear` de referência mantém sua implementação anterior.
+- EqProp não linear foi implementado em uma rede de taxa simétrica contrativa com duas fases `±beta`, encoder alvo EMA e mensagens locais. Evitar autograd não prova vantagem energética e não identifica essa dinâmica com o cérebro AdEx.
+- O perfil AdEx produz as ativações usadas pela cognição, mas continua sendo um modelo biofísico não calibrado. A regra STDP, quando explicitamente ativada, pode produzir drift. Não se alega equivalência entre seu aprendizado e EqProp.
+- A dimensionalidade da busca de ações do CEM é H×action_dim. A nova comparação não atribui incorretamente ao solver uma busca direta em D×H dimensões latentes.
+- Planejamento por energia usa derivadas implícitas/analíticas e recursão adjunta, com feixe temporal opcional. Isso elimina a dependência de autograd nesse caminho, mas não elimina toda propagação reversa de informação matemática.
+- Curiosidade com diferença de erro de um passo tem viés positivo sob ruído. O novo estimador com janelas e margem amostral reduz esse viés sem alegar proteção absoluta contra todo ruído.
+- Nenhum novo teste/benchmark foi executado nesta revisão, conforme a preferência anterior do usuário. As suítes novas e experimentos 10–12 foram escritos para avaliação posterior; não são evidência já produzida.
+
+
 ========================================================================================
 ARQUIVO: README.md
 ========================================================================================
 # NOVA
+
+A versão 0.2 acrescenta memória adaptativa, inferência por equilíbrio/AdEx no caminho efetivo do latente e planejamento por energia, com configurações `adaptive` e `brain`. Veja [o projeto e suas equações](docs/adaptive-energy.md) e [o estado desta revisão](reports/adaptive/STATUS.md). Os novos componentes são experimentais; não foram executados novos testes ou benchmarks, conforme solicitado.
+
+```bash
+# Instalação NumPy/SciPy; PyTorch é opcional para esses perfis
+pip install -e .
+nova demo --profile adaptive --ticks 100 --checkpoint checkpoints/adaptive.npz
+nova demo --profile brain --ticks 100 --checkpoint checkpoints/brain.npz
+nova demo --resume checkpoints/adaptive.npz --ticks 100
+```
+
+Os comandos acima são instruções para reprodução futura. Sem checkpoint de mundo treinado, o demo usa pesos iniciais. Para o baseline anterior, instale `pip install -e '.[torch]'` e use `--profile baseline`. O script CPU de setup continua preparando todas as dependências do baseline.
+
 
 Plataforma experimental de aprendizado contínuo, previsão latente e simulação cognitiva, em Python 3.11+ e Rust/PyO3. Especificação fornecida em [docs/specification-v2.md](docs/specification-v2.md).
 
@@ -203,7 +251,7 @@ nova benchmark 5
 nova benchmark 9
 ```
 
-`nova demo` sem `--world` usa um encoder não treinado para demonstrar integração. O checkpoint inclui estado cognitivo, modelos, cascata, memórias, RNGs e estado do corpo virtual. A restauração usa NPZ/JSON, sem pickle. Alterar o encoder após consolidar memória é rejeitado, pois invalida as coordenadas protegidas.
+`nova demo` sem `--world` usa um encoder não treinado para demonstrar integração. O checkpoint v2 inclui estado cognitivo, modelos, cascata, memórias, RNGs, versões das características, trajetória do solver e estado do corpo virtual; o carregador reconhece o formato v1 anterior. A restauração usa NPZ/JSON, sem pickle. Alterar o encoder após consolidar memória é rejeitado, pois invalida as coordenadas protegidas.
 
 Busca deliberada é habilitada por `--planning`. O modo determinístico usa orçamento de operações fixo; o modo com orçamento de tempo pode truncar a busca, sem prometer tempo real. Neuromoduladores e hipóteses opcionais não são promovidos automaticamente pelo demonstrador.
 
@@ -240,6 +288,8 @@ A extensão exporta pesos ternários empacotados, Hadamard, AdEx, Kuramoto e cas
 | 8 | Ciclo, busca, calculadora, calibração, valores, checkpoint | Domínios finitos e integração: [relatório](reports/fase8.md) |
 | 9 | Cofre de identidade, proveniência, revisão, exclusão, linguagem | Perfis sintéticos; fidelidade de pessoa real e naturalidade não medidas: [relatório](reports/fase9.md) |
 
+Os experimentos novos 10–12 estão implementados para saturação adaptativa, EqProp não linear e planejamento em latentes maiores; seus resultados ainda não foram gerados. Use `nova benchmark 10`, `11` ou `12` apenas quando desejar executá-los.
+
 O [estado de aceitação](reports/STATUS.md) separa implementação de aprovação científica. Os protocolos completos, benchmarks de hardware, escalabilidade distribuída e validação com registros biológicos não são substituídos pelos ensaios reduzidos. CIFAR-100 requer acesso ao servidor oficial `www.cs.toronto.edu`, bloqueado pelo proxy nesta execução.
 
 ## Identidade e linguagem
@@ -251,6 +301,53 @@ OCR, ASR e LLM usam adaptadores opcionais com modelos locais. A saída factual p
 ## Código consolidado
 
 [artifacts/NOVA_codigo_completo.txt](artifacts/NOVA_codigo_completo.txt) reúne código Python, Rust, testes, scripts e configurações em texto, com caminhos e hashes. Gere novamente com `python scripts/bundle_source.py`. Esse TXT é um pacote textual do código-fonte; o módulo binário é gerado separadamente por Maturin.
+
+
+========================================================================================
+ARQUIVO: configs/adaptive.yaml
+========================================================================================
+# Opt-in hypothesis. No new benchmark results are claimed for this profile.
+world_backend: equilibrium
+world_online_learning: true
+adaptive_memory: true
+memory_policy: hybrid
+memory_growth: 8
+max_memory_features: 128
+max_memory_bytes: 33554432
+memory_reserve: 0.2
+planning: true
+planner_backend: energy
+planner_horizon: 8
+planner_iterations: 12
+solver_max_calls: 1024
+sheaf_weight: 0.01
+neuromodulation: true
+sleep_every: 32
+deterministic: true
+history_limit: 2048
+
+
+========================================================================================
+ARQUIVO: configs/brain.yaml
+========================================================================================
+# The AdEx microcircuit produces the actual latent used by policy and planner.
+world_backend: adex
+world_online_learning: true
+spiking_units: 100
+spiking_steps: 100
+spiking_backend: numpy
+spiking_plasticity: false
+adaptive_memory: true
+memory_policy: hybrid
+max_memory_features: 128
+planning: true
+planner_backend: energy
+planner_horizon: 6
+planner_iterations: 8
+solver_max_calls: 512
+neuromodulation: true
+sleep_every: 32
+history_limit: 2048
 
 
 ========================================================================================
@@ -280,6 +377,125 @@ runtime:
   tick_budget_ms: 100
   sleep_every: 100
   working_slots: 7
+
+
+========================================================================================
+ARQUIVO: docs/adaptive-energy.md
+========================================================================================
+# NOVA 0.2 — capacidade adaptativa e inferência por dinâmica
+
+Esta revisão implementa os três eixos da análise e melhorias de integração. Não executamos novos testes ou benchmarks por preferência do usuário. Os módulos são experimentais e os resultados históricos das fases 1–9 não os validam.
+
+## 1. O que precisa ser corrigido na interpretação da análise
+
+- `g - U Uᵀg` preserva apenas o span retido, para entradas estáveis. Não existe memória infinita em largura e armazenamento finitos. Soltar direções possibilita esquecer; expansão apenas adia a saturação e tem orçamento explícito.
+- Decair os valores singulares sem remover colunas de U não muda o projetor. O código separa o decaimento da decisão de liberar capacidade.
+- O JEPA de referência é predição latente, sem garantia geral contra colapso e sem identidade automática com minimização de energia livre variacional. Os números anteriores cobrem os experimentos anteriores.
+- O CEM amostra `horizon × action_dim` variáveis. Latentes maiores encarecem o modelo e suas derivadas, mas não tornam diretamente a busca `latent_dim × horizon`.
+- Evitar `torch.autograd` não demonstra eficiência energética, desempenho superior ou fidelidade biológica. O planejador por energia ainda usa uma recursão adjunta de gradientes, implementada explicitamente.
+- A diferença positiva entre dois erros consecutivos pode recompensar ruído IID. A nova curiosidade usa duas janelas e margem de erro amostral; isso reduz um viés, não prova imunidade a todo processo estocástico.
+
+## 2. `AdaptiveSubspaceLinear`
+
+Extende a camada exata sem alterar sua implementação de referência. Suporta quatro políticas:
+
+| Política | Libera direções | Acrescenta características | Limite |
+|---|---|---|---|
+| `strict` | Não | Não | Pode saturar |
+| `relax` | Sim | Não | Troca retenção por plasticidade |
+| `expand` | Não | Sim | Teto de largura e bytes |
+| `hybrid` | Sim | Sim | Expande primeiro, libera depois |
+
+Cada direção tem evidência espectral e reservatórios de difusão. Envelhecimento integra a difusão homogênea por exponencial de matriz, decai traço/evidência e permite liberação explícita. Traços lentos elevam a prioridade de manutenção; não constituem uma garantia física de consolidação. A seleção sob pressão de capacidade é uma heurística declarada. Depois de mudanças de base por âncoras/liberação, a evidência diagonal é transportada por sobreposições quadráticas; não se alega manter a covariância histórica completa nessa variante adaptativa.
+
+Uma base separada `anchor_U` é preservada ao liberar direções. Se as âncoras ocuparem todo o espaço e o crescimento atingir o teto, a capacidade volta a esgotar: o estado relata isso, sem remover âncoras silenciosamente.
+
+Recrutamento acrescenta blocos `tanh(xR+b)` com semente determinística. A contribuição inicial dos novos pesos é zerada compensando a base ternária no resíduo contínuo. Cada amostra possui uma **versão de características**. Uma amostra antiga mantém zeros nos blocos posteriores. O runtime guarda essa versão nos episódios e no checkpoint.
+
+Essa retenção é condicionada ao uso da versão armazenada. Reapresentar um dado antigo como se tivesse a versão atual pode ativar novos blocos e alterar sua saída. Isso é medido separadamente no experimento 10; não há um oráculo implícito que reconheça para sempre o contexto de cada observação.
+
+```python
+from nova.continual import AdaptiveSubspaceLinear, AdaptiveConfig
+
+memory = AdaptiveSubspaceLinear(8, 4, config=AdaptiveConfig(
+    policy="hybrid", max_features=64, growth_step=8,
+))
+# features = memory.encode(raw_batch, version=memory.feature_version)
+# memory.step(features, targets)
+# memory.consolidate(features, anchor=False)
+# memory.age(dt=1, consolidation=.1)
+# memory.manage_capacity()
+```
+
+Reservas de estado cobrem bases, pesos, traços e projeções. Não equivalem ao pico total do processo: lotes externos, decomposições e bibliotecas também consomem memória. A história de eventos é limitada.
+
+## 3. Modelo latente por equilíbrio não linear
+
+`EquilibriumNetwork` implementa a energia de uma rede de taxa em `s ∈ (-1,1)`:
+
+```
+E(s,u) = Σ ∫₀ˢ atanh(v) dv - ½ sᵀ W s - sᵀ(Bᵀu+b)
+```
+
+Com W simétrica e norma espectral menor que 1, a energia é estritamente convexa para entrada fixa. O equilíbrio livre satisfaz `s=tanh(Ws+Bᵀu+b)`. Relaxamento amortecido tem resíduo, número máximo de passos e indicação explícita de convergência. O treino não altera pesos quando as fases necessárias não convergem.
+
+EqProp usa perturbações positivas e negativas `±β` do custo, correlações entre estados de equilíbrio e projeção espectral após a atualização. A configuração exige `||W||₂+β<1`. O código expõe a derivada implícita via Hessiana `diag(1/(1-s²))-W`; não estima essa derivada com diferenças finitas no planejador.
+
+`EquilibriumWorldModel` tem encoder recorrente, encoder alvo EMA e preditor recorrente condicionado à ação. Treino offline pode transmitir mensagens locais de erro ao encoder, com forças de variância/covariância explícitas. O runtime congela encoder e normalização, e opcionalmente adapta somente o preditor. Isso protege as coordenadas da memória de mudanças arbitrárias do encoder.
+
+É uma hipótese própria de rede de taxa simétrica. Não se afirma que seu treino seja o mecanismo do circuito AdEx ou que supere JEPA/PyTorch. A variante NumPy não importa PyTorch durante a seleção/inferência desse backend; o baseline PyTorch permanece disponível como extra.
+
+## 4. AdEx no caminho efetivo da inferência
+
+`SpikingLatentEncoder` transforma observações em correntes de um microcircuito E/PV/SST/VIP. O latente combina taxa de disparo em janela e evidência sub-limiar das membranas. Esse latente alimenta memória, política e preditor EqProp — não é um circuito que apenas produz gráficos ao lado do modelo principal.
+
+O perfil `brain` tem custo temporal de simulação explícito (`spiking_steps × dt`). A leitura inclui membranas porque janelas curtas podem não conter espículas suficientes; portanto não se apresenta como código puramente de taxa de disparo. STDP em três fatores é opt-in, atua nas conexões recorrentes existentes e restaura os sinais de Dale. O readout e projeção aferente são fixos.
+
+O encoder AdEx é dependente do histórico. Plasticidade espiculada adicional pode introduzir drift. A garantia linear continua restrita às ativações armazenadas, não a uma promessa de re-encoding idêntico da mesma observação bruta. Não foi realizada calibração biológica ou comparação de eficiência com GPU.
+
+## 5. Planejamento por energia e feixe temporal
+
+`EnergyPlanner` otimiza uma sequência de ações com projeção em `[-1,1]`, reutilização da trajetória anterior, derivadas da dinâmica e busca de passo Armijo. O custo tem objetivo configurável, penalidades de esforço/variação de ação e regularização opcional de feixe temporal.
+
+`TemporalSheaf` aplica `Dₑz=R_left zₜ-R_right zₜ₊₁`, com energia `½||Dz||²` e gradiente `DᵀDz`. A implementação evita construir o Laplaciano global; restrições identidade usam diferenças diretas. Toda trajetória avaliada continua sendo produzida pela dinâmica do modelo. Uma difusão arbitrária de estados não é tratada como se fosse uma ação realizável.
+
+O solver tem teto de avaliações de transição e um orçamento de parede opcional, verificado entre operações. Chamadas indivisíveis do modelo podem exceder o orçamento: não há garantia de tempo real. O CEM ganhou estado de trajetória, checagem de validade/viabilidade e observabilidade comparável.
+
+Limites de estado são verificados no modelo, com penalidade diferenciável no solver por energia. Se nenhuma trajetória viável for encontrada, o resultado informa falha e retorna comando de parada. Ações nulas **não são universalmente seguras**; a aplicação deve fornecer supervisão/controlador de emergência específico para seu ambiente.
+
+## 6. Operação e persistência
+
+```bash
+# Demonstração com código inicial não treinado, atualização local do preditor
+nova demo --profile adaptive --ticks 100 --checkpoint checkpoints/adaptive.npz
+nova demo --profile brain --ticks 100 --checkpoint checkpoints/brain.npz
+
+# Configuração explícita
+nova demo --config configs/adaptive.yaml --ticks 100
+
+# Treino offline por EqProp, sem autograd
+nova train-world --backend equilibrium --train-encoder --steps 400 \
+  --output checkpoints/world-equilibrium.npz
+nova demo --profile adaptive --world checkpoints/world-equilibrium.npz --ticks 100
+
+# Retomada inclui versões, RNGs, circuitos, modelos e trajetória do planejador
+nova demo --resume checkpoints/adaptive.npz --ticks 100
+nova dashboard --metrics reports/demo.jsonl
+```
+
+Esses são comandos fornecidos para reprodução futura; não foram executados nesta revisão. Os demos sem pesos carregados são exemplos de integração, não agentes treinados para navegação competente.
+
+O codec v2 usa NPZ/JSON, escrita atômica, limites de tamanho na carga e SHA-256 para detectar corrupção. O digest não autentica um autor malicioso. Não há pickle. Checkpoints v1 publicados têm um caminho explícito de migração de estrutura; migração não promete comportamento idêntico entre versões de algoritmo.
+
+Histórico de métricas e eventos, buffer sensorial, memória episódica e grafo semântico do runtime têm limites configurados. Âncoras semânticas não são despejadas silenciosamente. Fontes e identidade mantêm os controles anteriores; nenhum dado de pessoa real foi adicionado.
+
+## 7. Experimentos e aceitação pendente
+
+- `nova benchmark 10`: saturação, âncoras, políticas estrita/relaxada/expansiva/híbrida, revisitas com versão antiga e re-encoding atual; cinco sementes.
+- `nova benchmark 11`: previsão EqProp held-out com distratores, variância latente e auditoria de gradiente contra derivada implícita; cinco sementes.
+- `nova benchmark 12`: CEM vs energia, ablação de feixe, dimensões latentes 8–128, horizontes 6/12, custo, viabilidade e avaliações de transição; cinco sementes.
+
+Os testes de regressão foram escritos e não executados nesta revisão. Não existem CSVs ou ganhos novos declarados para esses experimentos. Para promover uma hipótese será necessário executar os protocolos, registrar inclusive resultados negativos e comparar custo total e qualidade nas mesmas condições.
 
 
 ========================================================================================
@@ -1151,6 +1367,302 @@ if __name__ == "__main__":
 
 
 ========================================================================================
+ARQUIVO: experiments/10_adaptive_capacity.py
+========================================================================================
+"""Predeclared saturation/revisit experiment. Not executed during this revision."""
+
+import argparse
+import numpy as np
+from nova.continual import ProtectedLinear, AdaptiveSubspaceLinear, AdaptiveConfig
+from experiments.common import write_report
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--tasks", type=int, default=12)
+    parser.add_argument("--steps", type=int, default=200)
+    args = parser.parse_args()
+    if args.tasks < 1 or args.steps < 1:
+        parser.error("tasks and steps must be positive")
+    rows = []
+    for seed in range(5):
+        rng = np.random.default_rng(seed)
+        tasks = []
+        for _ in range(args.tasks):
+            q = np.linalg.qr(rng.normal(size=(16, 16)))[0]
+            x = rng.normal(size=(64, 8)) @ q[:, :8].T
+            tasks.append((x, x @ rng.normal(size=(16, 4))))
+        for policy in ("baseline", "strict", "relax", "expand", "hybrid"):
+            model = (
+                ProtectedLinear(16, 4, seed=seed)
+                if policy == "baseline"
+                else AdaptiveSubspaceLinear(
+                    16,
+                    4,
+                    seed=seed,
+                    config=AdaptiveConfig(
+                        policy=policy, max_features=64, growth_step=8
+                    ),
+                )
+            )
+            historical = []
+            for task, (x, y) in enumerate(tasks):
+                version = 0 if policy == "baseline" else model.feature_version
+                encode = lambda values, v: (
+                    values if policy == "baseline" else model.encode(values, v)
+                )
+                features = encode(x, version)
+                for _ in range(args.steps):
+                    model.step(features, y, 0.05)
+                reference = model(features).copy()
+                historical.append((x, y, version, reference))
+                if policy == "baseline":
+                    model.consolidate(features)
+                else:
+                    # First task is an explicit anchor; later capacity must respect it.
+                    model.consolidate(features, anchor=task == 0)
+                    model.age(20.0, consolidation=0.1)
+                    model.manage_capacity()
+                stored_errors = [
+                    float(np.mean((model(encode(px, pv)) - py) ** 2))
+                    for px, py, pv, _ in historical
+                ]
+                retention = [
+                    model.retention_error(encode(px, pv), ref)
+                    for px, _, pv, ref in historical
+                ]
+                # This separate evaluation deliberately does NOT promise old-version mapping.
+                current_errors = [
+                    float(
+                        np.mean(
+                            (
+                                model(
+                                    encode(
+                                        px,
+                                        model.feature_version
+                                        if policy != "baseline"
+                                        else 0,
+                                    )
+                                )
+                                - py
+                            )
+                            ** 2
+                        )
+                    )
+                    for px, py, _, _ in historical
+                ]
+                metrics = {} if policy == "baseline" else model.capacity_metrics()
+                rows.append(
+                    dict(
+                        seed=seed,
+                        policy=policy,
+                        task=task,
+                        new_task_mse=stored_errors[-1],
+                        mean_revisit_mse=float(np.mean(stored_errors)),
+                        reencoded_mse=float(np.mean(current_errors)),
+                        anchor_retention=retention[0],
+                        max_retention_change=max(retention),
+                        free_dims=model.free_dims,
+                        width=model.in_features,
+                        feature_version=version,
+                        released_total=metrics.get("released_total", 0),
+                    )
+                )
+    write_report(
+        10,
+        rows,
+        "Cinco sementes; tarefas lineares conflitantes, primeira tarefa ancorada; baseline exato e quatro políticas adaptativas.",
+        "Versões armazenadas e re-encoding atual são avaliados separadamente. Liberação pode esquecer; expansão tem teto de largura/bytes. Não existe capacidade infinita. Este script gera dados somente quando executado explicitamente.",
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+========================================================================================
+ARQUIVO: experiments/11_equilibrium_world.py
+========================================================================================
+"""Held-out EqProp world prediction and implicit-gradient audit, unrun by default."""
+
+import argparse
+import numpy as np
+from nova.jepa.equilibrium import EquilibriumWorldModel, EquilibriumNetwork
+from nova.environments import point_transitions
+from experiments.common import write_report
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--steps", type=int, default=400)
+    parser.add_argument("--train-encoder", action="store_true")
+    args = parser.parse_args()
+    if args.steps < 1:
+        parser.error("steps must be positive")
+    rows = []
+    for seed in range(5):
+        rng = np.random.default_rng(seed)
+        x, a, y, _ = point_transitions(seed=seed)
+        tx, ta, ty, _ = point_transitions(512, seed + 500)
+        model = EquilibriumWorldModel(12, 8, 2, seed=seed)
+        model.fit_normalizer(x)
+        updates = 0
+        for _ in range(args.steps):
+            idx = rng.integers(len(x), size=32)
+            result = model.learn_transition(
+                x[idx], a[idx], y[idx], lr=0.01, train_encoder=args.train_encoder
+            )
+            updates += result["updated"]
+        model.freeze_encoder()
+        z = model.encode(tx)
+        target = model.target.predict(model._normalize(ty))
+        prediction = model.predict(z, ta)
+        train_target = model.target.predict(model._normalize(y))
+        std = float(z.std(0).mean())
+        mse = float(np.mean((prediction - target) ** 2))
+        baseline = float(np.mean((target - train_target.mean(0)) ** 2))
+        # Analytic implicit reference, not autograd and not a finite-difference target.
+        network = EquilibriumNetwork(3, 2, seed=seed)
+        u = rng.normal(size=(8, 3))
+        desired = rng.normal(0, 0.2, (8, 2))
+        free = network.relax(u)
+        reference = []
+        for state, target_value in zip(free.state, desired):
+            force = np.zeros(len(state))
+            force[-2:] = state[-2:] - target_value
+            hessian = np.diag(1 / (1 - state * state)) - network.W
+            reference.append(np.linalg.solve(hessian, force) @ network.B.T)
+        result = network.learn(u, desired, lr=0.0)
+        reference = np.asarray(reference)
+        estimate = result["input_gradient"]
+        cosine = float(
+            np.sum(reference * estimate)
+            / max(np.linalg.norm(reference) * np.linalg.norm(estimate), 1e-12)
+        )
+        rows.append(
+            dict(
+                seed=seed,
+                steps=args.steps,
+                encoder_trained=args.train_encoder,
+                updates=updates,
+                latent_mse=mse,
+                mean_baseline_mse=baseline,
+                latent_std=std,
+                eqprop_input_gradient_cosine=cosine,
+                noncollapsed=std >= 0.05,
+                prediction_better_than_mean=mse < baseline,
+            )
+        )
+    write_report(
+        11,
+        rows,
+        "EqProp não linear com alvo EMA, erro held-out sob distratores e referência implícita de gradiente; cinco sementes.",
+        "Falhas em previsão, convergência ou anti-colapso devem permanecer no relatório. Evitar autograd não prova menor custo/energia nem valida o circuito AdEx. O modo --train-encoder é exclusivamente offline, antes de proteger coordenadas.",
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+========================================================================================
+ARQUIVO: experiments/12_energy_planning.py
+========================================================================================
+"""Latent dimension vs. action-space search: CEM and adjoint energy planning."""
+
+from time import perf_counter
+import numpy as np
+from nova.planning import LatentPlanner
+from nova.planning.energy import EnergyPlanner, EnergyPlannerConfig
+from experiments.common import write_report
+
+
+class LinearDynamics:
+    def __init__(self, dimension, seed):
+        rng = np.random.default_rng(seed)
+        self.dimension = dimension
+        self.decay = np.linspace(0.85, 0.95, dimension)
+        self.B = rng.normal(0, 0.2 / np.sqrt(dimension), (dimension, 2))
+
+    def predict(self, z, a):
+        return z * self.decay + a @ self.B.T
+
+    def linearize(self, z, a):
+        return (
+            self.predict(z, a),
+            np.broadcast_to(
+                np.diag(self.decay), (len(z), self.dimension, self.dimension)
+            ),
+            np.broadcast_to(self.B, (len(z), self.dimension, 2)),
+        )
+
+
+def main():
+    rows = []
+    for seed in range(5):
+        for dimension in (8, 32, 64, 128):
+            model = LinearDynamics(dimension, seed)
+            z = np.array([1.0, -1.0]) @ model.B.T
+            for horizon in (6, 12):
+                for solver in ("cem", "energy", "energy_sheaf"):
+                    cost = lambda state: np.sum(state * state, axis=-1)
+                    if solver == "cem":
+                        planner = LatentPlanner(
+                            model.predict, cost, 2, horizon, 128, 4, seed=seed
+                        )
+                    else:
+                        config = EnergyPlannerConfig(
+                            horizon=horizon,
+                            iterations=20,
+                            max_model_calls=horizon * 128 * 4,
+                            action_penalty=0.0,
+                            slew_penalty=0.0,
+                            sheaf_weight=0.01 if solver == "energy_sheaf" else 0.0,
+                        )
+                        planner = EnergyPlanner(
+                            model,
+                            lambda state: (cost(state), 2 * state),
+                            2,
+                            dimension,
+                            config=config,
+                        )
+                    start = perf_counter()
+                    plan = planner.plan(z)
+                    elapsed = (perf_counter() - start) * 1000
+                    actions = np.vstack((plan.action, planner.warm_actions[:-1]))
+                    state = z.copy()
+                    environment_cost = 0.0
+                    for action in actions:
+                        state = model.predict(state, action)
+                        environment_cost += float(cost(state))
+                    rows.append(
+                        dict(
+                            seed=seed,
+                            solver=solver,
+                            latent_dim=dimension,
+                            horizon=horizon,
+                            search_variables=2 * horizon,
+                            environment_cost=environment_cost,
+                            solver_objective=plan.cost,
+                            transition_evaluations=plan.diagnostics["model_calls"],
+                            feasible=plan.diagnostics["feasible"],
+                            latency_ms=elapsed,
+                            iterations=plan.iterations,
+                        )
+                    )
+    write_report(
+        12,
+        rows,
+        "Cinco sementes; D=8/32/64/128, horizontes 6/12, ação bidimensional, CEM vs energia e ablação de feixe temporal.",
+        "O custo de ambiente é recomputado sem o regularizador de feixe. Modelos lineares conhecidos isolam o escalonamento do solver; não demonstram generalização em cenas multimodais. Espaço de busca=H×action_dim em todos os métodos; contagens são avaliações de transição, não equivalência de FLOPs.",
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+========================================================================================
 ARQUIVO: experiments/__init__.py
 ========================================================================================
 """Seeded benchmarks; full datasets and restricted hardware are explicit options."""
@@ -1177,6 +1689,9 @@ GROUPS = {
     5: ("batch", "input_dim", "output_dim", "dtype"),
     7: ("condition", "current_pa"),
     8: ("condition", "budget"),
+    10: ("policy", "task"),
+    11: ("encoder_trained",),
+    12: ("latent_dim", "horizon", "solver"),
 }
 
 
@@ -1363,7 +1878,7 @@ def parse(value):
 
 
 def main():
-    for phase in range(1, 10):
+    for phase in range(1, 13):
         path = Path(f"reports/fase{phase}.md")
         if not path.exists():
             continue
@@ -1734,6 +2249,23 @@ rayon = "1.10"
 
 
 ========================================================================================
+ARQUIVO: nova-core/pyproject.toml
+========================================================================================
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "nova-native"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[tool.maturin]
+module-name = "_native"
+features = ["pyo3/extension-module"]
+
+
+========================================================================================
 ARQUIVO: nova-core/src/lib.rs
 ========================================================================================
 //! Native CPU research kernels. Ternary coefficients use branches and add/subtract.
@@ -1901,7 +2433,7 @@ ARQUIVO: nova/__init__.py
 ========================================================================================
 """NOVA: experimental continual learning and cognitive simulation components."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 ========================================================================================
@@ -2019,6 +2551,361 @@ def load_connectome(path, nodes):
 
 
 ========================================================================================
+ARQUIVO: nova/brain/latent.py
+========================================================================================
+"""A stateful AdEx microcircuit that actually produces the runtime latent code."""
+
+from __future__ import annotations
+import numpy as np
+from scipy import sparse
+from nova.jepa.equilibrium import EquilibriumWorldModel, batch
+from . import Microcircuit
+
+
+class SpikingLatentEncoder:
+    """Input currents -> E/PV/SST/VIP circuit -> spike/membrane latent readout.
+
+    Readout combines windowed firing rate and subthreshold membrane evidence.
+    Fixed afferent/readout coordinates; optional three-factor STDP changes only
+    existing recurrent synapses, with Dale sign restored after every update.
+    This model is not trained by EqProp and has no validated biological fit.
+    """
+
+    def __init__(
+        self,
+        inputs: int,
+        latent_dim: int,
+        *,
+        units: int = 100,
+        steps: int = 100,
+        dt: float = 0.1,
+        seed: int = 0,
+        backend: str = "numpy",
+    ):
+        if (
+            min(inputs, latent_dim, steps) < 1
+            or units < max(20, latent_dim)
+            or not 0 < dt <= 1
+        ):
+            raise ValueError("invalid spiking encoder dimensions/window")
+        self.inputs, self.latent_dim, self.units, self.steps, self.dt = (
+            inputs,
+            latent_dim,
+            units,
+            steps,
+            dt,
+        )
+        self.seed, self.backend = seed, backend
+        self.circuit = Microcircuit(units, seed, backend)
+        rng = np.random.default_rng(seed + 41)
+        self.afferent = rng.normal(0, 1 / np.sqrt(inputs), (inputs, units))
+        self.readout = np.linalg.qr(rng.normal(size=(units, latent_dim)))[0][
+            :, :latent_dim
+        ]
+        self.pre_trace = np.zeros(units)
+        self.post_trace = np.zeros(units)
+        self.last_spikes = np.zeros(units, dtype=bool)
+        self.last_diagnostics = {}
+
+    def encode(self, inputs) -> np.ndarray:
+        outputs = []
+        for sample in batch(inputs, self.inputs):
+            drive = 300 + 150 * np.tanh(sample @ self.afferent)
+            counts = np.zeros(self.units)
+            for _ in range(self.steps):
+                spikes, _ = self.circuit.step(drive, self.dt)
+                counts += spikes
+                self.last_spikes = spikes
+                self.pre_trace *= np.exp(-self.dt / 20)
+                self.pre_trace += spikes
+                self.post_trace *= np.exp(-self.dt / 25)
+                self.post_trace += spikes
+            rates = counts * 1000 / (self.steps * self.dt)
+            evidence = 0.01 * rates + (self.circuit.neurons.v + 70) / 50
+            outputs.append(np.tanh(evidence @ self.readout))
+            self.last_diagnostics = {
+                "mean_rate_hz": float(rates.mean()),
+                "window_ms": self.steps * self.dt,
+                "dale": self.circuit.check_dale(),
+                "units": self.units,
+            }
+        return np.stack(outputs)
+
+    def learn_local(self, modulator: float, lr: float = 0.001):
+        if not np.isfinite(modulator) or lr < 0:
+            raise ValueError("invalid local update")
+        weights = self.circuit.weights.tocoo(copy=True)
+        rows, cols = weights.row, weights.col
+        eligibility = (
+            self.pre_trace[rows] * self.last_spikes[cols]
+            - self.last_spikes[rows] * self.post_trace[cols]
+        )
+        weights.data += lr * float(np.clip(modulator, -1, 1)) * eligibility
+        excitatory = self.circuit.neurons.types[rows] == 0
+        weights.data = np.where(
+            excitatory, np.clip(weights.data, 0, 50), np.clip(weights.data, -50, 0)
+        )
+        self.circuit.weights = weights.tocsr()
+        self._refresh_weights()
+
+    def _refresh_weights(self):
+        self.circuit.sst_weights = (
+            sparse.diags((self.circuit.neurons.types == 2).astype(float))
+            @ self.circuit.weights
+        )
+        self.circuit.somatic_weights = self.circuit.weights - self.circuit.sst_weights
+
+    def state_dict(self) -> dict:
+        w = self.circuit.weights
+        return {
+            "inputs": self.inputs,
+            "latent_dim": self.latent_dim,
+            "units": self.units,
+            "steps": self.steps,
+            "dt": self.dt,
+            "seed": self.seed,
+            "backend": self.backend,
+            "afferent": self.afferent.copy(),
+            "readout": self.readout.copy(),
+            "trace": self.circuit.trace.copy(),
+            "neurons": self.circuit.neurons.state_dict(),
+            "weight_data": w.data.copy(),
+            "weight_indices": w.indices.copy(),
+            "weight_indptr": w.indptr.copy(),
+            "pre_trace": self.pre_trace.copy(),
+            "post_trace": self.post_trace.copy(),
+            "last_spikes": self.last_spikes.copy(),
+        }
+
+    @classmethod
+    def from_state_dict(cls, state):
+        obj = cls(
+            **{
+                key: state[key]
+                for key in (
+                    "inputs",
+                    "latent_dim",
+                    "units",
+                    "steps",
+                    "dt",
+                    "seed",
+                    "backend",
+                )
+            }
+        )
+        for key in ("afferent", "readout", "pre_trace", "post_trace", "last_spikes"):
+            setattr(obj, key, np.asarray(state[key]).copy())
+        obj.circuit.trace = np.asarray(state["trace"]).copy()
+        obj.circuit.neurons.load_state_dict(state["neurons"])
+        obj.circuit.weights = sparse.csr_matrix(
+            (state["weight_data"], state["weight_indices"], state["weight_indptr"]),
+            shape=(obj.units, obj.units),
+        )
+        obj._refresh_weights()
+        if not obj.circuit.check_dale():
+            raise ValueError("checkpoint violates Dale sign constraint")
+        return obj
+
+
+class SpikingWorldModel(EquilibriumWorldModel):
+    """N1 inference supplies z; the predictive world dynamics use nonlinear EqProp."""
+
+    kind = "adex"
+
+    def __init__(
+        self,
+        observation_dim,
+        latent_dim,
+        action_dim,
+        *,
+        seed=0,
+        config=None,
+        spiking_units=100,
+        spiking_steps=100,
+        spiking_backend="numpy",
+    ):
+        super().__init__(
+            observation_dim, latent_dim, action_dim, seed=seed, config=config
+        )
+        self.spiking = SpikingLatentEncoder(
+            observation_dim,
+            latent_dim,
+            units=max(spiking_units, latent_dim, 20),
+            steps=spiking_steps,
+            seed=seed,
+            backend=spiking_backend,
+        )
+
+    def encode(self, x):
+        result = self.spiking.encode(self._normalize(x))
+        self.last_diagnostics = self.spiking.last_diagnostics.copy()
+        return result
+
+    def learn_transition(
+        self, x, action, future, *, lr=0.01, train_encoder=False, **kwargs
+    ):
+        if train_encoder:
+            raise ValueError(
+                "AdEx supports explicit local STDP, not rate-network EqProp encoder training"
+            )
+        z = self.encode(x)
+        state = self.spiking.state_dict()
+        try:
+            target = self.encode(future)
+        finally:
+            self.spiking = SpikingLatentEncoder.from_state_dict(state)
+        return self.learn_latent(z, action, target, lr)
+
+    def state_dict(self):
+        return {**super().state_dict(), "spiking": self.spiking.state_dict()}
+
+    @classmethod
+    def from_state_dict(cls, state):
+        from nova.jepa.equilibrium import EquilibriumConfig, EquilibriumNetwork
+
+        sp = state["spiking"]
+        obj = cls(
+            state["observation_dim"],
+            state["latent_dim"],
+            state["action_dim"],
+            config=EquilibriumConfig(**state["config"]),
+            spiking_units=sp["units"],
+            spiking_steps=sp["steps"],
+            spiking_backend=sp["backend"],
+        )
+        for name in ("context", "target", "predictor"):
+            setattr(obj, name, EquilibriumNetwork.from_state_dict(state[name]))
+        obj.mean = np.asarray(state["mean"]).copy()
+        obj.scale = np.asarray(state["scale"]).copy()
+        obj.encoder_frozen = state["encoder_frozen"]
+        obj.spiking = SpikingLatentEncoder.from_state_dict(sp)
+        return obj
+
+
+========================================================================================
+ARQUIVO: nova/checkpoint.py
+========================================================================================
+"""Versioned NPZ/JSON state codec, atomic replacement, bounded loads, SHA-256 integrity.
+
+The digest detects accidental corruption. It is not an authentication signature;
+only restore checkpoints from trusted owners. No pickle/object arrays are used.
+"""
+
+from __future__ import annotations
+import hashlib
+import json
+import os
+from pathlib import Path
+import tempfile
+import zipfile
+import numpy as np
+
+
+class CheckpointFormatError(ValueError):
+    pass
+
+
+def _digest(payload, arrays):
+    digest = hashlib.sha256(
+        json.dumps(
+            payload, sort_keys=True, separators=(",", ":"), allow_nan=False
+        ).encode()
+    )
+    for name, array in sorted(arrays.items()):
+        digest.update(name.encode())
+        digest.update(array.dtype.str.encode())
+        digest.update(str(array.shape).encode())
+        digest.update(array.tobytes(order="C"))
+    return digest.hexdigest()
+
+
+def save_state(path, state):
+    arrays = {}
+
+    def encode(value):
+        if isinstance(value, np.ndarray):
+            if value.dtype.hasobject:
+                raise TypeError("object arrays are forbidden")
+            key = f"a{len(arrays):06d}"
+            arrays[key] = np.array(value, copy=True, order="C")
+            return {"type": "array", "key": key}
+        if isinstance(value, np.generic):
+            value = value.item()
+        if isinstance(value, dict):
+            if not all(isinstance(k, str) for k in value):
+                raise TypeError("state keys must be strings")
+            return {"type": "dict", "items": [[k, encode(v)] for k, v in value.items()]}
+        if isinstance(value, (list, tuple)):
+            return {"type": "list", "items": [encode(v) for v in value]}
+        if value is None or isinstance(value, (str, bool, int, float)):
+            if isinstance(value, float) and not np.isfinite(value):
+                raise ValueError("nonfinite state value")
+            return {"type": "value", "value": value}
+        raise TypeError(f"unsupported checkpoint type: {type(value).__name__}")
+
+    payload = encode(state)
+    manifest = {
+        "format": "nova-state",
+        "version": 2,
+        "payload": payload,
+        "sha256": _digest(payload, arrays),
+    }
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp = tempfile.mkstemp(
+        prefix=".nova-checkpoint-", suffix=".npz", dir=path.parent
+    )
+    try:
+        with os.fdopen(fd, "wb") as stream:
+            np.savez_compressed(
+                stream,
+                manifest=np.array(json.dumps(manifest, allow_nan=False)),
+                **arrays,
+            )
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temp, path)
+    finally:
+        if os.path.exists(temp):
+            os.unlink(temp)
+
+
+def load_state(path, *, max_bytes=1024**3, max_arrays=10000):
+    with zipfile.ZipFile(path) as archive:
+        entries = archive.infolist()
+        if (
+            len(entries) > max_arrays + 1
+            or sum(e.file_size for e in entries) > max_bytes
+        ):
+            raise CheckpointFormatError("checkpoint exceeds load budget")
+        if len({e.filename for e in entries}) != len(entries):
+            raise CheckpointFormatError("duplicate archive entry")
+    with np.load(path, allow_pickle=False) as archive:
+        if "manifest" not in archive.files:
+            raise CheckpointFormatError("not a v2 state archive")
+        manifest = json.loads(str(archive["manifest"]))
+        if manifest.get("format") != "nova-state" or manifest.get("version") != 2:
+            raise CheckpointFormatError("unsupported state format")
+        arrays = {k: archive[k].copy() for k in archive.files if k != "manifest"}
+        if _digest(manifest["payload"], arrays) != manifest["sha256"]:
+            raise CheckpointFormatError("checkpoint integrity mismatch")
+
+    def decode(node):
+        kind = node["type"]
+        if kind == "array":
+            return arrays[node["key"]].copy()
+        if kind == "dict":
+            return {k: decode(v) for k, v in node["items"]}
+        if kind == "list":
+            return [decode(v) for v in node["items"]]
+        if kind == "value":
+            return node["value"]
+        raise CheckpointFormatError("unknown state node type")
+
+    return decode(manifest["payload"])
+
+
+========================================================================================
 ARQUIVO: nova/cli.py
 ========================================================================================
 """Research workflows and consent-scoped local identity operations."""
@@ -2041,6 +2928,9 @@ PHASES = {
     7: "07_brain_perception",
     8: "08_cognition",
     9: "09_identity_fidelity",
+    10: "10_adaptive_capacity",
+    11: "11_equilibrium_world",
+    12: "12_energy_planning",
 }
 
 
@@ -2054,11 +2944,27 @@ def main(argv=None):
     demo.add_argument("--resume")
     demo.add_argument("--world")
     demo.add_argument("--metrics", default="reports/demo.jsonl")
-    demo.add_argument("--planning", action="store_true")
+    demo.add_argument("--planning", action="store_true", default=None)
+    demo.add_argument(
+        "--profile", choices=["baseline", "adaptive", "brain"], default="baseline"
+    )
+    demo.add_argument("--config", help="YAML runtime configuration")
+    demo.add_argument("--world-backend", choices=["torch", "equilibrium", "adex"])
+    demo.add_argument("--planner", choices=["cem", "energy"])
+    demo.add_argument(
+        "--memory-policy", choices=["strict", "relax", "expand", "hybrid"]
+    )
+    demo.add_argument(
+        "--online-learning", action=argparse.BooleanOptionalAction, default=None
+    )
     train = sub.add_parser("train-world")
     train.add_argument("--output", default="checkpoints/world.npz")
     train.add_argument("--steps", type=int, default=900)
     train.add_argument("--seed", type=int, default=0)
+    train.add_argument(
+        "--backend", choices=["torch", "equilibrium", "adex"], default="torch"
+    )
+    train.add_argument("--train-encoder", action="store_true")
     bench = sub.add_parser("benchmark")
     bench.add_argument("phase", type=int, choices=PHASES)
     bench.add_argument("args", nargs=argparse.REMAINDER)
@@ -2092,22 +2998,53 @@ def main(argv=None):
     if args.command == "train-world":
         from nova.training import train_world
 
-        result = train_world(args.output, args.steps, args.seed)
+        result = train_world(
+            args.output,
+            args.steps,
+            args.seed,
+            backend=args.backend,
+            train_encoder=args.train_encoder,
+        )
     elif args.command == "demo":
-        import torch
         import numpy as np
-        from nova.runtime import CognitiveRuntime, RuntimeConfig
+        from nova.runtime import CognitiveRuntime
+        from nova.profiles import runtime_config
         from nova.environments import LinearPoint
         from nova.training import load_world
 
-        torch.set_num_threads(2)
         if args.ticks < 1:
             parser.error("--ticks must be positive")
+        overrides = {"seed": args.seed}
+        if args.config:
+            import yaml
+
+            content = yaml.safe_load(Path(args.config).read_text())
+            if not isinstance(content, dict):
+                parser.error("configuration must be a mapping")
+            overrides.update(content.get("runtime", content))
+        for field, value in (
+            ("planning", args.planning),
+            ("world_backend", args.world_backend),
+            ("planner_backend", args.planner),
+            ("world_online_learning", args.online_learning),
+        ):
+            if value is not None:
+                overrides[field] = value
+        if args.memory_policy:
+            overrides.update(adaptive_memory=True, memory_policy=args.memory_policy)
         runtime = (
             CognitiveRuntime.load(args.resume)
             if args.resume
-            else CognitiveRuntime(RuntimeConfig(seed=args.seed, planning=args.planning))
+            else CognitiveRuntime(runtime_config(args.profile, overrides))
         )
+        if runtime.config.world_backend == "torch":
+            import torch
+
+            torch.set_num_threads(2)
+        if runtime.config.observation_dim != 12 or runtime.config.action_dim != 2:
+            parser.error(
+                "the built-in LinearPoint demo requires observation_dim=12 and action_dim=2"
+            )
         if args.world:
             load_world(runtime, args.world)
         env = LinearPoint(seed=args.seed)
@@ -2133,6 +3070,10 @@ def main(argv=None):
         Path(args.metrics).parent.mkdir(parents=True, exist_ok=True)
         runtime.write_metrics(args.metrics)
         result = {
+            "profile": "resumed" if args.resume else args.profile,
+            "world_backend": runtime.config.world_backend,
+            "planner_backend": runtime.config.planner_backend,
+            "adaptive_memory": runtime.config.adaptive_memory,
             "ticks": runtime.tick_index,
             "checkpoint": args.checkpoint,
             "metrics": args.metrics,
@@ -2207,6 +3148,408 @@ ARQUIVO: nova/continual/__init__.py
 from .protected import ProtectedLinear, linear_cka
 
 __all__ = ["ProtectedLinear", "linear_cka"]
+
+from .adaptive import AdaptiveSubspaceLinear, AdaptiveConfig
+
+__all__ += ["AdaptiveSubspaceLinear", "AdaptiveConfig"]
+
+
+========================================================================================
+ARQUIVO: nova/continual/adaptive.py
+========================================================================================
+"""Finite adaptive capacity with explicit forgetting, anchors and feature versions."""
+
+from __future__ import annotations
+from dataclasses import dataclass, asdict
+from collections import deque
+from math import ceil
+import numpy as np
+from numpy.typing import ArrayLike
+from scipy.linalg import expm
+from .protected import ProtectedLinear
+from nova.synapse import DiffusiveCascade
+
+
+@dataclass(frozen=True)
+class AdaptiveConfig:
+    policy: str = "hybrid"
+    reserve_fraction: float = 0.2
+    growth_step: int = 8
+    max_features: int = 128
+    max_state_bytes: int = 32 * 1024 * 1024
+    trace_tau: float = 200.0
+    evidence_tau: float = 1000.0
+    release_threshold: float = 1e-5
+    eigenvalue_floor: float = 1e-6
+    slow_weight: float = 8.0
+    reservoirs: int = 4
+
+    def __post_init__(self):
+        if self.policy not in ("strict", "relax", "expand", "hybrid"):
+            raise ValueError("unknown capacity policy")
+        numbers = (
+            self.trace_tau,
+            self.evidence_tau,
+            self.slow_weight,
+            self.release_threshold,
+            self.eigenvalue_floor,
+        )
+        if (
+            not all(np.isfinite(n) and n >= 0 for n in numbers)
+            or min(self.trace_tau, self.evidence_tau) <= 0
+        ):
+            raise ValueError("invalid time constants or scores")
+        if (
+            not 0 <= self.reserve_fraction < 1
+            or min(
+                self.growth_step,
+                self.max_features,
+                self.max_state_bytes,
+                self.reservoirs,
+            )
+            < 1
+        ):
+            raise ValueError("invalid capacity budget")
+
+
+def basis(matrix: np.ndarray) -> np.ndarray:
+    if not matrix.shape[1]:
+        return np.empty((len(matrix), 0))
+    u, s, _ = np.linalg.svd(matrix, full_matrices=False)
+    rank = int(np.count_nonzero(s > 1e-12 * s[0])) if len(s) and s[0] > 0 else 0
+    return u[:, :rank]
+
+
+class AdaptiveSubspaceLinear(ProtectedLinear):
+    """Project updates into the current nullspace; explicitly release or grow it.
+
+    Decaying eigenvalues alone never changes U U.T. Capacity is recovered only
+    by dropping directions (which permits forgetting), or by adding coordinates.
+    A separate orthonormal anchor span is never released. Slow diffusion traces
+    rank directions by usage; this is an engineering policy, not a retention law.
+    Nonlinear feature blocks carry an immutable version. Old versioned inputs
+    have zeros in newer blocks, so their coordinate mapping stays unchanged.
+    No guarantee applies to re-encoding old data with a newer feature version.
+    """
+
+    def __init__(
+        self,
+        in_features: int,
+        out_features: int,
+        *,
+        seed: int = 0,
+        config: AdaptiveConfig | None = None,
+    ):
+        self.config = config or AdaptiveConfig(max_features=max(128, in_features))
+        if in_features > self.config.max_features:
+            raise ValueError("initial width exceeds max_features")
+        self.base_features = in_features
+        self.rng = np.random.default_rng(seed + 19)
+        self.feature_blocks: list[dict] = []
+        self.anchor_U = np.empty((in_features, 0))
+        self.events = deque(maxlen=128)
+        self.released_total = 0
+        self.expansions = 0
+        self.clock = 0.0
+        super().__init__(in_features, out_features, seed=seed)
+        self.traces = DiffusiveCascade(in_features, self.config.reservoirs)
+        self._age_dt = None
+        self._age_transition = None
+        if self.estimated_state_bytes(in_features) > self.config.max_state_bytes:
+            raise ValueError("initial state exceeds capacity budget")
+
+    @property
+    def feature_version(self) -> int:
+        return len(self.feature_blocks)
+
+    def estimated_state_bytes(self, width: int) -> int:
+        # Conservative reservation for U and anchor_U at full rank, weights,
+        # residual/update, cascade, random features, and singular values.
+        return int(
+            16 * width * width
+            + width * self.out_features * 17
+            + 8 * width * self.config.reservoirs
+            + 8 * self.base_features * max(0, width - self.base_features)
+            + 24 * width
+        )
+
+    def encode(
+        self, x: ArrayLike, version: int | ArrayLike | None = None
+    ) -> np.ndarray:
+        x = np.asarray(x, dtype=np.float64)
+        if x.ndim != 2 or x.shape[1] != self.base_features or not np.isfinite(x).all():
+            raise ValueError("expected finite raw features [batch, base_features]")
+        v = np.broadcast_to(
+            self.feature_version if version is None else np.asarray(version), (len(x),)
+        )
+        if (
+            np.any(v < 0)
+            or np.any(v > self.feature_version)
+            or np.any(v != np.floor(v))
+        ):
+            raise ValueError("unknown feature version")
+        parts = [x]
+        for index, block in enumerate(self.feature_blocks, 1):
+            parts.append(
+                np.tanh(x @ block["projection"] + block["bias"]) * (v >= index)[:, None]
+            )
+        return np.concatenate(parts, axis=1)
+
+    def _replace_basis(self, new: np.ndarray, values: np.ndarray | None = None):
+        old = self.U
+        overlap = (old.T @ new) ** 2
+        state = np.zeros_like(self.traces.state)
+        state[: new.shape[1]] = overlap.T @ self.traces.state[: old.shape[1]]
+        if values is None:
+            values = np.sqrt(overlap.T @ (self.singular_values**2))
+        self.U = new
+        self.singular_values = np.asarray(values, dtype=float)
+        self.traces.state = state
+
+    def consolidate(self, x: ArrayLike, *, anchor: bool = False) -> None:
+        x = self._inputs(x)
+        if not len(x):
+            raise ValueError("empty calibration batch")
+        if anchor:
+            anchors = basis(np.concatenate((self.anchor_U, x.T), axis=1))
+            if anchors.shape[1] > self.rank_max:
+                raise ValueError("anchor rank exceeds configured rank")
+            self.anchor_U = anchors
+        old = self.U.copy()
+        old_values = self.singular_values.copy()
+        u, s, _ = np.linalg.svd(
+            np.concatenate((old * old_values, x.T), axis=1), full_matrices=False
+        )
+        rank = int(np.count_nonzero(s > 1e-12 * s[0])) if s[0] > 0 else 0
+        new = u[:, :rank]
+        values = s[:rank]
+        if self.anchor_U.shape[1]:
+            residual = new - self.anchor_U @ (self.anchor_U.T @ new)
+            residual -= self.anchor_U @ (self.anchor_U.T @ residual)
+            if residual.shape[1]:
+                ru, rs, _ = np.linalg.svd(residual, full_matrices=False)
+                residual = ru[:, rs > 1e-10]
+            new = np.concatenate((self.anchor_U, residual), axis=1)
+            # Diagonal evidence transported into the anchor-aligned frame. This
+            # is a priority approximation, not the full rotated covariance.
+            values = np.sqrt(((u.T @ new) ** 2).T @ (s * s))
+            rank = new.shape[1]
+        self._replace_basis(new, values)
+        activation = np.mean((x @ self.U) ** 2, axis=0)
+        self.traces.state[:rank, 0] += activation
+        self.events.append(
+            {
+                "time": self.clock,
+                "event": "consolidate",
+                "rank": rank,
+                "anchor_rank": self.anchor_U.shape[1],
+            }
+        )
+        # Release/growth are separate explicit operations, never hidden in SVD.
+
+    def observe(self, x: ArrayLike):
+        x = self._inputs(x)
+        if len(x) and self.U.shape[1]:
+            self.traces.state[: self.U.shape[1], 0] += np.mean(
+                (x @ self.U) ** 2, axis=0
+            )
+
+    def age(self, dt: float = 1.0, *, consolidation: float = 0.0):
+        if (
+            not np.isfinite(dt)
+            or dt < 0
+            or not np.isfinite(consolidation)
+            or not 0 <= consolidation <= 1
+        ):
+            raise ValueError("invalid aging interval/consolidation")
+        self.clock += dt
+        # Exact homogeneous integration avoids an unstable large Euler step.
+        if self._age_dt != dt:
+            self._age_transition = expm(dt * self.traces.matrix).T
+            self._age_dt = dt
+        self.traces.state = self.traces.state @ self._age_transition
+        self.traces.state *= np.exp(-dt / self.config.trace_tau)
+        self.singular_values *= np.exp(-dt / (2 * self.config.evidence_tau))
+        self.traces.consolidate(consolidation)
+        if self.config.policy in ("relax", "hybrid") and self.U.shape[1]:
+            score = self._priority(self.U)
+            stale = (score < self.config.release_threshold) & (
+                self.singular_values**2 < self.config.eigenvalue_floor
+            )
+            if stale.any():
+                self.release(
+                    int(stale.sum()), max_priority=self.config.release_threshold
+                )
+
+    def _priority(self, directions: np.ndarray) -> np.ndarray:
+        overlap = (self.U.T @ directions) ** 2
+        rank = self.U.shape[1]
+        trace = self.traces.state[:rank]
+        slow = (
+            np.maximum(trace[:, 1:], 0) @ self.traces.capacity[1:]
+            if trace.shape[1] > 1
+            else np.zeros(rank)
+        )
+        evidence = self.singular_values**2
+        score = (
+            np.maximum(trace[:, 0], 0)
+            + self.config.slow_weight * slow
+            + evidence / (1 + evidence)
+        )
+        return overlap.T @ score
+
+    def release(self, count: int, *, max_priority: float | None = None) -> int:
+        if count < 0:
+            raise ValueError("release count must be nonnegative")
+        if self.config.policy not in ("relax", "hybrid") or count == 0:
+            return 0
+        rank = self.U.shape[1]
+        residual = self.U - self.anchor_U @ (self.anchor_U.T @ self.U)
+        unanchored = self.U.copy() if not self.anchor_U.shape[1] else basis(residual)
+        # Reorthogonalize after numerical residual cancellation. Singular values
+        # near machine precision relative to U are not new directions.
+        if self.anchor_U.shape[1]:
+            residual -= self.anchor_U @ (self.anchor_U.T @ residual)
+            u, s, _ = np.linalg.svd(residual, full_matrices=False)
+            unanchored = u[:, s > 1e-10]
+        priority = self._priority(unanchored)
+        eligible = np.argsort(priority, kind="stable")
+        if max_priority is not None:
+            eligible = eligible[priority[eligible] <= max_priority]
+        removed = eligible[:count]
+        keep = np.ones(unanchored.shape[1], dtype=bool)
+        keep[removed] = False
+        new = np.concatenate((self.anchor_U, unanchored[:, keep]), axis=1)
+        self._replace_basis(new)
+        actual = max(0, rank - new.shape[1])
+        self.released_total += actual
+        self.events.append(
+            {
+                "time": self.clock,
+                "event": "release",
+                "directions": actual,
+                "retention": "released span is unprotected",
+            }
+        )
+        return actual
+
+    def expand(self, extra: int, *, seed: int | None = None) -> int:
+        """Adaptive expansion always honors budgets, feature stamps and anchors."""
+        return self.recruit(extra, seed=seed)
+
+    def recruit(self, extra: int | None = None, *, seed: int | None = None) -> int:
+        if self.config.policy not in ("expand", "hybrid"):
+            return 0
+        extra = min(
+            self.config.growth_step if extra is None else extra,
+            self.config.max_features - self.in_features,
+        )
+        while (
+            extra > 0
+            and self.estimated_state_bytes(self.in_features + extra)
+            > self.config.max_state_bytes
+        ):
+            extra -= 1
+        if extra <= 0:
+            return 0
+        if not isinstance(extra, (int, np.integer)):
+            raise ValueError("extra must be an integer")
+        old_width = self.in_features
+        rng = self.rng if seed is None else np.random.default_rng(seed)
+        projection = rng.normal(
+            0, 1 / np.sqrt(self.base_features), (self.base_features, extra)
+        )
+        bias = rng.normal(0, 0.1, extra)
+        super().expand(extra, seed=int(rng.integers(2**31)))
+        # New coordinates initially contribute exactly zero, despite ternary base.
+        self.dW[old_width:] = -self.W_base[old_width:].astype(float)
+        self.anchor_U = np.pad(self.anchor_U, ((0, extra), (0, 0)))
+        old_trace = self.traces.state
+        self.traces = DiffusiveCascade(self.in_features, self.config.reservoirs)
+        self.traces.state[:old_width] = old_trace
+        self.feature_blocks.append({"projection": projection, "bias": bias})
+        self.expansions += 1
+        self.events.append(
+            {
+                "time": self.clock,
+                "event": "recruit",
+                "width": self.in_features,
+                "version": self.feature_version,
+            }
+        )
+        return extra
+
+    def manage_capacity(self) -> dict:
+        reserve = (
+            max(1, ceil(self.config.reserve_fraction * self.in_features))
+            if self.config.reserve_fraction
+            else 0
+        )
+        if self.free_dims < reserve:
+            self.recruit(max(self.config.growth_step, reserve - self.free_dims))
+            reserve = ceil(self.config.reserve_fraction * self.in_features)
+        if self.free_dims < reserve:
+            self.release(reserve - self.free_dims)
+        return self.capacity_metrics()
+
+    def capacity_metrics(self) -> dict:
+        return {
+            "width": self.in_features,
+            "rank": self.U.shape[1],
+            "free_dims": self.free_dims,
+            "anchor_rank": self.anchor_U.shape[1],
+            "feature_version": self.feature_version,
+            "released_total": self.released_total,
+            "expansions": self.expansions,
+            "state_budget_bytes": self.estimated_state_bytes(self.in_features),
+            "capacity_exhausted": self.free_dims == 0,
+        }
+
+    def state_dict(self) -> dict:
+        return {
+            "config": asdict(self.config),
+            "base_features": self.base_features,
+            "in_features": self.in_features,
+            "out_features": self.out_features,
+            "W_base": self.W_base.copy(),
+            "dW": self.dW.copy(),
+            "U": self.U.copy(),
+            "singular_values": self.singular_values.copy(),
+            "last_update": self.last_update.copy(),
+            "anchor_U": self.anchor_U.copy(),
+            "trace_state": self.traces.state.copy(),
+            "blocks": self.feature_blocks,
+            "rng": self.rng.bit_generator.state,
+            "clock": self.clock,
+            "events": list(self.events),
+            "released_total": self.released_total,
+            "expansions": self.expansions,
+        }
+
+    @classmethod
+    def from_state_dict(cls, state: dict) -> "AdaptiveSubspaceLinear":
+        obj = cls(
+            state["base_features"],
+            state["out_features"],
+            config=AdaptiveConfig(**state["config"]),
+        )
+        obj.in_features = state["in_features"]
+        obj.rank_max = obj.in_features
+        for name in ("W_base", "dW", "U", "singular_values", "last_update", "anchor_U"):
+            setattr(obj, name, np.asarray(state[name]).copy())
+        obj.W_base.flags.writeable = False
+        obj.traces = DiffusiveCascade(obj.in_features, obj.config.reservoirs)
+        obj.traces.state = np.asarray(state["trace_state"]).copy()
+        obj.feature_blocks = [
+            {k: np.asarray(v).copy() for k, v in block.items()}
+            for block in state["blocks"]
+        ]
+        obj.rng.bit_generator.state = state["rng"]
+        obj.clock = state["clock"]
+        obj.events = deque(state["events"], maxlen=128)
+        obj.released_total = state["released_total"]
+        obj.expansions = state["expansions"]
+        return obj
 
 
 ========================================================================================
@@ -3198,6 +4541,493 @@ class IdentityStore:
 ========================================================================================
 ARQUIVO: nova/jepa/__init__.py
 ========================================================================================
+"""Lazy backend exports: NumPy equilibrium inference does not import PyTorch."""
+
+from importlib import import_module
+
+__all__ = [
+    "JEPA",
+    "ContextEncoder",
+    "TargetEncoder",
+    "LatentPredictor",
+    "EquilibriumNetwork",
+    "EquilibriumWorldModel",
+    "EquilibriumConfig",
+]
+
+
+def __getattr__(name):
+    if name in ("JEPA", "ContextEncoder", "TargetEncoder", "LatentPredictor"):
+        return getattr(import_module(".torch_backend", __name__), name)
+    if name in ("EquilibriumNetwork", "EquilibriumWorldModel", "EquilibriumConfig"):
+        return getattr(import_module(".equilibrium", __name__), name)
+    raise AttributeError(name)
+
+
+========================================================================================
+ARQUIVO: nova/jepa/equilibrium.py
+========================================================================================
+"""Contractive rate-network latent learning via two-phase equilibrium correlations.
+
+This backend uses NumPy and explicit local equations, with no autograd calls.
+It is a separate hypothesis from the PyTorch JEPA baseline, not a claim that
+latent prediction is automatically variational free-energy inference.
+"""
+
+from __future__ import annotations
+from dataclasses import dataclass, asdict
+import copy
+from time import perf_counter
+import numpy as np
+from numpy.typing import ArrayLike
+
+
+def batch(x: ArrayLike, width: int) -> np.ndarray:
+    x = np.asarray(x, dtype=np.float64)
+    if x.ndim == 1:
+        x = x[None]
+    if x.ndim != 2 or x.shape[1] != width or not len(x) or not np.isfinite(x).all():
+        raise ValueError(f"expected finite nonempty [batch, {width}] array")
+    return x
+
+
+@dataclass(frozen=True)
+class EquilibriumConfig:
+    state_dim: int = 32
+    recurrent_radius: float = 0.5
+    damping: float = 0.5
+    beta: float = 0.02
+    tolerance: float = 1e-8
+    max_steps: int = 200
+    update_clip: float = 1.0
+
+    def __post_init__(self):
+        if min(self.state_dim, self.max_steps) < 1 or not 0 < self.damping <= 1:
+            raise ValueError("invalid relaxation configuration")
+        if (
+            not 0 <= self.recurrent_radius < 1
+            or not 0 < self.beta < 1 - self.recurrent_radius
+        ):
+            raise ValueError("require recurrent_radius + beta < 1 for both phases")
+        if (
+            not np.isfinite(self.tolerance)
+            or self.tolerance <= 0
+            or not np.isfinite(self.update_clip)
+            or self.update_clip <= 0
+        ):
+            raise ValueError("invalid tolerance or update clip")
+
+
+@dataclass
+class EquilibriumResult:
+    state: np.ndarray
+    output: np.ndarray
+    iterations: int
+    residual: float
+    converged: bool
+
+
+class EquilibriumNetwork:
+    """E(s,u)=sum integral_0^s atanh(v)dv - s.T W s/2 - s.T(B.T u+b).
+
+    State is in (-1,1). Hessian diag(1/(1-s²))-W is positive definite
+    when symmetric ||W||_2<1. Free equilibrium solves s=tanh(sW+uB+b).
+    Nudging adds beta/2 ||P s-y||², or beta*g.T P s for local messages.
+    Central +/- beta phases estimate energy-parameter derivatives. This is a
+    bounded nonlinear rate model; its symmetric weights are not a Dale circuit.
+    """
+
+    def __init__(
+        self,
+        inputs: int,
+        outputs: int,
+        *,
+        seed: int = 0,
+        config: EquilibriumConfig | None = None,
+    ):
+        self.config = config or EquilibriumConfig(state_dim=max(32, outputs * 2))
+        if inputs < 1 or not 1 <= outputs <= self.config.state_dim:
+            raise ValueError("invalid network dimensions")
+        self.inputs, self.outputs = inputs, outputs
+        rng = np.random.default_rng(seed)
+        n = self.config.state_dim
+        matrix = rng.normal(0, 0.1, (n, n))
+        self.W = (matrix + matrix.T) / 2
+        self.B = rng.normal(0, 1 / np.sqrt(inputs), (inputs, n))
+        self.bias = np.zeros(n)
+        self._contract()
+        self.last_diagnostics = {}
+        self.updates = 0
+
+    def _contract(self):
+        values, vectors = np.linalg.eigh((self.W + self.W.T) / 2)
+        values = np.clip(
+            values, -self.config.recurrent_radius, self.config.recurrent_radius
+        )
+        self.W = (vectors * values) @ vectors.T
+
+    def energy(self, state: ArrayLike, inputs: ArrayLike) -> np.ndarray:
+        state = batch(state, self.config.state_dim)
+        u = batch(inputs, self.inputs)
+        if len(state) != len(u):
+            raise ValueError("batch mismatch")
+        s = np.clip(state, -1 + 1e-12, 1 - 1e-12)
+        primitive = s * np.arctanh(s) + 0.5 * np.log1p(-s * s)
+        return (
+            primitive.sum(1)
+            - 0.5 * np.sum((s @ self.W) * s, axis=1)
+            - np.sum(s * (u @ self.B + self.bias), axis=1)
+        )
+
+    def relax(
+        self,
+        inputs: ArrayLike,
+        *,
+        targets: ArrayLike | None = None,
+        beta: float = 0.0,
+        output_gradient: ArrayLike | None = None,
+        initial: ArrayLike | None = None,
+        deadline: float | None = None,
+    ) -> EquilibriumResult:
+        u = batch(inputs, self.inputs)
+        c = self.config
+        if abs(beta) + c.recurrent_radius >= 1:
+            raise ValueError("nudge violates contraction bound")
+        if targets is not None and output_gradient is not None:
+            raise ValueError("choose targets or output_gradient")
+        y = None if targets is None else batch(targets, self.outputs)
+        gradient = (
+            None if output_gradient is None else batch(output_gradient, self.outputs)
+        )
+        if (y is not None and len(y) != len(u)) or (
+            gradient is not None and len(gradient) != len(u)
+        ):
+            raise ValueError("batch mismatch")
+        s = (
+            np.zeros((len(u), c.state_dim))
+            if initial is None
+            else batch(initial, c.state_dim).copy()
+        )
+        if len(s) != len(u):
+            raise ValueError("initial batch mismatch")
+        drive = u @ self.B + self.bias
+        residual = float("inf")
+        completed = 0
+        for step in range(c.max_steps):
+            if deadline is not None and perf_counter() >= deadline:
+                break
+            current = s @ self.W + drive
+            if y is not None:
+                current[:, -self.outputs :] -= beta * (s[:, -self.outputs :] - y)
+            if gradient is not None:
+                current[:, -self.outputs :] -= beta * gradient
+            fixed = np.tanh(current)
+            residual = float(np.max(abs(fixed - s)))
+            completed = step + 1
+            s += (fixed - s) * c.damping
+            if residual <= c.tolerance:
+                break
+        # If no iteration fit the budget, report a finite bound, not a success.
+        if not completed:
+            residual = float(np.max(abs(np.tanh(drive) - s)))
+        result = EquilibriumResult(
+            s,
+            s[:, -self.outputs :].copy(),
+            completed,
+            residual,
+            bool(completed and residual <= c.tolerance),
+        )
+        self.last_diagnostics = {
+            "iterations": completed,
+            "residual": residual,
+            "converged": result.converged,
+        }
+        return result
+
+    def predict(self, inputs: ArrayLike) -> np.ndarray:
+        result = self.relax(inputs)
+        if not result.converged:
+            raise RuntimeError("equilibrium inference did not converge")
+        return result.output
+
+    def learn(
+        self,
+        inputs: ArrayLike,
+        targets: ArrayLike | None = None,
+        *,
+        output_gradient: ArrayLike | None = None,
+        lr: float = 0.01,
+    ) -> dict:
+        u = batch(inputs, self.inputs)
+        if (targets is None) == (output_gradient is None):
+            raise ValueError("supply targets or a local output gradient")
+        if not np.isfinite(lr) or lr < 0:
+            raise ValueError("invalid learning rate")
+        free = self.relax(u)
+        beta = self.config.beta
+        plus = self.relax(
+            u,
+            targets=targets,
+            output_gradient=output_gradient,
+            beta=beta,
+            initial=free.state,
+        )
+        minus = self.relax(
+            u,
+            targets=targets,
+            output_gradient=output_gradient,
+            beta=-beta,
+            initial=free.state,
+        )
+        if not all(r.converged for r in (free, plus, minus)):
+            return {
+                "updated": False,
+                "reason": "relaxation_not_converged",
+                "residual": max(r.residual for r in (free, plus, minus)),
+                "input_gradient": np.zeros_like(u),
+                "prediction": free.output,
+            }
+        delta = (plus.state - minus.state) / (2 * beta)
+        # This input message is evaluated before modifying B.
+        input_gradient = -delta @ self.B.T
+        dB = u.T @ delta / len(u)
+        dW = (plus.state.T @ plus.state - minus.state.T @ minus.state) / (
+            4 * beta * len(u)
+        )
+        db = delta.mean(0)
+        magnitude = np.sqrt(np.sum(dB * dB) + np.sum(dW * dW) + np.sum(db * db))
+        scale = min(1.0, self.config.update_clip / max(magnitude, 1e-12))
+        self.B += lr * scale * dB
+        self.W += lr * scale * dW
+        self.bias += lr * scale * db
+        self._contract()
+        self.updates += 1
+        loss = (
+            None
+            if targets is None
+            else float(
+                0.5
+                * np.mean(
+                    np.sum((free.output - batch(targets, self.outputs)) ** 2, axis=1)
+                )
+            )
+        )
+        return {
+            "updated": True,
+            "loss": loss,
+            "input_gradient": input_gradient,
+            "prediction": free.output,
+            "gradient_norm": float(magnitude),
+            "clip_scale": float(scale),
+            "residual": max(r.residual for r in (free, plus, minus)),
+        }
+
+    def linearize(self, inputs: ArrayLike) -> tuple[np.ndarray, np.ndarray]:
+        """Implicit ds/du = (diag(1/(1-s²))-W)^(-1) B.T, not finite differences."""
+        result = self.relax(inputs)
+        if not result.converged:
+            raise RuntimeError("cannot linearize a nonconverged equilibrium")
+        jacobian = []
+        for s in result.state:
+            hessian = np.diag(1 / np.maximum(1 - s * s, 1e-12)) - self.W
+            jacobian.append(np.linalg.solve(hessian, self.B.T)[-self.outputs :])
+        return result.output, np.stack(jacobian)
+
+    def state_dict(self) -> dict:
+        return {
+            "inputs": self.inputs,
+            "outputs": self.outputs,
+            "config": asdict(self.config),
+            "W": self.W.copy(),
+            "B": self.B.copy(),
+            "bias": self.bias.copy(),
+            "updates": self.updates,
+        }
+
+    @classmethod
+    def from_state_dict(cls, state: dict) -> "EquilibriumNetwork":
+        result = cls(
+            state["inputs"],
+            state["outputs"],
+            config=EquilibriumConfig(**state["config"]),
+        )
+        for name in ("W", "B", "bias"):
+            setattr(result, name, np.asarray(state[name], dtype=float).copy())
+        if (
+            not np.allclose(result.W, result.W.T, atol=1e-10)
+            or np.linalg.norm(result.W, 2) > result.config.recurrent_radius + 1e-10
+        ):
+            raise ValueError("checkpoint violates symmetric contraction constraint")
+        result.updates = state["updates"]
+        return result
+
+
+class EquilibriumWorldModel:
+    """EMA-target latent prediction with an actual equilibrium encoder/predictor.
+
+    During offline learning, local EqProp messages can also train the context
+    encoder, with explicit variance/covariance output forces. Online runtime
+    learning freezes the encoder to preserve protected coordinates. No lifetime
+    or performance advantage follows merely from avoiding autograd.
+    """
+
+    kind = "equilibrium"
+
+    def __init__(
+        self,
+        observation_dim: int,
+        latent_dim: int,
+        action_dim: int,
+        *,
+        seed: int = 0,
+        config: EquilibriumConfig | None = None,
+    ):
+        self.observation_dim, self.latent_dim, self.action_dim = (
+            observation_dim,
+            latent_dim,
+            action_dim,
+        )
+        self.config = config or EquilibriumConfig(state_dim=max(32, latent_dim * 2))
+        self.context = EquilibriumNetwork(
+            observation_dim, latent_dim, seed=seed, config=self.config
+        )
+        self.target = copy.deepcopy(self.context)
+        self.predictor = EquilibriumNetwork(
+            latent_dim + action_dim, latent_dim, seed=seed + 1, config=self.config
+        )
+        self.mean = np.zeros(observation_dim)
+        self.scale = np.ones(observation_dim)
+        self.encoder_frozen = False
+        self.last_diagnostics = {}
+
+    def fit_normalizer(self, observations: ArrayLike):
+        if self.encoder_frozen:
+            raise ValueError("normalizer is frozen with encoder coordinates")
+        x = batch(observations, self.observation_dim)
+        self.mean = x.mean(0)
+        self.scale = np.maximum(x.std(0), 0.05)
+
+    def _normalize(self, x):
+        return (batch(x, self.observation_dim) - self.mean) / self.scale
+
+    def encode(self, x: ArrayLike) -> np.ndarray:
+        output = self.context.predict(self._normalize(x))
+        self.last_diagnostics = self.context.last_diagnostics.copy()
+        return output
+
+    def predict(self, z: ArrayLike, action: ArrayLike) -> np.ndarray:
+        z = batch(z, self.latent_dim)
+        a = batch(action, self.action_dim)
+        if len(z) != len(a):
+            raise ValueError("latent/action batch mismatch")
+        return self.predictor.predict(np.c_[z, a])
+
+    def linearize(
+        self, z: ArrayLike, action: ArrayLike
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        z = batch(z, self.latent_dim)
+        a = batch(action, self.action_dim)
+        output, jacobian = self.predictor.linearize(np.c_[z, a])
+        return (
+            output,
+            jacobian[:, :, : self.latent_dim],
+            jacobian[:, :, self.latent_dim :],
+        )
+
+    def learn_latent(self, z, action, future_z, lr=0.01) -> dict:
+        return self.predictor.learn(
+            np.c_[batch(z, self.latent_dim), batch(action, self.action_dim)],
+            batch(future_z, self.latent_dim),
+            lr=lr,
+        )
+
+    def learn_transition(
+        self,
+        x,
+        action,
+        future,
+        *,
+        lr=0.01,
+        train_encoder=False,
+        variance_weight=1.0,
+        covariance_weight=0.01,
+        ema=0.99,
+    ) -> dict:
+        if train_encoder and self.encoder_frozen:
+            raise ValueError("encoder coordinates are frozen")
+        normalized = self._normalize(x)
+        z = self.context.predict(normalized)
+        target = self.target.predict(self._normalize(future))
+        result = self.learn_latent(z, action, target, lr)
+        if train_encoder and result["updated"]:
+            gradient = result["input_gradient"][:, : self.latent_dim]
+            centered = z - z.mean(0)
+            n, d = z.shape
+            std = np.sqrt(np.mean(centered**2, axis=0) + 1e-4)
+            if n > 1:
+                # Output-gradient arrays are per-example cost gradients; network
+                # learn performs its own batch mean on parameter correlations.
+                gradient += (
+                    variance_weight
+                    * (-centered / np.maximum(std, 1e-8))
+                    * (std < 0.5)
+                    / d
+                )
+                cov = centered.T @ centered / (n - 1)
+                off = cov - np.diag(np.diag(cov))
+                gradient += (
+                    covariance_weight * 4 * n / (d * d * (n - 1)) * (centered @ off)
+                )
+            result["encoder_updated"] = self.context.learn(
+                normalized, output_gradient=gradient, lr=lr
+            )["updated"]
+            for name in ("W", "B", "bias"):
+                setattr(
+                    self.target,
+                    name,
+                    ema * getattr(self.target, name)
+                    + (1 - ema) * getattr(self.context, name),
+                )
+        result["latent_std"] = float(z.std(0).mean())
+        return result
+
+    def freeze_encoder(self):
+        self.encoder_frozen = True
+
+    def state_dict(self) -> dict:
+        return {
+            "kind": self.kind,
+            "observation_dim": self.observation_dim,
+            "latent_dim": self.latent_dim,
+            "action_dim": self.action_dim,
+            "config": asdict(self.config),
+            "context": self.context.state_dict(),
+            "target": self.target.state_dict(),
+            "predictor": self.predictor.state_dict(),
+            "mean": self.mean.copy(),
+            "scale": self.scale.copy(),
+            "encoder_frozen": self.encoder_frozen,
+        }
+
+    @classmethod
+    def from_state_dict(cls, state: dict) -> "EquilibriumWorldModel":
+        obj = cls(
+            state["observation_dim"],
+            state["latent_dim"],
+            state["action_dim"],
+            config=EquilibriumConfig(**state["config"]),
+        )
+        for name in ("context", "target", "predictor"):
+            setattr(obj, name, EquilibriumNetwork.from_state_dict(state[name]))
+        obj.mean = np.asarray(state["mean"]).copy()
+        obj.scale = np.asarray(state["scale"]).copy()
+        obj.encoder_frozen = state["encoder_frozen"]
+        return obj
+
+
+========================================================================================
+ARQUIVO: nova/jepa/torch_backend.py
+========================================================================================
 """Latent prediction with a stopped, exponential-moving-average target."""
 
 from copy import deepcopy
@@ -3536,6 +5366,7 @@ class Episode:
     surprise: float = 0.0
     anchor: bool = False
     revisions: list[str] = field(default_factory=list)
+    feature_version: int = 0
 
 
 class EpisodicMemory:
@@ -3628,10 +5459,23 @@ class SensoryBuffer(deque):
 class SemanticGraph:
     """Retain contradictory facts with distinct sources; never silently merge."""
 
-    def __init__(self):
+    def __init__(self, capacity=None):
+        if capacity is not None and capacity < 1:
+            raise ValueError("capacity must be positive")
+        self.capacity = capacity
+        self.evicted = 0
         self.facts = []
 
-    def add(self, subject, predicate, value, source, confidence=1.0, timestamp=""):
+    def add(
+        self,
+        subject,
+        predicate,
+        value,
+        source,
+        confidence=1.0,
+        timestamp="",
+        anchor=False,
+    ):
         if not source or not 0 <= confidence <= 1:
             raise ValueError("source/confidence required")
         fact = dict(
@@ -3642,8 +5486,20 @@ class SemanticGraph:
             confidence=confidence,
             timestamp=timestamp,
         )
-        if fact not in self.facts:
-            self.facts.append(fact)
+        if anchor:
+            fact["anchor"] = True
+        if fact in self.facts:
+            return False
+        if self.capacity is not None and len(self.facts) >= self.capacity:
+            index = next(
+                (i for i, f in enumerate(self.facts) if not f.get("anchor")), None
+            )
+            if index is None:
+                return False
+            self.facts.pop(index)
+            self.evicted += 1
+        self.facts.append(fact)
+        return True
 
     def query(self, subject, predicate):
         return [
@@ -3960,10 +5816,10 @@ def dashboard(metrics_path, output):
 <h1>NOVA — métricas do ciclo</h1><p>Registro experimental. Selecione uma métrica para inspecionar sua evolução.</p>
 <label>Métrica <select id="metric"></select></label><canvas id="chart" width="950" height="350"></canvas><table id="summary"></table>
 <script>const data=PAYLOAD;const select=document.getElementById('metric');
-const keys=data.length?Object.keys(data[0]).filter(k=>typeof data[0][k]==='number'&&k!=='tick'):[];
+const keys=[...new Set(data.flatMap(row=>Object.keys(row).filter(k=>typeof row[k]==='number'&&Number.isFinite(row[k])&&k!=='tick')))];
 for(const key of keys){const o=document.createElement('option');o.value=o.textContent=key;select.append(o)}
 function draw(){const key=select.value,values=data.map(d=>d[key]),c=document.getElementById('chart'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);if(!values.length)return;
-const low=Math.min(...values),high=Math.max(...values),span=high-low||1;ctx.strokeStyle='#38bdf8';ctx.lineWidth=2;ctx.beginPath();values.forEach((v,i)=>{const x=40+i*870/Math.max(values.length-1,1),y=310-(v-low)*270/span;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();ctx.fillStyle='#e2e8f0';ctx.fillText(high.toPrecision(5),5,25);ctx.fillText(low.toPrecision(5),5,325);ctx.fillText('ticks: '+values.length,400,345);
+const finite=values.filter(v=>typeof v==='number'&&Number.isFinite(v));if(!finite.length)return;const low=Math.min(...finite),high=Math.max(...finite),span=high-low||1;ctx.strokeStyle='#38bdf8';ctx.lineWidth=2;ctx.beginPath();let pen=false;values.forEach((v,i)=>{if(typeof v!=='number'||!Number.isFinite(v)){pen=false;return;}const x=40+i*870/Math.max(values.length-1,1),y=310-(v-low)*270/span;pen?ctx.lineTo(x,y):ctx.moveTo(x,y);pen=true});ctx.stroke();ctx.fillStyle='#e2e8f0';ctx.fillText(high.toPrecision(5),5,25);ctx.fillText(low.toPrecision(5),5,325);ctx.fillText('ticks: '+values.length,400,345);
 const table=document.getElementById('summary');table.replaceChildren();for(const [name,value] of Object.entries(data[data.length-1])){const tr=document.createElement('tr');for(const v of [name,value]){const td=document.createElement('td');td.textContent=String(v);tr.append(td)}table.append(tr)}}select.onchange=draw;draw();</script></html>""".replace(
         "PAYLOAD", payload
     )
@@ -4203,9 +6059,9 @@ class PredictiveHierarchy:
 ========================================================================================
 ARQUIVO: nova/planning/__init__.py
 ========================================================================================
-"""Receding-horizon cross-entropy search and evidence accumulation."""
+"""Receding-horizon CEM baseline, explicit feasibility and warm-start state."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from time import perf_counter
 import numpy as np
 
@@ -4213,13 +6069,19 @@ import numpy as np
 @dataclass
 class Plan:
     action: np.ndarray
-    cost: float
+    cost: float | None
     iterations: int
     rollouts: int
+    diagnostics: dict = field(default_factory=dict)
 
 
 class LatentPlanner:
-    """CEM minimizes sum gamma**t * cost(z_t), subject to box action bounds."""
+    """CEM searches H*action_dim variables; latent_dim affects rollout cost.
+
+    Reuses the shifted previous plan, retains a feasible incumbent, and rejects
+    invalid trajectories. The time budget is soft and checked between model
+    calls. A zero stop command is not certified safe when every candidate fails.
+    """
 
     def __init__(
         self,
@@ -4232,10 +6094,12 @@ class LatentPlanner:
         elite_fraction=0.1,
         seed=0,
         discount=0.99,
+        constraint=None,
     ):
         if (
             min(action_dim, horizon, rollouts, iterations) < 1
             or not 0 < elite_fraction <= 1
+            or not 0 < discount <= 1
         ):
             raise ValueError("invalid search configuration")
         self.predictor, self.cost = predictor, cost
@@ -4245,42 +6109,129 @@ class LatentPlanner:
             rollouts,
             iterations,
         )
-        self.elite_fraction, self.discount = elite_fraction, discount
+        self.elite_fraction, self.discount, self.constraint = (
+            elite_fraction,
+            discount,
+            constraint,
+        )
         self.rng = np.random.default_rng(seed)
+        self.warm_actions = np.zeros((horizon, action_dim))
+        self.last_diagnostics = {}
 
     def plan(self, z, budget_ms=None):
+        if budget_ms is not None and (not np.isfinite(budget_ms) or budget_ms <= 0):
+            raise ValueError("positive time budget required")
+        z = np.asarray(z, dtype=float)
+        if z.ndim != 1 or not np.isfinite(z).all():
+            raise ValueError("finite latent vector required")
         start = perf_counter()
-        mean = np.zeros((self.horizon, self.action_dim))
+        mean = self.warm_actions.copy()
         std = np.ones_like(mean)
         best_cost = float("inf")
-        best = np.zeros_like(mean)
+        best = None
         completed = 0
-        for i in range(self.iterations):
-            if (
-                i
-                and budget_ms is not None
-                and (perf_counter() - start) * 1000 >= budget_ms
-            ):
+        calls = 0
+        reason = "iterations"
+        for iteration in range(self.iterations):
+            if budget_ms is not None and (perf_counter() - start) * 1000 >= budget_ms:
+                reason = "deadline"
                 break
             actions = np.clip(
                 self.rng.normal(mean, std, (self.rollouts, *mean.shape)), -1, 1
             )
-            actions[0] = best
+            actions[0] = self.warm_actions if best is None else best
             states = np.broadcast_to(z, (self.rollouts, len(z))).copy()
             costs = np.zeros(self.rollouts)
+            valid = np.ones(self.rollouts, dtype=bool)
+            aborted = False
             for t in range(self.horizon):
+                if (
+                    budget_ms is not None
+                    and (perf_counter() - start) * 1000 >= budget_ms
+                ):
+                    reason = "deadline"
+                    aborted = True
+                    break
                 states = np.asarray(self.predictor(states, actions[:, t]))
-                costs += self.discount**t * np.asarray(self.cost(states))
-            elite = np.argsort(costs)[
-                : max(1, int(self.rollouts * self.elite_fraction))
+                calls += self.rollouts
+                if states.shape != (self.rollouts, len(z)):
+                    raise ValueError("invalid model shape")
+                valid &= np.isfinite(states).all(1)
+                safe_states = np.where(np.isfinite(states), states, 0.0)
+                step_cost = np.asarray(self.cost(safe_states), dtype=float)
+                if step_cost.shape != (self.rollouts,):
+                    raise ValueError("invalid cost shape")
+                valid &= np.isfinite(step_cost)
+                costs += self.discount**t * np.where(
+                    np.isfinite(step_cost), step_cost, 0
+                )
+                if self.constraint is not None:
+                    valid &= np.all(
+                        safe_states
+                        >= self.constraint.lower - self.constraint.tolerance,
+                        axis=1,
+                    )
+                    valid &= np.all(
+                        safe_states
+                        <= self.constraint.upper + self.constraint.tolerance,
+                        axis=1,
+                    )
+                states = safe_states
+            if aborted:
+                break
+            eligible = np.flatnonzero(valid)
+            if not len(eligible):
+                reason = "no_feasible_rollout"
+                completed = iteration + 1
+                continue
+            elite = eligible[
+                np.argsort(costs[eligible])[
+                    : max(1, int(self.rollouts * self.elite_fraction))
+                ]
             ]
             if costs[elite[0]] < best_cost:
                 best_cost = float(costs[elite[0]])
                 best = actions[elite[0]].copy()
             mean = actions[elite].mean(0)
             std = np.maximum(actions[elite].std(0), 0.05)
-            completed += 1
-        return Plan(best[0].copy(), best_cost, completed, completed * self.rollouts)
+            completed = iteration + 1
+        if best is None:
+            action = np.zeros(self.action_dim)
+            self.warm_actions.fill(0)
+        else:
+            action = best[0].copy()
+            self.warm_actions = np.vstack((best[1:], best[-1]))
+        self.last_diagnostics = {
+            "solver": "cem",
+            "reason": reason,
+            "feasible": best is not None,
+            "model_calls": calls,
+            "search_variables": self.horizon * self.action_dim,
+            "iterations": completed,
+            "latency_ms": (perf_counter() - start) * 1000,
+            "fallback": None if best is not None else "no_verified_feasible_trajectory",
+        }
+        return Plan(
+            action,
+            None if best is None else best_cost,
+            completed,
+            completed * self.rollouts,
+            self.last_diagnostics.copy(),
+        )
+
+    def state_dict(self):
+        return {
+            "warm_actions": self.warm_actions.copy(),
+            "rng": self.rng.bit_generator.state,
+        }
+
+    def load_state_dict(self, state):
+        if "warm_actions" in state:
+            actions = np.asarray(state["warm_actions"], dtype=float)
+            if actions.shape != self.warm_actions.shape:
+                raise ValueError("invalid CEM checkpoint shape")
+            self.warm_actions = actions.copy()
+        self.rng.bit_generator.state = state["rng"]
 
 
 def drift_diffusion(
@@ -4294,6 +6245,390 @@ def drift_diffusion(
         if state.max() >= max(0.1, threshold - urgency * step * dt):
             return int(state.argmax()), (step + 1) * dt
     return int(state.argmax()), max_steps * dt
+
+
+========================================================================================
+ARQUIVO: nova/planning/energy.py
+========================================================================================
+"""Action-space energy optimization with exact dynamics derivatives and budgets."""
+
+from __future__ import annotations
+from dataclasses import dataclass
+from time import perf_counter
+import numpy as np
+from . import Plan
+
+
+class TemporalSheaf:
+    """Matrix-free temporal coboundary: D_e z = R_left z_e - R_right z_(e+1).
+
+    E=weight/2 ||Dz||², gradient=weight D.T Dz. Default restrictions are the
+    identity; nontrivial restrictions must be supplied explicitly. A consistency
+    penalty is not a replacement for learned dynamics or a safety certificate.
+    """
+
+    def __init__(self, dimension: int, weight: float = 0.0, left=None, right=None):
+        if dimension < 1 or not np.isfinite(weight) or weight < 0:
+            raise ValueError("invalid sheaf regularizer")
+        self.dimension, self.weight = dimension, weight
+        self.identity = left is None and right is None
+        self.left = np.eye(dimension) if left is None else np.asarray(left, dtype=float)
+        self.right = (
+            np.eye(dimension) if right is None else np.asarray(right, dtype=float)
+        )
+        if self.left.shape != (dimension, dimension) or self.right.shape != (
+            dimension,
+            dimension,
+        ):
+            raise ValueError("restriction shape mismatch")
+
+    def energy_gradient(self, states: np.ndarray) -> tuple[float, np.ndarray]:
+        states = np.asarray(states, dtype=float)
+        if states.ndim != 2 or states.shape[1] != self.dimension:
+            raise ValueError("invalid trajectory shape")
+        gradient = np.zeros_like(states)
+        if len(states) < 2 or not self.weight:
+            return 0.0, gradient
+        if self.identity:
+            error = states[:-1] - states[1:]
+            gradient[:-1] += self.weight * error
+            gradient[1:] -= self.weight * error
+            return float(0.5 * self.weight * np.sum(error * error)), gradient
+        error = states[:-1] @ self.left.T - states[1:] @ self.right.T
+        gradient[:-1] += self.weight * error @ self.left
+        gradient[1:] -= self.weight * error @ self.right
+        return float(0.5 * self.weight * np.sum(error * error)), gradient
+
+
+class BoxStateConstraint:
+    """Soft squared violation plus an explicit hard feasibility predicate."""
+
+    def __init__(self, lower, upper, penalty=100.0, tolerance=1e-8):
+        self.lower = np.asarray(lower, dtype=float)
+        self.upper = np.asarray(upper, dtype=float)
+        if (
+            not np.isfinite(self.lower).all()
+            or not np.isfinite(self.upper).all()
+            or self.lower.shape != self.upper.shape
+            or np.any(self.lower > self.upper)
+            or penalty < 0
+            or tolerance < 0
+        ):
+            raise ValueError("invalid state bounds")
+        self.penalty, self.tolerance = penalty, tolerance
+
+    def energy_gradient(self, states):
+        low = np.minimum(states - self.lower, 0)
+        high = np.maximum(states - self.upper, 0)
+        return float(
+            self.penalty * np.sum(low * low + high * high)
+        ), 2 * self.penalty * (low + high)
+
+    def feasible(self, states):
+        return bool(
+            np.all(states >= self.lower - self.tolerance)
+            and np.all(states <= self.upper + self.tolerance)
+        )
+
+
+@dataclass(frozen=True)
+class EnergyPlannerConfig:
+    horizon: int = 12
+    iterations: int = 20
+    learning_rate: float = 0.3
+    discount: float = 0.99
+    action_penalty: float = 0.001
+    slew_penalty: float = 0.01
+    sheaf_weight: float = 0.0
+    max_model_calls: int = 4096
+    line_search_steps: int = 8
+    gradient_tolerance: float = 1e-5
+
+    def __post_init__(self):
+        if (
+            min(self.horizon, self.iterations, self.line_search_steps) < 1
+            or self.max_model_calls < self.horizon
+        ):
+            raise ValueError("insufficient solver budget")
+        if (
+            not 0 < self.discount <= 1
+            or self.learning_rate <= 0
+            or self.gradient_tolerance <= 0
+        ):
+            raise ValueError("invalid solver scales")
+        if any(
+            not np.isfinite(x) or x < 0
+            for x in (self.action_penalty, self.slew_penalty, self.sheaf_weight)
+        ):
+            raise ValueError("invalid energy weights")
+
+
+class SolverBudgetExceeded(RuntimeError):
+    pass
+
+
+class EnergyPlanner:
+    """Projected action descent through differentiable dynamics, with Armijo search.
+
+    The search variables are H*action_dim, also for CEM. Increasing latent_dim
+    increases model/Jacobian cost; it does not change that search dimension.
+    Gradients use an explicit backward costate recursion, never torch.autograd.
+    A model must supply predict(z,a) and linearize(z,a)->(next,F_z,F_a).
+    Nonconvex trajectory optimization can stop at a local optimum.
+    """
+
+    def __init__(
+        self,
+        model,
+        cost_gradient,
+        action_dim: int,
+        latent_dim: int,
+        *,
+        config: EnergyPlannerConfig | None = None,
+        constraint=None,
+    ):
+        if min(action_dim, latent_dim) < 1:
+            raise ValueError("invalid model dimensions")
+        self.model, self.cost_gradient, self.action_dim = (
+            model,
+            cost_gradient,
+            action_dim,
+        )
+        self.config = config or EnergyPlannerConfig()
+        self.constraint = constraint
+        self.sheaf = TemporalSheaf(latent_dim, self.config.sheaf_weight)
+        self.rng = np.random.default_rng(
+            0
+        )  # common checkpoint interface; solver itself is deterministic
+        self.warm_actions = np.zeros((self.config.horizon, action_dim))
+        self.previous_action = np.zeros(action_dim)
+        self.model_calls = 0
+        self._deadline = None
+        self.last_diagnostics = {}
+
+    def _consume(self):
+        if self.model_calls >= self.config.max_model_calls:
+            raise SolverBudgetExceeded("model_call_budget")
+        if self._deadline is not None and perf_counter() >= self._deadline:
+            raise SolverBudgetExceeded("deadline")
+        self.model_calls += 1
+
+    def _rollout(self, z, actions, derivatives=False):
+        states = []
+        fz = []
+        fa = []
+        current = np.asarray(z, dtype=float)[None]
+        for action in actions:
+            self._consume()
+            if derivatives:
+                current, jz, ja = self.model.linearize(current, action[None])
+                fz.append(jz[0])
+                fa.append(ja[0])
+            else:
+                current = self.model.predict(current, action[None])
+            current = np.asarray(current, dtype=float)
+            if (
+                current.shape != (1, self.sheaf.dimension)
+                or not np.isfinite(current).all()
+            ):
+                raise ValueError("nonfinite/invalid model rollout")
+            states.append(current[0].copy())
+        return np.stack(states), fz, fa
+
+    def _objective(self, states, actions):
+        c = self.config
+        cost, gradient = self.cost_gradient(states)
+        cost = np.asarray(cost, dtype=float)
+        gradient = np.asarray(gradient, dtype=float)
+        if (
+            cost.shape != (len(states),)
+            or gradient.shape != states.shape
+            or not np.isfinite(cost).all()
+            or not np.isfinite(gradient).all()
+        ):
+            raise ValueError("cost_gradient returned invalid values")
+        discount = c.discount ** np.arange(len(states))
+        value = float(discount @ cost)
+        gz = discount[:, None] * gradient
+        sheaf_value, sheaf_gradient = self.sheaf.energy_gradient(states)
+        value += sheaf_value
+        gz += sheaf_gradient
+        if self.constraint is not None:
+            extra, grad = self.constraint.energy_gradient(states)
+            value += extra
+            gz += grad
+        value += c.action_penalty * float(np.sum(actions * actions))
+        ga = 2 * c.action_penalty * actions
+        difference = actions - np.vstack((self.previous_action, actions[:-1]))
+        value += c.slew_penalty * float(np.sum(difference * difference))
+        ga += 2 * c.slew_penalty * difference
+        ga[:-1] -= 2 * c.slew_penalty * difference[1:]
+        return value, gz, ga
+
+    def plan(self, z, budget_ms=None, initial_actions=None):
+        z = np.asarray(z, dtype=float)
+        if z.shape != (self.sheaf.dimension,) or not np.isfinite(z).all():
+            raise ValueError("invalid initial state")
+        if budget_ms is not None and (not np.isfinite(budget_ms) or budget_ms <= 0):
+            raise ValueError("budget_ms must be positive")
+        self.model_calls = 0
+        start = perf_counter()
+        self._deadline = None if budget_ms is None else start + budget_ms / 1000
+        actions = (
+            self.warm_actions.copy()
+            if initial_actions is None
+            else np.asarray(initial_actions, dtype=float).copy()
+        )
+        if actions.shape != self.warm_actions.shape or not np.isfinite(actions).all():
+            raise ValueError("invalid initial action sequence")
+        actions = np.clip(actions, -1, 1)
+        best = None
+        best_value = float("inf")
+        completed = 0
+        reason = "iterations"
+        gradient_norm = None
+        try:
+            states, _, _ = self._rollout(z, actions)
+            value, _, _ = self._objective(states, actions)
+            if self.constraint is None or self.constraint.feasible(states):
+                best = actions.copy()
+                best_value = value
+            for iteration in range(self.config.iterations):
+                states, fz, fa = self._rollout(z, actions, derivatives=True)
+                value, gz, grad = self._objective(states, actions)
+                costate = np.zeros(len(z))
+                for t in range(self.config.horizon - 1, -1, -1):
+                    costate += gz[t]
+                    grad[t] += fa[t].T @ costate
+                    costate = fz[t].T @ costate
+                # Projected stationarity, not raw gradient, handles active box constraints.
+                projected = actions - np.clip(actions - grad, -1, 1)
+                gradient_norm = float(np.linalg.norm(projected))
+                if gradient_norm <= self.config.gradient_tolerance:
+                    reason = "projected_stationary"
+                    break
+                accepted = False
+                step = self.config.learning_rate
+                for _ in range(self.config.line_search_steps):
+                    candidate = np.clip(actions - step * grad, -1, 1)
+                    trajectory, _, _ = self._rollout(z, candidate)
+                    candidate_value, _, _ = self._objective(trajectory, candidate)
+                    feasible = self.constraint is None or self.constraint.feasible(
+                        trajectory
+                    )
+                    if feasible and candidate_value < best_value:
+                        best = candidate.copy()
+                        best_value = candidate_value
+                    if candidate_value <= value + 1e-4 * float(
+                        np.sum(grad * (candidate - actions))
+                    ):
+                        actions = candidate
+                        accepted = True
+                        break
+                    step *= 0.5
+                completed = iteration + 1
+                if not accepted:
+                    reason = "line_search_stalled"
+                    break
+        except SolverBudgetExceeded as error:
+            reason = str(error)
+        feasible = best is not None
+        if feasible:
+            action = best[0].copy()
+            self.warm_actions = np.vstack((best[1:], best[-1]))
+        else:
+            # This is a stop command, NOT a claim that zero is safe in every world.
+            action = np.zeros(self.action_dim)
+            self.warm_actions.fill(0)
+        self.previous_action = action.copy()
+        self.last_diagnostics = {
+            "solver": "energy",
+            "reason": reason,
+            "feasible": feasible,
+            "model_calls": self.model_calls,
+            "search_variables": self.config.horizon * self.action_dim,
+            "iterations": completed,
+            "projected_gradient_norm": gradient_norm,
+            "latency_ms": (perf_counter() - start) * 1000,
+            "fallback": None if feasible else "no_verified_feasible_trajectory",
+        }
+        return Plan(
+            action,
+            float(best_value) if feasible else None,
+            completed,
+            0,
+            self.last_diagnostics.copy(),
+        )
+
+    def state_dict(self):
+        return {
+            "warm_actions": self.warm_actions.copy(),
+            "previous_action": self.previous_action.copy(),
+            "rng": self.rng.bit_generator.state,
+        }
+
+    def load_state_dict(self, state):
+        warm = np.asarray(state["warm_actions"], dtype=float)
+        previous = np.asarray(state["previous_action"], dtype=float)
+        if (
+            warm.shape != self.warm_actions.shape
+            or previous.shape != self.previous_action.shape
+        ):
+            raise ValueError("planner checkpoint dimension mismatch")
+        self.warm_actions = warm.copy()
+        self.previous_action = previous.copy()
+        self.rng.bit_generator.state = state["rng"]
+
+
+========================================================================================
+ARQUIVO: nova/profiles.py
+========================================================================================
+"""Explicit opt-in research profiles; choosing a profile is not an evidence claim."""
+
+from dataclasses import asdict
+from .runtime import RuntimeConfig
+
+
+def runtime_config(profile="baseline", overrides=None):
+    options = {
+        "baseline": {},
+        "adaptive": dict(
+            world_backend="equilibrium",
+            adaptive_memory=True,
+            planning=True,
+            planner_backend="energy",
+            world_online_learning=True,
+            neuromodulation=True,
+            planner_iterations=12,
+            sleep_every=32,
+        ),
+        "brain": dict(
+            world_backend="adex",
+            adaptive_memory=True,
+            planning=True,
+            planner_backend="energy",
+            world_online_learning=True,
+            neuromodulation=True,
+            planner_iterations=12,
+            sleep_every=32,
+        ),
+    }
+    if profile not in options:
+        raise ValueError("unknown runtime profile")
+    values = {**options[profile], **(overrides or {})}
+    # Validate all names/types through the dataclass instead of silently ignoring typos.
+    return RuntimeConfig(**values)
+
+
+def describe(config: RuntimeConfig):
+    return {
+        "config": asdict(config),
+        "status": "experimental; no new performance measurements in this revision",
+        "autograd_used": config.world_backend == "torch",
+        "retention_scope": "versioned retained activation span; released directions may change",
+        "finite_capacity": True,
+        "time_budget": "soft wall budget or deterministic operation budget",
+    }
 
 
 ========================================================================================
@@ -4472,6 +6807,67 @@ class TemperatureCalibrator:
 
 
 ========================================================================================
+ARQUIVO: nova/reasoning/local_policy.py
+========================================================================================
+"""Amortized control with a fixed random feature map and local output delta rule."""
+
+import numpy as np
+
+
+class LocalPolicy:
+    """a=tanh(tanh(zR+b)W+c); only the readout W,c adapts to a teacher action.
+
+    This is a local supervised readout, not a replacement for all policy-learning
+    algorithms. Hidden random features are frozen; no hidden-layer backward pass.
+    """
+
+    def __init__(self, inputs, outputs, seed=0, hidden=64):
+        rng = np.random.default_rng(seed)
+        self.inputs, self.outputs = inputs, outputs
+        self.projection = rng.normal(0, 1 / np.sqrt(inputs), (inputs, hidden))
+        self.bias = rng.normal(0, 0.1, hidden)
+        self.weights = np.zeros((hidden, outputs))
+        self.output_bias = np.zeros(outputs)
+
+    def features(self, x):
+        return np.tanh(np.asarray(x) @ self.projection + self.bias)
+
+    def predict(self, x):
+        return np.tanh(self.features(x) @ self.weights + self.output_bias)
+
+    def learn(self, x, target, lr=0.01):
+        x = np.atleast_2d(x)
+        target = np.atleast_2d(target)
+        features = self.features(x)
+        pred = np.tanh(features @ self.weights + self.output_bias)
+        if target.shape != pred.shape or not np.isfinite(target).all() or lr < 0:
+            raise ValueError("invalid policy target")
+        delta = np.clip((pred - target) * (1 - pred * pred), -1, 1)
+        self.weights -= lr * features.T @ delta / len(x)
+        self.output_bias -= lr * delta.mean(0)
+        return float(np.mean((pred - target) ** 2))
+
+    def state_dict(self):
+        return {
+            "inputs": self.inputs,
+            "outputs": self.outputs,
+            **{
+                key: getattr(self, key).copy()
+                for key in ("projection", "bias", "weights", "output_bias")
+            },
+        }
+
+    @classmethod
+    def from_state_dict(cls, state):
+        obj = cls(
+            state["inputs"], state["outputs"], hidden=np.shape(state["weights"])[0]
+        )
+        for key in ("projection", "bias", "weights", "output_bias"):
+            setattr(obj, key, np.asarray(state[key]).copy())
+        return obj
+
+
+========================================================================================
 ARQUIVO: nova/research/__init__.py
 ========================================================================================
 """Opt-in hypotheses: mathematical checks do not establish task-level benefit."""
@@ -4616,17 +7012,15 @@ class SheafCoherence:
 ========================================================================================
 ARQUIVO: nova/runtime.py
 ========================================================================================
-"""Stateful research cycle; deterministic snapshots exclude identity stores and keys."""
+"""Integrated cognitive cycle with optional adaptive memory and physical latent inference."""
 
 from __future__ import annotations
-from dataclasses import dataclass, asdict
+from collections import deque
+from dataclasses import dataclass, asdict, replace
 import json
 from pathlib import Path
 from time import perf_counter
 import numpy as np
-import torch
-from torch import nn
-from nova.jepa import JEPA
 from nova.continual import ProtectedLinear
 from nova.memory import (
     SensoryBuffer,
@@ -4639,6 +7033,8 @@ from nova.synapse import DiffusiveCascade
 from nova.neuromod import Neuromodulator
 from nova.planning import LatentPlanner
 from nova.values import InternalState
+from nova.values.progress import LearningProgress
+from nova.checkpoint import save_state, load_state, CheckpointFormatError
 
 
 @dataclass
@@ -4653,110 +7049,345 @@ class RuntimeConfig:
     planning: bool = False
     neuromodulation: bool = False
     deterministic: bool = True
+    world_backend: str = "torch"
+    world_online_learning: bool = False
+    adaptive_memory: bool = False
+    memory_policy: str = "hybrid"
+    memory_growth: int = 8
+    max_memory_features: int = 128
+    memory_reserve: float = 0.2
+    max_memory_bytes: int = 32 * 1024 * 1024
+    planner_backend: str = "cem"
+    planner_horizon: int = 6
+    planner_iterations: int = 3
+    planner_rollouts: int = 64
+    solver_max_calls: int = 512
+    sheaf_weight: float = 0.0
+    spiking_units: int = 100
+    spiking_steps: int = 100
+    spiking_backend: str = "numpy"
+    spiking_plasticity: bool = False
+    history_limit: int = 2048
+    goal_latent: list[float] | None = None
+    state_lower: list[float] | None = None
+    state_upper: list[float] | None = None
+
+    def __post_init__(self):
+        if (
+            min(
+                self.observation_dim,
+                self.latent_dim,
+                self.action_dim,
+                self.memory_capacity,
+                self.sleep_every,
+                self.history_limit,
+                self.planner_horizon,
+                self.planner_iterations,
+                self.planner_rollouts,
+                self.spiking_units,
+                self.spiking_steps,
+            )
+            < 1
+        ):
+            raise ValueError("dimensions and budgets must be positive")
+        if not np.isfinite(self.tick_budget_ms) or self.tick_budget_ms <= 0:
+            raise ValueError("invalid time budget")
+        if self.world_backend not in (
+            "torch",
+            "equilibrium",
+            "adex",
+        ) or self.planner_backend not in ("cem", "energy"):
+            raise ValueError("unknown world/planner backend")
+        if self.spiking_plasticity and self.world_backend != "adex":
+            raise ValueError("spiking plasticity requires AdEx backend")
+        if self.world_online_learning and self.world_backend == "torch":
+            raise ValueError(
+                "online world learning is provided by the local EqProp backends"
+            )
+
+
+class _Dynamics:
+    def __init__(self, runtime):
+        self.runtime = runtime
+
+    def predict(self, z, a):
+        return self.runtime.predict(z, a)
+
+    def linearize(self, z, a):
+        return self.runtime.linearize(z, a)
 
 
 class CognitiveRuntime:
-    """Perceive -> predict -> evaluate -> recall -> decide -> learn -> periodic sleep.
+    """Versioned memory + real latent backend + amortized/energy-based control.
 
-    Default demo encoders are untrained. Load a trained world model for scientific
-    use. Encoder coordinates are frozen while protected memory learns online.
-    Optional hypotheses are not silently enabled by this integration harness.
+    Baseline behavior remains selectable. Adaptive and physical backends are
+    experimental and unbenchmarked in this revision. Encoders are frozen for
+    online rate-model training. A stateful AdEx representation has history
+    dependence; stored-activation protection is not raw-observation retention.
     """
 
     def __init__(self, config: RuntimeConfig | None = None):
         self.config = config or RuntimeConfig()
         c = self.config
-        if (
-            min(
-                c.observation_dim,
-                c.latent_dim,
-                c.action_dim,
-                c.memory_capacity,
-                c.sleep_every,
-            )
-            < 1
-            or c.tick_budget_ms <= 0
-        ):
-            raise ValueError("invalid runtime config")
         self.rng = np.random.default_rng(c.seed)
-        with torch.random.fork_rng():
-            torch.manual_seed(c.seed)
-            self.world = JEPA(c.observation_dim, c.latent_dim, c.action_dim)
-            self.policy = nn.Sequential(
-                nn.Linear(c.latent_dim, 32),
-                nn.Tanh(),
-                nn.Linear(32, c.action_dim),
-                nn.Tanh(),
+        if c.world_backend == "torch":
+            import torch
+            from torch import nn
+            from nova.jepa import JEPA
+
+            with torch.random.fork_rng():
+                torch.manual_seed(c.seed)
+                self.world = JEPA(c.observation_dim, c.latent_dim, c.action_dim)
+                self.policy = nn.Sequential(
+                    nn.Linear(c.latent_dim, 32),
+                    nn.Tanh(),
+                    nn.Linear(32, c.action_dim),
+                    nn.Tanh(),
+                )
+            self.world.context.requires_grad_(False)
+            self.world.target.requires_grad_(False)
+        else:
+            from nova.jepa.equilibrium import EquilibriumWorldModel
+            from nova.brain.latent import SpikingWorldModel
+            from nova.reasoning.local_policy import LocalPolicy
+
+            if c.world_backend == "adex":
+                self.world = SpikingWorldModel(
+                    c.observation_dim,
+                    c.latent_dim,
+                    c.action_dim,
+                    seed=c.seed,
+                    spiking_units=c.spiking_units,
+                    spiking_steps=c.spiking_steps,
+                    spiking_backend=c.spiking_backend,
+                )
+            else:
+                self.world = EquilibriumWorldModel(
+                    c.observation_dim, c.latent_dim, c.action_dim, seed=c.seed
+                )
+            self.world.freeze_encoder()
+            self.policy = LocalPolicy(c.latent_dim, c.action_dim, seed=c.seed)
+        if c.adaptive_memory:
+            from nova.continual.adaptive import AdaptiveSubspaceLinear, AdaptiveConfig
+
+            cfg = AdaptiveConfig(
+                policy=c.memory_policy,
+                growth_step=c.memory_growth,
+                max_features=c.max_memory_features,
+                max_state_bytes=c.max_memory_bytes,
+                reserve_fraction=c.memory_reserve,
             )
-        self.world.context.requires_grad_(False)
-        self.world.target.requires_grad_(False)
-        self.continual = ProtectedLinear(c.latent_dim, c.latent_dim, seed=c.seed)
+            self.continual = AdaptiveSubspaceLinear(
+                c.latent_dim, c.latent_dim, seed=c.seed, config=cfg
+            )
+        else:
+            self.continual = ProtectedLinear(c.latent_dim, c.latent_dim, seed=c.seed)
         self.cascade = DiffusiveCascade(c.latent_dim)
         self.mod = (
             Neuromodulator() if c.neuromodulation else Neuromodulator(frozenset())
         )
         self.internal = InternalState()
+        self.progress = LearningProgress()
         self.sensory = SensoryBuffer()
         self.working = WorkingMemory(dimensions=c.latent_dim)
         self.episodic = EpisodicMemory(c.memory_capacity)
-        self.semantic = SemanticGraph()
+        self.semantic = SemanticGraph(capacity=4 * c.memory_capacity)
         self.rest = self.rng.normal(0, 0.03, c.latent_dim)
         self.z = self.rest.copy()
         self.prediction = self.rest.copy()
         self.last_action = np.zeros(c.action_dim)
+        self.z_version = 0
         self.tick_index = 0
         self.previous_observation = None
-        self.metrics = []
+        self.metrics = deque(maxlen=c.history_limit)
         self.external_state = {}
-        self.planner = LatentPlanner(
-            self.predict,
-            self.cost,
-            c.action_dim,
-            seed=c.seed,
-            rollouts=64,
-            horizon=6,
-            iterations=3,
+        self.last_solver = {}
+        self.last_world_update = {}
+        self.goal = (
+            np.zeros(c.latent_dim)
+            if c.goal_latent is None
+            else np.asarray(c.goal_latent, dtype=float)
         )
+        if self.goal.shape != (c.latent_dim,) or not np.isfinite(self.goal).all():
+            raise ValueError("goal shape mismatch")
+        self._create_planner()
+
+    def _create_planner(self):
+        c = self.config
+        constraint = None
+        if c.state_lower is not None or c.state_upper is not None:
+            from nova.planning.energy import BoxStateConstraint
+
+            if c.state_lower is None or c.state_upper is None:
+                raise ValueError("both state bounds required")
+            constraint = BoxStateConstraint(c.state_lower, c.state_upper)
+            if constraint.lower.shape != (c.latent_dim,):
+                raise ValueError("state constraint dimension mismatch")
+        if c.planner_backend == "energy":
+            from nova.planning.energy import EnergyPlanner, EnergyPlannerConfig
+
+            cfg = EnergyPlannerConfig(
+                horizon=c.planner_horizon,
+                iterations=c.planner_iterations,
+                max_model_calls=c.solver_max_calls,
+                sheaf_weight=c.sheaf_weight,
+            )
+            self.planner = EnergyPlanner(
+                _Dynamics(self),
+                self.planning_cost_gradient,
+                c.action_dim,
+                c.latent_dim,
+                config=cfg,
+                constraint=constraint,
+            )
+        else:
+            self.planner = LatentPlanner(
+                self.predict,
+                self.planning_cost,
+                c.action_dim,
+                seed=c.seed,
+                rollouts=c.planner_rollouts,
+                horizon=c.planner_horizon,
+                iterations=c.planner_iterations,
+                constraint=constraint,
+            )
+
+    def _encode(self, observation):
+        if self.config.world_backend != "torch":
+            return self.world.encode(observation)[0]
+        import torch
+
+        with torch.no_grad():
+            return (
+                self.world.context(torch.as_tensor(observation, dtype=torch.float32))
+                .numpy()
+                .astype(float)
+            )
 
     def predict(self, z, a):
+        if self.config.world_backend != "torch":
+            return self.world.predict(z, a)
+        import torch
+
         with torch.no_grad():
             return self.world.predictor(
                 torch.as_tensor(z, dtype=torch.float32),
                 torch.as_tensor(a, dtype=torch.float32),
             ).numpy()
 
+    def linearize(self, z, a):
+        if self.config.world_backend != "torch":
+            return self.world.linearize(z, a)
+        # Explicit derivative of the baseline Linear -> SiLU -> Linear predictor.
+        z, a = np.asarray(z, dtype=float), np.asarray(a, dtype=float)
+        network = self.world.predictor.net
+        w1, b1 = network[0].weight.detach().numpy(), network[0].bias.detach().numpy()
+        w2, b2 = network[2].weight.detach().numpy(), network[2].bias.detach().numpy()
+        pre = np.c_[z, a] @ w1.T + b1
+        from scipy.special import expit
+
+        sigmoid = expit(pre)
+        derivative = sigmoid * (1 + pre * (1 - sigmoid))
+        jacobian = np.einsum("oh,bh,hi->boi", w2, derivative, w1)
+        output = (pre * sigmoid) @ w2.T + b2
+        return (
+            output,
+            jacobian[:, :, : self.config.latent_dim],
+            jacobian[:, :, self.config.latent_dim :],
+        )
+
     @staticmethod
     def cost(z):
-        return np.sum(z * z, axis=-1)
+        return np.sum(np.asarray(z) ** 2, axis=-1)
+
+    @staticmethod
+    def cost_gradient(z):
+        return CognitiveRuntime.cost(z), 2 * np.asarray(z)
+
+    def planning_cost(self, z):
+        return np.sum((np.asarray(z) - self.goal) ** 2, axis=-1)
+
+    def planning_cost_gradient(self, z):
+        return self.planning_cost(z), 2 * (np.asarray(z) - self.goal)
+
+    def set_goal(self, latent):
+        goal = np.asarray(latent, dtype=float)
+        if goal.shape != self.goal.shape or not np.isfinite(goal).all():
+            raise ValueError("invalid goal")
+        self.goal = goal.copy()
+        self.planner.warm_actions.fill(0)
+
+    def _policy_predict(self, z):
+        if self.config.world_backend != "torch":
+            return self.policy.predict(z)
+        import torch
+
+        with torch.no_grad():
+            return self.policy(torch.as_tensor(z, dtype=torch.float32)).numpy()
+
+    def _policy_learn(self, z, action):
+        if self.config.world_backend != "torch":
+            return self.policy.learn(z, action, lr=0.001)
+        import torch
+
+        optimizer = torch.optim.SGD(self.policy.parameters(), lr=0.001)
+        loss = (
+            (
+                self.policy(torch.as_tensor(z, dtype=torch.float32))
+                - torch.as_tensor(action, dtype=torch.float32)
+            )
+            .square()
+            .mean()
+        )
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        return float(loss.detach())
+
+    def _memory_input(self, z, version=None):
+        x = np.atleast_2d(z)
+        return self.continual.encode(x, version) if self.config.adaptive_memory else x
+
+    @property
+    def feature_version(self):
+        return self.continual.feature_version if self.config.adaptive_memory else 0
 
     def tick(self, observation=None, reward=0.0):
         start = perf_counter()
-        previous = self.z.copy()
-        self.tick_index += 1
         idle = observation is None
-        if idle:
-            self.z = 0.99 * self.z + 0.01 * self.rest
-        else:
-            observation = np.asarray(observation, dtype=np.float32)
+        if not np.isfinite(reward):
+            raise ValueError("nonfinite reward")
+        if not idle:
+            observation = np.asarray(observation, dtype=float)
             if (
                 observation.shape != (self.config.observation_dim,)
                 or not np.isfinite(observation).all()
             ):
                 raise ValueError("invalid observation")
+        previous = self.z.copy()
+        previous_version = self.z_version
+        previous_action = self.last_action.copy()
+        self.tick_index += 1
+        if idle:
+            self.z = 0.99 * self.z + 0.01 * self.rest
+        else:
             self.sensory.append(observation.copy())
-            with torch.no_grad():
-                self.z = (
-                    self.world.context(torch.from_numpy(observation))
-                    .numpy()
-                    .astype(float)
-                )
+            self.z = np.asarray(self._encode(observation), dtype=float)
+        self.z_version = self.feature_version
         error = float(np.mean((self.z - self.prediction) ** 2))
         uncertainty = float(np.clip(error, 0, 1))
         self.mod.update(
             error, reward, -self.cost(previous), -self.cost(self.z), uncertainty
         )
         recalled = self.episodic.retrieve(self.z, limit=1)
-        context = self.z if not recalled else 0.9 * self.z + 0.1 * recalled[0].embedding
+        sensory_weight = (
+            self.mod.sensory_weight() if self.config.neuromodulation else 0.9
+        )
+        context = (
+            self.z
+            if not recalled
+            else sensory_weight * self.z + (1 - sensory_weight) * recalled[0].embedding
+        )
         self.working.update(context)
         slow = (
             not idle
@@ -4764,40 +7395,39 @@ class CognitiveRuntime:
             and (uncertainty > 0.1 or self.mod.surprise > 0.5)
             and self.internal.energy > 0.1
         )
+        self.last_solver = {}
         if idle:
             action = np.zeros(self.config.action_dim)
             mode = "idle"
         elif slow:
+            if self.config.neuromodulation:
+                if self.config.planner_backend == "energy":
+                    self.planner.config = replace(
+                        self.planner.config, discount=self.mod.discount()
+                    )
+                else:
+                    self.planner.discount = self.mod.discount()
             result = self.planner.plan(
                 context,
                 None if self.config.deterministic else self.config.tick_budget_ms * 0.7,
             )
             action = result.action
             mode = "deliberate"
-            optimizer = torch.optim.SGD(self.policy.parameters(), lr=0.001)
-            loss = (
-                (
-                    self.policy(torch.tensor(context, dtype=torch.float32))
-                    - torch.tensor(action, dtype=torch.float32)
-                )
-                .square()
-                .mean()
-            )
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            self.last_solver = result.diagnostics
+            if result.cost is not None:
+                self._policy_learn(context, action)
         else:
-            with torch.no_grad():
-                action = (
-                    self.policy(torch.tensor(context, dtype=torch.float32))
-                    .numpy()
-                    .astype(float)
-                )
+            action = self._policy_predict(context)
             mode = "fast"
+        world_loss = None
         if not idle:
+            memory_input = self._memory_input(previous, previous_version)
             self.continual.step(
-                previous[None], self.z[None], self.mod.learning_rate(0.001)
+                memory_input, self.z[None], self.mod.learning_rate(0.001)
             )
+            if self.config.adaptive_memory:
+                self.continual.observe(memory_input)
+                self.continual.age(1.0, consolidation=0.01 * self.mod.consolidation())
             self.cascade.step(np.full(self.config.latent_dim, error), dt=0.1)
             self.episodic.threshold = self.mod.write_threshold(0.05)
             self.episodic.write(
@@ -4809,157 +7439,291 @@ class CognitiveRuntime:
                     f"{self.tick_index:012d}",
                     surprise=error,
                     valence=self.internal.valence,
+                    feature_version=self.z_version,
                 )
             )
+            if (
+                self.config.world_online_learning
+                and self.previous_observation is not None
+            ):
+                update = self.world.learn_latent(
+                    previous[None],
+                    previous_action[None],
+                    self.z[None],
+                    lr=self.mod.learning_rate(0.001),
+                )
+                world_loss = update.get("loss")
+                self.last_world_update = {
+                    key: value
+                    for key, value in update.items()
+                    if not isinstance(value, np.ndarray)
+                }
+            if self.config.spiking_plasticity:
+                self.world.spiking.learn_local(self.mod.reward_pe)
             self.previous_observation = observation.copy()
-        self.last_action = action.copy()
-        self.prediction = self.predict(self.z[None], action[None])[0]
-        # Deterministic resource proxy; wall latency is observational, never checkpoint semantics.
+        self.last_action = np.asarray(action, dtype=float).copy()
+        self.prediction = self.predict(self.z[None], self.last_action[None])[0]
         self.internal.update(
             error,
             0.8 if slow else 0.1,
             len(self.episodic.episodes) / self.config.memory_capacity,
             reward,
         )
+        self.internal.curiosity = 0.0 if idle else self.progress.update(error)
         if self.tick_index % self.config.sleep_every == 0:
             self.sleep()
         elapsed = (perf_counter() - start) * 1000
-        metric = dict(
-            tick=self.tick_index,
-            mode=mode,
-            error=error,
-            free_dims=self.continual.free_dims,
-            memory=len(self.episodic.episodes),
-            latency_ms=elapsed,
-            budget_exceeded=elapsed > self.config.tick_budget_ms,
-            energy=self.internal.energy,
-        )
+        metric = {
+            "tick": self.tick_index,
+            "mode": mode,
+            "error": error,
+            "free_dims": self.continual.free_dims,
+            "memory": len(self.episodic.episodes),
+            "latency_ms": elapsed,
+            "budget_exceeded": elapsed > self.config.tick_budget_ms,
+            "energy": self.internal.energy,
+            "curiosity": self.internal.curiosity,
+            "progress_standard_error": self.progress.standard_error,
+            "world_backend": self.config.world_backend,
+            "planner_backend": self.config.planner_backend,
+            "world_loss": world_loss,
+            "semantic_facts": len(self.semantic.facts),
+            "semantic_evicted": self.semantic.evicted,
+            "feature_version": self.feature_version,
+            "memory_width": self.continual.in_features,
+            "solver_model_calls": self.last_solver.get("model_calls", 0),
+            "solver_feasible": self.last_solver.get("feasible"),
+            "world_converged": getattr(self.world, "last_diagnostics", {}).get(
+                "converged"
+            ),
+        }
+        if self.config.adaptive_memory:
+            metric.update(self.continual.capacity_metrics())
         self.metrics.append(metric)
         return {
-            "action": action,
+            "action": self.last_action.copy(),
             "mode": mode,
             "latent": self.z.copy(),
             "metrics": metric,
+            "solver": self.last_solver.copy(),
         }
 
-    def sleep(self):
-        def learn(episode):
-            self.semantic.add(
-                episode.id,
-                "observed",
-                episode.content,
-                episode.source,
-                timestamp=episode.timestamp,
-            )
+    def remember_anchor(self, episode: Episode):
+        if not episode.anchor:
+            raise ValueError("anchor must be explicit")
+        if episode.embedding.shape != (self.config.latent_dim,):
+            raise ValueError("anchor latent shape mismatch")
+        x = self._memory_input(episode.embedding, episode.feature_version)
+        if not self.episodic.write(episode, force=True):
+            raise ValueError("episode capacity contains only anchors")
+        if self.config.adaptive_memory:
+            self.continual.consolidate(x, anchor=True)
+        else:
+            self.continual.consolidate(x)
 
-        self.episodic.sleep(learn)
-        if self.episodic.episodes:
-            self.continual.consolidate(
-                np.stack([e.embedding for e in self.episodic.episodes])
+    def sleep(self):
+        self.episodic.sleep(
+            lambda e: self.semantic.add(
+                e.id,
+                "observed",
+                e.content,
+                e.source,
+                timestamp=e.timestamp,
+                anchor=e.anchor,
             )
+        )
+        if self.episodic.episodes:
+            x = np.stack([e.embedding for e in self.episodic.episodes])
+            versions = np.array([e.feature_version for e in self.episodic.episodes])
+            self.continual.consolidate(self._memory_input(x, versions))
+        if self.config.adaptive_memory:
+            self.continual.manage_capacity()
         self.cascade.consolidate(self.mod.consolidation() * 0.01)
         self.internal.sleep()
 
-    def save(self, path):
-        """NPZ + JSON only, no executable pickle; all mutable integration state included."""
-        arrays = {
-            f"world.{k}": v.detach().numpy() for k, v in self.world.state_dict().items()
-        }
-        arrays.update(
-            {
-                f"policy.{k}": v.detach().numpy()
-                for k, v in self.policy.state_dict().items()
+    def state_dict(self):
+        if self.config.world_backend == "torch":
+            world = {k: v.detach().numpy() for k, v in self.world.state_dict().items()}
+            policy = {
+                k: v.detach().numpy() for k, v in self.policy.state_dict().items()
+            }
+        else:
+            world = self.world.state_dict()
+            policy = self.policy.state_dict()
+        memory = (
+            self.continual.state_dict()
+            if self.config.adaptive_memory
+            else {
+                **{
+                    k: getattr(self.continual, k).copy()
+                    for k in ("W_base", "dW", "U", "singular_values", "last_update")
+                },
+                "rank_max": self.continual.rank_max,
+                "energy_threshold": self.continual.energy_threshold,
             }
         )
-        for key in ("W_base", "dW", "U", "singular_values", "last_update"):
-            arrays[f"continual.{key}"] = getattr(self.continual, key)
-        for key in ("z", "prediction", "rest", "last_action"):
-            arrays[key] = getattr(self, key)
-        arrays["cascade"] = self.cascade.state
-        arrays["working"] = self.working.state
-        mod = asdict(self.mod)
-        mod["enabled"] = sorted(mod["enabled"])
-        episodes = [
-            {**asdict(e), "embedding": e.embedding.tolist()}
-            for e in self.episodic.episodes
+        return {
+            "kind": "nova-runtime",
+            "config": asdict(self.config),
+            "world": world,
+            "policy": policy,
+            "memory": memory,
+            "cascade": self.cascade.state.copy(),
+            "working": self.working.state.copy(),
+            "working_cursor": self.working.cursor,
+            "z": self.z.copy(),
+            "prediction": self.prediction.copy(),
+            "rest": self.rest.copy(),
+            "last_action": self.last_action.copy(),
+            "goal": self.goal.copy(),
+            "z_version": self.z_version,
+            "tick": self.tick_index,
+            "rng": self.rng.bit_generator.state,
+            "planner": self.planner.state_dict()
+            if hasattr(self.planner, "state_dict")
+            else {"rng": self.planner.rng.bit_generator.state},
+            "mod": {**asdict(self.mod), "enabled": sorted(self.mod.enabled)},
+            "internal": asdict(self.internal),
+            "progress": self.progress.state_dict(),
+            "episodes": [asdict(e) for e in self.episodic.episodes],
+            "facts": self.semantic.facts,
+            "semantic_evicted": self.semantic.evicted,
+            "sensory": list(self.sensory),
+            "previous_observation": self.previous_observation,
+            "episodic_threshold": self.episodic.threshold,
+            "metrics": list(self.metrics),
+            "external_state": self.external_state,
+            "last_solver": self.last_solver,
+            "last_world_update": self.last_world_update,
+        }
+
+    def save(self, path):
+        save_state(path, self.state_dict())
+
+    @classmethod
+    def from_state_dict(cls, state):
+        if state.get("kind") != "nova-runtime":
+            raise ValueError("not a runtime checkpoint")
+        obj = cls(RuntimeConfig(**state["config"]))
+        if obj.config.world_backend == "torch":
+            import torch
+
+            for name in ("world", "policy"):
+                getattr(obj, name).load_state_dict(
+                    {
+                        k: torch.from_numpy(np.asarray(v).copy())
+                        for k, v in state[name].items()
+                    }
+                )
+        else:
+            from nova.jepa.equilibrium import EquilibriumWorldModel
+            from nova.brain.latent import SpikingWorldModel
+            from nova.reasoning.local_policy import LocalPolicy
+
+            model_class = (
+                SpikingWorldModel
+                if obj.config.world_backend == "adex"
+                else EquilibriumWorldModel
+            )
+            obj.world = model_class.from_state_dict(state["world"])
+            obj.policy = LocalPolicy.from_state_dict(state["policy"])
+        if obj.config.adaptive_memory:
+            from nova.continual.adaptive import AdaptiveSubspaceLinear
+
+            obj.continual = AdaptiveSubspaceLinear.from_state_dict(state["memory"])
+        else:
+            for name in ("W_base", "dW", "U", "singular_values", "last_update"):
+                setattr(obj.continual, name, np.asarray(state["memory"][name]).copy())
+            obj.continual.W_base.flags.writeable = False
+            obj.continual.rank_max = state["memory"]["rank_max"]
+            obj.continual.energy_threshold = state["memory"]["energy_threshold"]
+        for name in ("z", "prediction", "rest", "last_action"):
+            setattr(obj, name, np.asarray(state[name]).copy())
+        obj.goal = np.asarray(state.get("goal", obj.goal)).copy()
+        obj.z_version = state["z_version"]
+        obj.tick_index = state["tick"]
+        obj.rng.bit_generator.state = state["rng"]
+        obj.cascade.state = np.asarray(state["cascade"]).copy()
+        obj.working.state = np.asarray(state["working"]).copy()
+        obj.working.cursor = state["working_cursor"]
+        mod = state["mod"].copy()
+        mod["enabled"] = frozenset(mod["enabled"])
+        obj.mod = Neuromodulator(**mod)
+        obj.internal = InternalState(**state["internal"])
+        obj.progress = LearningProgress.from_state_dict(state["progress"])
+        obj.episodic.episodes = [
+            Episode(**{**e, "participants": tuple(e["participants"])})
+            for e in state["episodes"]
         ]
-        metadata = dict(
-            version=1,
-            config=asdict(self.config),
-            tick=self.tick_index,
-            rng=self.rng.bit_generator.state,
-            planner_rng=self.planner.rng.bit_generator.state,
-            mod=mod,
-            internal=asdict(self.internal),
-            episodes=episodes,
-            facts=self.semantic.facts,
-            working_cursor=self.working.cursor,
-            sensory=[x.tolist() for x in self.sensory],
-            previous_observation=None
-            if self.previous_observation is None
-            else self.previous_observation.tolist(),
-            episodic_threshold=self.episodic.threshold,
-            metrics=self.metrics,
-            external_state=self.external_state,
-        )
-        arrays["metadata"] = np.array(json.dumps(metadata, allow_nan=False))
-        path = Path(path)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open("wb") as stream:
-            np.savez_compressed(stream, **arrays)
+        obj.episodic.threshold = state["episodic_threshold"]
+        obj.semantic.facts = state["facts"]
+        obj.semantic.evicted = state.get("semantic_evicted", 0)
+        obj.sensory.extend(state["sensory"])
+        obj.previous_observation = state["previous_observation"]
+        obj.metrics = deque(state["metrics"], maxlen=obj.config.history_limit)
+        obj.external_state = state["external_state"]
+        obj.last_solver = state.get("last_solver", {})
+        obj.last_world_update = state.get("last_world_update", {})
+        obj._create_planner()
+        if hasattr(obj.planner, "load_state_dict"):
+            obj.planner.load_state_dict(state["planner"])
+        else:
+            obj.planner.rng.bit_generator.state = state["planner"]["rng"]
+        return obj
 
     @classmethod
     def load(cls, path):
+        try:
+            return cls.from_state_dict(load_state(path))
+        except CheckpointFormatError as error:
+            if str(error) != "not a v2 state archive":
+                raise
+        # Explicit migration of the published v1 runtime format.
         with np.load(path, allow_pickle=False) as arrays:
+            if "metadata" not in arrays.files:
+                raise ValueError("unknown checkpoint format")
             meta = json.loads(str(arrays["metadata"]))
-            if meta["version"] != 1:
-                raise ValueError("unsupported checkpoint version")
+            if meta.get("version") != 1:
+                raise ValueError("unsupported legacy version")
             obj = cls(RuntimeConfig(**meta["config"]))
+            state = obj.state_dict()
             for name, module in [("world", obj.world), ("policy", obj.policy)]:
-                module.load_state_dict(
-                    {
-                        k: torch.from_numpy(arrays[f"{name}.{k}"].copy())
-                        for k in module.state_dict()
-                    }
-                )
-            for key in ("W_base", "dW", "U", "singular_values", "last_update"):
-                setattr(obj.continual, key, arrays[f"continual.{key}"].copy())
-            obj.continual.W_base.flags.writeable = False
-            for key in ("z", "prediction", "rest", "last_action"):
-                setattr(obj, key, arrays[key].copy())
-            obj.cascade.state = arrays["cascade"].copy()
-            obj.working.state = arrays["working"].copy()
-            obj.working.cursor = meta["working_cursor"]
-            obj.tick_index = meta["tick"]
-            obj.rng.bit_generator.state = meta["rng"]
-            obj.planner.rng.bit_generator.state = meta["planner_rng"]
-            meta["mod"]["enabled"] = frozenset(meta["mod"]["enabled"])
-            obj.mod = Neuromodulator(**meta["mod"])
-            obj.internal = InternalState(**meta["internal"])
-            obj.episodic.episodes = [
-                Episode(
-                    **{
-                        **e,
-                        "embedding": np.asarray(e["embedding"]),
-                        "participants": tuple(e["participants"]),
-                    }
-                )
-                for e in meta["episodes"]
-            ]
-            obj.episodic.threshold = meta["episodic_threshold"]
-            obj.semantic.facts = meta["facts"]
-            obj.sensory.extend(np.asarray(x, dtype=np.float32) for x in meta["sensory"])
-            obj.previous_observation = (
-                None
+                state[name] = {
+                    k: arrays[f"{name}.{k}"].copy() for k in module.state_dict()
+                }
+            for name in ("W_base", "dW", "U", "singular_values", "last_update"):
+                state["memory"][name] = arrays[f"continual.{name}"].copy()
+            for name in ("z", "prediction", "rest", "last_action"):
+                state[name] = arrays[name].copy()
+            state.update(
+                cascade=arrays["cascade"].copy(),
+                working=arrays["working"].copy(),
+                working_cursor=meta["working_cursor"],
+                tick=meta["tick"],
+                rng=meta["rng"],
+                mod=meta["mod"],
+                internal=meta["internal"],
+                episodes=[
+                    {**e, "embedding": np.asarray(e["embedding"])}
+                    for e in meta["episodes"]
+                ],
+                facts=meta["facts"],
+                sensory=[np.asarray(x) for x in meta["sensory"]],
+                previous_observation=None
                 if meta["previous_observation"] is None
-                else np.asarray(meta["previous_observation"], dtype=np.float32)
+                else np.asarray(meta["previous_observation"]),
+                episodic_threshold=meta["episodic_threshold"],
+                metrics=meta["metrics"],
+                external_state=meta.get("external_state", {}),
             )
-            obj.metrics = meta["metrics"]
-            obj.external_state = meta.get("external_state", {})
-            return obj
+            state["planner"] = {"rng": meta["planner_rng"]}
+            return cls.from_state_dict(state)
 
     def write_metrics(self, path):
-        Path(path).write_text("".join(json.dumps(m) + "\n" for m in self.metrics))
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).write_text(
+            "".join(json.dumps(m, allow_nan=False) + "\n" for m in self.metrics)
+        )
 
 
 ========================================================================================
@@ -5086,18 +7850,62 @@ class NativeDiffusiveCascade(DiffusiveCascade):
 ========================================================================================
 ARQUIVO: nova/training.py
 ========================================================================================
-"""Small offline world-model training; freeze coordinates before online protection."""
+"""Offline world training with explicit PyTorch or NumPy/local-equilibrium backends."""
 
 from pathlib import Path
 import numpy as np
-import torch
-from nova.jepa import JEPA
 from nova.environments import point_transitions
+from nova.checkpoint import save_state, load_state
 
 
-def train_world(output, steps=900, seed=0):
+def train_world(output, steps=900, seed=0, *, backend="torch", train_encoder=False):
     if steps < 1:
         raise ValueError("steps must be positive")
+    if backend == "torch":
+        return _train_torch(output, steps, seed)
+    from nova.jepa.equilibrium import EquilibriumWorldModel
+    from nova.brain.latent import SpikingWorldModel
+
+    if backend not in ("equilibrium", "adex"):
+        raise ValueError("unknown training backend")
+    if backend == "adex" and train_encoder:
+        raise ValueError(
+            "AdEx encoder uses explicit STDP rather than rate-network EqProp"
+        )
+    rng = np.random.default_rng(seed)
+    x, a, y, _ = point_transitions(seed=seed)
+    model_class = SpikingWorldModel if backend == "adex" else EquilibriumWorldModel
+    model = model_class(12, 8, 2, seed=seed)
+    model.fit_normalizer(x)
+    successful = 0
+    last = {}
+    for _ in range(steps):
+        idx = rng.integers(len(x), size=32)
+        last = model.learn_transition(
+            x[idx], a[idx], y[idx], lr=0.01, train_encoder=train_encoder
+        )
+        successful += int(last["updated"])
+    model.freeze_encoder()
+    save_state(
+        output, {"kind": "nova-world", "backend": backend, "state": model.state_dict()}
+    )
+    # Training summary only; scientific acceptance belongs to the explicit held-out runner.
+    return {
+        "backend": backend,
+        "steps": steps,
+        "updates": successful,
+        "last_training_loss": last.get("loss"),
+        "seed": seed,
+        "checkpoint": str(output),
+        "accepted": None,
+        "evaluation": "not performed by training command",
+    }
+
+
+def _train_torch(output, steps, seed):
+    import torch
+    from nova.jepa import JEPA
+
     torch.manual_seed(seed)
     torch.set_num_threads(2)
     x, a, y, _ = map(torch.from_numpy, point_transitions(seed=seed))
@@ -5110,6 +7918,7 @@ def train_world(output, steps=900, seed=0):
         loss.backward()
         opt.step()
         model.target.update(model.context)
+    # Preserve the established training command's report protocol for this baseline.
     tx, ta, ty, _ = map(torch.from_numpy, point_transitions(1024, seed + 1000))
     with torch.no_grad():
         target = model.target(ty)
@@ -5123,6 +7932,7 @@ def train_world(output, steps=900, seed=0):
             stream, **{k: v.detach().numpy() for k, v in model.state_dict().items()}
         )
     return {
+        "backend": "torch",
         "latent_mse": mse,
         "mean_baseline_mse": baseline,
         "latent_std": std,
@@ -5137,12 +7947,38 @@ def load_world(runtime, path):
         raise ValueError(
             "load encoder before online learning; changing coordinates invalidates protection"
         )
-    with np.load(path, allow_pickle=False) as arrays:
-        runtime.world.load_state_dict(
-            {k: torch.from_numpy(arrays[k].copy()) for k in runtime.world.state_dict()}
-        )
-    runtime.world.context.requires_grad_(False)
-    runtime.world.target.requires_grad_(False)
+    if runtime.config.world_backend == "torch":
+        import torch
+
+        with np.load(path, allow_pickle=False) as arrays:
+            runtime.world.load_state_dict(
+                {
+                    k: torch.from_numpy(arrays[k].copy())
+                    for k in runtime.world.state_dict()
+                }
+            )
+        runtime.world.context.requires_grad_(False)
+        runtime.world.target.requires_grad_(False)
+    else:
+        state = load_state(path)
+        if (
+            state.get("kind") != "nova-world"
+            or state["backend"] != runtime.config.world_backend
+        ):
+            raise ValueError("world checkpoint/backend mismatch")
+        from nova.jepa.equilibrium import EquilibriumWorldModel
+        from nova.brain.latent import SpikingWorldModel
+
+        cls = SpikingWorldModel if state["backend"] == "adex" else EquilibriumWorldModel
+        model = cls.from_state_dict(state["state"])
+        if (model.observation_dim, model.latent_dim, model.action_dim) != (
+            runtime.config.observation_dim,
+            runtime.config.latent_dim,
+            runtime.config.action_dim,
+        ):
+            raise ValueError("world checkpoint dimensions do not match runtime")
+        model.freeze_encoder()
+        runtime.world = model
 
 
 ========================================================================================
@@ -5174,7 +8010,7 @@ class InternalState:
     ):
         self.energy = float(np.clip(self.energy + 0.01 - 0.02 * compute_fraction, 0, 1))
         self.memory_load = float(np.clip(memory_load, 0, 1))
-        # Learning progress, not raw surprise: stationary irreducible noise earns no reward.
+        # Legacy one-step heuristic. Runtime overrides it with windowed LearningProgress.
         self.curiosity = float(np.clip(self.previous_error - error, 0, 1))
         self.previous_error = float(error)
         self.valence = float(np.tanh(value_delta - error))
@@ -5211,6 +8047,74 @@ class OutputPolicy:
 
 
 ========================================================================================
+ARQUIVO: nova/values/progress.py
+========================================================================================
+"""Confidence-adjusted learning progress; raw surprise is not intrinsic reward."""
+
+from collections import deque
+import numpy as np
+
+
+class LearningProgress:
+    """Compare disjoint old/recent error windows, penalizing sampling uncertainty.
+
+    A positive-part one-step error difference has positive expectation under IID
+    noise. Windowing and a confidence margin reduce that bias, but do not prove
+    zero reward for every stationary process. Inputs should be held-out errors.
+    """
+
+    def __init__(self, window=32, confidence=2.0, reward_cap=1.0):
+        if window < 2 or confidence < 0 or reward_cap < 0:
+            raise ValueError("invalid progress estimator")
+        self.window, self.confidence, self.reward_cap = window, confidence, reward_cap
+        self.errors = deque(maxlen=2 * window)
+        self.reward = 0.0
+        self.standard_error = 0.0
+
+    def update(self, error):
+        if not np.isfinite(error) or error < 0:
+            raise ValueError("prediction error must be finite and nonnegative")
+        self.errors.append(float(error))
+        self.reward = 0.0
+        if len(self.errors) == 2 * self.window:
+            old, recent = (
+                np.asarray(self.errors)[: self.window],
+                np.asarray(self.errors)[self.window :],
+            )
+            self.standard_error = float(
+                np.sqrt(
+                    old.var(ddof=1) / self.window + recent.var(ddof=1) / self.window
+                )
+            )
+            self.reward = float(
+                np.clip(
+                    old.mean() - recent.mean() - self.confidence * self.standard_error,
+                    0,
+                    self.reward_cap,
+                )
+            )
+        return self.reward
+
+    def state_dict(self):
+        return {
+            "window": self.window,
+            "confidence": self.confidence,
+            "reward_cap": self.reward_cap,
+            "errors": list(self.errors),
+            "reward": self.reward,
+            "standard_error": self.standard_error,
+        }
+
+    @classmethod
+    def from_state_dict(cls, state):
+        obj = cls(state["window"], state["confidence"], state["reward_cap"])
+        obj.errors.extend(state["errors"])
+        obj.reward = state["reward"]
+        obj.standard_error = state["standard_error"]
+        return obj
+
+
+========================================================================================
 ARQUIVO: pyproject.toml
 ========================================================================================
 [build-system]
@@ -5219,16 +8123,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nova-research"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reproducible research platform for protected continual learning"
 requires-python = ">=3.11"
-dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "torch>=2.4,<3", "PyYAML>=6", "cryptography>=42"]
+dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "PyYAML>=6", "cryptography>=42"]
 
 [project.optional-dependencies]
+torch = ["torch>=2.4,<3", "torchvision>=0.19"]
 media = ["faster-whisper>=1.1", "pytesseract>=0.3", "Pillow>=10"]
-language = ["transformers>=4.45,<6"]
-gpu = ["triton>=3.0; platform_system == 'Linux'"]
-dev = ["pytest>=8", "maturin>=1.7,<2", "matplotlib>=3.8", "torchvision>=0.19"]
+language = ["torch>=2.4,<3", "transformers>=4.45,<6"]
+gpu = ["torch>=2.4,<3", "triton>=3.0; platform_system == 'Linux'"]
+dev = ["ruff>=0.9,<1", "pytest>=8", "maturin>=1.7,<2", "matplotlib>=3.8", "torchvision>=0.19"]
 
 [project.scripts]
 nova = "nova.cli:main"
@@ -5246,6 +8151,8 @@ addopts = "-ra"
 ARQUIVO: reports/STATUS.md
 ========================================================================================
 # Estado da entrega
+
+**Atualização 0.2:** o [estado da extensão adaptativa](adaptive/STATUS.md) e o [projeto técnico](../docs/adaptive-energy.md) descrevem memória adaptativa, inferência por equilíbrio/AdEx e planejamento por energia. Não foram executados novos testes ou benchmarks nesta revisão. As medições abaixo são históricas da primeira entrega e não validam as extensões.
 
 Código experimental para as nove fases, com relatórios e resultados de cinco sementes por experimento. Implementação não equivale à aprovação científica integral da especificação.
 
@@ -5266,6 +8173,39 @@ Antes da instrução posterior de dispensar novos testes, a suíte integrada reg
 O JEPA treinado para o demonstrador produziu MSE 0,179 vs média 0,523, com std 0,738 (`trained-world.json`). O exemplo executado e o painel offline ficam em `demo-result.json`, `demo.jsonl` e `dashboard.html`. Checkpoints e bibliotecas compiladas permanecem em caminhos ignorados pelo Git.
 
 Pendências externas: acesso a `www.cs.toronto.edu` para CIFAR-100; GPU/NVML e instalação de bitnet.cpp para custo; dados biológicos com referências/tolerâncias; modelos locais opcionais para OCR/ASR/LLM; dados pessoais apenas mediante consentimento válido. Esses itens não são substituídos por números simulados.
+
+
+========================================================================================
+ARQUIVO: reports/adaptive/STATUS.md
+========================================================================================
+# Extensão adaptativa — estado de implementação
+
+Implementados os três eixos solicitados: capacidade por decaimento/liberação e expansão limitada; inferência latente por EqProp não linear ou circuito AdEx efetivo; planejamento por energia com feixe temporal.
+
+Também adicionados: versões de características e âncoras, política de readout sem autograd, recompensa de progresso com margem de incerteza, objetivos/limites de estado configuráveis, limites de histórico/grafo, checkpoint v2 atômico com integridade, retomada do solver, configurações YAML e carregamento tardio de PyTorch.
+
+**Validação desta revisão: não executada**, conforme a preferência anterior do usuário. Foram escritos testes e os experimentos 10–12 para reprodução posterior. A revisão de código, formatação e análise estática não equivalem a executar os modelos ou demonstrar ganhos.
+
+Os resultados das fases 1–9 pertencem à entrega anterior. Nenhuma melhora de acurácia, retenção, energia, escala ou tempo real é afirmada para esta extensão sem medições novas.
+
+Limites: recursos finitos; liberação permite esquecer; versões de entrada são parte da garantia; rede de taxa simétrica e AdEx são hipóteses distintas; o planejador pode parar em mínimos locais; viabilidade é avaliada no modelo; parada nula não é um certificado de segurança física.
+
+
+========================================================================================
+ARQUIVO: reports/adaptive/status.json
+========================================================================================
+{
+  "revision": "adaptive-energy-v0.2",
+  "implementation_status": "experimental",
+  "validation_status": "not_run",
+  "reason": "User preference: do not execute further tests",
+  "new_experiments": [10, 11, 12],
+  "claims_of_performance_improvement": [],
+  "capacity": "Finite width and byte budgets; relaxation permits forgetting",
+  "inference_backends": ["torch", "equilibrium", "adex"],
+  "planning_backends": ["cem", "energy"],
+  "remaining_external_validation": ["retention/plasticity tradeoff", "nonlinear EqProp learning quality", "AdEx representation quality", "solver latency and energy", "biological references"]
+}
 
 
 ========================================================================================
@@ -5304,11 +8244,15 @@ FILES = (
     "pyproject.toml",
     "requirements-cpu.txt",
     "nova-core/Cargo.toml",
+    "nova-core/pyproject.toml",
     "nova-core/Cargo.lock",
     ".gitignore",
     "README.md",
     "DEVIATIONS.md",
     "docs/identity.md",
+    "docs/adaptive-energy.md",
+    "reports/adaptive/STATUS.md",
+    "reports/adaptive/status.json",
     "reports/STATUS.md",
 )
 EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json"}
@@ -5380,6 +8324,97 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 RAYON_NUM_THREADS=2
 .venv/bin/python -m pytest -q "$@"
+
+
+========================================================================================
+ARQUIVO: tests/test_adaptive_checkpoint.py
+========================================================================================
+"""Unrun deterministic restoration and archive-integrity specifications."""
+
+import numpy as np
+from nova.runtime import CognitiveRuntime, RuntimeConfig
+from nova.checkpoint import save_state, load_state
+
+
+def test_numpy_runtime_checkpoint(tmp_path):
+    config = RuntimeConfig(
+        world_backend="equilibrium",
+        adaptive_memory=True,
+        sleep_every=2,
+        world_online_learning=True,
+    )
+    a = CognitiveRuntime(config)
+    rng = np.random.default_rng(2)
+    for _ in range(4):
+        a.tick(rng.normal(size=12))
+    a.save(tmp_path / "state.npz")
+    b = CognitiveRuntime.load(tmp_path / "state.npz")
+    observation = rng.normal(size=12)
+    x, y = a.tick(observation), b.tick(observation)
+    np.testing.assert_array_equal(x["action"], y["action"])
+    np.testing.assert_array_equal(a.continual.dW, b.continual.dW)
+
+
+def test_codec_roundtrip_without_pickle(tmp_path):
+    state = {"array": np.arange(6).reshape(2, 3), "nested": [None, True, {"x": 1.0}]}
+    save_state(tmp_path / "data.npz", state)
+    restored = load_state(tmp_path / "data.npz")
+    np.testing.assert_array_equal(state["array"], restored["array"])
+    assert state["nested"] == restored["nested"]
+
+
+========================================================================================
+ARQUIVO: tests/test_adaptive_subspace.py
+========================================================================================
+"""Regression specifications, authored but not executed in this revision."""
+
+import numpy as np
+from nova.continual import AdaptiveSubspaceLinear, AdaptiveConfig
+
+
+def test_growth_keeps_old_version_coordinates_and_anchor():
+    rng = np.random.default_rng(3)
+    m = AdaptiveSubspaceLinear(
+        6, 2, config=AdaptiveConfig(policy="hybrid", max_features=12, growth_step=3)
+    )
+    x = rng.normal(size=(20, 6))
+    y = rng.normal(size=(20, 2))
+    for _ in range(20):
+        m.step(m.encode(x, 0), y, 0.01)
+    m.consolidate(m.encode(x, 0), anchor=True)
+    reference = m(m.encode(x, 0))
+    assert m.recruit() == 3
+    assert np.count_nonzero(m.encode(x, 0)[:, 6:]) == 0
+    assert np.count_nonzero(m.encode(x, 1)[:, 6:]) > 0
+    for _ in range(50):
+        m.step(m.encode(rng.normal(size=(20, 6)), 1), y, 0.01)
+    np.testing.assert_allclose(m(m.encode(x, 0)), reference, atol=1e-10)
+    assert m.release(20) == 0
+
+
+def test_relaxation_frees_space_without_infinite_capacity_claim():
+    m = AdaptiveSubspaceLinear(
+        4, 1, config=AdaptiveConfig(policy="relax", max_features=4)
+    )
+    m.consolidate(np.eye(4))
+    assert m.free_dims == 0
+    assert m.release(2) == 2 and m.free_dims == 2
+    assert m.recruit() == 0
+    restored = AdaptiveSubspaceLinear.from_state_dict(m.state_dict())
+    np.testing.assert_array_equal(m.U, restored.U)
+
+
+def test_strict_policy_does_not_release_and_growth_is_bounded():
+    strict = AdaptiveSubspaceLinear(
+        3, 1, config=AdaptiveConfig(policy="strict", max_features=6)
+    )
+    strict.consolidate(np.eye(3))
+    strict.manage_capacity()
+    assert strict.free_dims == 0
+    grow = AdaptiveSubspaceLinear(
+        3, 1, config=AdaptiveConfig(policy="expand", max_features=5, growth_step=8)
+    )
+    assert grow.recruit() == 2 and grow.recruit() == 0
 
 
 ========================================================================================
@@ -5491,6 +8526,104 @@ def test_forgetting_excludes_prelearning_accuracy():
     result = continual_metrics(accuracy, [0.1, 0.1, 0.1], [0.9, 0.5, 0.8])
     assert np.isclose(result["fm"], 0.15)
     assert result["plasticity"] == 0
+
+
+========================================================================================
+ARQUIVO: tests/test_energy_control.py
+========================================================================================
+"""Unrun action optimization, sheaf and failure-budget regression specifications."""
+
+import numpy as np
+from nova.planning.energy import (
+    EnergyPlanner,
+    EnergyPlannerConfig,
+    TemporalSheaf,
+    BoxStateConstraint,
+)
+
+
+class Point:
+    def predict(self, z, a):
+        return z + 0.2 * a
+
+    def linearize(self, z, a):
+        return (
+            self.predict(z, a),
+            np.broadcast_to(np.eye(1), (len(z), 1, 1)),
+            np.broadcast_to(np.eye(1) * 0.2, (len(z), 1, 1)),
+        )
+
+
+def test_action_descent_and_budget():
+    config = EnergyPlannerConfig(
+        horizon=6, iterations=20, max_model_calls=300, action_penalty=0, slew_penalty=0
+    )
+    planner = EnergyPlanner(
+        Point(), lambda z: ((z * z).sum(1), 2 * z), 1, 1, config=config
+    )
+    result = planner.plan(np.array([1.0]))
+    assert result.action[0] < 0 and result.diagnostics["feasible"]
+    assert result.cost < 6 and result.diagnostics["model_calls"] <= 300
+
+
+def test_sheaf_gradient_and_explicit_infeasibility():
+    sheaf = TemporalSheaf(2, 0.3)
+    x = np.arange(6, dtype=float).reshape(3, 2) / 10
+    value, grad = sheaf.energy_gradient(x)
+    eps = 1e-6
+    for i in range(3):
+        for j in range(2):
+            delta = np.zeros_like(x)
+            delta[i, j] = eps
+            reference = (
+                sheaf.energy_gradient(x + delta)[0]
+                - sheaf.energy_gradient(x - delta)[0]
+            ) / (2 * eps)
+            assert abs(grad[i, j] - reference) < 1e-7
+    planner = EnergyPlanner(
+        Point(),
+        lambda z: ((z * z).sum(1), 2 * z),
+        1,
+        1,
+        constraint=BoxStateConstraint([10.0], [11.0]),
+    )
+    plan = planner.plan(np.array([0.0]))
+    assert plan.cost is None and not plan.diagnostics["feasible"]
+
+
+========================================================================================
+ARQUIVO: tests/test_equilibrium_world.py
+========================================================================================
+"""Unrun nonlinear equilibrium/implicit-gradient specifications."""
+
+import numpy as np
+from nova.jepa.equilibrium import EquilibriumNetwork, EquilibriumWorldModel
+
+
+def test_contraction_and_implicit_derivative():
+    m = EquilibriumNetwork(3, 2, seed=1)
+    x = np.array([[0.2, -0.3, 0.4]])
+    result, j = m.linearize(x)
+    eps = 1e-5
+    for i in range(3):
+        delta = np.eye(3)[i][None] * eps
+        numerical = (m.predict(x + delta) - m.predict(x - delta)) / (2 * eps)
+        np.testing.assert_allclose(j[:, :, i], numerical, atol=1e-5, rtol=1e-3)
+    assert m.last_diagnostics["converged"]
+
+
+def test_local_nudging_preserves_symmetric_bound():
+    m = EquilibriumNetwork(3, 2, seed=2)
+    x = np.ones((8, 3)) * 0.2
+    update = m.learn(x, np.ones((8, 2)) * 0.1)
+    assert update["updated"]
+    np.testing.assert_allclose(m.W, m.W.T, atol=1e-12)
+    assert np.linalg.norm(m.W, 2) <= m.config.recurrent_radius + 1e-12
+    world = EquilibriumWorldModel(6, 4, 2)
+    world.freeze_encoder()
+    before = world.context.B.copy()
+    world.learn_latent(np.zeros((8, 4)), np.zeros((8, 2)), np.ones((8, 4)) * 0.2)
+    np.testing.assert_array_equal(before, world.context.B)
 
 
 ========================================================================================

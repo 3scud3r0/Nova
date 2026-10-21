@@ -21,7 +21,7 @@ def parse(value):
 
 
 def main():
-    for phase in range(1, 10):
+    for phase in range(1, 13):
         path = Path(f"reports/fase{phase}.md")
         if not path.exists():
             continue

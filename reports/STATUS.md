@@ -1,5 +1,7 @@
 # Estado da entrega
 
+**Atualização 0.2:** o [estado da extensão adaptativa](adaptive/STATUS.md) e o [projeto técnico](../docs/adaptive-energy.md) descrevem memória adaptativa, inferência por equilíbrio/AdEx e planejamento por energia. Não foram executados novos testes ou benchmarks nesta revisão. As medições abaixo são históricas da primeira entrega e não validam as extensões.
+
 Código experimental para as nove fases, com relatórios e resultados de cinco sementes por experimento. Implementação não equivale à aprovação científica integral da especificação.
 
 | Fase | Resultado observado | Aceitação |

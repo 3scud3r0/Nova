@@ -10,7 +10,7 @@ jobs:
           python-version: '3.11'
       - run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
       - run: pip install -e '.[dev]'
-      - run: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 pytest -q
+      - run: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -m pytest -q
   native:
     runs-on: ubuntu-latest
     steps:
@@ -23,4 +23,4 @@ jobs:
       - run: cargo test --manifest-path nova-core/Cargo.toml --locked
       - run: maturin build --manifest-path nova-core/Cargo.toml --release --locked -o wheels
       - run: pip install wheels/*.whl
-      - run: pytest tests/test_native.py -q
+      - run: python -m pytest tests/test_native.py -q

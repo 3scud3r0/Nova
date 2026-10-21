@@ -24,7 +24,7 @@ class InternalState:
     ):
         self.energy = float(np.clip(self.energy + 0.01 - 0.02 * compute_fraction, 0, 1))
         self.memory_load = float(np.clip(memory_load, 0, 1))
-        # Learning progress, not raw surprise: stationary irreducible noise earns no reward.
+        # Legacy one-step heuristic. Runtime overrides it with windowed LearningProgress.
         self.curiosity = float(np.clip(self.previous_error - error, 0, 1))
         self.previous_error = float(error)
         self.valence = float(np.tanh(value_delta - error))
