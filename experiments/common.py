@@ -16,6 +16,9 @@ GROUPS = {
     5: ("batch", "input_dim", "output_dim", "dtype"),
     7: ("condition", "current_pa"),
     8: ("condition", "budget"),
+    10: ("policy", "task"),
+    11: ("encoder_trained",),
+    12: ("latent_dim", "horizon", "solver"),
 }
 
 

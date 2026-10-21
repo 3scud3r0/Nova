@@ -1,0 +1,12 @@
+{
+  "revision": "adaptive-energy-v0.2",
+  "implementation_status": "experimental",
+  "validation_status": "not_run",
+  "reason": "User preference: do not execute further tests",
+  "new_experiments": [10, 11, 12],
+  "claims_of_performance_improvement": [],
+  "capacity": "Finite width and byte budgets; relaxation permits forgetting",
+  "inference_backends": ["torch", "equilibrium", "adex"],
+  "planning_backends": ["cem", "energy"],
+  "remaining_external_validation": ["retention/plasticity tradeoff", "nonlinear EqProp learning quality", "AdEx representation quality", "solver latency and energy", "biological references"]
+}

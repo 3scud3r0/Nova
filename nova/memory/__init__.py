@@ -56,6 +56,7 @@ class Episode:
     surprise: float = 0.0
     anchor: bool = False
     revisions: list[str] = field(default_factory=list)
+    feature_version: int = 0
 
 
 class EpisodicMemory:
@@ -148,10 +149,23 @@ class SensoryBuffer(deque):
 class SemanticGraph:
     """Retain contradictory facts with distinct sources; never silently merge."""
 
-    def __init__(self):
+    def __init__(self, capacity=None):
+        if capacity is not None and capacity < 1:
+            raise ValueError("capacity must be positive")
+        self.capacity = capacity
+        self.evicted = 0
         self.facts = []
 
-    def add(self, subject, predicate, value, source, confidence=1.0, timestamp=""):
+    def add(
+        self,
+        subject,
+        predicate,
+        value,
+        source,
+        confidence=1.0,
+        timestamp="",
+        anchor=False,
+    ):
         if not source or not 0 <= confidence <= 1:
             raise ValueError("source/confidence required")
         fact = dict(
@@ -162,8 +176,20 @@ class SemanticGraph:
             confidence=confidence,
             timestamp=timestamp,
         )
-        if fact not in self.facts:
-            self.facts.append(fact)
+        if anchor:
+            fact["anchor"] = True
+        if fact in self.facts:
+            return False
+        if self.capacity is not None and len(self.facts) >= self.capacity:
+            index = next(
+                (i for i, f in enumerate(self.facts) if not f.get("anchor")), None
+            )
+            if index is None:
+                return False
+            self.facts.pop(index)
+            self.evicted += 1
+        self.facts.append(fact)
+        return True
 
     def query(self, subject, predicate):
         return [
