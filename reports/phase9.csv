@@ -1,0 +1,6 @@
+fabrication_rate,factual_accuracy,label_rate,profile_erased,seed,source_accuracy,source_deleted
+0.0,1.0,1.0,True,0,1.0,True
+0.0,1.0,1.0,True,1,1.0,True
+0.0,1.0,1.0,True,2,1.0,True
+0.0,1.0,1.0,True,3,1.0,True
+0.0,1.0,1.0,True,4,1.0,True

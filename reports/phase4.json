@@ -1,0 +1,122 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.608345+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 5,
+  "groups": {
+    "all seeds": {
+      "consolidation_without_5HT": {
+        "mean": 0.7310585786300049,
+        "std": 0.0
+      },
+      "consolidation_without_ACh": {
+        "mean": 0.7310585786300049,
+        "std": 0.0
+      },
+      "consolidation_without_DA": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "consolidation_without_NE": {
+        "mean": 0.7310585786300049,
+        "std": 0.0
+      },
+      "consolidation_without_none": {
+        "mean": 0.7310585786300049,
+        "std": 0.0
+      },
+      "discount_without_5HT": {
+        "mean": 0.95,
+        "std": 0.0
+      },
+      "discount_without_ACh": {
+        "mean": 0.949302,
+        "std": 0.0
+      },
+      "discount_without_DA": {
+        "mean": 0.949302,
+        "std": 0.0
+      },
+      "discount_without_NE": {
+        "mean": 0.949302,
+        "std": 0.0
+      },
+      "discount_without_none": {
+        "mean": 0.949302,
+        "std": 0.0
+      },
+      "lr_without_5HT": {
+        "mean": 0.03,
+        "std": 0.0
+      },
+      "lr_without_ACh": {
+        "mean": 0.03,
+        "std": 0.0
+      },
+      "lr_without_DA": {
+        "mean": 0.03,
+        "std": 0.0
+      },
+      "lr_without_NE": {
+        "mean": 0.01,
+        "std": 0.0
+      },
+      "lr_without_none": {
+        "mean": 0.03,
+        "std": 0.0
+      },
+      "recall_chance": {
+        "mean": 0.03125,
+        "std": 0.0
+      },
+      "recall_mask": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "recall_noise": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "return_cem": {
+        "mean": -2.5951790408908146,
+        "std": 0.013799991064170727
+      },
+      "return_dqn": {
+        "mean": -3.8650000000000007,
+        "std": 0.9125513684171435
+      },
+      "return_random": {
+        "mean": -23.481205036551167,
+        "std": 3.2616824340132364
+      },
+      "sensory_without_5HT": {
+        "mean": 0.85,
+        "std": 0.0
+      },
+      "sensory_without_ACh": {
+        "mean": 0.5,
+        "std": 0.0
+      },
+      "sensory_without_DA": {
+        "mean": 0.85,
+        "std": 0.0
+      },
+      "sensory_without_NE": {
+        "mean": 0.85,
+        "std": 0.0
+      },
+      "sensory_without_none": {
+        "mean": 0.85,
+        "std": 0.0
+      }
+    }
+  }
+}

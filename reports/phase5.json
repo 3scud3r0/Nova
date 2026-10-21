@@ -1,0 +1,196 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.646244+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 30,
+  "groups": {
+    "batch=1, input_dim=128, output_dim=64, dtype=torch.float16": {
+      "dense_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.23051007022639708,
+        "std": 0.05226299566372345
+      },
+      "packed_ms": {
+        "mean": 0.07441149999999999,
+        "std": 0.018445652594175133
+      },
+      "packed_weight_bytes": {
+        "mean": 2048.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.24083992255442216,
+        "std": 0.03336301667400003
+      },
+      "torch_ms": {
+        "mean": 0.0176426,
+        "std": 0.0037774430736941633
+      }
+    },
+    "batch=1, input_dim=128, output_dim=64, dtype=torch.bfloat16": {
+      "dense_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.23051007022639708,
+        "std": 0.05226299566372345
+      },
+      "packed_ms": {
+        "mean": 0.07441149999999999,
+        "std": 0.018445652594175133
+      },
+      "packed_weight_bytes": {
+        "mean": 2048.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.2210977102827214,
+        "std": 0.021040152429078272
+      },
+      "torch_ms": {
+        "mean": 0.0162742,
+        "std": 0.0034206187415437
+      }
+    },
+    "batch=32, input_dim=128, output_dim=64, dtype=torch.float16": {
+      "dense_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.2272687373466385,
+        "std": 0.06166101636363448
+      },
+      "packed_ms": {
+        "mean": 2.4576802000000004,
+        "std": 0.7001937805837752
+      },
+      "packed_weight_bytes": {
+        "mean": 2048.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.009884093716673597,
+        "std": 0.004139560200385661
+      },
+      "torch_ms": {
+        "mean": 0.0220962,
+        "std": 0.0036767178400034977
+      }
+    },
+    "batch=32, input_dim=128, output_dim=64, dtype=torch.bfloat16": {
+      "dense_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.2272687373466385,
+        "std": 0.06166101636363448
+      },
+      "packed_ms": {
+        "mean": 2.4576802000000004,
+        "std": 0.7001937805837752
+      },
+      "packed_weight_bytes": {
+        "mean": 2048.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.009994481232258094,
+        "std": 0.0034412358953571486
+      },
+      "torch_ms": {
+        "mean": 0.0228264,
+        "std": 0.003274725167857602
+      }
+    },
+    "batch=8, input_dim=512, output_dim=128, dtype=torch.float16": {
+      "dense_weight_bytes": {
+        "mean": 131072.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.1785720368029267,
+        "std": 0.022703584780932786
+      },
+      "packed_ms": {
+        "mean": 5.9528853999999995,
+        "std": 0.7967331101232549
+      },
+      "packed_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.008197490966420116,
+        "std": 0.0023590332172552042
+      },
+      "torch_ms": {
+        "mean": 0.0489639,
+        "std": 0.01621767600644432
+      }
+    },
+    "batch=8, input_dim=512, output_dim=128, dtype=torch.bfloat16": {
+      "dense_weight_bytes": {
+        "mean": 131072.0,
+        "std": 0.0
+      },
+      "gpu_available": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "packed_gops": {
+        "mean": 0.1785720368029267,
+        "std": 0.022703584780932786
+      },
+      "packed_ms": {
+        "mean": 5.9528853999999995,
+        "std": 0.7967331101232549
+      },
+      "packed_weight_bytes": {
+        "mean": 16384.0,
+        "std": 0.0
+      },
+      "speedup": {
+        "mean": 0.006385630762921179,
+        "std": 0.0020765775672053587
+      },
+      "torch_ms": {
+        "mean": 0.036769,
+        "std": 0.007882939196454584
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.771329+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 5,
+  "groups": {
+    "all seeds": {
+      "fabrication_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "factual_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "label_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "profile_erased": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "source_accuracy": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "source_deleted": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    }
+  }
+}

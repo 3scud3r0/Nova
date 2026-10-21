@@ -1,0 +1,8 @@
+{
+  "latent_mse": 0.17867983877658844,
+  "mean_baseline_mse": 0.5226144790649414,
+  "latent_std": 0.737571656703949,
+  "steps": 900,
+  "seed": 0,
+  "accepted": true
+}

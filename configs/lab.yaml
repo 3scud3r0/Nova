@@ -1,0 +1,24 @@
+profile: lab
+seeds: [0, 1, 2, 3, 4]
+threads: 2
+protected:
+  dtype: float64
+  tolerance: 1.0e-12
+  energy_threshold: null
+jepa:
+  observation_dim: 12
+  latent_dim: 8
+  action_dim: 2
+  ema_decay: 0.99
+planner:
+  horizon: 12
+  rollouts: 128
+  iterations: 4
+  elite_fraction: 0.1
+neuron:
+  level: N0
+  dt_ms: 0.1
+runtime:
+  tick_budget_ms: 100
+  sleep_every: 100
+  working_slots: 7

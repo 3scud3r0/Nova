@@ -1,0 +1,78 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.737600+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 25,
+  "groups": {
+    "condition=search, budget=1": {
+      "seconds": {
+        "mean": 9.243980011888197e-05,
+        "std": 5.93204467730536e-05
+      },
+      "success": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "condition=search, budget=32": {
+      "seconds": {
+        "mean": 0.0009893618000205607,
+        "std": 0.0004848715017426384
+      },
+      "success": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "condition=search, budget=128": {
+      "seconds": {
+        "mean": 0.003912192600000708,
+        "std": 0.0007782626886113496
+      },
+      "success": {
+        "mean": 0.9800000000000001,
+        "std": 0.04472135954999578
+      }
+    },
+    "condition=search, budget=256": {
+      "seconds": {
+        "mean": 0.0041885525999532545,
+        "std": 0.0006928252246151133
+      },
+      "success": {
+        "mean": 1.0,
+        "std": 0.0
+      }
+    },
+    "condition=calibration_idle": {
+      "ece_after": {
+        "mean": 0.02392880410298378,
+        "std": 0.007412460276585309
+      },
+      "ece_before": {
+        "mean": 0.21609510465105092,
+        "std": 0.015514960905724967
+      },
+      "idle_latent_norm": {
+        "mean": 0.08334349624055507,
+        "std": 0.026673243938169205
+      },
+      "temperature": {
+        "mean": 2.9868668186169254,
+        "std": 0.14631447966433156
+      },
+      "tick_p95_ms": {
+        "mean": 0.5145244501272827,
+        "std": 0.04755352138121941
+      }
+    }
+  }
+}
