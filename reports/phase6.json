@@ -1,0 +1,38 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.678819+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 5,
+  "groups": {
+    "all seeds": {
+      "coherence_after": {
+        "mean": 0.0009386429717926796,
+        "std": 0.0008004111686119259
+      },
+      "coherence_before": {
+        "mean": 5.518812250926101,
+        "std": 5.487841226609977
+      },
+      "eqprop_gradient_cosine": {
+        "mean": 0.9999999999973157,
+        "std": 2.1105823414883998e-12
+      },
+      "order_coupled": {
+        "mean": 0.998956571128468,
+        "std": 0.00020079269413723514
+      },
+      "order_uncoupled": {
+        "mean": 0.12961102235354122,
+        "std": 0.04844926189711373
+      }
+    }
+  }
+}

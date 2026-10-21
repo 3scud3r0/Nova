@@ -1,0 +1,66 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "report_generated_at_utc": "2026-10-21T22:07:08.714986+00:00",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "pytest": "9.1.1",
+    "nova-native": "0.1.0"
+  },
+  "report_source_sha256": "59f22f385ef6f001501d09d1856ed7cd117fc005e3bafe34c2d161382a9789ca",
+  "observations": 25,
+  "groups": {
+    "condition=fi, current_pa=0.0": {
+      "rate_hz": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "condition=fi, current_pa=200.0": {
+      "rate_hz": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    "condition=fi, current_pa=400.0": {
+      "rate_hz": {
+        "mean": 32.75,
+        "std": 0.0
+      }
+    },
+    "condition=fi, current_pa=600.0": {
+      "rate_hz": {
+        "mean": 63.15,
+        "std": 0.22360679774997896
+      }
+    },
+    "condition=microcircuit": {
+      "dale": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "gamma_fraction": {
+        "mean": 0.06055915315898926,
+        "std": 0.0033271371212206954
+      },
+      "mean_rate_hz": {
+        "mean": 12.748,
+        "std": 0.022803508501982275
+      },
+      "peak_hz": {
+        "mean": 24.4140625,
+        "std": 0.0
+      },
+      "prediction_energy_after": {
+        "mean": 2.3453210846501507,
+        "std": 0.9290864525774714
+      },
+      "prediction_energy_before": {
+        "mean": 4.0,
+        "std": 0.0
+      }
+    }
+  }
+}

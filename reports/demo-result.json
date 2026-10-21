@@ -1,0 +1,16 @@
+{
+  "ticks": 100,
+  "checkpoint": "checkpoints/demo.npz",
+  "metrics": "reports/demo.jsonl",
+  "encoder": "loaded",
+  "last": {
+    "tick": 100,
+    "mode": "fast",
+    "error": 0.43779362634152974,
+    "free_dims": 0,
+    "memory": 93,
+    "latency_ms": 1.9547090000742173,
+    "budget_exceeded": false,
+    "energy": 1.0
+  }
+}
