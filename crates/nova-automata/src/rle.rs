@@ -87,3 +87,24 @@ pub fn export(grid: &Grid) -> Result<String> {
     out.push('\n');
     Ok(out)
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{Boundary, Rules};
+
+    #[test]
+    fn round_trip_preserves_2d_cells_and_rejects_invalid_tokens() {
+        let rules = Rules::parse("B3/S23", 2, 1).unwrap();
+        let mut original = Grid::new([32, 32, 1], rules, Boundary::Periodic).unwrap();
+        original.pattern("glider").unwrap();
+        original.step().unwrap();
+        let encoded = export(&original).unwrap();
+        let mut imported = Grid::new([32, 32, 1], rules, Boundary::Periodic).unwrap();
+        import(&mut imported, &encoded, [0, 0]).unwrap();
+        assert_eq!(original.cells, imported.cells);
+        assert!(import(&mut imported, "x = 32, y = 32\n33o!", [0, 0]).is_err());
+        assert!(import(&mut imported, "x = 32, y = 32\nunknown!", [0, 0]).is_err());
+    }
+}
