@@ -26,3 +26,8 @@ Pendências externas: acesso a `www.cs.toronto.edu` para CIFAR-100; GPU/NVML e i
 ## Revisão Biocosm 0.3
 
 Novos componentes e limites em [biocosm/STATUS.md](biocosm/STATUS.md). Implementação experimental, sem testes/benchmarks/simulações novos executados. Resultados históricos das fases não validam os módulos desta revisão.
+
+
+## Revisão planetária 0.4
+
+Implementação experimental e checks estáticos em [planetary/STATUS.md](planetary/STATUS.md). Não foram executados testes, simulações, benchmarks, provas Lean ou rede planetária; metas de escala/energia permanecem não demonstradas.

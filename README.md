@@ -1,5 +1,16 @@
 # NOVA
 
+A revisão **0.4 Planetary** acrescenta campos residentes Rust/wgpu, sinalização de Lewis, busca não polinomial/Hamiltonianos, fila de provas e descoberta dinâmica de pares com migração/refutação limitadas. A sessão `start` reúne bioma, comunicações, atlas 3D e serviços locais. Consulte [comandos e limites da 0.4](docs/planetary.md) e [as verificações estáticas realizadas](reports/planetary/STATUS.md). A 0.3 não foi validada em execução; esta revisão também não demonstra escala planetária ou verdade científica universal.
+
+```bash
+pip install -e .
+nova cosm start --seed 42 --directory runs/world-42 --open-browser
+# Sem WebGPU no navegador: acrescentar --renderer webgl
+# Rede externa requer bootstrap e configuração explícitos; sem eles há zero pares.
+```
+
+Não foram executados novos testes, simulações ou benchmarks. Passaram verificações de tipos Rust CPU/WebGPU e validação estática do shader de campos; desempenho, rede e browser continuam pendentes. Ausência de contraexemplo continua sendo evidência finita, sem promoção automática a teorema.
+
 A versão **0.3 Biocosm** acrescenta campos 2D/3D, organismos com genomas CPPN e grafos neurais mistos, busca evolutiva de arquiteturas, visualização volumétrica, descoberta polinomial, verificadores com escopo e troca P2P de sementes/artefatos assinados. Veja [comandos, matemática e limites](docs/biocosm.md) e [o estado da entrega](reports/biocosm/STATUS.md). É uma implementação experimental; nenhum novo teste, benchmark ou simulação foi executado, conforme solicitado.
 
 ```bash

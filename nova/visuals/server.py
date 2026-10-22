@@ -9,11 +9,20 @@ from nova.bioma.determinism import canonical_json, strict_json
 from .renderer import FieldRenderer
 
 
-def serve(ecosystem, *, port=8765):
+def serve(
+    ecosystem,
+    *,
+    port=8765,
+    lock=None,
+    atlas=None,
+    renderer="webgl",
+    control=None,
+    on_ready=None,
+):
     from nova.bioma.presets import create_ecosystem
 
     token = secrets.token_urlsafe(32)
-    lock = threading.Lock()
+    lock = lock or threading.RLock()
     state = {"ecosystem": ecosystem}
 
     class Handler(BaseHTTPRequestHandler):
@@ -38,17 +47,52 @@ def serve(ecosystem, *, port=8765):
         def do_GET(self):
             if not self.allowed():
                 return self.reply(403, b"{}")
+            if self.path == "/frame":
+                with lock:
+                    frame = FieldRenderer.frame(state["ecosystem"])
+                return self.reply(200, canonical_json(frame))
+            if self.path in ("/atlas", "/atlas.json"):
+                data = (
+                    atlas()
+                    if atlas
+                    else {
+                        "status": "local_only",
+                        "simulation": state["ecosystem"].metrics(),
+                        "ancestry": {"lineages": []},
+                    }
+                )
+                if self.path == "/atlas.json":
+                    return self.reply(200, canonical_json(data))
+                page = (
+                    Path(__file__)
+                    .with_name("science_atlas.html")
+                    .read_text()
+                    .replace(
+                        "/*ATLAS_DATA*/null",
+                        canonical_json(data).decode().replace("<", "\\u003c"),
+                    )
+                    .replace("/*ATLAS_LIVE*/false", "true")
+                )
+                return self.reply(200, page.encode(), "text/html; charset=utf-8")
             if self.path != "/":
                 return self.reply(404, b"{}")
             with lock:
                 frame = FieldRenderer.frame(state["ecosystem"])
             html = (
                 Path(__file__)
-                .with_name("viewer.html")
+                .with_name(
+                    "webgpu_canvas.html" if renderer == "webgpu" else "viewer.html"
+                )
                 .read_text()
-                .replace("/*INITIAL_FRAME*/null", canonical_json(frame).decode())
                 .replace(
-                    "/*LIVE_CONFIG*/null", canonical_json({"token": token}).decode()
+                    "/*INITIAL_FRAME*/null",
+                    canonical_json(frame).decode().replace("<", "\\u003c"),
+                )
+                .replace(
+                    "/*LIVE_CONFIG*/null",
+                    canonical_json(
+                        {"token": token, "autonomous": atlas is not None}
+                    ).decode(),
                 )
             )
             self.reply(200, html.encode(), "text/html; charset=utf-8")
@@ -64,12 +108,22 @@ def serve(ecosystem, *, port=8765):
                     raise ValueError("request body size out of range")
                 request = strict_json(self.rfile.read(length), 4096)
                 with lock:
-                    if self.path == "/step":
+                    if self.path == "/control":
+                        if control is None:
+                            raise ValueError("autonomous controls unavailable")
+                        control(request["paused"])
+                    elif self.path == "/step":
                         ticks = request.get("ticks", 1)
                         if not isinstance(ticks, int) or not 1 <= ticks <= 8:
                             raise ValueError("tick limit exceeded")
                         state["ecosystem"].step(ticks)
                     elif self.path == "/reset":
+                        if atlas is not None or not hasattr(
+                            state["ecosystem"], "genesis_genomes"
+                        ):
+                            raise ValueError(
+                                "reset is disabled for orchestrated/native sessions; restart with the desired preset"
+                            )
                         old = state["ecosystem"]
                         state["ecosystem"] = create_ecosystem(
                             request["preset"],
@@ -92,6 +146,8 @@ def serve(ecosystem, *, port=8765):
             return connection, address
 
     server = Server(("127.0.0.1", port), Handler)
+    if on_ready:
+        on_ready(f"http://127.0.0.1:{server.server_port}")
     print(
         f"NOVA Biocosm: http://127.0.0.1:{server.server_port} (Ctrl-C para encerrar)",
         flush=True,

@@ -88,6 +88,9 @@ class FieldRenderer:
             "shape": list(image.shape),
             "volume": base64.b64encode(image.tobytes()).decode(),
             "metrics": ecosystem.metrics(),
+            "communications": ecosystem.interpreter.report()
+            if hasattr(ecosystem, "interpreter")
+            else None,
             "mode": ecosystem.world.config.mode,
             "architecture": None
             if topology is None

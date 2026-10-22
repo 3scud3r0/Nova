@@ -1,4 +1,8 @@
 //! Native CPU research kernels. Ternary coefficients use branches and add/subtract.
+mod fields;
+mod biology;
+#[cfg(feature="webgpu")]
+mod gpu;
 use numpy::{ndarray::Array2, PyArray2, PyReadonlyArray2};
 use pyo3::{exceptions::PyValueError, prelude::*};
 use rayon::prelude::*;
@@ -138,6 +142,11 @@ fn cascade_rk4(py: Python<'_>, state: Vec<f64>, matrix: Vec<f64>, drive: Vec<f64
 #[pymodule]
 fn _native(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<TernaryBlock>()?;
+    m.add_class::<fields::NativeField>()?;
+    m.add_function(wrap_pyfunction!(biology::cppn_batch,m)?)?;
+    m.add_function(wrap_pyfunction!(biology::hh_batch,m)?)?;
+    #[cfg(feature="webgpu")]
+    m.add_class::<gpu::GpuField>()?;
     m.add_function(wrap_pyfunction!(adex_step,m)?)?;
     m.add_function(wrap_pyfunction!(cascade_rk4,m)?)?;
     m.add_function(wrap_pyfunction!(fast_hadamard_transform,m)?)?;
