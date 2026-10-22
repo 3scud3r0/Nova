@@ -48,6 +48,13 @@ jobs:
           test -d .web-build/.output/public/_nuxt
           touch .web-build/.output/public/.nojekyll
           cp .web-build/.output/public/index.html .web-build/.output/public/404.html
+      - name: Attach static website preview to PR
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nova-lab-preview
+          path: .web-build/.output/public
+          retention-days: 7
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
