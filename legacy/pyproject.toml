@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nova-research"
-version = "0.8.0"
+version = "0.9.0"
 description = "Reproducible research platform for protected continual learning"
 requires-python = ">=3.11"
 license = "AGPL-3.0-or-later"
@@ -12,6 +12,9 @@ license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "PyYAML>=6", "cryptography>=42"]
 
 [project.optional-dependencies]
+cortex = ["torch>=2.4,<3", "pyarrow>=18", "numpy>=2,<3"]
+cortex-science = ["pysr>=1,<2", "pysindy>=2,<3"]
+interpretability = ["sae-lens>=6.54,<7", "transformer-lens>=2,<4"]
 training = ["pyarrow>=18", "zstandard>=0.23"]
 science = ["z3-solver>=4.13,<5"]
 swarm = ["websockets>=14,<16", "zeroconf>=0.136,<1"]
@@ -23,6 +26,7 @@ gpu = ["torch>=2.4,<3", "triton>=3.0; platform_system == 'Linux'"]
 dev = ["ruff>=0.9,<1", "pytest>=8", "maturin>=1.7,<2", "matplotlib>=3.8", "torchvision>=0.19"]
 
 [project.scripts]
+nova-cortex = "nova_cortex.cli:main"
 nova = "nova.cli:main"
 
 [tool.setuptools.packages.find]
@@ -41,5 +45,5 @@ addopts = "-ra"
 [tool.maturin]
 manifest-path = "crates/nova-python/Cargo.toml"
 python-source = "."
-python-packages = ["nova", "experiments", "nova_engine"]
+python-packages = ["nova", "experiments", "nova_engine", "nova_cortex"]
 module-name = "nova_engine._native"

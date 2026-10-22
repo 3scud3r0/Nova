@@ -1,3 +1,24 @@
+# Evidência da entrega nativa/Cortex 0.9
+
+- Rust: checagem do workspace com todos os recursos, CLI headless e exemplos sem execução; shaders analisados pelo Naga no build.
+- Python: compilação de sintaxe e análise estática de símbolos/formatação com Ruff 0.17.2 para o Cortex e seus três lançadores.
+- Configurações JSON/TOML/YAML analisadas estaticamente; snapshots upstream preservados pelo manifesto de hashes.
+- APIs de referência do SAELens foram lidas no GitHub e os aliases/revisões de SAELens, TransformerLens, PySR e PySINDy registrados; nenhum fonte desses projetos foi copiado.
+
+Não foram executados testes, simulações, treinos, IPC, PySR/PySINDy, SAELens,
+TransformerLens, Lean, benchmarks ou janelas nesta entrega. As checagens Python
+não validam operações PyTorch em execução, qualidade de aprendizado ou compatibilidade
+efetiva das dependências opcionais. Não foi produzido um novo release binário.
+Os resultados da matriz de CI em outras plataformas devem ser vistos no PR.
+
+Entregáveis: implementação, README refeito, documentação, configurações, TXT
+Rust/WGSL e TXT completo com Cortex. Consulte [CORTEX.md](CORTEX.md) para escopo,
+fluxos de uso, cópias de memória, isolamento de sessões e limites científicos.
+
+---
+
+## Histórico anterior à 0.9
+
 # Evidência da entrega nativa 0.8
 
 Workspace atual: `legacy/`, preservando a aplicação web na raiz.

@@ -4,10 +4,10 @@ Pacote textual; não é um executável. Binários nativos são gerados por Cargo
 Não inclui dados, chaves, ambientes virtuais, dependências baixadas ou checkpoints.
 
 ÍNDICE
-Cargo.lock | 161560 bytes | sha256=4f660c1723be505c60219c5aa5ab69672e82914c7b79a67def37f7e48ce12ece
-Cargo.toml | 1791 bytes | sha256=9936f6142032b22df71bc5000665720737a2d667bab1e701903ef8a0637779fc
+Cargo.lock | 161977 bytes | sha256=26396a490d86977ca4caa4f67093f0eb059960376887cc41c357243533f4aa76
+Cargo.toml | 1831 bytes | sha256=68397f6b3e4caf6fc8c11bce27e22d7e304055344e5fe9204cd21d1b4827d7ff
 LICENSE | 34523 bytes | sha256=8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef
-THIRD_PARTY_NOTICES.md | 57263 bytes | sha256=81438c22fb9cd797d3e8ab8cab14b4f3561a29b4e30c5ef43a9470225aa28176
+THIRD_PARTY_NOTICES.md | 58378 bytes | sha256=db80b9b420c621d40004101fbf43d145a8820d7f7611fc1716ca44db8de72100
 crates/nova-automata/Cargo.toml | 316 bytes | sha256=d2643b01f8a2af300227bf893b45329d4e8fe0d356996be0e602b7b84db1589e
 crates/nova-automata/src/analysis.rs | 8334 bytes | sha256=fc12a7004d01dd70ac876a4477b8bf40a002eb20846cbe0902eb08c3d6facca0
 crates/nova-automata/src/lib.rs | 14271 bytes | sha256=a5a01abbdf78b06f2e4cfe0d8a802aa5ea9a1e366f5338e099df61ac7880f91a
@@ -55,6 +55,8 @@ crates/nova-gpu/shaders/particle_life.wgsl | 1569 bytes | sha256=67a7faab1341159
 crates/nova-gpu/src/automata.rs | 11351 bytes | sha256=99db33be01429b6fe942746da62f2d1b0c4cb679e03ee428a66a09755c25e78d
 crates/nova-gpu/src/fusion.rs | 8711 bytes | sha256=d38367516cac2be242b89f08823792d0be30a7dfc0c8b1fece90380c0f4894c5
 crates/nova-gpu/src/lib.rs | 8305 bytes | sha256=0a449674c1be3be03e105bf34a0cfe61da5bd838add1f58e32b619472eea18db
+crates/nova-ipc/Cargo.toml | 392 bytes | sha256=1456e088036218bf694e91c06590c1bba3f98fc4ed170b1f003832d573ad5802
+crates/nova-ipc/src/lib.rs | 11547 bytes | sha256=30f4a5988acb8b19669f4706b552489bb7c7acdc98b58d8bd0c28386e3c737dd
 crates/nova-physics/Cargo.toml | 366 bytes | sha256=90befb7488a7acee7d260eaedf79223dd9783acda39175719f11b453b728ba4f
 crates/nova-physics/src/conway.rs | 5552 bytes | sha256=60d3209d4769c6ec955216a810502ca89058e96b1dd829ca502c98e7d892fbc3
 crates/nova-physics/src/conway_simd.rs | 4538 bytes | sha256=1c34f3c401d0a9db3492195a28403893b05b985ee23ec8d34cfb5a631e815ec6
@@ -65,7 +67,7 @@ crates/nova-pvm/Cargo.toml | 201 bytes | sha256=b537f536fdbdc15e7d77f91f9fb09879
 crates/nova-pvm/src/lib.rs | 165 bytes | sha256=4121d590599e5d3b369df9072f850a2534e94d5816e5dbee8b85bcd3e198fa0f
 crates/nova-python/Cargo.toml | 363 bytes | sha256=27d70c39ec3d010c9ee6caf28c18d2928f976afa523fe58b6bfc96453f7a2ef7
 crates/nova-python/LICENSE | 34523 bytes | sha256=8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef
-crates/nova-python/THIRD_PARTY_NOTICES.md | 57263 bytes | sha256=81438c22fb9cd797d3e8ab8cab14b4f3561a29b4e30c5ef43a9470225aa28176
+crates/nova-python/THIRD_PARTY_NOTICES.md | 58378 bytes | sha256=db80b9b420c621d40004101fbf43d145a8820d7f7611fc1716ca44db8de72100
 crates/nova-python/src/lib.rs | 7629 bytes | sha256=c0a773c1b0380cdbe015b94f26f0e67f247c12f3da80b5ad02a3ae474c73f906
 crates/nova-render/Cargo.toml | 902 bytes | sha256=7d3d117428a5a15bf865f8570303e4990b5f7f1baa14591ff1ec555c8690dcb9
 crates/nova-render/build.rs | 740 bytes | sha256=6a2a465261c347980b8528d3da177c53bb5373379f64a7c336eb31470ef624a0
@@ -94,12 +96,12 @@ crates/nova-substrates/src/conway/bitboard.rs | 913 bytes | sha256=d5f60573c2129
 crates/nova-substrates/src/conway/compiler.rs | 165 bytes | sha256=0adfe0f75a9284d62e04fcf74c1c93cabc5228deb2d9764f46d7b0d17fe54c0c
 crates/nova-substrates/src/conway/mod.rs | 2928 bytes | sha256=325795d4e27f46c2202acc2cd4cd8d1fb51577f6a29065e98fbe76e86cb2990c
 crates/nova-substrates/src/fluids/grid.rs | 881 bytes | sha256=9a77d5eb3d383614dbc46b5dd085d1c3da8222f1c5859990975876d1471b194e
-crates/nova-substrates/src/fluids/mod.rs | 7202 bytes | sha256=20743769b5df088724a9d99c0ecdf41a0cb279edce8ac0c0aabbb51789c9fa54
+crates/nova-substrates/src/fluids/mod.rs | 7337 bytes | sha256=8496b2739552e7acccbadf336d7d05024733061ea6355e101c49453842c77185
 crates/nova-substrates/src/lenia/kernels.rs | 781 bytes | sha256=af2db4d201a12ab6920d69605409582b58ceaf6101f263803faa195eb17223e0
-crates/nova-substrates/src/lenia/mod.rs | 3869 bytes | sha256=1b0144e539431fa8deb45bfc28e3b44f03dbcc790c016af553ee4cb43c19c0c5
-crates/nova-substrates/src/lib.rs | 8068 bytes | sha256=89e0612e38e838683d3d5f560b3ab3f6f67c32099fde3895060e71994b70ba5f
+crates/nova-substrates/src/lenia/mod.rs | 3924 bytes | sha256=6f51221da0d8c1a305886609a397033bb27be5edc0cc203f086c791e6b8bbf08
+crates/nova-substrates/src/lib.rs | 8352 bytes | sha256=f3a644160d19790341f229dcd44d38ae74d7a01b8829e882e552cf8b87cfa475
 crates/nova-substrates/src/particles/forces.rs | 143 bytes | sha256=cfa4823eeec842f781d6e3beed5f3d0a78ebec444c4917c64f05df415ad4e902
-crates/nova-substrates/src/particles/mod.rs | 6483 bytes | sha256=1fb942524dc42c22c75497a2140a73c4da0355908bc076d788bba5afed42e2e7
+crates/nova-substrates/src/particles/mod.rs | 6662 bytes | sha256=ac14f9a96630f07f977f53abbb88c229f1ab4a568f5c8373063fad5d87e83708
 crates/nova-swarm/Cargo.toml | 561 bytes | sha256=103faf07577f27febe450bd52b69d98d339a5b3ad8e1efb160278509fa9937b9
 crates/nova-swarm/src/coherence.rs | 3382 bytes | sha256=75cfb970d03437497f779a1ae67f4f51bf08a10b804532a916653aafb036cd54
 crates/nova-swarm/src/lib.rs | 9166 bytes | sha256=fc794999c5b0f8a9eb443a1c8fec9ae7d4beffc78462b44129b9db1714c11720
@@ -114,8 +116,8 @@ nova/visuals/shaders/fluid_surface.wgsl | 1971 bytes | sha256=221a0db3d752693170
 nova/visuals/shaders/particle_life.wgsl | 7773 bytes | sha256=649658ae56d3a6cadc35d7f3ffb149204a589da29b0a937e169fd5db652a3a78
 rust-toolchain.toml | 76 bytes | sha256=7c3650fd9cfa530cec6a61d25602726381988a08b5ebf118fa1ef2b35d5cf609
 src/main.rs | 23742 bytes | sha256=b98d33cc4de3525ea1ad46468a651ddc1a6d6862566adede03c415d4406c4168
-src/research.rs | 13538 bytes | sha256=7d3b48409048b93f690930e951a5e507ff641cc0836a215b49c54c8032d0e2a1
-third_party/upstream.lock.json | 81479 bytes | sha256=21fe9fa434d0d38abc3f79c6353ee46ccf2ecea4494b6187d15591af3dc23eeb
+src/research.rs | 14620 bytes | sha256=6b2a621ee799a525f8bfd10fa710566adc365bcb061295dbda28176e5f4b3975
+third_party/upstream.lock.json | 83381 bytes | sha256=047e3ca3444242eb4eb95ccb516569af59c056860fdc0b8a277bad3a247a98c4
 
 ========================================================================================
 ARQUIVO: Cargo.lock
@@ -1150,6 +1152,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5ca28b0ae3115b884660db4118d803791fd6756b6e88f39c0f3f7859060d7566"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "crc32fast"
+version = "1.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ba106e844045ddc02c20768ac4b0b7cb45f2cc2ecbd833ac9f5dacb183c2055"
+dependencies = [
+ "cfg-if",
 ]
 
 [[package]]
@@ -3337,7 +3348,7 @@ dependencies = [
 
 [[package]]
 name = "nova-automata"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3349,7 +3360,7 @@ dependencies = [
 
 [[package]]
 name = "nova-cognition"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3361,7 +3372,7 @@ dependencies = [
 
 [[package]]
 name = "nova-core"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3371,7 +3382,7 @@ dependencies = [
 
 [[package]]
 name = "nova-engine"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -3381,6 +3392,7 @@ dependencies = [
  "nova-evolution",
  "nova-fusion",
  "nova-gpu",
+ "nova-ipc",
  "nova-physics",
  "nova-render",
  "nova-science",
@@ -3394,7 +3406,7 @@ dependencies = [
 
 [[package]]
 name = "nova-evolution"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-automata",
@@ -3410,7 +3422,7 @@ dependencies = [
 
 [[package]]
 name = "nova-ffi"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "cbindgen",
  "nova-core",
@@ -3419,7 +3431,7 @@ dependencies = [
 
 [[package]]
 name = "nova-fusion"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3438,7 +3450,7 @@ dependencies = [
 
 [[package]]
 name = "nova-gpu"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3453,8 +3465,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "nova-ipc"
+version = "0.9.0"
+dependencies = [
+ "anyhow",
+ "crc32fast",
+ "memmap2",
+ "nova-core",
+ "nova-storage",
+ "nova-substrates",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "nova-physics"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3467,7 +3493,7 @@ dependencies = [
 
 [[package]]
 name = "nova-pvm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-physics",
  "nova-vm",
@@ -3475,7 +3501,7 @@ dependencies = [
 
 [[package]]
 name = "nova-python"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-core",
  "nova-physics",
@@ -3486,7 +3512,7 @@ dependencies = [
 
 [[package]]
 name = "nova-render"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3509,7 +3535,7 @@ dependencies = [
 
 [[package]]
 name = "nova-science"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3523,7 +3549,7 @@ dependencies = [
 
 [[package]]
 name = "nova-spatial"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3531,7 +3557,7 @@ dependencies = [
 
 [[package]]
 name = "nova-storage"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "arrow",
@@ -3546,7 +3572,7 @@ dependencies = [
 
 [[package]]
 name = "nova-substrates"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-automata",
@@ -3561,7 +3587,7 @@ dependencies = [
 
 [[package]]
 name = "nova-swarm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "futures",
@@ -3576,7 +3602,7 @@ dependencies = [
 
 [[package]]
 name = "nova-vm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-core",
  "serde",
@@ -6771,7 +6797,7 @@ exclude = ["nova-core", "third_party/upstream/par-particle-life"]
 default-members = ["."]
 
 [workspace.package]
-version = "0.8.0"
+version = "0.9.0"
 edition = "2021"
 rust-version = "1.93"
 
@@ -6817,6 +6843,7 @@ nova-render = { path = "crates/nova-render", optional = true }
 nova-gpu = { path = "crates/nova-gpu", optional = true }
 
 nova-substrates = { path = "crates/nova-substrates" }
+nova-ipc = { path = "crates/nova-ipc" }
 nova-cognition = { path = "crates/nova-cognition" }
 nova-evolution = { path = "crates/nova-evolution" }
 nova-swarm = { path = "crates/nova-swarm", optional = true }
@@ -8663,6 +8690,15 @@ Pinned revision: `ba43fde7ed3fc2224302c2682a3ecd3030717ba5`.
 License: AGPL-3.0-or-later.
 
 Quality and UI organization reference; no source copied.
+
+## Optional cortex dependencies (reference only)
+
+The NOVA cortex algorithms are implemented locally. The adapters import separately installed packages; no source from the following repositories is redistributed in this workspace. Their own package licenses apply. API/reference revisions are recorded in third_party/upstream.lock.json; Python package constraints are in pyproject.toml.
+
+- [decoderesearch/SAELens](https://github.com/decoderesearch/SAELens) — MIT; requested as jbloomAus/SAELens; inspected revision `16f5346208e084f518d362de2804f1918735d87e`.
+- [TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens) — MIT; requested as neelnanda-io/TransformerLens; inspected revision `bd55eab6737584685b921fdfcd15f191579e64b1`.
+- [astroautomata/PySR](https://github.com/astroautomata/PySR) — Apache-2.0; requested as MilesCranmer/PySR; inspected revision `a14f593cfde61ec4c092fffd8208a4b77cbd80ac`.
+- [dynamicslab/pysindy](https://github.com/dynamicslab/pysindy) — MIT; requested as dynamicslab/pysindy; inspected revision `c4421fcec275c8f4cc5c1e93bebb961b212067ae`.
 
 
 ========================================================================================
@@ -18848,6 +18884,370 @@ impl Gpu {
 
 
 ========================================================================================
+ARQUIVO: crates/nova-ipc/Cargo.toml
+========================================================================================
+[package]
+name = "nova-ipc"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "AGPL-3.0-or-later"
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+nova-substrates = { path = "../nova-substrates" }
+memmap2 = "0.9"
+crc32fast = "1"
+nova-storage = { path = "../nova-storage" }
+nova-core = { path = "../nova-core" }
+
+
+========================================================================================
+ARQUIVO: crates/nova-ipc/src/lib.rs
+========================================================================================
+//! File-backed shared-memory frame slots with explicit reader/writer leases.
+//! Frames are binary floats; JSON is only small publication metadata.
+use anyhow::{ensure, Context, Result};
+use memmap2::MmapMut;
+use nova_substrates::{Action, EnvironmentSpec, Registry, TensorView};
+use serde::{Deserialize, Serialize};
+use std::{
+    fs::{self, OpenOptions},
+    io::Write,
+    path::{Path, PathBuf},
+    time::{Duration, Instant},
+};
+const HEADER: usize = 64;
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Manifest {
+    pub schema: String,
+    pub sequence: u64,
+    pub slot: usize,
+    pub slots: usize,
+    pub tick: u64,
+    pub shape: [usize; 4],
+    pub bytes: usize,
+    pub environment: EnvironmentSpec,
+    pub particle_count: usize,
+    pub particle_width: usize,
+    pub particle_ids: bool,
+    pub time_step: f32,
+}
+struct Lease {
+    path: PathBuf,
+}
+impl Drop for Lease {
+    fn drop(&mut self) {
+        let _ = fs::remove_file(&self.path);
+    }
+}
+fn lease(path: PathBuf) -> Result<Option<Lease>> {
+    match OpenOptions::new().write(true).create_new(true).open(&path) {
+        Ok(mut f) => {
+            write!(f, "{}", std::process::id())?;
+            Ok(Some(Lease { path }))
+        }
+        Err(e) if e.kind() == std::io::ErrorKind::AlreadyExists => Ok(None),
+        Err(e) => Err(e.into()),
+    }
+}
+pub struct Publisher {
+    root: PathBuf,
+    slots: usize,
+    sequence: u64,
+    environment: EnvironmentSpec,
+    time_step: f32,
+    _session: Lease,
+}
+fn atomic(path: &Path, bytes: &[u8]) -> Result<()> {
+    let tmp = path.with_extension(format!("{}.tmp", std::process::id()));
+    let mut f = OpenOptions::new().write(true).create_new(true).open(&tmp)?;
+    let result = (|| -> Result<()> {
+        f.write_all(bytes)?;
+        f.sync_all()?;
+        drop(f);
+        fs::rename(&tmp, path)?;
+        Ok(())
+    })();
+    if result.is_err() {
+        let _ = fs::remove_file(&tmp);
+    }
+    result
+}
+impl Publisher {
+    pub fn new(
+        root: &Path,
+        slots: usize,
+        environment: EnvironmentSpec,
+        time_step: f32,
+    ) -> Result<Self> {
+        ensure!(
+            time_step.is_finite() && time_step > 0.,
+            "invalid IPC time step"
+        );
+        ensure!((2..=32).contains(&slots), "IPC ring requires 2..32 slots");
+        environment.validate()?;
+        fs::create_dir_all(root)?;
+        let session = lease(root.join("publisher.lock"))?.context(
+            "another publisher owns this directory; inspect PID before removing a stale lease",
+        )?;
+        ensure!(
+            !root.join("ring.json").exists(),
+            "IPC directory already has a session; use a new directory"
+        );
+        Ok(Self {
+            root: root.into(),
+            slots,
+            sequence: 0,
+            environment,
+            time_step,
+            _session: session,
+        })
+    }
+    pub fn publish(
+        &mut self,
+        view: TensorView<'_>,
+        particles: Option<&nova_core::Particles>,
+        timeout: Duration,
+    ) -> Result<u64> {
+        ensure!(
+            view.shape[0] == 4
+                && view.shape.iter().all(|&x| x > 0)
+                && view.shape.iter().try_fold(1usize, |a, &b| a.checked_mul(b))
+                    == Some(view.values.len())
+                && view.values.len() <= 8_388_608
+                && view.values.iter().all(|x| x.is_finite()),
+            "invalid IPC tensor"
+        );
+        let deadline = Instant::now() + timeout;
+        let (slot, _lease) = loop {
+            let mut chosen = None;
+            for offset in 0..self.slots {
+                let slot = (self.sequence as usize + offset) % self.slots;
+                if let Some(guard) = lease(self.root.join(format!("slot-{slot}.lock")))? {
+                    chosen = Some((slot, guard));
+                    break;
+                }
+            }
+            if let Some(pair) = chosen {
+                break pair;
+            }
+            ensure!(
+                Instant::now() < deadline,
+                "all frame slots pinned by readers"
+            );
+            std::thread::sleep(Duration::from_millis(2));
+        };
+        self.sequence = self
+            .sequence
+            .checked_add(1)
+            .context("IPC sequence overflow")?;
+        let particle_count = particles.map(|p| p.len()).unwrap_or(0);
+        ensure!(particle_count <= 262144, "IPC particle budget exceeded");
+        if let Some(p) = particles {
+            p.validate()?;
+        }
+        let bytes = HEADER + view.values.len() * 4 + particle_count * (8 * 4 + 8);
+        let path = self.root.join(format!("slot-{slot}.bin"));
+        let file = OpenOptions::new()
+            .read(true)
+            .write(true)
+            .create(true)
+            .truncate(true)
+            .open(&path)?;
+        file.set_len(bytes as u64)?;
+        // SAFETY: the exclusive slot lease prevents all cooperating processes from
+        // mapping/overwriting this file until publication and guard release.
+        let mut mapped = unsafe { MmapMut::map_mut(&file)? };
+        mapped[..HEADER].fill(0);
+        mapped[..8].copy_from_slice(b"NOVAFR09");
+        mapped[8..16].copy_from_slice(&self.sequence.to_le_bytes());
+        mapped[16..24].copy_from_slice(&view.tick.to_le_bytes());
+        for (k, d) in view.shape.iter().enumerate() {
+            mapped[24 + k * 4..28 + k * 4].copy_from_slice(&(*d as u32).to_le_bytes());
+        }
+        mapped[40..48].copy_from_slice(&(view.values.len() as u64).to_le_bytes());
+        mapped[48..52].copy_from_slice(&(particle_count as u32).to_le_bytes());
+        mapped[52..56].copy_from_slice(&8u32.to_le_bytes());
+        mapped[56..60].copy_from_slice(&u32::from(particles.is_some()).to_le_bytes());
+        for (chunk, value) in mapped[HEADER..HEADER + view.values.len() * 4]
+            .chunks_exact_mut(4)
+            .zip(view.values)
+        {
+            chunk.copy_from_slice(&value.to_le_bytes());
+        }
+        if let Some(p) = particles {
+            for i in 0..p.len() {
+                let values = [
+                    p.positions[i].0[0],
+                    p.positions[i].0[1],
+                    p.positions[i].0[2],
+                    p.velocities[i].0[0],
+                    p.velocities[i].0[1],
+                    p.velocities[i].0[2],
+                    p.velocities[i].0[3],
+                    p.phenotypes[i][0] as f32,
+                ];
+                let offset = HEADER + view.values.len() * 4 + i * 32;
+                for (chunk, value) in mapped[offset..offset + 32].chunks_exact_mut(4).zip(values) {
+                    chunk.copy_from_slice(&value.to_le_bytes());
+                }
+            }
+        }
+        if let Some(p) = particles {
+            let offset = HEADER + view.values.len() * 4 + particle_count * 32;
+            for (chunk, id) in mapped[offset..].chunks_exact_mut(8).zip(&p.ids) {
+                chunk.copy_from_slice(&id.to_le_bytes());
+            }
+        }
+        mapped.flush()?;
+        drop(mapped);
+        drop(file);
+        let manifest = Manifest {
+            schema: "NOVA-RING-v1".into(),
+            sequence: self.sequence,
+            slot,
+            slots: self.slots,
+            tick: view.tick,
+            shape: view.shape,
+            bytes,
+            environment: self.environment.clone(),
+            particle_count,
+            particle_width: 8,
+            particle_ids: particles.is_some(),
+            time_step: self.time_step,
+        };
+        atomic(
+            &self.root.join("ring.json"),
+            &serde_json::to_vec(&manifest)?,
+        )?;
+        Ok(self.sequence)
+    }
+    pub fn await_action(&self, sequence: u64, timeout: Duration) -> Result<Command> {
+        let start = Instant::now();
+        loop {
+            let path = self.root.join("action.bin");
+            if path.exists() {
+                ensure!(
+                    fs::metadata(&path)?.len() == 64,
+                    "invalid action packet length"
+                );
+                let data = fs::read(path)?;
+                let command = Command::decode(&data)?;
+                if command.sequence == sequence {
+                    return Ok(command);
+                }
+                ensure!(
+                    command.sequence < sequence,
+                    "action is ahead of published observation"
+                );
+            }
+            ensure!(
+                start.elapsed() < timeout,
+                "timed out waiting for cortex action"
+            );
+            std::thread::sleep(Duration::from_millis(2));
+        }
+    }
+}
+pub struct Command {
+    pub sequence: u64,
+    pub close: bool,
+    pub action: Option<Action>,
+}
+impl Command {
+    pub fn decode(data: &[u8]) -> Result<Self> {
+        ensure!(
+            data.len() == 64
+                && &data[..8] == b"NOVAAC09"
+                && crc32fast::hash(&data[..60]) == u32::from_le_bytes(data[60..64].try_into()?),
+            "action magic/checksum mismatch"
+        );
+        let sequence = u64::from_le_bytes(data[8..16].try_into()?);
+        let opcode = u32::from_le_bytes(data[16..20].try_into()?);
+        let values = std::array::from_fn::<_, 8, _>(|i| {
+            f32::from_le_bytes(data[20 + i * 4..24 + i * 4].try_into().unwrap())
+        });
+        ensure!(
+            values.iter().all(|x| x.is_finite()),
+            "nonfinite action packet"
+        );
+        let action = match opcode {
+            0 | 3 => None,
+            1 => Some(Action::Paint {
+                position: [values[0], values[1], values[2]],
+                radius: values[3],
+                strength: values[4],
+            }),
+            2 => Some(Action::Impulse {
+                position: [values[0], values[1], values[2]],
+                radius: values[3],
+                vector: [values[5], values[6], values[7]],
+            }),
+            _ => anyhow::bail!("unknown action opcode"),
+        };
+        if let Some(a) = &action {
+            a.validate()?;
+        }
+        Ok(Self {
+            sequence,
+            close: opcode == 3,
+            action,
+        })
+    }
+}
+pub fn serve(
+    root: &Path,
+    spec: EnvironmentSpec,
+    slots: usize,
+    ticks: usize,
+    timeout: Duration,
+    output: Option<&Path>,
+) -> Result<()> {
+    ensure!(
+        ticks > 0
+            && ticks <= 1_000_000_000
+            && timeout > Duration::ZERO
+            && timeout <= Duration::from_secs(86400),
+        "invalid IPC workload budget"
+    );
+    let mut world = Registry::default().build(&spec)?;
+    let mut lake = output
+        .map(|path| nova_storage::tensors::TensorLake::new(path, &spec, world.observe()))
+        .transpose()?;
+    let mut publisher = Publisher::new(root, slots, spec, world.time_step())?;
+    for _ in 0..ticks {
+        let sequence = publisher.publish(world.observe(), world.particle_view(), timeout)?;
+        let command = publisher.await_action(sequence, timeout)?;
+        if let Some(lake) = &mut lake {
+            lake.record(world.observe(), command.action.as_ref())?;
+        }
+        if command.close {
+            break;
+        }
+        if let Some(action) = command.action {
+            world.interact(&action)?;
+        }
+        world.step(1)?;
+    }
+    if let Some(lake) = lake {
+        lake.finish()?;
+    }
+    Ok(())
+}
+
+impl Drop for Publisher {
+    fn drop(&mut self) {
+        let _ = fs::write(
+            self.root.join("closed.json"),
+            format!("{{\"sequence\":{},\"status\":\"closed\"}}", self.sequence),
+        );
+    }
+}
+
+
+========================================================================================
 ARQUIVO: crates/nova-physics/Cargo.toml
 ========================================================================================
 [package]
@@ -21990,6 +22390,15 @@ Pinned revision: `ba43fde7ed3fc2224302c2682a3ecd3030717ba5`.
 License: AGPL-3.0-or-later.
 
 Quality and UI organization reference; no source copied.
+
+## Optional cortex dependencies (reference only)
+
+The NOVA cortex algorithms are implemented locally. The adapters import separately installed packages; no source from the following repositories is redistributed in this workspace. Their own package licenses apply. API/reference revisions are recorded in third_party/upstream.lock.json; Python package constraints are in pyproject.toml.
+
+- [decoderesearch/SAELens](https://github.com/decoderesearch/SAELens) — MIT; requested as jbloomAus/SAELens; inspected revision `16f5346208e084f518d362de2804f1918735d87e`.
+- [TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens) — MIT; requested as neelnanda-io/TransformerLens; inspected revision `bd55eab6737584685b921fdfcd15f191579e64b1`.
+- [astroautomata/PySR](https://github.com/astroautomata/PySR) — Apache-2.0; requested as MilesCranmer/PySR; inspected revision `a14f593cfde61ec4c092fffd8208a4b77cbd80ac`.
+- [dynamicslab/pysindy](https://github.com/dynamicslab/pysindy) — MIT; requested as dynamicslab/pysindy; inspected revision `c4421fcec275c8f4cc5c1e93bebb961b212067ae`.
 
 
 ========================================================================================
@@ -26132,6 +26541,13 @@ pub struct Field {
     parameters: [f32; 4],
 }
 impl Substrate for Field {
+    fn time_step(&self) -> f32 {
+        if self.gray {
+            1.
+        } else {
+            self.parameters[2]
+        }
+    }
     fn name(&self) -> &'static str {
         if self.gray {
             "gray-scott"
@@ -26391,6 +26807,9 @@ pub fn build(s: &EnvironmentSpec) -> Result<Box<dyn Substrate>> {
     }))
 }
 impl Substrate for Lenia {
+    fn time_step(&self) -> f32 {
+        self.dt
+    }
     fn name(&self) -> &'static str {
         "lenia"
     }
@@ -26612,6 +27031,14 @@ impl TensorView<'_> {
     }
 }
 pub trait Substrate: Send + Sync {
+    /// Integrator time per tick; discrete games use one logical time unit.
+    fn time_step(&self) -> f32 {
+        1.
+    }
+    /// Optional native particle columns for multimodal cortex observation.
+    fn particle_view(&self) -> Option<&nova_core::Particles> {
+        None
+    }
     fn name(&self) -> &'static str;
     fn step(&mut self, ticks: usize) -> Result<()>;
     fn observe(&self) -> TensorView<'_>;
@@ -26847,6 +27274,12 @@ impl ParticleSubstrate {
     }
 }
 impl Substrate for ParticleSubstrate {
+    fn time_step(&self) -> f32 {
+        self.universe.config.dt
+    }
+    fn particle_view(&self) -> Option<&nova_core::Particles> {
+        Some(&self.universe.particles)
+    }
     fn name(&self) -> &'static str {
         if self.universe.config.mpm {
             "mpm"
@@ -28742,6 +29175,25 @@ use std::{
 };
 #[derive(Subcommand)]
 pub enum Command {
+    /// Publish binary observation slots and wait for matching cortex actions.
+    Ipc {
+        #[arg(long)]
+        directory: PathBuf,
+        #[arg(long)]
+        output: Option<PathBuf>,
+        #[arg(long, default_value = "conway")]
+        substrate: String,
+        #[arg(long)]
+        spec: Option<PathBuf>,
+        #[arg(long, default_value_t = 42)]
+        seed: u64,
+        #[arg(long, default_value_t = 1000000)]
+        ticks: usize,
+        #[arg(long, default_value_t = 3)]
+        slots: usize,
+        #[arg(long, default_value_t = 3600)]
+        action_timeout: u64,
+    },
     /// List compiled substrate plugins.
     Substrates,
     /// Advance any substrate and optionally record common tensors.
@@ -28876,6 +29328,25 @@ fn write_new(path: &Path, value: &impl serde::Serialize) -> Result<()> {
 }
 pub fn run(command: Command) -> Result<()> {
     match command {
+        Command::Ipc {
+            directory,
+            output,
+            substrate,
+            spec: path,
+            seed,
+            ticks,
+            slots,
+            action_timeout,
+        } => {
+            nova_ipc::serve(
+                &directory,
+                spec(&substrate, seed, path)?,
+                slots,
+                ticks,
+                std::time::Duration::from_secs(action_timeout),
+                output.as_deref(),
+            )?;
+        }
         Command::Substrates => println!("{}", serde_json::to_string(&Registry::default().names())?),
         Command::Substrate {
             kind,
@@ -31414,6 +31885,46 @@ ARQUIVO: third_party/upstream.lock.json
       "files": [],
       "redistributed": false,
       "integration": "Quality and UI organization reference; no source copied"
+    },
+    {
+      "repository": "decoderesearch/SAELens",
+      "requested_name": "jbloomAus/SAELens",
+      "url": "https://github.com/decoderesearch/SAELens",
+      "commit": "16f5346208e084f518d362de2804f1918735d87e",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "TransformerLensOrg/TransformerLens",
+      "requested_name": "neelnanda-io/TransformerLens",
+      "url": "https://github.com/TransformerLensOrg/TransformerLens",
+      "commit": "bd55eab6737584685b921fdfcd15f191579e64b1",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "astroautomata/PySR",
+      "requested_name": "MilesCranmer/PySR",
+      "url": "https://github.com/astroautomata/PySR",
+      "commit": "a14f593cfde61ec4c092fffd8208a4b77cbd80ac",
+      "license": "Apache-2.0",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "dynamicslab/pysindy",
+      "requested_name": "dynamicslab/pysindy",
+      "url": "https://github.com/dynamicslab/pysindy",
+      "commit": "c4421fcec275c8f4cc5c1e93bebb961b212067ae",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
     }
   ]
 }

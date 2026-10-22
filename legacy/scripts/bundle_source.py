@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = (
     "nova",
     "nova_engine",
+    "nova_cortex",
     "crates",
     "src",
     "include",

@@ -11,6 +11,25 @@ use std::{
 };
 #[derive(Subcommand)]
 pub enum Command {
+    /// Publish binary observation slots and wait for matching cortex actions.
+    Ipc {
+        #[arg(long)]
+        directory: PathBuf,
+        #[arg(long)]
+        output: Option<PathBuf>,
+        #[arg(long, default_value = "conway")]
+        substrate: String,
+        #[arg(long)]
+        spec: Option<PathBuf>,
+        #[arg(long, default_value_t = 42)]
+        seed: u64,
+        #[arg(long, default_value_t = 1000000)]
+        ticks: usize,
+        #[arg(long, default_value_t = 3)]
+        slots: usize,
+        #[arg(long, default_value_t = 3600)]
+        action_timeout: u64,
+    },
     /// List compiled substrate plugins.
     Substrates,
     /// Advance any substrate and optionally record common tensors.
@@ -145,6 +164,25 @@ fn write_new(path: &Path, value: &impl serde::Serialize) -> Result<()> {
 }
 pub fn run(command: Command) -> Result<()> {
     match command {
+        Command::Ipc {
+            directory,
+            output,
+            substrate,
+            spec: path,
+            seed,
+            ticks,
+            slots,
+            action_timeout,
+        } => {
+            nova_ipc::serve(
+                &directory,
+                spec(&substrate, seed, path)?,
+                slots,
+                ticks,
+                std::time::Duration::from_secs(action_timeout),
+                output.as_deref(),
+            )?;
+        }
         Command::Substrates => println!("{}", serde_json::to_string(&Registry::default().names())?),
         Command::Substrate {
             kind,

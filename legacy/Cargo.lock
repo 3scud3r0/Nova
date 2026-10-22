@@ -1031,6 +1031,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "crc32fast"
+version = "1.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0ba106e844045ddc02c20768ac4b0b7cb45f2cc2ecbd833ac9f5dacb183c2055"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
 name = "critical-section"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3215,7 +3224,7 @@ dependencies = [
 
 [[package]]
 name = "nova-automata"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3227,7 +3236,7 @@ dependencies = [
 
 [[package]]
 name = "nova-cognition"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3239,7 +3248,7 @@ dependencies = [
 
 [[package]]
 name = "nova-core"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3249,7 +3258,7 @@ dependencies = [
 
 [[package]]
 name = "nova-engine"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "clap",
@@ -3259,6 +3268,7 @@ dependencies = [
  "nova-evolution",
  "nova-fusion",
  "nova-gpu",
+ "nova-ipc",
  "nova-physics",
  "nova-render",
  "nova-science",
@@ -3272,7 +3282,7 @@ dependencies = [
 
 [[package]]
 name = "nova-evolution"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-automata",
@@ -3288,7 +3298,7 @@ dependencies = [
 
 [[package]]
 name = "nova-ffi"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "cbindgen",
  "nova-core",
@@ -3297,7 +3307,7 @@ dependencies = [
 
 [[package]]
 name = "nova-fusion"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3316,7 +3326,7 @@ dependencies = [
 
 [[package]]
 name = "nova-gpu"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3331,8 +3341,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "nova-ipc"
+version = "0.9.0"
+dependencies = [
+ "anyhow",
+ "crc32fast",
+ "memmap2",
+ "nova-core",
+ "nova-storage",
+ "nova-substrates",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "nova-physics"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3345,7 +3369,7 @@ dependencies = [
 
 [[package]]
 name = "nova-pvm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-physics",
  "nova-vm",
@@ -3353,7 +3377,7 @@ dependencies = [
 
 [[package]]
 name = "nova-python"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-core",
  "nova-physics",
@@ -3364,7 +3388,7 @@ dependencies = [
 
 [[package]]
 name = "nova-render"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "bytemuck",
@@ -3387,7 +3411,7 @@ dependencies = [
 
 [[package]]
 name = "nova-science"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3401,7 +3425,7 @@ dependencies = [
 
 [[package]]
 name = "nova-spatial"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-core",
@@ -3409,7 +3433,7 @@ dependencies = [
 
 [[package]]
 name = "nova-storage"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "arrow",
@@ -3424,7 +3448,7 @@ dependencies = [
 
 [[package]]
 name = "nova-substrates"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "nova-automata",
@@ -3439,7 +3463,7 @@ dependencies = [
 
 [[package]]
 name = "nova-swarm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "anyhow",
  "futures",
@@ -3454,7 +3478,7 @@ dependencies = [
 
 [[package]]
 name = "nova-vm"
-version = "0.8.0"
+version = "0.9.0"
 dependencies = [
  "nova-core",
  "serde",

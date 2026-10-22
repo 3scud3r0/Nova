@@ -176,6 +176,14 @@ impl TensorView<'_> {
     }
 }
 pub trait Substrate: Send + Sync {
+    /// Integrator time per tick; discrete games use one logical time unit.
+    fn time_step(&self) -> f32 {
+        1.
+    }
+    /// Optional native particle columns for multimodal cortex observation.
+    fn particle_view(&self) -> Option<&nova_core::Particles> {
+        None
+    }
     fn name(&self) -> &'static str;
     fn step(&mut self, ticks: usize) -> Result<()>;
     fn observe(&self) -> TensorView<'_>;
