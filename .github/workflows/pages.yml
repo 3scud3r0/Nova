@@ -36,7 +36,7 @@ jobs:
         env:
           NODE_ENV: production
           NUXT_APP_BASE_URL: /Nova/
-          NUXT_PUBLIC_SITE_URL: https://3scud3r0.github.io/Nova/
+          NUXT_PUBLIC_SITE_URL: https://3scud3r0.github.io
           NUXT_PUBLIC_GTAG_ID: ''
         run: npm run generate
       - name: Verify website output
