@@ -43,5 +43,18 @@ names=names.replace("const appURL = 'https://sandbox-science.com'","const appURL
            .replace("const appName = 'Sandbox Science'","const appName = 'NOVA Lab'")
            .replace(/const appDescription = '[^\n]+'/, "const appDescription = 'NOVA Lab: Particle Life e Conway no navegador com integração de dados do motor NOVA.'");
 writeFileSync(constants,names);
+// Conservative first-load budgets avoid overwhelming CPU and integrated GPUs.
+// Users can increase particle counts through the original Sandbox Science panels.
+for (const [file, original, tuned] of [
+  ["particleLifeStore.ts", "ref<number>(6000)", "ref<number>(2000)"],
+  ["particleLifeGPUStore.ts", "ref<number>(64000)", "ref<number>(24000)"],
+  ["particleLifeGPU3DStore.ts", "ref<number>(128000)", "ref<number>(32000)"],
+]) {
+  const path=join(target,"stores",file);
+  let content=readFileSync(path,"utf8");
+  if(!content.includes(original)) throw new Error("Upstream particle budget changed: "+file);
+  content=content.replace(original,tuned);
+  writeFileSync(path,content);
+}
 rmSync(join(target,"pages","hash-life.vue"),{force:true});
 console.log(JSON.stringify({upstream:"DicSo92/SandboxScience",revision,output:target,base:process.env.NUXT_APP_BASE_URL||"/Nova/"}));
