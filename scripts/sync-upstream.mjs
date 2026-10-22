@@ -71,6 +71,6 @@ manifest.name="NOVA Lab";manifest.short_name="NOVA";
 for(const icon of manifest.icons || []) {
   if(icon.src.startsWith("/")) icon.src="/Nova/"+icon.src.slice(1);
 }
-writeFileSync(manifestPath,JSON.stringify(manifest,null,2)+"\\n");
+writeFileSync(manifestPath,JSON.stringify(manifest,null,2));
 rmSync(join(target,"pages","hash-life.vue"),{force:true});
 console.log(JSON.stringify({upstream:"DicSo92/SandboxScience",revision,output:target,base:process.env.NUXT_APP_BASE_URL||"/Nova/"}));
