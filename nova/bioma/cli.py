@@ -1,15 +1,23 @@
 """Explicit entry points for local Biocosm experiments and opt-in peer exchange."""
 
 from __future__ import annotations
+
 import argparse
 import asyncio
 from pathlib import Path
+
 from .determinism import canonical_json, strict_json
 from .presets import PRESETS, create_ecosystem
 
 
 def main(argv=None):
-    from nova.planetary_cli import COMMANDS, main as planetary_main
+    from nova.chromatic_cli import COMMANDS as CHROMATIC
+    from nova.chromatic_cli import main as chromatic_main
+
+    if argv and argv[0] in CHROMATIC:
+        return chromatic_main(argv)
+    from nova.planetary_cli import COMMANDS
+    from nova.planetary_cli import main as planetary_main
 
     if argv and argv[0] in COMMANDS:
         return planetary_main(argv)
@@ -86,7 +94,7 @@ def main(argv=None):
             p.add_argument("--keyfile")
         if name == "sync":
             p.add_argument("--peer-id", required=True)
-    for command in sorted(COMMANDS):
+    for command in sorted(COMMANDS | CHROMATIC):
         sub.add_parser(command, help="v0.4 planetary workflow")
     args = parser.parse_args(argv)
     if args.command in ("run", "serve", "render"):
@@ -111,8 +119,9 @@ def main(argv=None):
             )
         )
         if args.command == "run":
-            from .pipeline import run_and_export
             from nova.visuals import FieldRenderer
+
+            from .pipeline import run_and_export
 
             result = run_and_export(eco, args.output, args.ticks, tier=args.tier)
             FieldRenderer.export_html(eco, Path(args.output) / "viewer.html")
@@ -201,7 +210,7 @@ def main(argv=None):
             "validation_used_for_selection": False,
         }
     else:
-        from nova.swarm.artifacts import SigningIdentity, ArtifactStore
+        from nova.swarm.artifacts import ArtifactStore, SigningIdentity
         from nova.swarm.p2p_node import Peer, PeerNode
 
         directory = Path(args.directory)

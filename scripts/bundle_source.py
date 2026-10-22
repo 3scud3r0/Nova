@@ -1,7 +1,7 @@
 """Create a deterministic, human-readable source bundle with per-file SHA-256."""
 
-from pathlib import Path
 import hashlib
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = (
@@ -27,6 +27,9 @@ FILES = (
     "docs/adaptive-energy.md",
     "docs/biocosm.md",
     "docs/planetary.md",
+    "docs/chromatic.md",
+    "reports/chromatic/STATUS.md",
+    "reports/chromatic/status.json",
     "reports/planetary/STATUS.md",
     "reports/planetary/status.json",
     "reports/biocosm/STATUS.md",
@@ -35,7 +38,18 @@ FILES = (
     "reports/adaptive/status.json",
     "reports/STATUS.md",
 )
-EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json", ".html", ".wgsl"}
+EXTENSIONS = {
+    ".py",
+    ".rs",
+    ".sh",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".json",
+    ".html",
+    ".js",
+    ".wgsl",
+}
 
 
 def main():

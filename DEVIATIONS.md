@@ -59,3 +59,12 @@
 - Descoberta é XOR iterativa com descritores assinados e bootstrap/mDNS opcionais. Não implementa interoperabilidade libp2p completa, não fornece bootstraps globais nem TURN público e não garante atravessar NAT. WebRTC opcional negocia SDP assinado; o signaling inicial ainda precisa ser alcançável.
 - Buscas cruzadas são avaliações limitadas de identidades/domínios e do oscilador codificado, sem execução arbitrária de simuladores remotos. Não há experimento efetivo com 50 nós/24 horas. Nenhum protocolo aceita ausência de contraexemplo como prova formal. Assinaturas não impedem Sybil/colusão e o ledger continua local.
 - Browser, rede, migração entre máquinas e Lean não foram executados nesta revisão. Novos testes foram escritos sem execução. Checks estáticos Rust CPU/WebGPU/Naga e Ruff não substituem validação empírica ou auditoria de uma implantação pública.
+
+
+## Revisão 0.5 — Chromatic
+
+- A implementação de Particle Life e PBF usa shaders GPU reais. O renderer de superfícies usa espessura e filtro bilateral; SSS, película RGB, DOF e ambiente são aproximações artísticas. Não se alega equivalência com cinema offline.
+- MPM/APIC/FLIP CPU, StVK, HB, DLVO, Gibbs/Onsager, SSA, DEC, Clifford, Yoshida, catástrofes, SDF e bricks esparsos são referências separadas. Não constituem um solver universal acoplado. Não há NanoVDB GPU, BDPT ou ReSTIR completo.
+- Limites de vizinhos/correção/velocidade são explícitos e instrumentados; 100 mil partículas e 4K são opções limitadas por orçamento, sem desempenho validado. Nenhuma promessa de 60 FPS, 20 Watts ou conservação exata sob limites e paredes.
+- O estúdio exporta parâmetros, eventos, versão e hashes, com checkpoint opcional; operações f32/atômicas não garantem identidade entre GPUs. Hash não é prova formal de ciência.
+- Foi feita inspeção visual pequena com Chromium/SwiftShader, além de checks estáticos. As novas suítes numéricas e benchmarks não foram executados. Detalhes em reports/chromatic/STATUS.md.
