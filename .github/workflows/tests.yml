@@ -21,6 +21,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - run: pip install maturin numpy pytest
       - run: cargo test --manifest-path nova-core/Cargo.toml --locked
+      - run: cargo test --locked -p nova-automata -p nova-fusion -p nova-gpu
       - run: maturin build --manifest-path nova-core/Cargo.toml --release --locked -o wheels
       - run: pip install wheels/*.whl
       - run: python -m pytest tests/test_native.py -q
