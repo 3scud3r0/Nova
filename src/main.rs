@@ -386,7 +386,15 @@ fn main() -> Result<()> {
                 nova_automata::Boundary::Periodic
             };
             let mut world = if let Some(path) = input {
-                nova_automata::Grid::load(path)?
+                if path.extension().is_some_and(|ext| ext == "rle") {
+                    ensure!(dims.len() == 2, "RLE import requires a 2D grid");
+                    let mut g = nova_automata::Grid::new(shape, rules, boundary)?;
+                    let text = std::fs::read_to_string(path)?;
+                    nova_automata::rle::import(&mut g, &text, [0, 0])?;
+                    g
+                } else {
+                    nova_automata::Grid::load(path)?
+                }
             } else {
                 let mut g = nova_automata::Grid::new(shape, rules, boundary)?;
                 if let Some(name) = pattern {
