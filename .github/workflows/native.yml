@@ -1,7 +1,7 @@
 name: native-builds
 on:
   pull_request:
-    paths: ["Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "crates/**", "src/**", "nova_engine/**", "scripts/package_native.py", ".github/workflows/native.yml"]
+    paths: ["Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "crates/**", "third_party/**", "LICENSE", "THIRD_PARTY_NOTICES.md", "docs/native/**", "artifacts/**", "src/**", "nova_engine/**", "scripts/package_native.py", ".github/workflows/native.yml"]
   workflow_dispatch:
   push:
     tags: ["native-v*"]

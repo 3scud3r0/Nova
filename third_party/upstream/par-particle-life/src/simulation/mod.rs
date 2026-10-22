@@ -1,0 +1,214 @@
+//! Simulation module containing core physics and data structures.
+
+mod boundary;
+mod matrix_variation;
+mod obstacle;
+mod particle;
+mod spatial_hash;
+
+pub use boundary::BoundaryMode;
+pub use matrix_variation::{MatrixVariationConfig, MatrixVariationMode};
+pub use obstacle::{MAX_OBSTACLES, Obstacle, ObstacleData, ObstacleShape};
+pub use particle::{
+    InteractionMatrix, Particle, ParticlePosType, ParticlePosTypeHalf, ParticleVel,
+    ParticleVelHalf, RadiusMatrix,
+};
+pub use spatial_hash::SpatialHash;
+
+use serde::{Deserialize, Serialize};
+
+/// Integration method used to advance particle positions and velocities.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
+pub enum IntegrationMethod {
+    /// Semi-implicit Euler integration: update velocity, then move by updated velocity.
+    #[default]
+    Euler,
+    /// Velocity Verlet position update: move by the average of previous and updated velocity.
+    VelocityVerlet,
+}
+
+impl IntegrationMethod {
+    /// Human-readable name for UI display.
+    pub fn display_name(self) -> &'static str {
+        match self {
+            Self::Euler => "Euler",
+            Self::VelocityVerlet => "Velocity Verlet",
+        }
+    }
+}
+
+/// Configuration for the particle life simulation.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SimulationConfig {
+    /// Number of particles in the simulation (16 - 1,048,576).
+    pub num_particles: u32,
+
+    /// Number of particle types/species (1 - 16).
+    pub num_types: u32,
+
+    /// Force scaling factor (0.1 - 10.0). Higher values reduce force magnitude.
+    pub force_factor: f32,
+
+    /// Friction coefficient (0.0 - 1.0). Applied each frame to slow particles.
+    pub friction: f32,
+
+    /// Repulsion strength at close range (0.01 - 4.0).
+    pub repel_strength: f32,
+
+    /// Maximum velocity magnitude. Particles are clamped to this speed.
+    pub max_velocity: f32,
+
+    /// Boundary handling mode.
+    pub boundary_mode: BoundaryMode,
+
+    /// Wall repulsion strength for Repel boundary mode (0.0 - 100.0).
+    pub wall_repel_strength: f32,
+
+    /// Number of mirror copies for MirrorWrap mode (5 or 9).
+    pub mirror_wrap_count: u32,
+
+    /// World size in pixels.
+    pub world_size: glam::Vec2,
+
+    /// Enable 3D simulation with depth.
+    pub enable_3d: bool,
+
+    /// Maximum depth for 3D mode.
+    pub depth_limit: f32,
+
+    /// Particle render size in pixels.
+    pub particle_size: f32,
+
+    /// Enable glow effect on particles.
+    pub enable_glow: bool,
+
+    /// Glow effect intensity (0.0 - 2.0).
+    pub glow_intensity: f32,
+
+    /// Glow effect size multiplier.
+    pub glow_size: f32,
+
+    /// Glow falloff steepness (1.0 - 4.0). Higher = sharper edge.
+    pub glow_steepness: f32,
+
+    /// Use spatial hashing for force calculation optimization.
+    ///
+    /// Spatial hash cell size. Should be >= max interaction radius.
+    pub spatial_hash_cell_size: f32,
+
+    /// Maximum number of particles in a single bin before force scaling occurs.
+    #[serde(default = "default_max_bin_density")]
+    pub max_bin_density: f32,
+
+    /// Maximum neighbors to check per particle (0 = unlimited).
+    /// Setting a budget prevents slowdown when particles cluster heavily.
+    #[serde(default)]
+    pub neighbor_budget: u32,
+
+    /// Background color [r, g, b] in 0.0-1.0 range.
+    pub background_color: [f32; 3],
+
+    /// Temperature / Brownian noise strength (0.0 - 50.0). Adds random velocity perturbation each frame.
+    #[serde(default)]
+    pub temperature: f32,
+
+    /// Frame counter for seeding GPU random noise. Incremented each frame.
+    ///
+    /// Runtime-only — never persisted (ARC-034). Skipping serialization keeps
+    /// the counter out of every preset JSON while preserving the read site at
+    /// `sim_config.frame_counter` so the GPU uniform write (`buffers.rs`) and
+    /// the per-frame increment (`update.rs`) keep compiling unchanged.
+    #[serde(skip)]
+    #[serde(default)]
+    pub frame_counter: u32,
+
+    /// Time scale factor (0.1 - 5.0). Multiplied with dt for slow-motion or fast-forward.
+    #[serde(default)]
+    pub time_scale: f32,
+
+    /// Velocity coupling strength (0.0 - 1.0). When > 0, particles align velocities with neighbors.
+    #[serde(default)]
+    pub velocity_coupling: f32,
+
+    /// Numerical integration method for advancing particles.
+    #[serde(default)]
+    pub integration_method: IntegrationMethod,
+}
+
+/// Default value for max_bin_density (used by serde).
+fn default_max_bin_density() -> f32 {
+    5000.0
+}
+
+impl Default for SimulationConfig {
+    fn default() -> Self {
+        Self {
+            num_particles: 64_000,
+            num_types: 7,
+            force_factor: 1.0,
+            friction: 0.3,
+            repel_strength: 3.0, // Increased to discourage clustering
+            max_velocity: 500.0,
+            boundary_mode: BoundaryMode::Wrap,
+            wall_repel_strength: 100.0,
+            mirror_wrap_count: 5,
+            world_size: glam::Vec2::new(1920.0, 1080.0),
+            enable_3d: false,
+            depth_limit: 420.0,
+            particle_size: 0.5,
+            enable_glow: true,
+            glow_intensity: 0.35,
+            glow_size: 4.0,
+            glow_steepness: 2.0,
+            spatial_hash_cell_size: 64.0,
+            background_color: [0.0, 0.0, 0.0], // Black
+            max_bin_density: 5000.0,
+            neighbor_budget: 0, // 0 = unlimited (default), set non-zero to cap iterations in dense clusters
+            temperature: 0.0,
+            frame_counter: 0,
+            time_scale: 1.0,
+            velocity_coupling: 0.0,
+            integration_method: IntegrationMethod::Euler,
+        }
+    }
+}
+
+impl SimulationConfig {
+    /// Create a configuration suitable for GPU rendering.
+    pub fn gpu_defaults() -> Self {
+        Self::default()
+    }
+
+    /// Validate the configuration and return errors if invalid.
+    pub fn validate(&self) -> Result<(), String> {
+        if self.num_particles == 0 {
+            return Err("num_particles must be greater than 0".to_string());
+        }
+        // SEC-001: enforce the documented upper bound (field doc: 16 - 1,048,576).
+        // A crafted preset with num_particles = u32::MAX OOM-kills the app on
+        // buffer allocation; rejecting at validate() surfaces a clean error.
+        const MAX_NUM_PARTICLES: u32 = 1_048_576;
+        if self.num_particles > MAX_NUM_PARTICLES {
+            return Err(format!(
+                "num_particles ({}) exceeds maximum of {MAX_NUM_PARTICLES}",
+                self.num_particles
+            ));
+        }
+        if self.num_types == 0 || self.num_types > 16 {
+            return Err("num_types must be between 1 and 16".to_string());
+        }
+        if self.force_factor <= 0.0 {
+            return Err("force_factor must be positive".to_string());
+        }
+        if !(0.0..=1.0).contains(&self.friction) {
+            return Err("friction must be between 0.0 and 1.0".to_string());
+        }
+        if self.repel_strength < 0.0 {
+            return Err("repel_strength must be non-negative".to_string());
+        }
+        if self.world_size.x <= 0.0 || self.world_size.y <= 0.0 {
+            return Err("world_size must have positive dimensions".to_string());
+        }
+        Ok(())
+    }
+}

@@ -45,9 +45,13 @@ impl PyUniverse {
                 config.mpm = true;
                 config.dt = 0.001;
             }
+            "hunar" | "realethersim" | "primordial-dish" | "par-particle-life" | "fusion"
+            | "cellflow" => {
+                config.fusion = Some(nova_physics::fusion_family(preset).map_err(value)?);
+            }
             _ => {
                 return Err(value(
-                    "preset must be particle-life, cosmic-ink, particle-vm or liquid-mpm",
+                    "unknown preset; use a Nova preset or hunar, realethersim, primordial-dish, par-particle-life, cellflow, fusion",
                 ))
             }
         }
@@ -100,8 +104,8 @@ impl PyUniverse {
     ) -> PyResult<u64> {
         let u = Arc::get_mut(&mut self.inner)
             .ok_or_else(|| value("release all snapshots before mutation"))?;
-        if u.config.mpm {
-            return Err(value("MPM membership is fixed for a run"));
+        if u.config.mpm || u.fusion.is_some() {
+            return Err(value("MPM/fusion membership is fixed for a run"));
         }
         if u.particles.len() >= u.config.max_particles {
             return Err(value("particle capacity exceeded"));

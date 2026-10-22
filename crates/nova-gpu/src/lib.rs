@@ -1,5 +1,7 @@
-//! Exact CPU cell candidates + GPU force/integration. Explicit readback per tick.
-//! No hidden all-pairs fallback and no silently truncated neighbor lists.
+pub mod automata;
+mod fusion;
+// Exact CPU cell candidates + GPU force/integration. Explicit readback per tick.
+// No hidden all-pairs fallback and no silently truncated neighbor lists.
 use anyhow::{ensure, Result};
 use nova_core::Particle;
 use nova_physics::Universe;
@@ -17,6 +19,8 @@ pub struct Gpu {
     device: wgpu::Device,
     queue: wgpu::Queue,
     pipeline: wgpu::ComputePipeline,
+    fusion_pipeline: wgpu::ComputePipeline,
+    fusion_buffers: std::sync::Mutex<Option<fusion::Buffers>>,
     pub adapter: String,
 }
 impl Gpu {
@@ -55,7 +59,19 @@ impl Gpu {
             module: &shader,
             entry_point: "advance",
         });
+        let fusion_shader = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("NOVA upstream fusion"),
+            source: wgpu::ShaderSource::Wgsl(include_str!("../shaders/fusion.wgsl").into()),
+        });
+        let fusion_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: None,
+            layout: None,
+            module: &fusion_shader,
+            entry_point: "advance",
+        });
         Ok(Self {
+            fusion_pipeline,
+            fusion_buffers: std::sync::Mutex::new(None),
             device,
             queue,
             pipeline,
@@ -63,6 +79,9 @@ impl Gpu {
         })
     }
     pub fn step(&self, u: &mut Universe) -> Result<()> {
+        if u.fusion.is_some() {
+            return self.step_fusion(u);
+        }
         u.config.validate()?;
         ensure!(
             !u.config.pvm && !u.config.crossover && !u.config.mpm,

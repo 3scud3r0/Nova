@@ -11,3 +11,6 @@ nova-vm = { path = "../nova-vm" }
 rayon.workspace = true
 serde.workspace = true
 anyhow.workspace = true
+
+[dependencies.nova-fusion]
+path = "../nova-fusion"

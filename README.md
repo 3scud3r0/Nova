@@ -1,5 +1,15 @@
 # NOVA
 
+A revisão **0.7 Fusion** integra famílias Particle Life em Rust, autômatos
+2D/3D com kernels WGSL e um painel nativo de parâmetros, regras e reprodução.
+Veja [origens, comandos e escopo](docs/native/FUSION.md). SandboxScience orienta
+a organização dos controles; a interface ainda não foi validada visualmente.
+
+Fontes consolidados: [Rust/WGSL](artifacts/NOVA_Rust_completo.txt) e
+[projeto completo com referências](artifacts/NOVA_codigo_completo.txt).
+A distribuição combinada usa [AGPL-3.0-or-later](LICENSE), com
+[atribuições dos componentes](THIRD_PARTY_NOTICES.md).
+
 A revisão **0.6 Native** acrescenta um workspace Rust com CLI/janela nativa, PVM,
 Particle Life aberto, Conway SIMD, MPM, bibliotecas Python/C e exportação
 Arrow/Parquet/Zarr. Consulte [compilação, APIs e limites](docs/native/README.md) e

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ETHERSIM — Privacy &amp; Data</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; background: #05070d; color: #c4d2e8; font: 15px/1.75 ui-monospace, "SF Mono", Menlo, monospace; }
+      main { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+      h1 { color: #7ae8dc; font-size: 26px; letter-spacing: 1px; margin: 0 0 4px; }
+      h2 { color: #e1eefc; font-size: 16px; margin: 36px 0 8px; }
+      .sub { color: #5f6b85; font-size: 13px; margin: 0 0 8px; }
+      p, li { color: #a7b6cf; }
+      ul { padding-left: 20px; }
+      strong { color: #e1eefc; }
+      a { color: #7ae8dc; }
+      .box { background: #0b1120; border: 1px solid #1a2238; border-radius: 10px; padding: 16px 20px; margin: 20px 0; }
+      code { color: #9fe0d6; }
+      footer { margin-top: 48px; color: #5f6b85; font-size: 12px; border-top: 1px solid #1a2238; padding-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy &amp; Data</h1>
+      <p class="sub">ETHERSIM · ethersim.ai — self-hosted, open source · last updated 26 Jun 2026</p>
+
+      <div class="box">
+        <strong>The short version:</strong> ETHERSIM runs entirely on our own server. We keep a
+        small amount of privacy-respecting analytics to understand whether the project is useful
+        and to keep the server secure. There are <strong>no third-party trackers, no cookies, no
+        advertising, and we never sell or share your data</strong>. Nothing about the simulations
+        you run, the images you export, or what you do inside the app is sent anywhere — the app is
+        fully client-side.
+      </div>
+
+      <h2>What we collect</h2>
+      <p>Only what a standard web server sees when your browser requests a page, recorded
+        server-side (nothing is embedded in the page to watch you):</p>
+      <ul>
+        <li><strong>Requests</strong> — date/time, the page or file requested, and the response status.</li>
+        <li><strong>Referrer</strong> — the site you arrived from (e.g. a GitHub link or a direct visit), so we can tell how people find the project.</li>
+        <li><strong>Browser/device type</strong> — from the User-Agent your browser sends (e.g. "Chrome on macOS"), and whether the request is a bot.</li>
+        <li><strong>Approximate country</strong> — derived from your IP address using a database stored locally on our server. No external geolocation service is contacted.</li>
+      </ul>
+
+      <h2>How we handle IP addresses</h2>
+      <p>Your IP address is personal data, so we minimise it:</p>
+      <ul>
+        <li>In <strong>analytics</strong>, the IP is never stored — we keep only a one-way salted hash, which lets us count unique visitors without retaining the address itself.</li>
+        <li>Full IP addresses are kept <strong>only in security logs</strong> (to detect and block scanning, brute-force, and abuse) and are deleted after <strong>90 days</strong>.</li>
+      </ul>
+
+      <h2>Why we collect it</h2>
+      <ul>
+        <li>To understand traffic and where it comes from — is anyone finding this useful, and how?</li>
+        <li>For historical and planning purposes (aggregate trends over time).</li>
+        <li>To detect, investigate, and prevent attacks on the server.</li>
+      </ul>
+      <p>We <strong>cannot</strong> and do not track you across other websites, identify you
+        personally, or know <em>why</em> you visited.</p>
+
+      <h2>When you favourite a system (❤)</h2>
+      <p>If you tap the ❤ on a system, your browser sends a single anonymous request so we can count
+        how many people liked it. It carries no account or identity; duplicate likes are collapsed
+        using the same one-way salted IP hash described above, so one person isn't counted twice.
+        Un-favouriting is local only. Your ❤s and other preferences live in your browser's
+        <code>localStorage</code>, on your device — they are never uploaded.</p>
+
+      <h2>What we do NOT do</h2>
+      <ul>
+        <li>No Google Analytics or any third-party analytics.</li>
+        <li>No cookies or browser fingerprinting.</li>
+        <li>No advertising, no data brokers, no selling or sharing of data.</li>
+        <li>No tracking of your in-app activity, exports, or simulation content — the only thing
+          you can send is an anonymous ❤ count, and only if you tap it.</li>
+      </ul>
+
+      <h2>Retention</h2>
+      <p>Aggregated, non-identifying analytics may be kept indefinitely for historical trends.
+        Raw security logs (which may contain full IPs) are retained for at most 90 days.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or requests about your data: open an issue at
+        <a href="https://github.com/macncrash/realethersim">github.com/macncrash/realethersim</a>.</p>
+
+      <footer>
+        This policy may change as the project evolves; material changes will be noted here.
+        <br /><a href="/">← back to ETHERSIM</a>
+      </footer>
+    </main>
+  </body>
+</html>

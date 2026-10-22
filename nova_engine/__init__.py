@@ -1,7 +1,7 @@
 """Native NOVA: pinned, read-only snapshots expose simulation memory without copies."""
 from ._native import Universe, Snapshot, Conway
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 
 
 def torch_positions(snapshot, *, copy=True):

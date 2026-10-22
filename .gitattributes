@@ -1,0 +1,4 @@
+# Preserve pinned raw-byte digests on every checkout platform.
+third_party/upstream/** -text -whitespace
+# The complete source bundle preserves upstream whitespace verbatim.
+artifacts/NOVA_codigo_completo.txt -whitespace

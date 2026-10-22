@@ -1,4 +1,5 @@
-//! Native winit/wgpu fluid surface renderer; all shader assets embedded.
+mod controls;
+// Native winit/wgpu fluid surface renderer; all shader assets embedded.
 use anyhow::{ensure, Result};
 use nova_physics::Universe;
 use nova_storage::Lake;
@@ -39,6 +40,7 @@ struct Targets {
     post: wgpu::BindGroup,
 }
 struct Renderer {
+    ui: controls::Panel,
     window: Arc<Window>,
     surface: wgpu::Surface<'static>,
     device: wgpu::Device,
@@ -233,7 +235,7 @@ impl Renderer {
         let palette = buffer(
             &device,
             bytemuck::cast_slice(&colors),
-            wgpu::BufferUsages::STORAGE,
+            wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_DST,
         );
         let particles = device.create_buffer(&wgpu::BufferDescriptor {
             label: Some("presentation particles"),
@@ -390,7 +392,9 @@ impl Renderer {
                 wgpu::BufferUsages::UNIFORM,
             )
         });
+        let ui = controls::Panel::new(&window, &device, format);
         let mut s = Self {
+            ui,
             window,
             surface,
             device,
@@ -504,7 +508,13 @@ impl Renderer {
             post,
         });
     }
-    fn draw(&mut self, u: &Universe) -> Result<()> {
+    fn draw(&mut self, u: &mut Universe, paused: &mut bool) -> Result<()> {
+        let output_ui = self.ui.frame(&self.window, u, paused);
+        if let Some(model) = &u.fusion {
+            self.scene_scale = model.settings.half_extent.into_iter().fold(0., f32::max);
+            self.queue
+                .write_buffer(&self._palette, 0, bytemuck::cast_slice(&model.palette));
+        }
         ensure!(
             u.particles.len() <= self.capacity,
             "renderer particle capacity exceeded"
@@ -550,10 +560,10 @@ impl Renderer {
             [
                 self.config.width as f32,
                 self.config.height as f32,
-                0.025,
+                self.ui.presentation.radius,
                 0.,
             ],
-            [0.18, 4., 0.2, 450.],
+            [self.ui.presentation.roughness, 4., 0.2, 450.],
             [0., 0., 0.25, 0.25],
             [0.; 4],
         ];
@@ -566,7 +576,7 @@ impl Renderer {
                 u.tick as f32,
                 0.,
             ],
-            [self.distance, 0.8, 0.15, 1.],
+            [self.distance, 0.8, 0.15, self.ui.presentation.exposure],
             [
                 0.25,
                 0.002,
@@ -683,7 +693,33 @@ impl Renderer {
             3,
             1,
         );
-        self.queue.submit(Some(encoder.finish()));
+        let prepared = self.ui.prepare(
+            &self.device,
+            &self.queue,
+            &mut encoder,
+            output_ui,
+            [self.config.width, self.config.height],
+        );
+        {
+            let mut pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                label: Some("NOVA native inspector"),
+                color_attachments: &[Some(wgpu::RenderPassColorAttachment {
+                    view: &view,
+                    resolve_target: None,
+                    ops: wgpu::Operations {
+                        load: wgpu::LoadOp::Load,
+                        store: wgpu::StoreOp::Store,
+                    },
+                })],
+                depth_stencil_attachment: None,
+                timestamp_writes: None,
+                occlusion_query_set: None,
+            });
+            self.ui.paint(&mut pass, &prepared);
+        }
+        self.ui.finish(&prepared);
+        self.queue
+            .submit(prepared.commands.into_iter().chain([encoder.finish()]));
         output.present();
         Ok(())
     }
@@ -698,6 +734,17 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
             .build(&event_loop)?,
     );
     let mut renderer = pollster::block_on(Renderer::new(window, universe.config.max_particles))?;
+    if let Some(model) = &universe.fusion {
+        renderer.scene_scale = model.settings.half_extent.into_iter().fold(0., f32::max);
+        renderer.pitch = if model.settings.dimensions == 2 {
+            0.
+        } else {
+            0.15
+        };
+        renderer
+            .queue
+            .write_buffer(&renderer._palette, 0, bytemuck::cast_slice(&model.palette));
+    }
     let compute = if gpu {
         Some(nova_gpu::Gpu::new()?)
     } else {
@@ -712,13 +759,22 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
     let error = Rc::new(RefCell::new(None::<String>));
     let failures = error.clone();
     let mut paused = false;
+    let mut children = Vec::<nova_physics::FusionCandidate>::new();
     let mut last_title = Instant::now();
     let mut frames = 0;
+    let mut pointer = [0f64; 2];
+    let mut radial = 0f32;
     event_loop.run(move |event, elwt| {
         elwt.set_control_flow(ControlFlow::WaitUntil(
             Instant::now() + Duration::from_millis(16),
         ));
         let result: Result<()> = (|| {
+            if let Event::WindowEvent { event, .. } = &event {
+                if renderer.ui.on_event(&renderer.window, event) {
+                    radial = 0.;
+                    return Ok(());
+                }
+            }
             match event {
                 Event::WindowEvent { event, .. } => match event {
                     WindowEvent::CloseRequested => elwt.exit(),
@@ -737,11 +793,56 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
                             PhysicalKey::Code(KeyCode::ArrowDown) => {
                                 renderer.pitch = (renderer.pitch - 0.1).max(-1.4)
                             }
-                            PhysicalKey::Code(KeyCode::KeyE) if !universe.config.mpm => {
+                            PhysicalKey::Code(KeyCode::KeyE)
+                                if !universe.config.mpm && universe.fusion.is_none() =>
+                            {
                                 let room = universe.config.max_particles - universe.particles.len();
                                 universe.emit(room.min(256))?;
                             }
+                            PhysicalKey::Code(KeyCode::KeyB) if universe.fusion.is_some() => {
+                                children = universe.breed_rules()?;
+                            }
+                            PhysicalKey::Code(KeyCode::KeyM) if universe.fusion.is_some() => {
+                                let choices = universe.breed_rules()?;
+                                universe.choose_rules(&choices[2])?;
+                            }
+                            PhysicalKey::Code(KeyCode::KeyR) if universe.fusion.is_some() => {
+                                let choices = universe.breed_rules()?;
+                                universe.choose_rules(&choices[5])?;
+                            }
+                            PhysicalKey::Code(code) if !children.is_empty() => {
+                                let i = match code {
+                                    KeyCode::Digit1 => Some(0),
+                                    KeyCode::Digit2 => Some(1),
+                                    KeyCode::Digit3 => Some(2),
+                                    KeyCode::Digit4 => Some(3),
+                                    KeyCode::Digit5 => Some(4),
+                                    KeyCode::Digit6 => Some(5),
+                                    _ => None,
+                                };
+                                if let Some(i) = i {
+                                    universe.choose_rules(&children[i])?;
+                                    children.clear();
+                                }
+                            }
                             _ => (),
+                        }
+                    }
+                    WindowEvent::CursorMoved { position, .. } => {
+                        pointer = [position.x, position.y];
+                    }
+                    WindowEvent::MouseInput { state, button, .. } => {
+                        if matches!(
+                            button,
+                            winit::event::MouseButton::Left | winit::event::MouseButton::Right
+                        ) {
+                            radial = if state == ElementState::Released {
+                                0.
+                            } else if button == winit::event::MouseButton::Left {
+                                1.
+                            } else {
+                                -1.
+                            };
                         }
                     }
                     WindowEvent::MouseWheel { delta, .. } => {
@@ -757,7 +858,30 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
                         {
                             return Ok(());
                         }
-                        if !paused {
+                        if !paused || renderer.ui.single_step {
+                            renderer.ui.single_step = false;
+                            if radial != 0. {
+                                if let Some(model) = &mut universe.fusion {
+                                    let aspect = renderer.config.width as f32
+                                        / renderer.config.height as f32;
+                                    let x = (pointer[0] as f32 / renderer.config.width as f32 * 2.
+                                        - 1.)
+                                        * 0.5
+                                        * renderer.distance
+                                        * aspect
+                                        * renderer.scene_scale;
+                                    let y = (1.
+                                        - pointer[1] as f32 / renderer.config.height as f32 * 2.)
+                                        * 0.5
+                                        * renderer.distance
+                                        * renderer.scene_scale;
+                                    model.set_brush(
+                                        [x, y, 0.],
+                                        model.settings.cutoff() * 2.,
+                                        radial * model.settings.force * 4.,
+                                    )?;
+                                }
+                            }
                             if let Some(gpu) = &compute {
                                 gpu.step(&mut universe)?;
                             } else {
@@ -769,7 +893,7 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
                                 }
                             }
                         }
-                        renderer.draw(&universe)?;
+                        renderer.draw(&mut universe, &mut paused)?;
                         frames += 1;
                         if last_title.elapsed() > Duration::from_secs(1) {
                             renderer.window.set_title(&format!(

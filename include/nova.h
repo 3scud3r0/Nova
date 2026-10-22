@@ -73,6 +73,14 @@ int32_t nova_inject(struct NovaHandle *handle, const struct NovaParticle *partic
  */
 size_t nova_last_error(char *destination, size_t capacity);
 
+/**
+ * Native upstream family: 0=hunar, 1=realethersim, 2=primordial-dish,
+ * 3=par-particle-life, 4=fusion, 5=cellflow (independent implementation).
+ * # Safety
+ * out must be a writable handle slot; destroy a successful result exactly once.
+ */
+int32_t nova_create_fusion(size_t count, uint64_t seed, uint32_t family, struct NovaHandle **out);
+
 #ifdef __cplusplus
 }  // extern "C"
 #endif  // __cplusplus

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Conway's Game of Life - GPU Accelerated</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <h1><span class="accent">&lt;/&gt;</span> Conway's Game of Life <span class="accent">&lt;/&gt;</span></h1>
+                <p class="subtitle">GPU-accelerated cellular automaton simulation</p>
+            </header>
+            
+            <div class="main-content">
+                <div class="canvas-container">
+                    <canvas id="gameCanvas" width="800" height="600" tabindex="0"></canvas>
+                    <div class="canvas-overlay">
+                        <div class="draw-mode-indicator" id="drawModeIndicator">
+                            <span>DRAW MODE: </span><span id="currentDrawMode">SINGLE</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-panel">
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Simulation</h3>
+                        <div class="button-group">
+                            <button id="playPause" class="primary">▶ PLAY</button>
+                            <button id="step">STEP</button>
+                            <button id="randomize">RANDOMIZE</button>
+                            <button id="clear" class="danger">CLEAR</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Drawing Tools</h3>
+                        <div class="button-group">
+                            <button id="drawSingle" class="tool-btn active" data-mode="single">SINGLE PIXEL</button>
+                            <button id="drawLine" class="tool-btn" data-mode="line">DRAW LINE</button>
+                            <button id="drawBrush" class="tool-btn" data-mode="brush">BRUSH</button>
+                        </div>
+                        <div class="parameter">
+                            <label>Brush Size: <span id="brushSizeValue">3</span></label>
+                            <input type="range" id="brushSize" min="1" max="10" value="3" class="range-input">
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Grid Configuration</h3>
+                        <div class="grid-controls">
+                            <div class="grid-input-group">
+                                <label>Width:</label>
+                                <input type="number" id="gridWidth" value="200" min="10" max="2000" class="grid-input">
+                            </div>
+                            <div class="grid-input-group">
+                                <label>Height:</label>
+                                <input type="number" id="gridHeight" value="150" min="10" max="2000" class="grid-input">
+                            </div>
+                            <button id="applyGridSize" class="secondary">APPLY GRID</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Pattern Library</h3>
+                        <div class="pattern-grid">
+                            <button id="glider" class="pattern-btn">GLIDER</button>
+                            <button id="blinker" class="pattern-btn">BLINKER</button>
+                            <button id="beacon" class="pattern-btn">BEACON</button>
+                            <button id="toad" class="pattern-btn">TOAD</button>
+                            <button id="spaceship" class="pattern-btn">SPACESHIP</button>
+                            <button id="pulsar" class="pattern-btn">PULSAR</button>
+                            <button id="gliderGun" class="pattern-btn">GLIDER GUN</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Performance</h3>
+                        <div class="parameter">
+                            <label>Speed (ms): <span id="speedValue">100</span></label>
+                            <input type="range" id="speed" min="10" max="1000" value="100" class="range-input">
+                        </div>
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-label">FPS:</span>
+                                <span id="fpsCounter" class="stat-value">--</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Generation:</span>
+                                <span id="generationCounter" class="stat-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-section">
+                        <h3><span class="accent">//</span> Instructions</h3>
+                        <div class="instructions">
+                            <p><span class="key">CLICK</span> Single pixel mode</p>
+                            <p><span class="key">DRAG</span> Line drawing mode</p>
+                            <p><span class="key">BRUSH</span> Paint with configurable size</p>
+                            <p><span class="accent">•</span> Grid wraps at edges</p>
+                            <p><span class="accent">•</span> GPU-accelerated computation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="pkg/game_of_life.js"></script>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
