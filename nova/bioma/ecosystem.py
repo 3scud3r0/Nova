@@ -8,6 +8,8 @@ from nova.checkpoint import save_state, load_state
 from .physics_engine import PhysicsConfig, PhysicsEngine
 from .genetics import MorphogeneticCPPN, GeneRegulatoryNetwork
 from .brains import DevelopedBrain
+from .acoustics import AcousticChannel
+from .linguistics import LewisAgent, SignalInterpreter
 from .determinism import SplitMix64, canonical_json, digest_state
 
 
@@ -24,6 +26,8 @@ class EcosystemConfig:
     max_history: int = 2048
     neural_control: bool = True
     mutation_rate: float = 0.05
+    signaling: bool = False
+    crossover_rate: float = 0.0
 
     def __post_init__(self):
         if (
@@ -44,6 +48,7 @@ class EcosystemConfig:
             or self.initial_energy <= 0
             or self.reproduction_energy <= 0
             or not 0 <= self.mutation_rate <= 1
+            or not 0 <= self.crossover_rate <= 1
         ):
             raise ValueError("invalid resource parameters")
 
@@ -63,6 +68,8 @@ class Organism:
             if neural_control
             else None
         )
+        self.language = LewisAgent(genome.seed)
+        self.heard_context = None
         self.last_latent = np.zeros(8)
         self.neural_complexity = genome.develop_brain()["active_synapses"]
 
@@ -78,6 +85,8 @@ class Organism:
             "body": self.body,
             "brain": None if self.brain is None else self.brain.state_dict(),
             "last_latent": self.last_latent.copy(),
+            "language": self.language.state_dict(),
+            "heard_context": self.heard_context,
         }
 
     @classmethod
@@ -94,6 +103,12 @@ class Organism:
         obj.grn.expression = np.asarray(state["grn_expression"]).copy()
         obj.body = state["body"]
         obj.last_latent = np.asarray(state["last_latent"]).copy()
+        obj.language = (
+            LewisAgent.restore(state["language"])
+            if "language" in state
+            else obj.language
+        )
+        obj.heard_context = state.get("heard_context")
         if obj.brain:
             obj.brain.restore(state["brain"])
         return obj
@@ -128,6 +143,10 @@ class Ecosystem:
                 MorphogeneticCPPN.from_state_dict(g).state_dict()
                 for g in genesis_genomes
             ]
+        self.acoustics = AcousticChannel(self.world.shape)
+        self.interpreter = SignalInterpreter()
+        self.signaling_success = 0
+        self.migration_energy = 0.0
         self.organisms = []
         self.events = []
         self.history = []
@@ -168,6 +187,38 @@ class Ecosystem:
         # Only data operations, never source code/callback deserialization.
         if len(self.events) >= 10000:
             raise ValueError("event log budget exceeded")
+        if event.get("tick") == self.world.tick and event.get("kind") == "immigrate":
+            if len(self.organisms) >= self.config.max_population:
+                raise ValueError("immigration exceeds population budget")
+            genome = MorphogeneticCPPN.from_state_dict(event["genome"])
+            if (
+                genome.config.neural_nodes > 64
+                or genome.config.max_n2 > 2
+                or genome.config.body_resolution > 16
+            ):
+                raise ValueError("immigration development budget exceeded")
+            position = np.asarray(event["position"], dtype=float)
+            energy = float(event["energy"])
+            if (
+                position.shape != (self.world.ndim,)
+                or not np.isfinite(position).all()
+                or not 0 < energy <= 10
+            ):
+                raise ValueError("invalid immigrant position/energy")
+            if len(canonical_json(event)) > 131072:
+                raise ValueError("immigration event too large")
+            self.births += 1
+            organism = Organism(
+                self._id(genome),
+                genome,
+                position % np.asarray(self.world.shape),
+                energy,
+                neural_control=self.config.neural_control,
+            )
+            self.organisms.append(organism)
+            self.migration_energy += energy
+            self.events.append(dict(event))
+            return
         if event.get("tick") != self.world.tick or event.get("kind") not in (
             "inject",
             "impulse",
@@ -210,6 +261,24 @@ class Ecosystem:
         dt = self.world.config.dt
         for _ in range(steps):
             self.world.step()
+            if c.signaling:
+                lookup = {o.id: o for o in self.organisms}
+                for pulse in self.acoustics.receive(self.world.tick, set(lookup)):
+                    sender, receiver = (
+                        lookup[pulse["sender"]],
+                        lookup[pulse["receiver"]],
+                    )
+                    guess = receiver.language.interpret(pulse["token"])
+                    context = pulse["context"]
+                    reward = float(guess == context)
+                    self.signaling_success += int(reward)
+                    sender.language.reinforce(context, pulse["token"], guess, reward)
+                    receiver.language.reinforce(context, pulse["token"], guess, reward)
+                    receiver.heard_context = guess
+                    self.interpreter.observe(pulse["token"], context)
+                    # Bounded task reward is an explicit artificial energy source.
+                    sender.energy += 0.0005 * reward
+                    receiver.energy += 0.0005 * reward
             newborn = []
             survivors = []
             for o in sorted(self.organisms, key=lambda x: x.id):
@@ -221,6 +290,30 @@ class Ecosystem:
                     )
                 else:
                     action = np.sin(o.position + o.age * 0.1 + o.genome.seed % 31)
+                if c.signaling:
+                    temperature = float(
+                        self.world.sample(self.world.temperature, o.position[None])[0]
+                    )
+                    resource = float(
+                        self.world.sample(self.world.v, o.position[None])[0]
+                    )
+                    context = self.interpreter.context(resource, temperature)
+                    token = o.language.signal(context, self.world.tick)
+                    previous = len(self.acoustics.pending)
+                    spent = self.acoustics.emit(
+                        o.id,
+                        o.position,
+                        token,
+                        [(other.id, other.position) for other in self.organisms],
+                        self.world.tick,
+                    )
+                    for pulse in self.acoustics.pending[previous:]:
+                        pulse["context"] = context
+                    o.energy -= spent
+                    self.spent_energy += spent
+                    if o.heard_context is not None:
+                        # Decoded resource bin changes motor gain; token mapping is learned.
+                        action = action * (0.8 if o.heard_context % 2 else 1.1)
                 mass = 1 + o.body["mass_proxy"] / max(
                     1, o.genome.config.body_resolution**3
                 )
@@ -262,6 +355,28 @@ class Ecosystem:
                     and len(self.organisms) + len(newborn) < c.max_population
                 ):
                     child_genome = o.genome.mutate(self.rng.next_u64(), c.mutation_rate)
+                    if (
+                        c.crossover_rate
+                        and self.rng.uniform((1,))[0] < c.crossover_rate
+                    ):
+                        from .macro_evolution import crossover
+
+                        mates = [
+                            other
+                            for other in self.organisms
+                            if other.id != o.id
+                            and other.energy > 0
+                            and other.genome.config == o.genome.config
+                        ]
+                        if mates:
+                            mate = mates[int(self.rng.integers(0, len(mates), (1,))[0])]
+                            child_genome = crossover(
+                                o.genome, mate.genome, self.rng.next_u64()
+                            ).mutate(self.rng.next_u64(), c.mutation_rate)
+                            child_genome.parents = [o.genome.hash(), mate.genome.hash()]
+                            child_genome.generation = (
+                                max(o.genome.generation, mate.genome.generation) + 1
+                            )
                     energy = o.energy * 0.5
                     o.energy -= energy
                     self.births += 1
@@ -293,6 +408,10 @@ class Ecosystem:
             "organism_energy": float(sum(o.energy for o in self.organisms)),
             "metabolic_sink": self.spent_energy,
             "food_energy": self.food_energy,
+            "signaling_events": self.interpreter.events,
+            "signaling_success": self.signaling_success,
+            "signaling_reward_energy": 0.001 * self.signaling_success,
+            "migration_energy": self.migration_energy,
             "genetic_diversity": len({o.genome.hash() for o in self.organisms}),
         }
 
@@ -327,6 +446,10 @@ class Ecosystem:
             "deaths": self.deaths,
             "spent_energy": self.spent_energy,
             "food_energy": self.food_energy,
+            "acoustics": self.acoustics.state_dict(),
+            "interpreter": self.interpreter.state_dict(),
+            "signaling_success": self.signaling_success,
+            "migration_energy": self.migration_energy,
         }
 
     def save(self, path):
@@ -360,6 +483,12 @@ class Ecosystem:
             "food_energy",
         ):
             setattr(obj, key, state[key])
+        if "acoustics" in state:
+            obj.acoustics = AcousticChannel.restore(state["acoustics"])
+        if "interpreter" in state:
+            obj.interpreter = SignalInterpreter.restore(state["interpreter"])
+        obj.signaling_success = state.get("signaling_success", 0)
+        obj.migration_energy = state.get("migration_energy", 0.0)
         return obj
 
     @classmethod

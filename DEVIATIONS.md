@@ -45,3 +45,17 @@
 - União de bases exige encoder/coordenadas compatíveis e rank disponível; transfere restrições, não habilidades. Feixes alinham valores locais dentro de um modelo declarado; concordância pode estar errada.
 - Ledger é uma cadeia local assinada e transacional, não um blockchain imutável. Um head externo é necessário para detectar rollback completo. Recebimentos de rede ficam inertes/sem verificação científica automática.
 - Testes novos foram escritos para avaliação posterior. Não foram executados testes, simulações ou benchmarks novos nesta revisão; verificação foi estática. Consulte `docs/biocosm.md` e `reports/biocosm/STATUS.md`.
+
+
+## Revisão 0.4 — infraestrutura planetária experimental
+
+- A premissa de que 0.3 “provou viabilidade” não corresponde à entrega anterior sem testes/simulações. A 0.4 acrescenta implementação e checks estáticos, sem reivindicar essa comprovação.
+- Campos Rust/Rayon/wgpu são um solver f32 distinto; a projeção de pressão é iterativa. A feature WebGPU valida WGSL no build. O ecossistema de organismos não foi todo transferido para GPU/Rust. HH em batch é de um compartimento independente e não há kernels intrínsecos AVX-512/Neon.
+- Não foram medidos 60 FPS, 100 mil entidades, 20 W ou 4K. 512³ não está habilitado; 256³ pode exceder memória/limites do adaptador. Cópias PyO3/readbacks e overhead não desaparecem. Exportação nativa não é checkpoint retomável ou HoloSeed portátil.
+- O jogo de linguagem usa oito tokens, feedback supervisionado sobre contextos instrumentados e recompensa sintética. A associação altera o controle e tem holdout, mas não demonstra sintaxe, semântica natural ou compreensão de frases. Banco coclear e ecos são componentes separados, sem solver acústico completo integrado.
+- Nichos fenotípicos são bins descritivos. Crossover exige homologia; energia de filhos vem do progenitor que se divide. Esporos transferem genomas completos e imigração adiciona energia contabilizada, não habilidades treinadas instantâneas.
+- Busca transcendental é finita e verifica domínios. Derivada fracionária tem pré-história zero/truncamento. Hamiltonianos são candidatos condicionais ao campo canônico; identidade de cancelamento não descobre simetrias de Noether nem prova adequação à realidade.
+- Lean automático usa templates polinomiais locais. Só publica `.lean` após compilação e comparação do hash do fonte compilado. Sem Lean registra indisponibilidade, nunca aprovação. Expressões transcendentes não têm prova Lean universal automática.
+- Descoberta é XOR iterativa com descritores assinados e bootstrap/mDNS opcionais. Não implementa interoperabilidade libp2p completa, não fornece bootstraps globais nem TURN público e não garante atravessar NAT. WebRTC opcional negocia SDP assinado; o signaling inicial ainda precisa ser alcançável.
+- Buscas cruzadas são avaliações limitadas de identidades/domínios e do oscilador codificado, sem execução arbitrária de simuladores remotos. Não há experimento efetivo com 50 nós/24 horas. Nenhum protocolo aceita ausência de contraexemplo como prova formal. Assinaturas não impedem Sybil/colusão e o ledger continua local.
+- Browser, rede, migração entre máquinas e Lean não foram executados nesta revisão. Novos testes foram escritos sem execução. Checks estáticos Rust CPU/WebGPU/Naga e Ruff não substituem validação empírica ou auditoria de uma implantação pública.

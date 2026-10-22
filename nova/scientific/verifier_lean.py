@@ -1,6 +1,7 @@
 """Lean adapter for internally generated polynomial identities, never peer code."""
 
 from pathlib import Path
+import hashlib
 import shutil
 import subprocess
 import tempfile
@@ -34,6 +35,12 @@ class LeanVerifier:
             pieces.append(" * ".join(factors))
         return " + ".join(pieces) or "(0 : ℝ)"
 
+    def source(self, lhs, rhs):
+        if lhs.variables != rhs.variables:
+            raise ValueError("variable context mismatch")
+        names = " ".join(lhs.variables)
+        return f"import Mathlib\nset_option maxHeartbeats 200000\nexample ({names} : ℝ) : {self._expression(lhs)} = {self._expression(rhs)} := by\n  ring\n"
+
     def identity(self, lhs: Polynomial, rhs: Polynomial):
         if lhs.variables != rhs.variables:
             raise ValueError("variable context mismatch")
@@ -49,8 +56,7 @@ class LeanVerifier:
                 claim,
                 details={"reason": "local lake/Mathlib project required"},
             )
-        names = " ".join(lhs.variables)
-        source = f"import Mathlib\nset_option maxHeartbeats 200000\nexample ({names} : ℝ) : {self._expression(lhs)} = {self._expression(rhs)} := by\n  ring\n"
+        source = self.source(lhs, rhs)
         with tempfile.TemporaryDirectory(
             prefix=".nova-proof-", dir=self.project
         ) as directory:
@@ -86,6 +92,7 @@ class LeanVerifier:
             ),
             details={
                 "returncode": result.returncode,
+                "source_sha256": hashlib.sha256(source.encode()).hexdigest(),
                 "lean_version": version.stdout.strip()[:512],
                 "diagnostics": (result.stdout + result.stderr)[-8192:],
             },

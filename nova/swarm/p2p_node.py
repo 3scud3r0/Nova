@@ -22,6 +22,7 @@ from .artifacts import ArtifactStore, SigningIdentity, HEX
 class Peer:
     peer_id: str
     endpoint: str
+    connect_ip: str | None = None
 
     def __post_init__(self):
         u = urlsplit(self.endpoint)
@@ -73,18 +74,43 @@ class PeerNode:
         *,
         max_connections=8,
         clock_skew=120,
+        discovery=None,
     ):
         self.identity, self.store = identity, store
         self.routing = RoutingTable(identity.peer_id, peers)
+        self.static_peers = set(self.routing.peers)
         self.allowed = set(self.routing.peers) | {identity.peer_id}
         self.semaphore = asyncio.Semaphore(max_connections)
         self.seen = OrderedDict()
         self.rates = {}
         self.clock_skew = clock_skew
         self.received = []
+        self.discovery = discovery
+        self.webrtc = None
+        self.migration = None
+        self.cross_validation = None
         self.sequence = 0
         self.consensus = {}
         self.subspaces = {}
+
+    def admit_discovered(self, peer):
+        if self.discovery is None:
+            raise ValueError("dynamic discovery is disabled")
+        for stale in list(self.routing.peers):
+            if (
+                stale not in self.static_peers
+                and stale not in self.discovery.descriptors
+            ):
+                self.routing.peers.pop(stale, None)
+                self.allowed.discard(stale)
+        if (
+            peer.peer_id not in self.routing.peers
+            and len(self.routing.peers) >= self.routing.capacity
+        ):
+            return False
+        self.routing.peers[peer.peer_id] = peer
+        self.allowed.add(peer.peer_id)
+        return True
 
     def register_consensus(self, gossip):
         """Opt in to a shared, locally declared model coordinate system."""
@@ -105,6 +131,12 @@ class PeerNode:
             "announce",
             "belief",
             "subspace",
+            "hello",
+            "lookup",
+            "spore",
+            "challenge",
+            "attestations",
+            "rtc-offer",
         ):
             raise ValueError("unsupported RPC method")
         self.sequence += 1
@@ -124,7 +156,12 @@ class PeerNode:
     def validate(self, envelope):
         peer, payload = SigningIdentity.verify(envelope)
         if (
-            peer not in self.allowed
+            (
+                peer not in self.allowed
+                and not (
+                    self.discovery is not None and payload.get("method") == "hello"
+                )
+            )
             or payload.get("origin") != peer
             or payload.get("protocol") != "NOVA-SWARM-v1"
         ):
@@ -137,6 +174,13 @@ class PeerNode:
         key = (peer, payload["nonce"])
         if key in self.seen:
             raise ValueError("replayed envelope")
+        self.rates = {
+            key: bucket
+            for key, bucket in self.rates.items()
+            if bucket and now - bucket[-1] < 60
+        }
+        if peer not in self.rates and len(self.rates) >= 256:
+            raise ValueError("admission rate table full")
         bucket = [t for t in self.rates.get(peer, []) if now - t < 60]
         if len(bucket) >= 120:
             raise ValueError("peer rate budget exceeded")
@@ -153,7 +197,38 @@ class PeerNode:
         peer, payload = self.validate(strict_json(raw, self.max_frame))
         method = payload["method"]
         body = payload["body"]
-        if method == "inventory":
+        if method == "hello":
+            if self.discovery is None:
+                raise ValueError("dynamic discovery is disabled")
+            signer, _ = self.discovery.verify(body["descriptor"])
+            if signer != peer:
+                raise ValueError("descriptor and RPC origin differ")
+            admitted = await self.discovery.admit(body["descriptor"])
+            if admitted:
+                self.admit_discovered(admitted)
+            result = {"descriptor": self.discovery.own}
+        elif method == "rtc-offer":
+            if self.webrtc is None:
+                raise ValueError("WebRTC is disabled")
+            result = await self.webrtc.accept(body, peer)
+        elif method == "lookup":
+            if self.discovery is None:
+                raise ValueError("dynamic discovery is disabled")
+            result = {"descriptors": self.discovery.nearest(body["key"])}
+        elif method == "spore":
+            if self.migration is None:
+                raise ValueError("migration policy is disabled")
+            result = self.migration.receive(body, expected_peer=peer)
+            result["artifact"] = self.store.put_json(body)
+        elif method == "challenge":
+            if self.cross_validation is None:
+                raise ValueError("cross validation is disabled")
+            result = self.cross_validation.enqueue(body, peer)
+        elif method == "attestations":
+            if self.cross_validation is None:
+                raise ValueError("cross validation is disabled")
+            result = {"receipts": list(self.cross_validation.receipts.values())[-16:]}
+        elif method == "inventory":
             result = {"hashes": self.store.inventory()}
         elif method == "get":
             data = self.store.get(body["digest"])
@@ -331,15 +406,24 @@ class PeerNode:
         if url.scheme in ("ws", "wss"):
             from websockets.asyncio.client import connect
 
+            kwargs = (
+                {"host": peer.connect_ip, "server_hostname": url.hostname}
+                if peer.connect_ip and context
+                else ({"host": peer.connect_ip} if peer.connect_ip else {})
+            )
             async with connect(
-                peer.endpoint, ssl=context, max_size=self.max_frame, open_timeout=10
+                peer.endpoint,
+                ssl=context,
+                max_size=self.max_frame,
+                open_timeout=10,
+                **kwargs,
             ) as socket:
                 await socket.send(raw)
                 reply = await asyncio.wait_for(socket.recv(), 10)
         else:
             reader, writer = await asyncio.wait_for(
                 asyncio.open_connection(
-                    url.hostname,
+                    peer.connect_ip or url.hostname,
                     url.port,
                     ssl=context,
                     server_hostname=url.hostname if context else None,

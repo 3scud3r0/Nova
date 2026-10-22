@@ -4,14 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nova-research"
-version = "0.3.0"
+version = "0.4.0"
 description = "Reproducible research platform for protected continual learning"
 requires-python = ">=3.11"
 dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "PyYAML>=6", "cryptography>=42"]
 
 [project.optional-dependencies]
 science = ["z3-solver>=4.13,<5"]
-swarm = ["websockets>=14,<16"]
+swarm = ["websockets>=14,<16", "zeroconf>=0.136,<1"]
+webrtc = ["aiortc>=1.10,<2", "websockets>=14,<16", "zeroconf>=0.136,<1"]
 torch = ["torch>=2.4,<3", "torchvision>=0.19"]
 media = ["faster-whisper>=1.1", "pytesseract>=0.3", "Pillow>=10"]
 language = ["torch>=2.4,<3", "transformers>=4.45,<6"]
@@ -30,4 +31,4 @@ testpaths = ["tests"]
 addopts = "-ra"
 
 [tool.setuptools.package-data]
-"nova.visuals" = ["viewer.html"]
+"nova.visuals" = ["*.html"]

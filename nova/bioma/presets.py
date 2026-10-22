@@ -24,6 +24,8 @@ def create_ecosystem(
     dimensions=3,
     population=None,
     genesis_genomes=None,
+    signaling=False,
+    crossover_rate=0.0,
 ):
     if preset not in PRESETS:
         raise ValueError("unknown preset")
@@ -34,7 +36,9 @@ def create_ecosystem(
     count = (4 if preset == "organisms" else 0) if population is None else population
     world = Ecosystem(
         PhysicsConfig(mode=PRESETS[preset], shape=(size,) * dimensions, seed=seed),
-        EcosystemConfig(initial_population=count),
+        EcosystemConfig(
+            initial_population=count, signaling=signaling, crossover_rate=crossover_rate
+        ),
         genesis_genomes=genesis_genomes,
     )
     # Excitation belongs to the seeded engine initialization, so a seed replay

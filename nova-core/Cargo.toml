@@ -12,3 +12,23 @@ crate-type = ["cdylib", "rlib"]
 pyo3 = "0.23.5"
 numpy = "0.23.0"
 rayon = "1.10"
+
+[features]
+default = []
+webgpu = ["dep:wgpu", "dep:pollster", "dep:bytemuck"]
+
+[dependencies.wgpu]
+version = "=0.19.4"
+optional = true
+
+[dependencies.pollster]
+version = "0.3"
+optional = true
+
+[dependencies.bytemuck]
+version = "1.21"
+features = ["derive"]
+optional = true
+
+[build-dependencies]
+naga = { version = "=0.19.2", features = ["wgsl-in"] }

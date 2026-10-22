@@ -9,6 +9,10 @@ from .presets import PRESETS, create_ecosystem
 
 
 def main(argv=None):
+    from nova.planetary_cli import COMMANDS, main as planetary_main
+
+    if argv and argv[0] in COMMANDS:
+        return planetary_main(argv)
     parser = argparse.ArgumentParser(
         prog="nova cosm",
         description="Experimental fields, organisms, reproducible seeds and scoped discovery",
@@ -82,6 +86,8 @@ def main(argv=None):
             p.add_argument("--keyfile")
         if name == "sync":
             p.add_argument("--peer-id", required=True)
+    for command in sorted(COMMANDS):
+        sub.add_parser(command, help="v0.4 planetary workflow")
     args = parser.parse_args(argv)
     if args.command in ("run", "serve", "render"):
         from .ecosystem import Ecosystem

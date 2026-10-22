@@ -17,6 +17,7 @@ FILES = (
     "pyproject.toml",
     "requirements-cpu.txt",
     "nova-core/Cargo.toml",
+    "nova-core/build.rs",
     "nova-core/pyproject.toml",
     "nova-core/Cargo.lock",
     ".gitignore",
@@ -25,13 +26,16 @@ FILES = (
     "docs/identity.md",
     "docs/adaptive-energy.md",
     "docs/biocosm.md",
+    "docs/planetary.md",
+    "reports/planetary/STATUS.md",
+    "reports/planetary/status.json",
     "reports/biocosm/STATUS.md",
     "reports/biocosm/status.json",
     "reports/adaptive/STATUS.md",
     "reports/adaptive/status.json",
     "reports/STATUS.md",
 )
-EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json", ".html"}
+EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json", ".html", ".wgsl"}
 
 
 def main():

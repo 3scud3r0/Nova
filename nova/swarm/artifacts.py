@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import sqlite3
 import tempfile
+import threading
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PrivateKey,
@@ -96,12 +97,17 @@ class ArtifactStore:
     def __init__(
         self, directory, max_bytes=8 * 1024 * 1024, max_total_bytes=256 * 1024 * 1024
     ):
+        self.lock = threading.RLock()
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.max_bytes = max_bytes
         self.max_total = max_total_bytes
 
     def put(self, data: bytes):
+        with self.lock:
+            return self._put(data)
+
+    def _put(self, data: bytes):
         if len(data) > self.max_bytes:
             raise ValueError("artifact exceeds size budget")
         digest = hashlib.sha256(data).hexdigest()

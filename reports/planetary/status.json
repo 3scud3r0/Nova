@@ -1,0 +1,19 @@
+{
+  "version": "0.4.0",
+  "status": "experimental_implementation_static_checks_only",
+  "python_static_checks": "ruff",
+  "rust_cpu_type_check": "passed",
+  "rust_webgpu_type_check": "passed",
+  "compute_shader_naga_validation": "passed",
+  "new_tests_executed": false,
+  "simulations_executed": false,
+  "benchmarks_executed": false,
+  "browser_executed": false,
+  "viewer_javascript_syntax_check": "passed",
+  "lean_proofs_compiled": false,
+  "webrtc_or_mdns_exercised": false,
+  "global_network_deployed": false,
+  "fps_or_energy_claims": [],
+  "scientific_discoveries_claimed": [],
+  "finite_refutation_is_formal_proof": false
+}
