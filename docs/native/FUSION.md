@@ -50,6 +50,7 @@ nova fuse --source fusion --headless --ticks 600 --output runs/fusion-lake
 nova conway --grid 2048x2048 --rule B3/S23
 nova conway --source g3dl --grid 64x64x64 --gpu --ticks 100
 nova conway --source bridiro --grid 256x256 --pattern glider --output runs/glider.rle
+nova conway --source bridiro --grid 256x256 --input runs/glider.rle --ticks 100 --output runs/glider-100.nca
 nova conway --source catconway --grid 64x64 --rule B3/S23 --classify
 nova conway --grid 32x32 --search 16 --ticks 100 --output runs/rules.jsonl
 ```
@@ -89,7 +90,9 @@ inferido de compilação ou de um caso esparso.
 Conway mantém o caminho SIMD bitboard para grades 2D periódicas compatíveis.
 O caminho geral usa estados inteiros binários e Moore: raio 1 ou 2 em 2D,
 raio 1 em 3D. O formato `.nca` contém cabeçalho JSON, células binárias e SHA-256;
-RLE é limitado a 2D. Regras B/S aceitam intervalos, listas e conjuntos explícitos.
+RLE é limitado a 2D e o importador CLI (`--input *.rle`) usa as dimensões e
+a regra fornecidas por `--grid`/`--rule`; RLE é um padrão, não um checkpoint
+com o relógio da simulação. Regras B/S aceitam intervalos, listas e conjuntos explícitos.
 Busca e classificação calculam atividade, entropia, periodicidade limitada,
 autocorrelação, rugosidade e lambda. São heurísticas numéricas; não constituem
 provas de universalidade, de classe dinâmica ou análise topológica persistente.
