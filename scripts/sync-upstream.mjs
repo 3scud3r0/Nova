@@ -36,6 +36,14 @@ nuxt=nuxt.replace(siteMarker,"        url: process.env.NUXT_PUBLIC_SITE_URL || a
          .replace("enabled: true,\n        debug: true","enabled: false,\n        debug: false")
          .replace("    seo: {", "    robots: { robotsTxt: false },\n    seo: {")
          .replace(", '/robots.txt'", "");
+
+const iconFiles=["favicon.ico","favicon-16x16.png","favicon-32x32.png",
+  "apple-touch-icon.png","site.webmanifest","safari-pinned-tab.svg"];
+for(const file of iconFiles) {
+  const old="href: '/"+file;
+  if(!nuxt.includes(old))throw new Error("Expected upstream favicon/manifest not found: "+file);
+  nuxt=nuxt.replace(old,"href: '/Nova/"+file);
+}
 writeFileSync(cfg,nuxt);
 const constants=join(target,"constants","index.ts");
 let names=readFileSync(constants,"utf8");
@@ -56,5 +64,13 @@ for (const [file, original, tuned] of [
   content=content.replace(original,tuned);
   writeFileSync(path,content);
 }
+
+const manifestPath=join(target,"public","site.webmanifest");
+const manifest=JSON.parse(readFileSync(manifestPath,"utf8"));
+manifest.name="NOVA Lab";manifest.short_name="NOVA";
+for(const icon of manifest.icons || []) {
+  if(icon.src.startsWith("/")) icon.src="/Nova/"+icon.src.slice(1);
+}
+writeFileSync(manifestPath,JSON.stringify(manifest,null,2));
 rmSync(join(target,"pages","hash-life.vue"),{force:true});
 console.log(JSON.stringify({upstream:"DicSo92/SandboxScience",revision,output:target,base:process.env.NUXT_APP_BASE_URL||"/Nova/"}));
