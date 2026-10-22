@@ -1,5 +1,17 @@
 # NOVA
 
+A versão **0.3 Biocosm** acrescenta campos 2D/3D, organismos com genomas CPPN e grafos neurais mistos, busca evolutiva de arquiteturas, visualização volumétrica, descoberta polinomial, verificadores com escopo e troca P2P de sementes/artefatos assinados. Veja [comandos, matemática e limites](docs/biocosm.md) e [o estado da entrega](reports/biocosm/STATUS.md). É uma implementação experimental; nenhum novo teste, benchmark ou simulação foi executado, conforme solicitado.
+
+```bash
+pip install -e .
+nova cosm serve --preset organisms --seed 42          # visualizador 3D local
+nova cosm run --preset ink --ticks 100 --output runs/ink-42
+nova cosm reproduce runs/ink-42/holoseed.json --require-signature
+nova cosm discover --dataset runs/ink-42/dataset/observations.jsonl --output runs/candidate.json
+```
+
+Os comandos são instruções para execução futura. Raymarching ilustra os campos; onda escalar não é eletromagnetismo. Regressão gera candidatos, provas se limitam ao modelo declarado e consenso numérico não atesta verdade física. Sementes incluem motor, parâmetros, eventos e hash de estado; ponto flutuante não garante reprodução idêntica entre máquinas.
+
 A versão 0.2 acrescenta memória adaptativa, inferência por equilíbrio/AdEx no caminho efetivo do latente e planejamento por energia, com configurações `adaptive` e `brain`. Veja [o projeto e suas equações](docs/adaptive-energy.md) e [o estado desta revisão](reports/adaptive/STATUS.md). Os novos componentes são experimentais; não foram executados novos testes ou benchmarks, conforme solicitado.
 
 ```bash

@@ -25,8 +25,16 @@ PHASES = {
 
 
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else list(argv)
+    if argv and argv[0] == "cosm":
+        from nova.bioma.cli import main as cosm_main
+
+        return cosm_main(argv[1:])
     parser = argparse.ArgumentParser(prog="nova", description="NOVA research workflows")
     sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser(
+        "cosm", help="Biocosm fields, 3D visualization, science and pinned peers"
+    )
     demo = sub.add_parser("demo")
     demo.add_argument("--ticks", type=int, default=100)
     demo.add_argument("--seed", type=int, default=0)

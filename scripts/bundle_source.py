@@ -24,11 +24,14 @@ FILES = (
     "DEVIATIONS.md",
     "docs/identity.md",
     "docs/adaptive-energy.md",
+    "docs/biocosm.md",
+    "reports/biocosm/STATUS.md",
+    "reports/biocosm/status.json",
     "reports/adaptive/STATUS.md",
     "reports/adaptive/status.json",
     "reports/STATUS.md",
 )
-EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json"}
+EXTENSIONS = {".py", ".rs", ".sh", ".yaml", ".yml", ".toml", ".json", ".html"}
 
 
 def main():

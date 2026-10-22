@@ -21,3 +21,8 @@ Antes da instrução posterior de dispensar novos testes, a suíte integrada reg
 O JEPA treinado para o demonstrador produziu MSE 0,179 vs média 0,523, com std 0,738 (`trained-world.json`). O exemplo executado e o painel offline ficam em `demo-result.json`, `demo.jsonl` e `dashboard.html`. Checkpoints e bibliotecas compiladas permanecem em caminhos ignorados pelo Git.
 
 Pendências externas: acesso a `www.cs.toronto.edu` para CIFAR-100; GPU/NVML e instalação de bitnet.cpp para custo; dados biológicos com referências/tolerâncias; modelos locais opcionais para OCR/ASR/LLM; dados pessoais apenas mediante consentimento válido. Esses itens não são substituídos por números simulados.
+
+
+## Revisão Biocosm 0.3
+
+Novos componentes e limites em [biocosm/STATUS.md](biocosm/STATUS.md). Implementação experimental, sem testes/benchmarks/simulações novos executados. Resultados históricos das fases não validam os módulos desta revisão.

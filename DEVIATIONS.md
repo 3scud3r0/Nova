@@ -30,3 +30,18 @@
 - Planejamento por energia usa derivadas implícitas/analíticas e recursão adjunta, com feixe temporal opcional. Isso elimina a dependência de autograd nesse caminho, mas não elimina toda propagação reversa de informação matemática.
 - Curiosidade com diferença de erro de um passo tem viés positivo sob ruído. O novo estimador com janelas e margem amostral reduz esse viés sem alegar proteção absoluta contra todo ruído.
 - Nenhum novo teste/benchmark foi executado nesta revisão, conforme a preferência anterior do usuário. As suítes novas e experimentos 10–12 foram escritos para avaliação posterior; não são evidência já produzida.
+
+
+## Revisão 0.3 — Biocosm e compartilhamento científico
+
+- O pedido de “toda a ciência e matemática” é aberto: foram implementados substratos e gramáticas explicitamente delimitados, com pontos de integração. Não é um simulador universal ou descoberta irrestrita de arquiteturas/leis.
+- Gray–Scott, Lenia, Conway, fluido projetado, ondas escalares, partículas e NCA são algoritmos distintos. Misturar seus campos não prova leis fundamentais emergentes. O modo “light” é uma onda escalar; renderizar luz não resolve Maxwell.
+- Corpos CPPN têm ocupação/material em voxels e afetam massa, arrasto e energia de uma mecânica pontual. Densidade não é SDF. Não há músculos deformáveis, colisões de corpos completos ou ATP bioquímico.
+- CPPN de pares usa as duas posições; rede mista integra efetivamente taxas/AdEx/HH/lógica. Há limites de nós, HH e sinapses. Evolução pode adicionar/remover nós/arestas dentro de uma gramática finita; não equivale a descobrir qualquer arquitetura.
+- O caminho Biocosm usa NumPy/SciPy em CPU. A existência de kernels ternários Rust anteriores não torna seus campos em uma simulação ternária, nem sustenta milhões de células com energia desprezível.
+- HoloSeed é um manifesto versionado completo, assinado opcionalmente; não uma codificação universal de 64 bytes. Sementes exigem o mesmo motor e genesis, e genomas evoluídos precisam de artefatos próprios. Q16/Conway possuem trilha inteira restrita; float64 exige verificação posterior de hash, mesmo com fingerprint igual.
+- Normalização polinomial, Z3 opcional e Lean/Mathlib local comprovam apenas as afirmações modeladas. Nenhum checksum ou assinatura transforma uma observação sintética em verdade física. Não há integração automática com literatura externa, química quântica ou prova de Navier–Stokes.
+- A rede usa pares explicitamente fixados, TCP/TLS ou WebSockets, CAS e roteamento XOR limitado. Não implementa libp2p/DHT global, NAT traversal ou consenso bizantino. Nenhum nó público foi iniciado nesta entrega.
+- União de bases exige encoder/coordenadas compatíveis e rank disponível; transfere restrições, não habilidades. Feixes alinham valores locais dentro de um modelo declarado; concordância pode estar errada.
+- Ledger é uma cadeia local assinada e transacional, não um blockchain imutável. Um head externo é necessário para detectar rollback completo. Recebimentos de rede ficam inertes/sem verificação científica automática.
+- Testes novos foram escritos para avaliação posterior. Não foram executados testes, simulações ou benchmarks novos nesta revisão; verificação foi estática. Consulte `docs/biocosm.md` e `reports/biocosm/STATUS.md`.
