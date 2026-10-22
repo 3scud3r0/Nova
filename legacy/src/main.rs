@@ -1,3 +1,4 @@
+mod research;
 use anyhow::{ensure, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use nova_physics::{
@@ -33,6 +34,8 @@ enum Preset {
 }
 #[derive(Subcommand)]
 enum Command {
+    #[command(flatten)]
+    Research(research::Command),
     /// Unified native ports and generator catalog from four pinned upstream repositories.
     Fuse {
         #[arg(long, default_value = "fusion")]
@@ -193,6 +196,7 @@ fn main() -> Result<()> {
         gpu: false,
         output: None,
     }) {
+        Command::Research(command) => research::run(command)?,
         Command::Live {
             preset,
             particles,

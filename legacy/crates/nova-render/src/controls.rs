@@ -37,6 +37,7 @@ enum Action {
     Generate,
     Save,
     Step,
+    EnableNeural,
 }
 impl Panel {
     pub fn new(window: &Window, device: &wgpu::Device, format: wgpu::TextureFormat) -> Self {
@@ -313,6 +314,32 @@ impl Panel {
                             );
                         }
                         ui.separator();
+                        ui.collapsing("Organismos neurais", |ui| {
+                            if let Some(population) = &mut u.neural {
+                                ui.label(format!(
+                                    "Vivos {} · nascidos {} · mortos {}",
+                                    population.stats.living,
+                                    population.stats.born,
+                                    population.stats.died
+                                ));
+                                ui.add(
+                                    egui::Slider::new(&mut population.config.impulse, 0.0..=1.0)
+                                        .text("Propulsão"),
+                                );
+                                ui.add(
+                                    egui::Slider::new(
+                                        &mut population.config.nutrient_per_tick,
+                                        0..=4096,
+                                    )
+                                    .text("Recursos por passo"),
+                                );
+                            } else if !u.config.pvm && !u.config.mpm {
+                                if ui.button("Ativar micro-RNN (CPU)").clicked() {
+                                    actions.push(Action::EnableNeural);
+                                }
+                                ui.small("Substitui os genomas e reinicia a memória neural.");
+                            }
+                        });
                         ui.collapsing("Aparência", |ui| {
                             ui.add(
                                 egui::Slider::new(&mut self.presentation.radius, 0.002..=0.08)
@@ -348,6 +375,7 @@ impl Panel {
     }
     fn apply(&mut self, action: Action, u: &mut Universe) -> Result<()> {
         match action {
+            Action::EnableNeural => u.enable_neural(Default::default())?,
             Action::Step => self.single_step = true,
             Action::Breed => self.children = u.breed_rules()?,
             Action::Choose(i) => {
@@ -365,6 +393,7 @@ impl Panel {
             }
             Action::Family(f) => {
                 let mut model = Model::new(f);
+                model.preserve_masses = u.neural.is_some();
                 model.initialize(&mut u.particles, &mut u.matrix, u.config.seed)?;
                 u.config.fusion = Some(f);
                 u.config.dt = model.settings.dt;

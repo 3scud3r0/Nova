@@ -1,5 +1,6 @@
 pub mod conway;
 pub mod mpm;
+pub mod neural;
 use anyhow::{ensure, Result};
 use nova_core::{delta, norm, Float4, Lineage, Particle, Particles, SplitMix64};
 use nova_spatial::CellList;
@@ -113,6 +114,7 @@ pub fn curl(p: [f32; 4], time: f32) -> [f32; 3] {
 }
 pub struct Universe {
     pub fusion: Option<nova_fusion::Model>,
+    pub neural: Option<neural::NeuralPopulation>,
     pub particles: Particles,
     pub config: Config,
     pub matrix: [[f32; 8]; 8],
@@ -139,6 +141,7 @@ impl Universe {
         }
         let mut u = Self {
             fusion: None,
+            neural: None,
             particles: Particles::default(),
             matrix,
             tick: 0,
@@ -221,10 +224,66 @@ impl Universe {
         );
         for _ in 0..steps {
             self.advance()?;
+            if let Some(neural) = &mut self.neural {
+                let before = neural.stats.born;
+                let counts: std::collections::HashMap<_, _> = self
+                    .fusion
+                    .as_ref()
+                    .map(|model| {
+                        self.particles
+                            .ids
+                            .iter()
+                            .copied()
+                            .zip(model.previous_neighbors.iter().copied())
+                            .collect()
+                    })
+                    .unwrap_or_default();
+                neural.step(
+                    &mut self.particles,
+                    self.config.dt,
+                    self.tick,
+                    self.config.max_particles,
+                    self.fusion.as_ref().map(|f| &f.settings),
+                )?;
+                self.births += neural.stats.born - before;
+                if let Some(model) = &mut self.fusion {
+                    model.previous_neighbors = self
+                        .particles
+                        .ids
+                        .iter()
+                        .map(|id| *counts.get(id).unwrap_or(&0))
+                        .collect();
+                }
+            }
+        }
+        Ok(())
+    }
+    pub fn enable_neural(&mut self, config: neural::NeuralConfig) -> Result<()> {
+        ensure!(
+            !self.config.pvm && !self.config.mpm,
+            "neural genomes are distinct from PVM bytecode and MPM"
+        );
+        self.neural = Some(neural::NeuralPopulation::new(config, self.config.seed)?);
+        if let Some(model) = &mut self.fusion {
+            model.preserve_masses = true;
+        }
+        self.neural.as_mut().unwrap().stats.living = self.particles.len();
+        for genome in &mut self.particles.genomes {
+            for b in genome {
+                *b = self.rng.next_u64() as u8;
+            }
+        }
+        for i in 0..self.particles.len() {
+            self.particles.lineages[i] =
+                Lineage::new(&self.particles.genomes[i], vec![], 0, self.tick);
         }
         Ok(())
     }
     fn advance(&mut self) -> Result<()> {
+        if self.particles.is_empty() {
+            self.tick += 1;
+            return Ok(());
+        }
         if let Some(model) = &mut self.fusion {
             model.settings.dt = self.config.dt;
             model.step(&mut self.particles, &self.matrix, self.tick)?;

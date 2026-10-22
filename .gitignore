@@ -1,3 +1,17 @@
 .web-build/
 node_modules/
 .DS_Store
+
+# Local native toolchains, caches and outputs (workspace is now in legacy/).
+.tools/
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+/target/
+/dist/
+/runs/
+/nova-core/target/

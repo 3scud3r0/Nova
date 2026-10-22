@@ -1,0 +1,11 @@
+{
+  "variables": 2,
+  "invariant": [
+    {"numerator": "1", "denominator": "1", "powers": [2, 0]},
+    {"numerator": "1", "denominator": "1", "powers": [0, 2]}
+  ],
+  "field": [
+    [{"numerator": "1", "denominator": "1", "powers": [0, 1]}],
+    [{"numerator": "-1", "denominator": "1", "powers": [1, 0]}]
+  ]
+}

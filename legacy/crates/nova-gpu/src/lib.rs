@@ -79,6 +79,10 @@ impl Gpu {
         })
     }
     pub fn step(&self, u: &mut Universe) -> Result<()> {
+        ensure!(
+            u.neural.is_none(),
+            "neural organisms currently require CPU stepping"
+        );
         if u.fusion.is_some() {
             return self.step_fusion(u);
         }

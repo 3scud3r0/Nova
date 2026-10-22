@@ -43,3 +43,17 @@ The actual upstream Nuxt and Canvas/WebGPU simulators are cloned and compiled in
 ## Review / rollback
 
 This is intentionally a large replacement PR. It moves the old source tree to legacy/, preserves the original Git history, and replaces the root interface and CI. Review licensing, verify the three routes in GitHub Actions and enable Pages before merging. To rollback, revert the merge commit.
+
+## Native research workspace (0.8)
+
+The Rust engine remains in [legacy/](legacy/), with modular substrates, neural
+organisms, MAP-Elites island search, a predictive observer, tensor training
+readers and optional libp2p discovery exchange. See the
+[implementation, commands and limits](legacy/docs/native/EVOLUTION.md).
+
+From `legacy/`, compile with `cargo build --release --locked --features swarm`.
+The native CLI exposes `substrate`, `autosearch`, `observe`, `verify`, `rlvr`
+and `swarm`; the static website does not execute these native workloads.
+
+Source bundles: [Rust/WGSL TXT](legacy/artifacts/NOVA_Rust_completo.txt) and
+[complete native source TXT](legacy/artifacts/NOVA_codigo_completo.txt).

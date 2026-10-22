@@ -256,7 +256,6 @@ impl GpuAutomaton {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

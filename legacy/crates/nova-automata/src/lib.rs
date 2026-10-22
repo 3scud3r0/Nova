@@ -180,9 +180,23 @@ impl Grid {
         Ok(())
     }
     pub fn validate(&self) -> Result<()> {
-        let expected = Self::new(self.shape, self.rules, self.boundary)?;
+        self.rules.validate()?;
+        let minimum = (2 * self.rules.radius + 1) as usize;
+        let count = self.shape.iter().try_fold(1usize, |a, &b| a.checked_mul(b));
         ensure!(
-            expected.cells.len() == self.cells.len() && self.cells.iter().all(|&x| x <= 1),
+            self.shape[0] >= minimum
+                && self.shape[1] >= minimum
+                && if self.rules.dimensions == 2 {
+                    self.shape[2] == 1
+                } else {
+                    self.shape[2] >= minimum
+                },
+            "shape incompatible with neighborhood"
+        );
+        ensure!(
+            count == Some(self.cells.len())
+                && self.cells.len() <= 16_777_216
+                && self.cells.iter().all(|&x| x <= 1),
             "invalid binary grid"
         );
         Ok(())

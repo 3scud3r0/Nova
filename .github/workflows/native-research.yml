@@ -1,0 +1,32 @@
+name: Native research - compile only
+on:
+  pull_request:
+    paths: ["legacy/**", ".github/workflows/native-research.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compile:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-14]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: legacy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: '1.99.1'
+          components: rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: legacy
+      - name: Check Rust formatting
+        run: cargo fmt --all -- --check
+      - name: Check workspace, native GUI, WGSL and optional P2P
+        run: cargo check --workspace --all-features --locked
+      - name: Check headless CLI
+        run: cargo check --no-default-features --locked

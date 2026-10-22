@@ -13,3 +13,4 @@ serde_json.workspace = true
 arrow = { version = "54", default-features = false, features = ["ipc"] }
 parquet = { version = "54", default-features = false, features = ["arrow", "zstd"] }
 zstd = "0.13"
+nova-substrates = { path = "../nova-substrates" }

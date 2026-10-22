@@ -81,6 +81,13 @@ size_t nova_last_error(char *destination, size_t capacity);
  */
 int32_t nova_create_fusion(size_t count, uint64_t seed, uint32_t family, struct NovaHandle **out);
 
+/**
+ * Enable signed-nibble recurrent organisms. Replaces genomes and resets neural memory.
+ * # Safety
+ * handle must be live and exclusively owned; all borrowed array views must be released.
+ */
+int32_t nova_enable_neural(struct NovaHandle *handle);
+
 #ifdef __cplusplus
 }  // extern "C"
 #endif  // __cplusplus
