@@ -1,0 +1,3 @@
+[submodule "vendor/SandboxScience"]
+	path = vendor/SandboxScience
+	url = https://github.com/DicSo92/SandboxScience.git
