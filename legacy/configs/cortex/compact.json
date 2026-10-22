@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "channels": 4,
+  "embedding": 64,
+  "hidden": 48,
+  "stochastic": 16,
+  "dictionary": 512,
+  "top_k": 8,
+  "replay_capacity": 512,
+  "batch_size": 8,
+  "horizon": 6,
+  "cem_population": 16,
+  "cem_elites": 4,
+  "cem_gradient_steps": 0,
+  "sleep_updates": 16,
+  "device": "cpu"
+}

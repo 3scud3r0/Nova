@@ -2288,6 +2288,46 @@
       "files": [],
       "redistributed": false,
       "integration": "Quality and UI organization reference; no source copied"
+    },
+    {
+      "repository": "decoderesearch/SAELens",
+      "requested_name": "jbloomAus/SAELens",
+      "url": "https://github.com/decoderesearch/SAELens",
+      "commit": "16f5346208e084f518d362de2804f1918735d87e",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "TransformerLensOrg/TransformerLens",
+      "requested_name": "neelnanda-io/TransformerLens",
+      "url": "https://github.com/TransformerLensOrg/TransformerLens",
+      "commit": "bd55eab6737584685b921fdfcd15f191579e64b1",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "astroautomata/PySR",
+      "requested_name": "MilesCranmer/PySR",
+      "url": "https://github.com/astroautomata/PySR",
+      "commit": "a14f593cfde61ec4c092fffd8208a4b77cbd80ac",
+      "license": "Apache-2.0",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
+    },
+    {
+      "repository": "dynamicslab/pysindy",
+      "requested_name": "dynamicslab/pysindy",
+      "url": "https://github.com/dynamicslab/pysindy",
+      "commit": "c4421fcec275c8f4cc5c1e93bebb961b212067ae",
+      "license": "MIT",
+      "files": [],
+      "redistributed": false,
+      "integration": "Optional installed Python dependency adapter; upstream source not copied. Commit records API/reference inspection, not the installed package version."
     }
   ]
 }

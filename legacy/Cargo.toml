@@ -5,7 +5,7 @@ exclude = ["nova-core", "third_party/upstream/par-particle-life"]
 default-members = ["."]
 
 [workspace.package]
-version = "0.8.0"
+version = "0.9.0"
 edition = "2021"
 rust-version = "1.93"
 
@@ -51,6 +51,7 @@ nova-render = { path = "crates/nova-render", optional = true }
 nova-gpu = { path = "crates/nova-gpu", optional = true }
 
 nova-substrates = { path = "crates/nova-substrates" }
+nova-ipc = { path = "crates/nova-ipc" }
 nova-cognition = { path = "crates/nova-cognition" }
 nova-evolution = { path = "crates/nova-evolution" }
 nova-swarm = { path = "crates/nova-swarm", optional = true }

@@ -92,6 +92,9 @@ pub fn build(s: &EnvironmentSpec) -> Result<Box<dyn Substrate>> {
     }))
 }
 impl Substrate for Lenia {
+    fn time_step(&self) -> f32 {
+        self.dt
+    }
     fn name(&self) -> &'static str {
         "lenia"
     }

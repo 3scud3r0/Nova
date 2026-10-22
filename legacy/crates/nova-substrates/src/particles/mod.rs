@@ -124,6 +124,12 @@ impl ParticleSubstrate {
     }
 }
 impl Substrate for ParticleSubstrate {
+    fn time_step(&self) -> f32 {
+        self.universe.config.dt
+    }
+    fn particle_view(&self) -> Option<&nova_core::Particles> {
+        Some(&self.universe.particles)
+    }
     fn name(&self) -> &'static str {
         if self.universe.config.mpm {
             "mpm"

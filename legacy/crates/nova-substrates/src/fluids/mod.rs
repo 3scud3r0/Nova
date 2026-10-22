@@ -60,6 +60,13 @@ pub struct Field {
     parameters: [f32; 4],
 }
 impl Substrate for Field {
+    fn time_step(&self) -> f32 {
+        if self.gray {
+            1.
+        } else {
+            self.parameters[2]
+        }
+    }
     fn name(&self) -> &'static str {
         if self.gray {
             "gray-scott"

@@ -30,3 +30,18 @@ jobs:
         run: cargo check --workspace --all-features --locked
       - name: Check headless CLI
         run: cargo check --no-default-features --locked
+  python-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install static checker only
+        run: python -m pip install ruff==0.17.2
+      - name: Check cortex symbols and formatting
+        run: |
+          ruff check --select F legacy/nova_cortex legacy/scripts/run_brain.py legacy/scripts/train_sae.py legacy/scripts/extract_theorems.py
+          ruff format --check legacy/nova_cortex legacy/scripts/run_brain.py legacy/scripts/train_sae.py legacy/scripts/extract_theorems.py
+      - name: Compile Python syntax without executing workloads
+        run: python -m compileall -q legacy/nova_cortex legacy/nova_engine legacy/scripts/run_brain.py legacy/scripts/train_sae.py legacy/scripts/extract_theorems.py

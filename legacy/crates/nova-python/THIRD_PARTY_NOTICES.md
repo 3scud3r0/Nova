@@ -1162,3 +1162,12 @@ Pinned revision: `ba43fde7ed3fc2224302c2682a3ecd3030717ba5`.
 License: AGPL-3.0-or-later.
 
 Quality and UI organization reference; no source copied.
+
+## Optional cortex dependencies (reference only)
+
+The NOVA cortex algorithms are implemented locally. The adapters import separately installed packages; no source from the following repositories is redistributed in this workspace. Their own package licenses apply. API/reference revisions are recorded in third_party/upstream.lock.json; Python package constraints are in pyproject.toml.
+
+- [decoderesearch/SAELens](https://github.com/decoderesearch/SAELens) — MIT; requested as jbloomAus/SAELens; inspected revision `16f5346208e084f518d362de2804f1918735d87e`.
+- [TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens) — MIT; requested as neelnanda-io/TransformerLens; inspected revision `bd55eab6737584685b921fdfcd15f191579e64b1`.
+- [astroautomata/PySR](https://github.com/astroautomata/PySR) — Apache-2.0; requested as MilesCranmer/PySR; inspected revision `a14f593cfde61ec4c092fffd8208a4b77cbd80ac`.
+- [dynamicslab/pysindy](https://github.com/dynamicslab/pysindy) — MIT; requested as dynamicslab/pysindy; inspected revision `c4421fcec275c8f4cc5c1e93bebb961b212067ae`.
