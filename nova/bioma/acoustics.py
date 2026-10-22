@@ -1,6 +1,7 @@
 """Delayed finite-bandwidth acoustic packets with range/attenuation, not full acoustics."""
 
 from dataclasses import dataclass, asdict
+from copy import deepcopy
 import numpy as np
 
 
@@ -81,9 +82,9 @@ class AcousticChannel:
         return {
             "shape": self.shape.tolist(),
             "config": asdict(self.config),
-            "pending": self.pending,
-            "log": self.log,
-            "last_emit": self.last_emit,
+            "pending": deepcopy(self.pending),
+            "log": deepcopy(self.log),
+            "last_emit": deepcopy(self.last_emit),
             "spent": self.spent,
         }
 
@@ -91,7 +92,7 @@ class AcousticChannel:
     def restore(cls, state):
         obj = cls(state["shape"], AcousticConfig(**state["config"]))
         for key in ("pending", "log", "last_emit", "spent"):
-            setattr(obj, key, state[key])
+            setattr(obj, key, deepcopy(state[key]))
         if (
             len(obj.pending) > obj.config.max_pending
             or len(obj.log) > obj.config.max_delivered

@@ -255,3 +255,48 @@ impl GpuAutomaton {
             .collect())
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use nova_automata::{Boundary, Rules};
+
+    fn compare_backend(shape: [usize; 3], dims: u32, boundary: Boundary) {
+        let rule = if dims == 3 { "B5/S4-5" } else { "B3/S23" };
+        let mut cpu = Grid::new(shape, Rules::parse(rule, dims, 1).unwrap(), boundary).unwrap();
+        cpu.randomize(42, 0.2).unwrap();
+        let mut gpu = match GpuAutomaton::new(&cpu) {
+            Ok(gpu) => gpu,
+            Err(err) if err.to_string().contains("no native compute adapter") => {
+                eprintln!("Skipping GPU numerical comparison: no compatible compute adapter");
+                return;
+            }
+            Err(err) => panic!("Failed to initialize GPU automaton: {err}"),
+        };
+        for tick in 1..=4 {
+            cpu.step().unwrap();
+            gpu.step(1).unwrap();
+            let observed = gpu.read().unwrap();
+            assert_eq!(observed.tick, cpu.tick);
+            assert_eq!(
+                observed.cells, cpu.cells,
+                "CPU/GPU cellular automata mismatch at tick {tick}, shape={shape:?}, boundary={boundary:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn gpu_periodic_wrapping_matches_cpu_on_non_power_of_two_grids() {
+        // Previously diverged only on periodic faces (e.g. 24^3) under Vulkan/llvmpipe.
+        compare_backend([24, 24, 24], 3, Boundary::Periodic);
+        compare_backend([20, 24, 16], 3, Boundary::Periodic);
+        compare_backend([96, 72, 1], 2, Boundary::Periodic);
+    }
+
+    #[test]
+    fn gpu_solid_boundaries_match_cpu() {
+        compare_backend([24, 24, 24], 3, Boundary::Dead);
+        compare_backend([96, 72, 1], 2, Boundary::Dead);
+    }
+}

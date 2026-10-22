@@ -32,3 +32,7 @@ optional = true
 
 [build-dependencies]
 naga = { version = "=0.19.2", features = ["wgsl-in"] }
+
+# Keep the legacy extension independent of the NOVA 0.7 workspace.
+# Cargo otherwise treats this nested package as an unlisted workspace member.
+[workspace]

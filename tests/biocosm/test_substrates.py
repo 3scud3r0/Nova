@@ -86,3 +86,50 @@ def test_custom_genesis_replays_its_actual_genome():
     restored, receipt = HoloSeed.reproduce(HoloSeed.pack(eco))
     assert receipt["status"] == "matched"
     assert restored.organisms[0].genome.hash() == genome.hash()
+
+
+@pytest.mark.parametrize("signaling", [False, True])
+def test_checkpoint_restore_is_independent_and_replays(signaling):
+    """In-memory snapshots must not alias the original ecosystem or its acoustic queues."""
+    eco = Ecosystem(
+        PhysicsConfig(shape=(8, 8), seed=42),
+        EcosystemConfig(initial_population=2, signaling=signaling),
+    )
+    eco.step(8)
+    state = eco.state_dict()
+    restored = Ecosystem.from_state_dict(state)
+    baseline = eco.state_hash()
+    assert restored.state_hash() == baseline
+
+    # Advancing the live ecosystem must not mutate a previously returned snapshot.
+    frozen_hash = digest_state(state)
+    eco.step()
+    assert digest_state(state) == frozen_hash
+    assert restored.state_hash() == baseline
+    restored.step()
+    assert restored.state_hash() == eco.state_hash()
+
+    for _ in range(3):
+        eco.step()
+        restored.step()
+        assert restored.state_hash() == eco.state_hash()
+
+    assert restored.history is not eco.history
+    assert restored.organisms[0].body is not eco.organisms[0].body
+    assert restored.acoustics.pending is not eco.acoustics.pending
+    assert restored.acoustics.log is not eco.acoustics.log
+    assert restored.acoustics.last_emit is not eco.acoustics.last_emit
+
+
+def test_acoustic_restore_does_not_share_nested_packets():
+    from nova.bioma.acoustics import AcousticChannel
+
+    original = AcousticChannel((8, 8))
+    original.pending.append({"arrival": 10, "metadata": {"label": "keep"}})
+    exported = original.state_dict()
+    restored = AcousticChannel.restore(exported)
+    restored.pending[0]["metadata"]["label"] = "changed"
+    assert original.pending[0]["metadata"]["label"] == "keep"
+    assert exported["pending"][0]["metadata"]["label"] == "keep"
+    original.pending[0]["metadata"]["label"] = "other"
+    assert exported["pending"][0]["metadata"]["label"] == "keep"

@@ -8,7 +8,14 @@ struct Config {shape:vec4<u32>,rule:vec4<u32>,control:vec4<u32>}
 @group(0) @binding(4) var<storage,read_write> living:array<u32>;
 fn value(p:vec3<i32>)->u32 {
  let shape=vec3<i32>(cfg.shape.xyz);var q=p;
- if(cfg.rule.w==1u){q=((q%shape)+shape)%shape;}
+ // All offsets are within the Moore radius (<= 2), while each grid extent
+ // is >= 2 * radius + 1. A single adjustment per axis wraps exactly.
+ // Avoid signed vector remainder: llvmpipe diverged from CPU at periodic
+ // boundaries when the dimensions were not powers of two.
+ if(cfg.rule.w==1u){
+  q=select(q,q+shape,q<vec3<i32>(0));
+  q=select(q,q-shape,q>=shape);
+ }
  else if(any(q<vec3(0))||any(q>=shape)){return 0u;}
  return src[(u32(q.z)*cfg.shape.y+u32(q.y))*cfg.shape.x+u32(q.x)];
 }
