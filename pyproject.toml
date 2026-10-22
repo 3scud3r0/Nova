@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nova-research"
-version = "0.4.0"
+version = "0.5.0"
 description = "Reproducible research platform for protected continual learning"
 requires-python = ">=3.11"
 dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "PyYAML>=6", "cryptography>=42"]
@@ -31,4 +31,4 @@ testpaths = ["tests"]
 addopts = "-ra"
 
 [tool.setuptools.package-data]
-"nova.visuals" = ["*.html"]
+"nova.visuals" = ["*.html", "*.js", "shaders/*.wgsl"]

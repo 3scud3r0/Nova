@@ -31,3 +31,8 @@ Novos componentes e limites em [biocosm/STATUS.md](biocosm/STATUS.md). Implement
 ## Revisão planetária 0.4
 
 Implementação experimental e checks estáticos em [planetary/STATUS.md](planetary/STATUS.md). Não foram executados testes, simulações, benchmarks, provas Lean ou rede planetária; metas de escala/energia permanecem não demonstradas.
+
+
+## Revisão Chromatic 0.5
+
+Particle Life e superfícies líquidas WebGPU, referências físicas e matemáticas independentes. [Estado e limites](chromatic/STATUS.md). Inspeção visual pequena e checks estáticos registrados; sem execução das suítes numéricas ou benchmarks de escala.

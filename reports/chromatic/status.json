@@ -1,0 +1,31 @@
+{
+  "version": "0.5.0",
+  "revision": "Chromatic",
+  "static_checks": ["ruff", "python_syntax", "javascript_syntax", "cargo_check_webgpu", "naga_wgsl"],
+  "visual_inspection": {
+    "executed": true,
+    "browser": "Chromium headless",
+    "adapter": "SwiftShader/Vulkan software",
+    "preset": "ink",
+    "seed": "42",
+    "particle_counts": [512, 2048],
+    "final_scene_particles": 2048,
+    "render_resolution": [960, 540],
+    "final_capture_tick_approximately": 4,
+    "errors_on_successful_runs": [],
+    "initial_backend_failure": "Device lost without Vulkan flags",
+    "early_final_run_diagnostics": {
+      "tick": 2,
+      "truncated_queries": 0,
+      "speed_clamps": 0,
+      "density_correction_clamps": 4487
+    },
+    "performance_claim": false
+  },
+  "numerical_test_suites_executed": false,
+  "benchmarks_executed": false,
+  "cpu_reference_simulations_executed": false,
+  "cross_gpu_reproduction_validated": false,
+  "cinema_equivalence_demonstrated": false,
+  "universal_physics_proved": false
+}

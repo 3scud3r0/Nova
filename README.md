@@ -1,5 +1,13 @@
 # NOVA
 
+A revisão **0.5 Chromatic** acrescenta Particle Life com interações entre espécies na GPU, superfícies líquidas reconstruídas de partículas, transmissão/iridescência, edição de matriz e captura/reprodução por sementes. Inclui referências independentes de MPM, química, óptica espectral e geometria. Veja [comandos e escopo](docs/chromatic.md) e [verificação da entrega](reports/chromatic/STATUS.md). Não equivale a um renderizador de cinema ou a física universal validada.
+
+```bash
+pip install -e .
+nova cosm paint --preset ink --open-browser
+nova cosm paint --preset life
+```
+
 A revisão **0.4 Planetary** acrescenta campos residentes Rust/wgpu, sinalização de Lewis, busca não polinomial/Hamiltonianos, fila de provas e descoberta dinâmica de pares com migração/refutação limitadas. A sessão `start` reúne bioma, comunicações, atlas 3D e serviços locais. Consulte [comandos e limites da 0.4](docs/planetary.md) e [as verificações estáticas realizadas](reports/planetary/STATUS.md). A 0.3 não foi validada em execução; esta revisão também não demonstra escala planetária ou verdade científica universal.
 
 ```bash
