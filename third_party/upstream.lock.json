@@ -1,0 +1,2293 @@
+{
+  "schema": "NOVA-UPSTREAM-SOURCES-v1",
+  "repositories": [
+    {
+      "repository": "macncrash/realethersim",
+      "url": "https://github.com/macncrash/realethersim",
+      "commit": "9d2991eaf3dca42c3e9a8757bb02d0b9b29d773a",
+      "license": "MIT",
+      "source_root": "third_party/upstream/realethersim",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "1f9db76543899d0eade0e3f5ce3b785832d2d8db4b906a77edc4c11ec70c5cf3",
+          "bytes": 1077
+        },
+        {
+          "path": "README.md",
+          "sha256": "e35b5b1e6a2e242ec293626e741ca51b8f6983015fe842397765b295751227ce",
+          "bytes": 12118
+        },
+        {
+          "path": "bun.lock",
+          "sha256": "d80473651257a7d6ffd31b76530075bc01e68dd7225af7431cb94384c81f3bee",
+          "bytes": 23533
+        },
+        {
+          "path": "demo.html",
+          "sha256": "6c4b27864e919527ebe01ab2edc66666eb4b6137fc7a748ca69cad2b556fe37a",
+          "bytes": 12777
+        },
+        {
+          "path": "index.html",
+          "sha256": "085a19e93aa3c5c3afc4ec34609ffcac6ce7d9d1758f52da2fb337ff08aa40cf",
+          "bytes": 5373
+        },
+        {
+          "path": "package.json",
+          "sha256": "15044f714a43a373e59758c65e241bc1f262449d665f7be6afa8283ebf1f919f",
+          "bytes": 834
+        },
+        {
+          "path": "public/contact.html",
+          "sha256": "bf57164f062b3984364e4238e8668122a910e24eb0fc394e19e43e6bf9712374",
+          "bytes": 2932
+        },
+        {
+          "path": "public/privacy.html",
+          "sha256": "4608df17aed76af7932a556ec65922f27342a95ae78035cc1fbd3d17a784d515",
+          "bytes": 5209
+        },
+        {
+          "path": "public/run.sh",
+          "sha256": "6fb39d0d12f23932e8728db8f15d9ca597871d2d26c635263b2607070a80076c",
+          "bytes": 1860
+        },
+        {
+          "path": "public/terms.html",
+          "sha256": "5077edad5f2d9636161517b93d200f941d58926fb098502d4633c78d50d27962",
+          "bytes": 4638
+        },
+        {
+          "path": "src/app/bootstrap.ts",
+          "sha256": "dce939af58316afce20868975a9b8d06ac2c6e6db1e59354aa4dc2d1607bc362",
+          "bytes": 75069
+        },
+        {
+          "path": "src/app/capabilities.ts",
+          "sha256": "65c4bcac5c00ca6431c156f5122fb0f2536e0e72beeb1637854e7fe6a3d2b2e3",
+          "bytes": 541
+        },
+        {
+          "path": "src/app/engine.ts",
+          "sha256": "3ee1e20ba1737b3272ad76d70e5cd7c4b87bec3c144eacafbbe289c641fe76d5",
+          "bytes": 2077
+        },
+        {
+          "path": "src/app/shareLink.ts",
+          "sha256": "aae47953c4823e9ba181b7d2de983a9e668cbc26dbe3e9ac523a7ab68b4e88f9",
+          "bytes": 5755
+        },
+        {
+          "path": "src/archetypes/aharonovBohm.ts",
+          "sha256": "3e4a534a6b1c898be6c2756387dba6f8c40d72191ad9b70fa3f47cd9a64bffd3",
+          "bytes": 11302
+        },
+        {
+          "path": "src/archetypes/alcubierre.ts",
+          "sha256": "d0d8bec29be013216d257f4edd22d7b19bedce2b0616dfb02cb612900fd01911",
+          "bytes": 13166
+        },
+        {
+          "path": "src/archetypes/attractorSwarm.ts",
+          "sha256": "a6d72a85d863a45d1dddc6a365bef6baeac43755b92fee0146e211eff687b73e",
+          "bytes": 10758
+        },
+        {
+          "path": "src/archetypes/aurora.ts",
+          "sha256": "70dd44377bf4ec9accc90191c35de356f54125cceeb3d21a23d73eb4e6b52ae2",
+          "bytes": 7977
+        },
+        {
+          "path": "src/archetypes/auroraOrbit.ts",
+          "sha256": "695ca46d0095a95bb426f97621de592c67d4f27fab362a8f8f6677cec1612b2a",
+          "bytes": 8210
+        },
+        {
+          "path": "src/archetypes/barabasiAlbert.ts",
+          "sha256": "6a3f9aaf95439c4cb2e9d080523981befbc0dc6bb72ad17b7550018adb3a3626",
+          "bytes": 10818
+        },
+        {
+          "path": "src/archetypes/bec.ts",
+          "sha256": "c16390bd70c7789567df3e97c8e1a905103744d411923d76348bfe60353bd144",
+          "bytes": 7846
+        },
+        {
+          "path": "src/archetypes/bessel.ts",
+          "sha256": "2b1d6c405c7764ced47a08ded4f3a476991274087332f37aa9c1031e0d740874",
+          "bytes": 3687
+        },
+        {
+          "path": "src/archetypes/bifurcation.ts",
+          "sha256": "aa4feed2811e46ecc651b75c444b6439d2e50e21cbdc54551b6da1b941e8e0e9",
+          "bytes": 4872
+        },
+        {
+          "path": "src/archetypes/billiard.ts",
+          "sha256": "5026ff1415a7ada10cc49b286ddd55d9f2924311934286b40240375f5208fcb7",
+          "bytes": 14592
+        },
+        {
+          "path": "src/archetypes/bioBay.ts",
+          "sha256": "1d521031aae5e18ab22f4c06f09ba3a3d15d7862daa47499c9bc99d535d3d35d",
+          "bytes": 8661
+        },
+        {
+          "path": "src/archetypes/boids.ts",
+          "sha256": "f1730f37551df00c5b108069cc4836d15510c37132cc65847f91aa1b91626bb8",
+          "bytes": 7384
+        },
+        {
+          "path": "src/archetypes/casimirPlates.ts",
+          "sha256": "49cf7cc25e40719aeb64dbd42adbdb6ae844be8ca60f94a163b84a2b02bd8f9d",
+          "bytes": 12316
+        },
+        {
+          "path": "src/archetypes/chargedParticles.ts",
+          "sha256": "bbf89abde2b6e5625a3fa46af9fd55ee04aafc114b87addc0937aeecfe8b6aea",
+          "bytes": 18966
+        },
+        {
+          "path": "src/archetypes/chimera.ts",
+          "sha256": "e50d0af2a16dbdd84baeb7c5597fcbf8b6936082361bba8a043cc596b19971f9",
+          "bytes": 5357
+        },
+        {
+          "path": "src/archetypes/chladniWave.ts",
+          "sha256": "b1b2854431eb6dfdf52dcfa13d0851b731195bbb496ddae42c9b17ec0038dc0e",
+          "bytes": 7296
+        },
+        {
+          "path": "src/archetypes/collatz.ts",
+          "sha256": "41c24ce0ea461cb80d65f31a71dafdc7ddb1205c79900b9549f84b73567424a5",
+          "bytes": 7654
+        },
+        {
+          "path": "src/archetypes/combJelly.ts",
+          "sha256": "106fb4285378b2250bda66336a76ac4a203ace15f4e71bee9f6e6daa7538e805",
+          "bytes": 7571
+        },
+        {
+          "path": "src/archetypes/communityIslands.ts",
+          "sha256": "4d6557765bf4c35f235e00a950a61a6c15eb1fd9fa44a32c2770fce91a85e665",
+          "bytes": 14554
+        },
+        {
+          "path": "src/archetypes/cosmicWeb.ts",
+          "sha256": "00db2906d94550c412f5ecdecb69dcb00e02f813197bffd1dd119db47b9da76f",
+          "bytes": 9979
+        },
+        {
+          "path": "src/archetypes/crossedDiffraction.ts",
+          "sha256": "d90ab9e20290b17b6508bc9d2bce5f27038125640bb2a623a620bde1af927218",
+          "bytes": 6790
+        },
+        {
+          "path": "src/archetypes/customParametric.ts",
+          "sha256": "51cab83ad030e9af47c467727c9c0c36a0aa4175fba3aebd9be37a3445d4d58c",
+          "bytes": 5274
+        },
+        {
+          "path": "src/archetypes/cymatics.ts",
+          "sha256": "efa622eddb376f482fbfc5ac71e70ec8f529dfa94641434bb75343ee326b25fb",
+          "bytes": 8528
+        },
+        {
+          "path": "src/archetypes/dandelion.ts",
+          "sha256": "28c68795fca6fdcb350ea39c65e8b93a2abc17215ca373ca76b91bc860ac1631",
+          "bytes": 6610
+        },
+        {
+          "path": "src/archetypes/daphnis.ts",
+          "sha256": "f74165875647f3371c725d75c37ffc2d6ead53cdd93756044722e7e777bd3328",
+          "bytes": 7120
+        },
+        {
+          "path": "src/archetypes/dispersionWave.ts",
+          "sha256": "338cc2aeeab55f3ae796c9b8bad219ab636bc3e3c0d366beda3bf6f857f1d704",
+          "bytes": 9312
+        },
+        {
+          "path": "src/archetypes/dla.ts",
+          "sha256": "705d83b5702f5e32973a8a7efecbe3699cb61e6fad5e597f8495793de9df3bda",
+          "bytes": 7779
+        },
+        {
+          "path": "src/archetypes/dnaSupercoil.ts",
+          "sha256": "acf5cd6ce122c1090fdfac158d324160adede3df684cb70278f1ac062b7fcf33",
+          "bytes": 8090
+        },
+        {
+          "path": "src/archetypes/doublePendulumSwarm.ts",
+          "sha256": "4963691c7db3e0b9b57b22efa7430d2cf2b4a2fdb7e1757a888e2dd74fcd773e",
+          "bytes": 7005
+        },
+        {
+          "path": "src/archetypes/drumhead.ts",
+          "sha256": "9b78ab2fb98f0b4ad6ed77a463bcacc6e88f739669e6eb11454eeae3b163e6a2",
+          "bytes": 6978
+        },
+        {
+          "path": "src/archetypes/edgeBundling.ts",
+          "sha256": "1d679ca7a4c002cf1d58decb9f1fce1e068d442247abb69670438513867e3163",
+          "bytes": 12429
+        },
+        {
+          "path": "src/archetypes/elasticWaves.ts",
+          "sha256": "f8a35fbeedb6f7887bbe89f4daa5ae50a24a7b8ce1657e10c75dbe22d97874e0",
+          "bytes": 9671
+        },
+        {
+          "path": "src/archetypes/elementaryCA.ts",
+          "sha256": "3bd70c8233fb773c20b8a1e267c6eab93309514bef6a664ea9fb4a6761d58aa0",
+          "bytes": 5897
+        },
+        {
+          "path": "src/archetypes/escapeFractal.ts",
+          "sha256": "ba40af65e8d764364f087c0ce48acee71fab48c252503c0787d31028c35b44eb",
+          "bytes": 8021
+        },
+        {
+          "path": "src/archetypes/excitableMedium.ts",
+          "sha256": "4cf187638ccc9ae1d10f74904954238474d7b70ab5982019eaafcc098ab98f05",
+          "bytes": 5135
+        },
+        {
+          "path": "src/archetypes/fireflies.ts",
+          "sha256": "aa45cf979498477c52bc6b3713f122c78ea7aa346d538b1153ebe7e3f581831c",
+          "bytes": 7422
+        },
+        {
+          "path": "src/archetypes/flyBrain.ts",
+          "sha256": "995001a198264f96230a90fde503598dc573ef5eace90b3e97c16b9f88b0b3ac",
+          "bytes": 17983
+        },
+        {
+          "path": "src/archetypes/foucault.ts",
+          "sha256": "88e550ff495e3ada2723abd94c50728f42268aff84a3eadb092b68e9deea13c4",
+          "bytes": 10811
+        },
+        {
+          "path": "src/archetypes/fractalFlame.ts",
+          "sha256": "a2191e25c91bf8f0c7465307310ad64cdbd284fe5e094a5d4925561cd0b3269e",
+          "bytes": 14478
+        },
+        {
+          "path": "src/archetypes/fractalIFS.ts",
+          "sha256": "4a56d4db3d9ae48884ae4aa8232ca14e0ce95ea3017450719bf548cdb281475d",
+          "bytes": 6934
+        },
+        {
+          "path": "src/archetypes/fracture.ts",
+          "sha256": "9bcba6e687d01ed0d0ed5d3375031bdb7fe06afd4f1a4fe09d509a45e00d9e4e",
+          "bytes": 10400
+        },
+        {
+          "path": "src/archetypes/galaxyCollision.ts",
+          "sha256": "a0fa70e899f6436886a6012d1091adbffe568249e453a8b7e11c0d753b19eda7",
+          "bytes": 13366
+        },
+        {
+          "path": "src/archetypes/giganticJet.ts",
+          "sha256": "2bd7ea7bda3669736db55452a51f9dede1afbea0b6277766340b413836116784",
+          "bytes": 10751
+        },
+        {
+          "path": "src/archetypes/gravityWell.ts",
+          "sha256": "c02ceec7e1103f3c619a0f37dbf01c532862793bdc3e0ba72c36c080245ba14e",
+          "bytes": 10298
+        },
+        {
+          "path": "src/archetypes/grayScottField.ts",
+          "sha256": "58802b001fcf6052adbdbc293f1d515b85379681ba5af9182b76facef374028d",
+          "bytes": 6391
+        },
+        {
+          "path": "src/archetypes/heatEquation.ts",
+          "sha256": "6a5987b646fe15385d538e5bd1d45b4973e1bbeceec88377b3a25832275f3f3b",
+          "bytes": 9059
+        },
+        {
+          "path": "src/archetypes/heavyTop.ts",
+          "sha256": "0f80893e0c9506d380dd786cebb436f8238164c80707a411ba703214c811097b",
+          "bytes": 12831
+        },
+        {
+          "path": "src/archetypes/hmc.ts",
+          "sha256": "106f1fc5cfe4832221fde5222c73777b82f699d05b2a2a413d8ac293e3b14011",
+          "bytes": 11640
+        },
+        {
+          "path": "src/archetypes/hopfion.ts",
+          "sha256": "2b35415a98b3f638762ecb2b822766a1fc8039d4d6ba3c8eab54ecdcbfc8165c",
+          "bytes": 6828
+        },
+        {
+          "path": "src/archetypes/hyperOscillator.ts",
+          "sha256": "74226a7ff064be06c89faf9d89c35b5e6ffaeca5b4ef32b7dbb5bf493cd9045f",
+          "bytes": 5170
+        },
+        {
+          "path": "src/archetypes/hyperbolicSphere.ts",
+          "sha256": "defac9f2444cc4c81726dcd8f65f62a8362e47fef6be1585bbd649d56329cf95",
+          "bytes": 5661
+        },
+        {
+          "path": "src/archetypes/idealGas.ts",
+          "sha256": "220ea4eb9438d2d0114f322a9ba8c6159de7bfe5e39a05ffc7ba17b45126884f",
+          "bytes": 15917
+        },
+        {
+          "path": "src/archetypes/impactFragmentation.ts",
+          "sha256": "18fd18b18d0b7b1f5f3412ef1f745dc8fa88ece7950b51b6799910c92392110c",
+          "bytes": 16203
+        },
+        {
+          "path": "src/archetypes/index.ts",
+          "sha256": "8f1b534cb2ec628d67e9ab6ae153ecc9797fc84c59dfef733f31d7d7315c8338",
+          "bytes": 10714
+        },
+        {
+          "path": "src/archetypes/ising.ts",
+          "sha256": "abc923b1cb3d7151cce5ed76854b6b13cc9de19d87ab7167f126d1fc12e64df5",
+          "bytes": 6978
+        },
+        {
+          "path": "src/archetypes/iteratedLog.ts",
+          "sha256": "c1af39e705ab32a26a5b5edf5a68e7e278850d9de7e72f962323844278c4f52e",
+          "bytes": 7971
+        },
+        {
+          "path": "src/archetypes/iteratedMap.ts",
+          "sha256": "a41c75980dfaa9e05766b54e4327a948b4f5a245a5a1e5c144414b93eab65817",
+          "bytes": 17463
+        },
+        {
+          "path": "src/archetypes/jellyfishFountain.ts",
+          "sha256": "ce1dfaa85ac4054534ec3d002c23471069093a41534abd70a3253d6e51f76109",
+          "bytes": 9172
+        },
+        {
+          "path": "src/archetypes/karman.ts",
+          "sha256": "07a996aee728486f9d11c23030c6b12b9140602077f9eb6781dcf8ef4328abf2",
+          "bytes": 8650
+        },
+        {
+          "path": "src/archetypes/kerrDragging.ts",
+          "sha256": "e7a82efa44b2a05dc1f0e11781cfb8067a69821c2c788927f2901986d6758d44",
+          "bytes": 13577
+        },
+        {
+          "path": "src/archetypes/kuramoto.ts",
+          "sha256": "28b20eabe3bc52ff537965dd7b0a5800c226dd8118414c3d367784cb15950e18",
+          "bytes": 4784
+        },
+        {
+          "path": "src/archetypes/kuramotoSivashinsky.ts",
+          "sha256": "e63d25eafe2edff5a1673afc95bacbbef6d17efbb60aa389e682d7813392213f",
+          "bytes": 10411
+        },
+        {
+          "path": "src/archetypes/lenia.ts",
+          "sha256": "26f084bc5deee153a4e4792faf6329dd97714772ec9d0e844b2d562c359cb854",
+          "bytes": 6709
+        },
+        {
+          "path": "src/archetypes/lightCones.ts",
+          "sha256": "4cd8b5159e27998fc566e770a1878f9fc3668b75a5e585f83cfc906e7dc339f0",
+          "bytes": 15913
+        },
+        {
+          "path": "src/archetypes/lightning.ts",
+          "sha256": "3d35edb1b07c12d921b1fed3a72023661cb62fac4150d3715224a2720906d441",
+          "bytes": 17827
+        },
+        {
+          "path": "src/archetypes/luneburgLens.ts",
+          "sha256": "ca100e06cbca8dc590cd01c088fc4881aaba4e5172630925550b16e0edd46da8",
+          "bytes": 9644
+        },
+        {
+          "path": "src/archetypes/marsClouds.ts",
+          "sha256": "e1a7f6fbec088e0603c5f4bcf4400587949bd0296473e15d84d95e855ce50456",
+          "bytes": 7527
+        },
+        {
+          "path": "src/archetypes/maxwellFdtd.ts",
+          "sha256": "c7525eece65114b5e86492293c3a4d0579b08daa87541e742b51172a7b33505d",
+          "bytes": 11809
+        },
+        {
+          "path": "src/archetypes/molecularDynamics.ts",
+          "sha256": "789d3fd5d9f10130de936257aea98b14f5063f6cf8bb24b2f5acdf1d87c453bf",
+          "bytes": 10743
+        },
+        {
+          "path": "src/archetypes/multiLenia.ts",
+          "sha256": "7dd47bc3a828735e29e4e6a2a10c14e3ced5c9885a768ab256b672b296f38df6",
+          "bytes": 10397
+        },
+        {
+          "path": "src/archetypes/nbody.ts",
+          "sha256": "799dee67044e573f136e8a963d856993445aa423c40ae20e43d0357838cee538",
+          "bytes": 8631
+        },
+        {
+          "path": "src/archetypes/newtonFlow.ts",
+          "sha256": "8b284b29b0296632a97c65c23e249d79a0ae82762a9ff5dcd7c0dabf0ac7998d",
+          "bytes": 8670
+        },
+        {
+          "path": "src/archetypes/orbitWeave.ts",
+          "sha256": "c93c78c2b6a356fa689abd01ed72c9afe5eb52ac462e5fc3e0755fb2e100b090",
+          "bytes": 5726
+        },
+        {
+          "path": "src/archetypes/parametric.ts",
+          "sha256": "d94f4d6b978691458439d48d550f0e2069e8983cbcd988e6ac9bc3ffb352982b",
+          "bytes": 59606
+        },
+        {
+          "path": "src/archetypes/particleLife.ts",
+          "sha256": "92eae77ca71a2439d3416f5e859f70008534578626c54c970de6de193c315072",
+          "bytes": 8159
+        },
+        {
+          "path": "src/archetypes/pendulumWave.ts",
+          "sha256": "8bc057a7530798b53c1adb5199fc12a623b98e977a22f420e970a910670d7271",
+          "bytes": 5634
+        },
+        {
+          "path": "src/archetypes/penrose.ts",
+          "sha256": "2945ff11f503f7d4030de2976d59b4ab8f34e27ce033ad7b28447b23ce5e708d",
+          "bytes": 7345
+        },
+        {
+          "path": "src/archetypes/percolation.ts",
+          "sha256": "c3c467879a65a0efa376f632316ed3460c31d997bdb961074d938790143fcc3c",
+          "bytes": 8373
+        },
+        {
+          "path": "src/archetypes/phonons.ts",
+          "sha256": "dc42a4031d7f9399aa1756631cd20c3a72e0ead52d3e60644a66ffa0e02e32b5",
+          "bytes": 12670
+        },
+        {
+          "path": "src/archetypes/poinsot.ts",
+          "sha256": "e862bb37d12d405f13ac3d5ee15b0346b06eae6fb2f7e3f0aa72cfbe7822167a",
+          "bytes": 11568
+        },
+        {
+          "path": "src/archetypes/pointVortices.ts",
+          "sha256": "1bc9ec4362193f7cc144b01290033d733819858d940bdf34beb800e50f651bcd",
+          "bytes": 5455
+        },
+        {
+          "path": "src/archetypes/polynomialRoots.ts",
+          "sha256": "a4d03bb1cd916e03cd91d266955075fc0560860bd139318d24abfc3bfb054c8d",
+          "bytes": 9817
+        },
+        {
+          "path": "src/archetypes/precession.ts",
+          "sha256": "3f29ff15c104bff029ade2de9400c106a8e572be2e90fe6800c71c497bcaf807",
+          "bytes": 9431
+        },
+        {
+          "path": "src/archetypes/primeSpiral.ts",
+          "sha256": "8b5d5c34d649b6873fc586b3a351bf1a05a535ed91ba85b119b60ab46300b85b",
+          "bytes": 4899
+        },
+        {
+          "path": "src/archetypes/pseudospectrum.ts",
+          "sha256": "6f45f72208ef4391761b11a283bffd379a3d3adeaafc37bc59071e4604238eb9",
+          "bytes": 7854
+        },
+        {
+          "path": "src/archetypes/pulsar.ts",
+          "sha256": "87328161a8bc6dc9c02c600bac62d6a2e69302d836d52d3f50eaa4934458d82f",
+          "bytes": 9604
+        },
+        {
+          "path": "src/archetypes/quantumFoam.ts",
+          "sha256": "c9999185780e3076a5bb935f1eb84624664141e7931a422a18bde76533d8b01b",
+          "bytes": 6664
+        },
+        {
+          "path": "src/archetypes/racketFlip.ts",
+          "sha256": "866690840cb090a2bb09a8f6f3043e7beeb8e8cae82896c4e7e054c8cb56b817",
+          "bytes": 15396
+        },
+        {
+          "path": "src/archetypes/rayleighBenard.ts",
+          "sha256": "cea492ee88dc46614aac7f918b87789ad78d69f2a4eff85fd26e8a78a876f578",
+          "bytes": 6874
+        },
+        {
+          "path": "src/archetypes/raymarchFractal.ts",
+          "sha256": "25b43573bbd89e081a68a5d9f25c6ccb83968b82a88416b8b074847ee3ee8b86",
+          "bytes": 25288
+        },
+        {
+          "path": "src/archetypes/recaman.ts",
+          "sha256": "9b6a33d29a516795e424d77a023080d0f1a8a5d48e3daa2585337b6f4ef3ae75",
+          "bytes": 6438
+        },
+        {
+          "path": "src/archetypes/reconnection.ts",
+          "sha256": "bfb0af685e01dbd7e69001fbb9aa029e4de881e1aef667767e2436737f18b8bd",
+          "bytes": 9751
+        },
+        {
+          "path": "src/archetypes/relativisticJet.ts",
+          "sha256": "982c182db41a2209b5625157bdd6ec89ae9fa5fee7870cc9047ec1cd41b86f8f",
+          "bytes": 8907
+        },
+        {
+          "path": "src/archetypes/rigidBody.ts",
+          "sha256": "95199291bc099cd540b8f7827a94c37479bd37a439bd5241f2fb70097f04878f",
+          "bytes": 4829
+        },
+        {
+          "path": "src/archetypes/ringdown.ts",
+          "sha256": "6bf9c805f3ac55eb0648a60409409465c690fb0440ad6bbfc2b026f461462704",
+          "bytes": 6609
+        },
+        {
+          "path": "src/archetypes/riverSpace.ts",
+          "sha256": "933f02324160e17c19196b95e911f7d3aa83c79b0ee8d9f89fe02605e534426e",
+          "bytes": 9706
+        },
+        {
+          "path": "src/archetypes/shallowWater.ts",
+          "sha256": "f4c4a8dcc44eb7080080867441af59a9036c61cd7e68484bd3d024a205ac32fa",
+          "bytes": 14604
+        },
+        {
+          "path": "src/archetypes/shearInstabilities.ts",
+          "sha256": "e2577ba65a4167d65f7c45a00e70425ba45c04c68847796f3832b51fcaf0f1d4",
+          "bytes": 7345
+        },
+        {
+          "path": "src/archetypes/slimeMold.ts",
+          "sha256": "370d6143caf1aaece66ce6951fa2b8263a9b1be903ac06d61f6e55b65d2bc5b5",
+          "bytes": 6497
+        },
+        {
+          "path": "src/archetypes/solarCorona.ts",
+          "sha256": "959539936da4d4861216c4a620b05fb3124de88c8d0c9e58d85a10aecff268eb",
+          "bytes": 17262
+        },
+        {
+          "path": "src/archetypes/som.ts",
+          "sha256": "8fd472f5144c58bffc2abfc4aa5e10982f5b29102399f2aa0b74470d0681e6ec",
+          "bytes": 8693
+        },
+        {
+          "path": "src/archetypes/specialRelativity.ts",
+          "sha256": "16cc1dfb3132ceb4f4d8c6045980fd00852889820e700f673a2375c2c527de52",
+          "bytes": 18301
+        },
+        {
+          "path": "src/archetypes/spectral2d.ts",
+          "sha256": "291d23f2388e100710582daa29bb01750634ec79ccc47727ac4d6db58d3f8d79",
+          "bytes": 11517
+        },
+        {
+          "path": "src/archetypes/spiralGalaxy.ts",
+          "sha256": "0a5569bf8acd26218b5deea2c55b59b282284516348607227c5dacc1a1f6050c",
+          "bytes": 6658
+        },
+        {
+          "path": "src/archetypes/spiralWhirl.ts",
+          "sha256": "f501abfa22bb37dea24b42024fb39a9f7c83ce180c44a9acef6ee61bc24076d5",
+          "bytes": 3858
+        },
+        {
+          "path": "src/archetypes/stellarCollapse.ts",
+          "sha256": "ea5c2a5dcf8e0582a0ebd9df24a081ddd9d8222f03ad0a221f2d52eeb4c102ab",
+          "bytes": 15580
+        },
+        {
+          "path": "src/archetypes/stokesPhase.ts",
+          "sha256": "913b7d7383b179e78bea88ba7d541bb214df47ceb503409e77cacbde63291164",
+          "bytes": 8058
+        },
+        {
+          "path": "src/archetypes/strangeAttractor.ts",
+          "sha256": "cfc662e6c0b730e1826dbd3286af091ad3ea69fc625a8af5d8fef4276f9c9d49",
+          "bytes": 27812
+        },
+        {
+          "path": "src/archetypes/stringWorldsheet.ts",
+          "sha256": "4fb6442e239e5295fa926897e968c49be1ce2b21c7c87a448f4f0a427bc13b50",
+          "bytes": 7529
+        },
+        {
+          "path": "src/archetypes/structureFormation.ts",
+          "sha256": "aaa71c27b5d48e0cdeadc7bf9000400256ef352f3b6f78ba09c4cb95980035fd",
+          "bytes": 10458
+        },
+        {
+          "path": "src/archetypes/thirringShell.ts",
+          "sha256": "5e50d544d1610b61dd6118659edcf482b16ef41e52ea92e07fda95e6042bfb59",
+          "bytes": 8487
+        },
+        {
+          "path": "src/archetypes/thomson.ts",
+          "sha256": "a4a4088fa8eef7ceae9ea211ae8fd9756992f9d872194ec8144924beec962ce0",
+          "bytes": 15154
+        },
+        {
+          "path": "src/archetypes/threeBody.ts",
+          "sha256": "264a5eab4ea3439b471d1bab215fdf5c207ac33bd6ff7d9074c80c3ff6535a45",
+          "bytes": 21070
+        },
+        {
+          "path": "src/archetypes/trigMap.ts",
+          "sha256": "b7422eb44f888ce666ea9209002fc632bc75e153e0d9e410078b227e6f9a537b",
+          "bytes": 5785
+        },
+        {
+          "path": "src/archetypes/twoStream.ts",
+          "sha256": "13e180cff24d2ec277a2605cd2f66dbd9aa3e1adc87e516a083fd84bf0a10186",
+          "bytes": 10700
+        },
+        {
+          "path": "src/archetypes/vascularSom.ts",
+          "sha256": "c88ede5fd7c4b419e168a6e8280f90fa1bc9f9bf51c0ef2a1f870ece3b1815b1",
+          "bytes": 11776
+        },
+        {
+          "path": "src/archetypes/vortexFunnel.ts",
+          "sha256": "1b0ca02ad598f14229034d58025c39143c1606ff56c7ea67460394c4df4bcc41",
+          "bytes": 6020
+        },
+        {
+          "path": "src/archetypes/warpFlume.ts",
+          "sha256": "fdd86d052693eed70434bfc81931cfeeca6db2742bd08bbe1b56f4be38bde983",
+          "bytes": 9673
+        },
+        {
+          "path": "src/archetypes/whiteHole.ts",
+          "sha256": "35acb4e0336026a5fd60e9174162543dc33fddba2e1640eafbec518622d7e1a9",
+          "bytes": 8183
+        },
+        {
+          "path": "src/core/archetype.ts",
+          "sha256": "ef4c7567d07e1b8aec7d08b847c15a7e028075b68305181d160b5e162a37f42e",
+          "bytes": 5786
+        },
+        {
+          "path": "src/core/color.ts",
+          "sha256": "fc5579ce8cb38517994a6f733b77eb6d71a6973cbd788962f355c55ed8d324da",
+          "bytes": 812
+        },
+        {
+          "path": "src/core/customExpr.ts",
+          "sha256": "9af83a6f0eda55ebb4584bfa5fd832a89789d7a27f02e7d3f091dba532786f96",
+          "bytes": 2324
+        },
+        {
+          "path": "src/core/expr.ts",
+          "sha256": "b79a49d2ddff6ed63f6fe67136059eb8849f0ed5f9c6dd6b802e6eb37057d6f9",
+          "bytes": 10059
+        },
+        {
+          "path": "src/core/manager.ts",
+          "sha256": "3c60824963ab2b0de244caccf0f09d524ceff744a90a88f25c21bd9238af8569",
+          "bytes": 1857
+        },
+        {
+          "path": "src/core/params.ts",
+          "sha256": "f4ca30a2b2fdf4cf350046ced1af6dbd510d246448c96ec3b0290dc17c583e59",
+          "bytes": 891
+        },
+        {
+          "path": "src/core/registry.ts",
+          "sha256": "8cadad27f2891d68c388146f2edf478359635de14d28876c8fe0974c5b8ad849",
+          "bytes": 1086
+        },
+        {
+          "path": "src/demo/demo.ts",
+          "sha256": "1ca403da5526e74817b1395f8296e92624d0228871c47840fa3b5cd38f312af3",
+          "bytes": 8530
+        },
+        {
+          "path": "src/gifenc.d.ts",
+          "sha256": "7cac16268f49da73379d4d36e6d7bb37ea1015fb7b033688546b41691de26f6d",
+          "bytes": 1240
+        },
+        {
+          "path": "src/gpu/gpuAttractor.ts",
+          "sha256": "1d062ef09cc2a048ffb9f20e5b58a1d8707c3323b668fd7896e4e9fc8fe529c8",
+          "bytes": 17737
+        },
+        {
+          "path": "src/gpu/gpuBoids.ts",
+          "sha256": "9f103e6eab5faa2829d1f14344a65729135466bb918355c5879406793b7c456f",
+          "bytes": 5953
+        },
+        {
+          "path": "src/gpu/gpuChimera.ts",
+          "sha256": "e5086207557bcee554354a042147690b1f71c62ad79223408a051e1455f1b864",
+          "bytes": 5141
+        },
+        {
+          "path": "src/gpu/gpuDla.ts",
+          "sha256": "6045ee19570ba2bc245238396a7c2c0ba5dd4181c4e2c3c04ed64c7a00665a81",
+          "bytes": 5758
+        },
+        {
+          "path": "src/gpu/gpuEscapeFractal.ts",
+          "sha256": "c237d726e142215b8b032f6fa041608862ee3c524663e1512cde489bbaba6b6f",
+          "bytes": 5120
+        },
+        {
+          "path": "src/gpu/gpuExcitableMedium.ts",
+          "sha256": "77a67a048a6e67ff843cd8393fa413a7822263e27e94398e09d9a74ee22ce484",
+          "bytes": 6004
+        },
+        {
+          "path": "src/gpu/gpuFoam.ts",
+          "sha256": "32adef9c46216fe34229e9614a4e2466637b629286e6c6af4e873a60ab3b2031",
+          "bytes": 4030
+        },
+        {
+          "path": "src/gpu/gpuFractalIFS.ts",
+          "sha256": "6e58250652c3d261e4b7f0173ec57a7b125634dddc1185234215c42dc4232185",
+          "bytes": 4052
+        },
+        {
+          "path": "src/gpu/gpuGalaxyCollision.ts",
+          "sha256": "90c24a2dc30f9e8e382ba9c11bf839aba8329516be9d93e5582530d7dd249ce8",
+          "bytes": 7926
+        },
+        {
+          "path": "src/gpu/gpuGrayScottField.ts",
+          "sha256": "e8f069a70fd96d466edaeefd9801929425fb3ba450961ec38f3502808bf283f2",
+          "bytes": 4315
+        },
+        {
+          "path": "src/gpu/gpuHyperOscillator.ts",
+          "sha256": "637eb06f272e68381b9ccd3c355d5c9fad4a3058bfdc0fefd15832706b4df004",
+          "bytes": 3917
+        },
+        {
+          "path": "src/gpu/gpuKarman.ts",
+          "sha256": "efe6767a36e36653400f88901cfff64a91a38d4a92a69b69318cf15b67ce9732",
+          "bytes": 8516
+        },
+        {
+          "path": "src/gpu/gpuKuramoto.ts",
+          "sha256": "a95d45f7039ae938e1449b89a63b645d8b6aedc1bf92917e7ef7c400dfef30b9",
+          "bytes": 4643
+        },
+        {
+          "path": "src/gpu/gpuLenia.ts",
+          "sha256": "34f147c1d4155941cebd60b097564c17856c5d4ec8847fee7b635fc25973daf5",
+          "bytes": 4736
+        },
+        {
+          "path": "src/gpu/gpuMap.ts",
+          "sha256": "e53c315fdd728a57a1d215a33f87ab9916c910f413a81b3b41437f6751af409b",
+          "bytes": 16947
+        },
+        {
+          "path": "src/gpu/gpuNbody.ts",
+          "sha256": "7b87ea013d128b685c910725c147e75e16f8e8523cd07336d5698c8b838459c9",
+          "bytes": 3952
+        },
+        {
+          "path": "src/gpu/gpuParticleLife.ts",
+          "sha256": "b3a5dbac11b40d762957c41b71ddb214447d050dca5c320a2b78ea142a29cca5",
+          "bytes": 6093
+        },
+        {
+          "path": "src/gpu/gpuPointVortices.ts",
+          "sha256": "7a0d8b39251826784533f81491bd250ec87908a14b7eb7ca11eee98c87d160ef",
+          "bytes": 6338
+        },
+        {
+          "path": "src/gpu/gpuSlimeMold.ts",
+          "sha256": "f4924b36c39ddb36f89753717f31889d7cff4ee2b86a5fd919cab61b4cbaca3c",
+          "bytes": 9600
+        },
+        {
+          "path": "src/gpu/index.ts",
+          "sha256": "a0840a46be0e37173aa9ade186fd49d2c3fe98cb41965e5b54d6e49b31b5ca27",
+          "bytes": 2689
+        },
+        {
+          "path": "src/gpu/types.ts",
+          "sha256": "7299ae674c03a80b7ff76117f466198d7d97c23828ee898e048e6041f9a80a4e",
+          "bytes": 692
+        },
+        {
+          "path": "src/main.ts",
+          "sha256": "26c5a7e277c062a614da3d9b87f70e350fc5f2ce2438c49f30c3ec984e1f0b6c",
+          "bytes": 474
+        },
+        {
+          "path": "src/meta/attributions.ts",
+          "sha256": "07baeff2f72e1c8615839c95e13d24b67af96b995029ef01505ca638e73c9fed",
+          "bytes": 3349
+        },
+        {
+          "path": "src/meta/changelog.ts",
+          "sha256": "14dbe5a5088b559e9625df9e3bde1ff755521cc69388b5c883e405bf862de9fa",
+          "bytes": 87510
+        },
+        {
+          "path": "src/physics/constants.ts",
+          "sha256": "7100d91c9b3424b8f82bf98417c43d6564b8e570d8d5d68685e6007cc4c5c9bc",
+          "bytes": 379
+        },
+        {
+          "path": "src/physics/integrators/rk4.ts",
+          "sha256": "c5a08bfa3e842da54a2a8e950d2f7b335ba4383b17c3314cda5bcebb2faeca73",
+          "bytes": 1365
+        },
+        {
+          "path": "src/physics/lyapunov.ts",
+          "sha256": "0e1fcf7597769be75c51680d13596079b8b01c57f4f28eea3b8b47e99dc10f36",
+          "bytes": 2322
+        },
+        {
+          "path": "src/physics/spatialGrid.ts",
+          "sha256": "c1dea97126d80ff50a7c0ebdf4a65021c53b63edf385cc253261212403b3ceec",
+          "bytes": 3022
+        },
+        {
+          "path": "src/render/camera.ts",
+          "sha256": "64e317e28488bfcf647b791f249beec6128687799f9fd7ff1f10f3faf098da86",
+          "bytes": 1106
+        },
+        {
+          "path": "src/render/field.ts",
+          "sha256": "ac056d91b4753f76cd4e20bf25248ca21150f178f4023481fbade46c4134c401",
+          "bytes": 5095
+        },
+        {
+          "path": "src/render/floatingOrigin.ts",
+          "sha256": "b933f249d48f5ef19a247c4d9a4e26119d2c543da088d917ed3fadc862aace24",
+          "bytes": 1029
+        },
+        {
+          "path": "src/render/points.ts",
+          "sha256": "e2df62057d27e99f83be27aa4fbded4dc8a20468f2a97a3265537107983629bf",
+          "bytes": 2704
+        },
+        {
+          "path": "src/render/raymarch.ts",
+          "sha256": "76512343343d4895805a343af94f0c7ada46ff3483fa3acb61da73125ecf281c",
+          "bytes": 75911
+        },
+        {
+          "path": "src/render/renderer.ts",
+          "sha256": "35ec6c41bfbe3448e90b7ca70bd5b9fcd2bf1251e5c156d304df5db4eba1827e",
+          "bytes": 931
+        },
+        {
+          "path": "src/render/theme.ts",
+          "sha256": "4566c42cca1a2f40291db484a5f363da98c280c7ac1abe3fc2d5234ac283f6a5",
+          "bytes": 234
+        },
+        {
+          "path": "src/render/trails.ts",
+          "sha256": "ed923cc6070c787091ed165c8ffac8dcb213315c2bfb4c1430aec4f3f79e04a9",
+          "bytes": 2764
+        },
+        {
+          "path": "src/security/csp.ts",
+          "sha256": "67a3c063dcc8b0b592ab6f27b4914874a6b11f453c2bdf2f4c9f68117b9ea9f2",
+          "bytes": 1714
+        },
+        {
+          "path": "src/sim/accumulator.ts",
+          "sha256": "bb66ca8ee587e5528e8876708a3f9b732c0431fd79d580edd2c410a53e559107",
+          "bytes": 848
+        },
+        {
+          "path": "src/sim/doublebuffer.ts",
+          "sha256": "926f81151cd8e26e58175b8cf1887a6ef84d0468c5dfdc5e0ad9595c7cd3851f",
+          "bytes": 2833
+        },
+        {
+          "path": "src/sim/driver.ts",
+          "sha256": "01fe2d149997c388747e57e5b63173d4722dc208ec3ffff9ab37b1033864e4ee",
+          "bytes": 3859
+        },
+        {
+          "path": "src/sim/nullDriver.ts",
+          "sha256": "fba92d32d7a20f177478570ac4ce6420daa16dca294bfd3680f1aae1d3253d3e",
+          "bytes": 1354
+        },
+        {
+          "path": "src/sim/sim.worker.ts",
+          "sha256": "293ac7c7e6a9f9aedf50b249081d0570cfa3a6b81ddc5edc479c29eb1bac4a8d",
+          "bytes": 3557
+        },
+        {
+          "path": "src/sim/trail.ts",
+          "sha256": "79eeba3d931c3b97e7818a936fa82eeab34cf4218ddf9805ae98657f726ad821",
+          "bytes": 1981
+        },
+        {
+          "path": "src/sim/workerDriver.ts",
+          "sha256": "cccf84b9bc32b082656221257c47cf319ebe7fd37eebe5e4679fa0cdfc61b2f0",
+          "bytes": 3330
+        },
+        {
+          "path": "src/state/migrations.ts",
+          "sha256": "e6574d9ce8151d3e285dcfabd58b93c9aab1b93818a3a2677b15675f360eaf99",
+          "bytes": 1792
+        },
+        {
+          "path": "src/state/pngMeta.ts",
+          "sha256": "9b0ef473574b452679f5d8b6f3df02705dac24af256d0cd7c42e142438fb8a78",
+          "bytes": 3230
+        },
+        {
+          "path": "src/state/rng.ts",
+          "sha256": "9c749b96ee15139cbaca7bc26c667fd2224e35e979832354a948fd2644561d71",
+          "bytes": 429
+        },
+        {
+          "path": "src/state/schema.ts",
+          "sha256": "421c80f2f5142cc1420a581be3ce66ee3b16a02b7a1ae02b439ce1b1ab32ee87",
+          "bytes": 1914
+        },
+        {
+          "path": "src/state/snapshot.ts",
+          "sha256": "a2eda9b7b7bf60e683b08fe832e253b0357dccdf74cedee77c106a3bd0e5ebf9",
+          "bytes": 916
+        },
+        {
+          "path": "src/ui/components/app-shell.ts",
+          "sha256": "16f22ec2e5efaa99cb34f28d46cc6c14f0d5d3f58d3cbe45bac6c4ac1ef8a02a",
+          "bytes": 5791
+        },
+        {
+          "path": "src/ui/components/archetype-switcher.ts",
+          "sha256": "a5c58bc226762f70a667211be524159728d8713d26ded75c90e5c0e71d019142",
+          "bytes": 2340
+        },
+        {
+          "path": "src/ui/components/code-viewer.ts",
+          "sha256": "042342f286d538f569944cd7f6ce273ee12be6e15508ce557e84a5cb97cb9175",
+          "bytes": 7003
+        },
+        {
+          "path": "src/ui/components/command-palette.ts",
+          "sha256": "4c0ef0457341205e959f436e19940d2788adcace565600740314c1f14bc22c29",
+          "bytes": 15878
+        },
+        {
+          "path": "src/ui/components/demo-details.ts",
+          "sha256": "af21cea0ef3bafc96c9486970243a3f1132a0ef44c7a8fe13475bbf05591a510",
+          "bytes": 4162
+        },
+        {
+          "path": "src/ui/components/demo-hud.ts",
+          "sha256": "a9c4fa42b4b0c8ef3701588ba73412d42f9d001000c1e676049e2bc845da5195",
+          "bytes": 3414
+        },
+        {
+          "path": "src/ui/components/hierarchy-tree.ts",
+          "sha256": "7ad51df24a040dd1d7942b475e2966ab043a72623cb5077faeac09ac28540355",
+          "bytes": 2456
+        },
+        {
+          "path": "src/ui/components/info-overlay.ts",
+          "sha256": "cd993d8fef4056e9b40ef66ca7e7e5c8a299ef3e3da480274f203eea5b243f7d",
+          "bytes": 22396
+        },
+        {
+          "path": "src/ui/components/learn-panel.ts",
+          "sha256": "a59d958c9ab3eac11b653a0a479c7eb4d477f2c4b60c9116271dc5b3ea62c9e1",
+          "bytes": 7565
+        },
+        {
+          "path": "src/ui/components/params-panel.ts",
+          "sha256": "a5fcbd903590cc14466ac2d1810ea903220ee76549b299fe073b3a720f074a7f",
+          "bytes": 3755
+        },
+        {
+          "path": "src/ui/components/snapshot-controls.ts",
+          "sha256": "b0870024b498bd01eaf592e29fb8f3c05d1e5e99a60f180955f07792e00ada6c",
+          "bytes": 9851
+        },
+        {
+          "path": "src/ui/components/telemetry-panel.ts",
+          "sha256": "6a1d6d6a73baa509ddecacf5e2f7e3b76e59b52521411c97069ba71911d67364",
+          "bytes": 1673
+        },
+        {
+          "path": "src/ui/learn/content.ts",
+          "sha256": "ad85d2e410e4697ed942ca1f19476f7b4730f46e481406722056860dee7481c4",
+          "bytes": 1398
+        },
+        {
+          "path": "src/ui/learn/docs.extra.ts",
+          "sha256": "b3da90b6f3cee9e008905dde1048364af71a8977e29d4a924845b56d9e762920",
+          "bytes": 476897
+        },
+        {
+          "path": "src/ui/learn/docs.fractals.ts",
+          "sha256": "c7c12d6d23447a0131b6f82a0ea7ea84598f321b42386b066b2f445bc3e3be6a",
+          "bytes": 9431
+        },
+        {
+          "path": "src/ui/learn/docs.generated.ts",
+          "sha256": "2765935ea7fefadf0f09fca6859a7c8937769502fd28f08b65846018f39cd842",
+          "bytes": 58833
+        },
+        {
+          "path": "src/ui/learn/docs.parametric.ts",
+          "sha256": "cb87fde851d2a9810ec89e5941a658bd00f9f3c14f9c6bbdf081e783ae4c8232",
+          "bytes": 110280
+        },
+        {
+          "path": "src/ui/learn/docs.raymarch.ts",
+          "sha256": "d90f0c2714e02babc9f91eac386c31cf57bcd0fbc69791f1035079cc2e7e0122",
+          "bytes": 136727
+        },
+        {
+          "path": "src/ui/store.ts",
+          "sha256": "a2dca2e632a567e22b8c54b5abe3f2886fa4a56d4c6d182172d697096e506e7f",
+          "bytes": 8930
+        },
+        {
+          "path": "src/version.ts",
+          "sha256": "59f8edb31e20c506ca56dcc0cde897adb51841cf5cb0b677ac1814e0154c8baa",
+          "bytes": 431
+        },
+        {
+          "path": "src/vite-env.d.ts",
+          "sha256": "a1926a3a20633b326111d55fe5de981ce44d751d52daaa46ff790622b14bef4a",
+          "bytes": 117
+        },
+        {
+          "path": "test/bufferStability.test.ts",
+          "sha256": "78165b734458eb5652847fd4bf292b3f0a68052a51f5b47699fb331e696bc298",
+          "bytes": 1530
+        },
+        {
+          "path": "test/chimera.test.ts",
+          "sha256": "d94be70689d6269972a6187989b2cdd835742c2667f69cd33d61588349d556ef",
+          "bytes": 1691
+        },
+        {
+          "path": "test/csp.test.ts",
+          "sha256": "ef6ecea8f73843f4a99c63b5b4a241783ef66d79059ccefeb00e9e79f6e3decd",
+          "bytes": 1731
+        },
+        {
+          "path": "test/doublebuffer.test.ts",
+          "sha256": "15426d5be647f1a2b2969cfcc4ce86a015e9061d80d837028df96ceac8e9e927",
+          "bytes": 1324
+        },
+        {
+          "path": "test/expr.test.ts",
+          "sha256": "809ba2a88bfdd76e30fbb25f473071a6f710249452f82d4c3e813b2a2c8bab2c",
+          "bytes": 4514
+        },
+        {
+          "path": "test/heatAndFluids.test.ts",
+          "sha256": "c899389bc1a8cd31e19dbd168c487dd2fb8e6390a06d6f1cac4cc2d1caf2f79c",
+          "bytes": 5053
+        },
+        {
+          "path": "test/hyperOscillator.test.ts",
+          "sha256": "561488f55ff499a7ffad519ac0f41b0366fd59bbe8a1f1303cbed69dbe584e35",
+          "bytes": 1479
+        },
+        {
+          "path": "test/karman.test.ts",
+          "sha256": "4e4b965a0278f8cf6b9d645219db30f477900eb4c2fb9c85d61ea8cf5df828b1",
+          "bytes": 1987
+        },
+        {
+          "path": "test/kuramoto.test.ts",
+          "sha256": "9632171d2513c9b2c958566c1bd92facbd9b384d1896803d985d003d408a8063",
+          "bytes": 1688
+        },
+        {
+          "path": "test/lyapunov.test.ts",
+          "sha256": "6037a603bce315c4813f8a9fa344e69f3d4b4b2bfc17c73c1e1c7fb329338e58",
+          "bytes": 1413
+        },
+        {
+          "path": "test/nbody.test.ts",
+          "sha256": "0ba9a4d9b23596027b627d9f837fae9ff33e344c67490bf7c53bb09a3c29675a",
+          "bytes": 2236
+        },
+        {
+          "path": "test/pngMeta.test.ts",
+          "sha256": "4083aff9b3b392ba42855994ba6f39ed8e7940068be6f3c8db831f388def649d",
+          "bytes": 1422
+        },
+        {
+          "path": "test/quantum.test.ts",
+          "sha256": "42b4812098a282909a1234f278121b1817035e123152948c7d0c4f893949837f",
+          "bytes": 1959
+        },
+        {
+          "path": "test/quantumFoam.test.ts",
+          "sha256": "4794e03a13463c5776443697e34fa28bf8c774bd7e111f23ff21444274797ac5",
+          "bytes": 1513
+        },
+        {
+          "path": "test/schema.test.ts",
+          "sha256": "8a7741d2f64db1ce6184b168160c9fdfd515b45f458743f3803e5c39c915f867",
+          "bytes": 2074
+        },
+        {
+          "path": "test/shareLink.test.ts",
+          "sha256": "772be28c2777fa2c2f4507a1dd00d84f6e1a5c764007dddf2d1674359c640bdb",
+          "bytes": 1630
+        },
+        {
+          "path": "test/solidsPlasmaStars.test.ts",
+          "sha256": "4a7668ff7e7c07aa45d51362656e0d5da3ee63b7bff90f2e97f618efb3e67fae",
+          "bytes": 4540
+        },
+        {
+          "path": "test/solvers.test.ts",
+          "sha256": "630b4445d925f553c4835a02da112b3312957b1224bb3c04d40279f2d0c7aa0d",
+          "bytes": 1429
+        },
+        {
+          "path": "test/spatialGrid.test.ts",
+          "sha256": "d43f27cbd6f945a83a0b4dcc3f9656d6e6c700304c11a18c7bbdcbf4b70e78f4",
+          "bytes": 2913
+        },
+        {
+          "path": "test/systems.test.ts",
+          "sha256": "4d82b60f1ee97582431944ca06800d764997684cc97b5833d63354aaad4d6634",
+          "bytes": 3684
+        },
+        {
+          "path": "test/teachingStaples.test.ts",
+          "sha256": "15994293658dde2f8897023829899077526befb598445992ee6e8b59f54f84e4",
+          "bytes": 8099
+        },
+        {
+          "path": "test/trail.test.ts",
+          "sha256": "757661f4f57cf8240001c2ad4e2f73144723f9da543e36f6322ab2f7b60742fe",
+          "bytes": 1293
+        },
+        {
+          "path": "tsconfig.json",
+          "sha256": "c27fe2b03392918a785a6faf04d9c69ee301ce001e3bad4b2759aa3e4f2fbb9d",
+          "bytes": 682
+        },
+        {
+          "path": "vite.config.ts",
+          "sha256": "69a804d0c9802e77623adf70b6e8bac4e59b2e51f12996d48515893f5f3bc193",
+          "bytes": 3872
+        }
+      ]
+    },
+    {
+      "repository": "hunar4321/particle-life",
+      "url": "https://github.com/hunar4321/particle-life",
+      "commit": "256278714c4f6a1ce900d24faafcc101769c54c2",
+      "license": "MIT",
+      "source_root": "third_party/upstream/particle-life",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "26b28c3a713be6c073d7dcfddda37d7cd8757ae209575d73181a2113dff7e0ad",
+          "bytes": 1068
+        },
+        {
+          "path": "README.md",
+          "sha256": "56f8a27eee0115cb321f9325179c659b01ad4d8b1629fc9b7a2243674b1cc083",
+          "bytes": 7842
+        },
+        {
+          "path": "particle_life.html",
+          "sha256": "e91f98e729f33c315f0a70789b2cc52cb2d6e95a6e952f40c1b8b73175e42d3b",
+          "bytes": 24606
+        },
+        {
+          "path": "particle_life.py",
+          "sha256": "fb62dc220d6c6010cb884ebca88b0950bc7fee12ae240df7a0c63538dc30a4cc",
+          "bytes": 1940
+        },
+        {
+          "path": "particle_life/particle_life.common.settings",
+          "sha256": "6b8cf23ce7014a3759b5ded9bff707ce86dda7df8569818d874287faabd00844",
+          "bytes": 774
+        },
+        {
+          "path": "particle_life/particle_life.sln",
+          "sha256": "2fdde0cc571c08e6f0e28e18d440001d05d187159d1a008f5c04bef2f8a83e79",
+          "bytes": 2088
+        },
+        {
+          "path": "particle_life/particle_life.vcxproj",
+          "sha256": "84fad554d87650f45f93a4287eb2fe3a91f8e9bda492bc46f12e2ac5b5a2e999",
+          "bytes": 15597
+        },
+        {
+          "path": "particle_life/particle_life.vcxproj.filters",
+          "sha256": "827d0ed72e4c292cbbe2b52be8fb98c7c611d767d31fe70fa6867014842273af",
+          "bytes": 4432
+        },
+        {
+          "path": "particle_life/src/main.cpp",
+          "sha256": "a151159e2c4ec555e763fc78e68ea0e538a5d6264b7fd37fdc5c2385a5270495",
+          "bytes": 279
+        },
+        {
+          "path": "particle_life/src/ofApp.cpp",
+          "sha256": "bfe5d4d5b031b303c7a98c74933bda47b2f0a3c96b38b1b8394e95cfaf2243a9",
+          "bytes": 18544
+        },
+        {
+          "path": "particle_life/src/ofApp.h",
+          "sha256": "cc1ba6507570f786fb187b5d63ce9f2c2c3ccb95ea73786a5ee1089c611097e3",
+          "bytes": 5086
+        },
+        {
+          "path": "particle_life_3d.html",
+          "sha256": "a8015bc7ed3e1d644ef614383232b9f46b36df6978634bc67aebac28354d4498",
+          "bytes": 16621
+        }
+      ]
+    },
+    {
+      "repository": "mpuchstein/primordial-dish",
+      "url": "https://github.com/mpuchstein/primordial-dish",
+      "commit": "ae7b7d80696073eae87855ac3265468995780f7c",
+      "license": "MIT",
+      "source_root": "third_party/upstream/primordial-dish",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "1756f4fabab1c76c85d27e56eadfed02ece305c68a31cd5a64699a0bd22b20f4",
+          "bytes": 1075
+        },
+        {
+          "path": "README.md",
+          "sha256": "bda756a1b1c123fe14baf1bf96101ec4bda6aec8d06ac4ea7b95cd3a36b5f938",
+          "bytes": 3170
+        },
+        {
+          "path": "godot/dish.gd",
+          "sha256": "184897da6e9fbfd11b9dddaf8751b3f7e8aba5beda760042c0137c46ef6c1484",
+          "bytes": 2456
+        },
+        {
+          "path": "godot/export_presets.cfg",
+          "sha256": "d98c84f1b79e5fe3f9b9b4ab09205dbb48028a5f7b4b644893bb7d43892b7bc2",
+          "bytes": 1234
+        },
+        {
+          "path": "godot/genview.gd",
+          "sha256": "3146a75c49edb05eb0621fe81f4b435ba9e3c56f0707fc4bf1c9200195e6853e",
+          "bytes": 4711
+        },
+        {
+          "path": "godot/gpu_sim.gd",
+          "sha256": "e96fa22a3342e6e66222b32ef23364f73c989b3ab9323ceed562402d37f52ae1",
+          "bytes": 9760
+        },
+        {
+          "path": "godot/main.gd",
+          "sha256": "d8302cd4ee8f55b7fec803769b76bb63b67fb65882252b9d306e1a198585a60f",
+          "bytes": 8989
+        },
+        {
+          "path": "godot/main.tscn",
+          "sha256": "073085956cb847979f9ddd2afd0e38a09d08072b8b99b8c2a4c10225ca59e145",
+          "bytes": 161
+        },
+        {
+          "path": "godot/presets/01_genesis.json",
+          "sha256": "78a3bcb7b722abf8b9a969dc491ccb8b5204336056faff2a1d19aa63d0592ec4",
+          "bytes": 762
+        },
+        {
+          "path": "godot/presets/02_orbs.json",
+          "sha256": "4882c9aa7f702f98383619b5a64ae44765a254fbfa2cee7364166decb5cd34ee",
+          "bytes": 756
+        },
+        {
+          "path": "godot/presets/03_garden.json",
+          "sha256": "902ce6f35aa13cfa088921fb2043e1e17887736c55d686bea169bef1c0b10cb1",
+          "bytes": 759
+        },
+        {
+          "path": "godot/presets/04_symbiotes.json",
+          "sha256": "49f56e05ee2c09e8a8c41a34dad7629e995120e943c7d98c57855dd2316c7528",
+          "bytes": 753
+        },
+        {
+          "path": "godot/presets/05_polymers.json",
+          "sha256": "6136367859d36cd8e47f2c3802deb8cceaf82106329b41bac85c4e6c3f0352ea",
+          "bytes": 762
+        },
+        {
+          "path": "godot/project.godot",
+          "sha256": "9a4543c37c4bc5814f26913f611bb2daa5485cdd84b011afc488e4b29869bcd1",
+          "bytes": 6142
+        },
+        {
+          "path": "godot/sim.gd",
+          "sha256": "f18c2e08eef57581ec8f1d100356a8e225da3c013b74905153c9bdf7b753bc81",
+          "bytes": 5437
+        },
+        {
+          "path": "godot/ui.gd",
+          "sha256": "ebc4b1591ec576679c735e7fe691eebc4385c8c209fdeeb1d2c461d4d7e1552b",
+          "bytes": 5990
+        }
+      ]
+    },
+    {
+      "repository": "paulrobello/par-particle-life",
+      "url": "https://github.com/paulrobello/par-particle-life",
+      "commit": "6f495dae5b2bbb65fdafd2b7b6dab59142dfdf02",
+      "license": "AGPL-3.0-or-later",
+      "source_root": "third_party/upstream/par-particle-life",
+      "files": [
+        {
+          "path": ".codex/hooks.json",
+          "sha256": "123313824d5e7a64f4ced412f15cf2161abb16d6a54bead18abd8f7f40e53eca",
+          "bytes": 218
+        },
+        {
+          "path": ".gemini/settings.json",
+          "sha256": "20d112a75f5e65e334cf8c811fe29a3e2da3cc94c69a564c4eb8b8bd7830db17",
+          "bytes": 479
+        },
+        {
+          "path": ".github/dependabot.yml",
+          "sha256": "5b32f79e8952b99dd647e40859a250217b806080e31d5ef9109e756a29069407",
+          "bytes": 563
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "sha256": "26dfb681ae0d62e1845cf06565231655d6b6510fbdb1f9a02585bdbf64717994",
+          "bytes": 4151
+        },
+        {
+          "path": ".github/workflows/publish-crates.yml",
+          "sha256": "f13449c033f63eac9031684c469cea4d3f2527c7b01cf27706074f4be899cae0",
+          "bytes": 3649
+        },
+        {
+          "path": ".github/workflows/publish-homebrew-cask-core.yml",
+          "sha256": "4212a9befed80232aea4f041dc6874440afaeb2f43cbd9924824a68eba4aa596",
+          "bytes": 4302
+        },
+        {
+          "path": ".github/workflows/publish-homebrew-cask-run.yml",
+          "sha256": "7e7ef42bd6954340e0937dcb8d08157691bcceb11e4b1f354dcdd8fa2d7dbd2a",
+          "bytes": 339
+        },
+        {
+          "path": ".github/workflows/release.yml",
+          "sha256": "c124c00d0487c44f21ab350de8cda8a020a9655dd45f2df3f55101053ca76920",
+          "bytes": 18316
+        },
+        {
+          "path": ".pre-commit-config.yaml",
+          "sha256": "08a3070a5d662d6c4325c927b1ddeaf2690956609f51d4b3a40c61d4eb7778eb",
+          "bytes": 1882
+        },
+        {
+          "path": "Cargo.lock",
+          "sha256": "b73659e6da79eeabf0a93815e2b65e9241637563d53d8255315b953c535591a6",
+          "bytes": 119762
+        },
+        {
+          "path": "Cargo.toml",
+          "sha256": "6ccc58ff8b9214c26785b006a1fcb990a285eaaec01d9eb90a71c23acae7dcf8",
+          "bytes": 1380
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "bytes": 34523
+        },
+        {
+          "path": "Makefile",
+          "sha256": "528a50eab15f86aadb43d06877c247b6f10fb889253f5af7b43718ee6ff4df13",
+          "bytes": 4678
+        },
+        {
+          "path": "README.md",
+          "sha256": "e7ff5dacc3e64721cb7ee696ff7a1ce05dde120c09ebaab254b053be2c5e2792",
+          "bytes": 11063
+        },
+        {
+          "path": "clippy.toml",
+          "sha256": "0d4999b18783c51bb09997bb30b56c53e9d79324a9bdf3a2b1133665525dff56",
+          "bytes": 257
+        },
+        {
+          "path": "deny.toml",
+          "sha256": "8c652a3739cd43aad657764b75d2343c4634b50474c36200d27b95a3e1f75f25",
+          "bytes": 1855
+        },
+        {
+          "path": "docs/README.md",
+          "sha256": "597958a37a937c98c526ee5d1c25ffce841e6087626323024a283360f14b29f1",
+          "bytes": 2535
+        },
+        {
+          "path": "homebrew/README.md",
+          "sha256": "f51be55e204684f6724b463e4fd39be3b2eab26d0a5f357d195d776818f22b37",
+          "bytes": 2421
+        },
+        {
+          "path": "rustfmt.toml",
+          "sha256": "c7c0db9d2823f14c8cc144b39743a8bd53af8140f9c0690542a6a049704b7227",
+          "bytes": 285
+        },
+        {
+          "path": "shaders/bin_clear.wgsl",
+          "sha256": "3fc976fcfa1bab4a5b6532d6f90cf3a2767cd7c1232c9aae1a8aaa36ba3c6970",
+          "bytes": 386
+        },
+        {
+          "path": "shaders/bin_count.wgsl",
+          "sha256": "2c1025e14739ef301e6d9f7dc3cc61644d682fa2764531f812bdf4891712d828",
+          "bytes": 1393
+        },
+        {
+          "path": "shaders/bin_prefix_sum.wgsl",
+          "sha256": "850e13963ec5e37fe18049901413f73e28866133f836ef451db5bf7ca39989aa",
+          "bytes": 827
+        },
+        {
+          "path": "shaders/bin_sort.wgsl",
+          "sha256": "c127b11d100b511a0beae55880273266c8f8265b67d54b0a92bdeec5037651a1",
+          "bytes": 1975
+        },
+        {
+          "path": "shaders/brush_circle.wgsl",
+          "sha256": "15a2b1a187be4fd41506d58c273a1478432489ac2614d57b0975bef15778c718",
+          "bytes": 3003
+        },
+        {
+          "path": "shaders/brush_force.wgsl",
+          "sha256": "e41a654692d4fb3e37e65971ac74f3256232c179a9f2a0672e8de8cfb24b5a06",
+          "bytes": 3236
+        },
+        {
+          "path": "shaders/particle_advance.wgsl",
+          "sha256": "3139f5c8851e6cd3aa643072626482e802ddcd6fd38c2874b007828dcd45ed4e",
+          "bytes": 8924
+        },
+        {
+          "path": "shaders/particle_forces.wgsl",
+          "sha256": "2c7b19903bc8aa50cb67c7b77e425bfed9b42c9f1f45d9b1797667fa309faad2",
+          "bytes": 6439
+        },
+        {
+          "path": "shaders/particle_forces_binned.wgsl",
+          "sha256": "6ab0b176e2b1c1b61747c552708a66fac456b7ebe9d8962dd784d3452c740ef7",
+          "bytes": 10627
+        },
+        {
+          "path": "shaders/particle_render.wgsl",
+          "sha256": "cf6797f3b5de27649878113a0c03ceb1f25896bf9b316e5f23e9935547d2d438",
+          "bytes": 3031
+        },
+        {
+          "path": "shaders/particle_render_glow.wgsl",
+          "sha256": "7af9071f582517178d28a421ea66c581174f559b1794bc58987f67bbe3c7f23a",
+          "bytes": 3572
+        },
+        {
+          "path": "shaders/particle_render_infinite.wgsl",
+          "sha256": "3298e81affd33fb44a034239cca3189b19d92daefcffac3b1840d6db9a1f300f",
+          "bytes": 3985
+        },
+        {
+          "path": "shaders/particle_render_mirror.wgsl",
+          "sha256": "9757fd7e12c78910482dc05de6c38a3d7541648e8189b15fa321bb635af34ee2",
+          "bytes": 4796
+        },
+        {
+          "path": "shaders/particle_spawn.wgsl",
+          "sha256": "fefb36d245d6acd01bd9746350602b9e34a0d37192f4f2a95e403faf8d094603",
+          "bytes": 2326
+        },
+        {
+          "path": "src/app/config.rs",
+          "sha256": "bdac8739d1bdec5772bc263de9c3315d1f9dcf065df9ca6d413c107bad9324ba",
+          "bytes": 13107
+        },
+        {
+          "path": "src/app/error.rs",
+          "sha256": "37b0d925012a52f98a16a86c6c23b1a567626239e00f8797a2a0416748d75375",
+          "bytes": 1650
+        },
+        {
+          "path": "src/app/gpu_state.rs",
+          "sha256": "b959947d8cd23066b44ef6144289195581babe570d8269af4bbf3ec4f8f219e0",
+          "bytes": 13039
+        },
+        {
+          "path": "src/app/handler/brush.rs",
+          "sha256": "57894c46c99c3976c9b37825f3359d9beeed9071f210d47b518c1fae8fc7612b",
+          "bytes": 6235
+        },
+        {
+          "path": "src/app/handler/buffer_sync.rs",
+          "sha256": "b41c61d049a7b634abc4bbea4b95c0c43b5ca9949ef40e197619bc4c16b36f36",
+          "bytes": 12550
+        },
+        {
+          "path": "src/app/handler/events.rs",
+          "sha256": "8f1b590d658e698530cf0cb89a652b60880b3f55bb7b685c98849d9fbfb665c7",
+          "bytes": 16786
+        },
+        {
+          "path": "src/app/handler/gpu_compute.rs",
+          "sha256": "51f121369192a645456ab22c1d49223b8ada5b3e8c1d2948b1cf23e79912ee49",
+          "bytes": 12765
+        },
+        {
+          "path": "src/app/handler/init.rs",
+          "sha256": "9dfe535063643d125a8062e020f85d50c119f815e8c8f518503e5d237305e5d0",
+          "bytes": 7433
+        },
+        {
+          "path": "src/app/handler/mod.rs",
+          "sha256": "60a3d9cca4e4e901470f1e1301ee2f6d29e25cdd3180ffe1d3f420cfef789410",
+          "bytes": 12178
+        },
+        {
+          "path": "src/app/handler/presets_ops.rs",
+          "sha256": "fa0645fdf12c7f1939fdc931dce026073c1dfe3b8b50117a104c0b37f2461dd7",
+          "bytes": 13091
+        },
+        {
+          "path": "src/app/handler/recording.rs",
+          "sha256": "abde390aac2f9c720ce21cf8075a9f924ce9320b67248ee9e0a199ba43010b64",
+          "bytes": 8730
+        },
+        {
+          "path": "src/app/handler/render.rs",
+          "sha256": "d0a89640c1a10234c592a0c573e962f217b71edc6cf8b866cbcc37e97b0110e3",
+          "bytes": 14043
+        },
+        {
+          "path": "src/app/handler/ui.rs",
+          "sha256": "5e5106144d713b85a71290723406258d1319ae535abe367896ff622089f07c3d",
+          "bytes": 64863
+        },
+        {
+          "path": "src/app/handler/update.rs",
+          "sha256": "a976a5fb4f63d15bdace7635c9d9467c74af4bb36807d45dd4f348c7c92c6778",
+          "bytes": 8265
+        },
+        {
+          "path": "src/app/input.rs",
+          "sha256": "bddccd7a0dcc0d26f1b310c14e2d4bea59d5f13d07d6dd3746d52f74acfa5551",
+          "bytes": 8050
+        },
+        {
+          "path": "src/app/mod.rs",
+          "sha256": "f8a0531ebb49ba031dd8ad6f76338504b5af3d464a1155ec7cfefc839543eeab",
+          "bytes": 314
+        },
+        {
+          "path": "src/app/preset.rs",
+          "sha256": "c7b18fe163af000a0fd144290bc374d3f52fd89bf6e6d00556576cffb2ff7f52",
+          "bytes": 10230
+        },
+        {
+          "path": "src/app/state.rs",
+          "sha256": "ba9288fd144b35e8a7f89af1eb432d8920e20edb50763a76f381906525a2a434",
+          "bytes": 22196
+        },
+        {
+          "path": "src/generators/colors.rs",
+          "sha256": "b333c544529bd02edcb2634195107c7bd175f1bd387fe4e1f8dbc94e6e49647b",
+          "bytes": 38758
+        },
+        {
+          "path": "src/generators/custom.rs",
+          "sha256": "a9c90be800a0c2609d907798cbf821785e47b18a5832f2a1a9ceedc7f26605ca",
+          "bytes": 9335
+        },
+        {
+          "path": "src/generators/expression.rs",
+          "sha256": "112c42bf483f30074bcd9393b5ab036717f0640774524b03375fa6aed69eafa6",
+          "bytes": 26090
+        },
+        {
+          "path": "src/generators/mod.rs",
+          "sha256": "5e1ffe9dfc55a1b1d199e0779f020b3bca4a674c81be8bc98c9a75516a74e8e5",
+          "bytes": 1070
+        },
+        {
+          "path": "src/generators/positions.rs",
+          "sha256": "9cce128f7ff41668fc0c56e17f48b52c188c669c58faaf5432f1010283810421",
+          "bytes": 40925
+        },
+        {
+          "path": "src/generators/rules.rs",
+          "sha256": "7208f6edca05eefb227858b7534694a6129009ebc526aedcefb8c78218919223",
+          "bytes": 30478
+        },
+        {
+          "path": "src/lib.rs",
+          "sha256": "0e137fa3bd57bcff04e4372083179c678c1980d0c5b01b21c6527b5862272c44",
+          "bytes": 1501
+        },
+        {
+          "path": "src/main.rs",
+          "sha256": "ed0c602f44ef13426bd3c1b46c8690616d32776a3cb869dcaa201f1e9f44eb0a",
+          "bytes": 1895
+        },
+        {
+          "path": "src/renderer/gpu/buffers.rs",
+          "sha256": "9d87e6655e7b57feb292dd0446327b171a243ac393894b806cbbb8c015641306",
+          "bytes": 58539
+        },
+        {
+          "path": "src/renderer/gpu/context.rs",
+          "sha256": "080addbd1a495ac4812e128371a121913f48a8aa46adaa4ed612e3c90d1883c8",
+          "bytes": 13714
+        },
+        {
+          "path": "src/renderer/gpu/mod.rs",
+          "sha256": "da0dff799aff66ce51c156a899b847d368b970ef4d088d86ac5a298942a0341b",
+          "bytes": 1438
+        },
+        {
+          "path": "src/renderer/gpu/pipelines/brush.rs",
+          "sha256": "a989891674ce9389b8686241d52339a64151a69e9d480d5c23bbd32b353e9148",
+          "bytes": 17094
+        },
+        {
+          "path": "src/renderer/gpu/pipelines/compute.rs",
+          "sha256": "969e2913d2712d1a16a9de251d05b73686b57b40143245139f96383b2fd1977d",
+          "bytes": 13626
+        },
+        {
+          "path": "src/renderer/gpu/pipelines/mod.rs",
+          "sha256": "1fe1e1c1a7c0d9d6b76056ab53593d4bf91a1a0609c1483e2e73b132358181f8",
+          "bytes": 3565
+        },
+        {
+          "path": "src/renderer/gpu/pipelines/render.rs",
+          "sha256": "e236d17f3380906fd98222a9df0f299ff7ac4fad987e0381dab6bdd7572cbbd5",
+          "bytes": 32733
+        },
+        {
+          "path": "src/renderer/gpu/pipelines/spatial.rs",
+          "sha256": "012c87b739fb8d3226c3f26ee9795db558897d43645435d31e984ad11b52ab29",
+          "bytes": 26288
+        },
+        {
+          "path": "src/renderer/mod.rs",
+          "sha256": "04a068909c57c74d9fd21be79ea42a3280e542d05810e9a53caee401f8981b65",
+          "bytes": 63
+        },
+        {
+          "path": "src/simulation/boundary.rs",
+          "sha256": "fcc0aac60353ca68a30dba4d66b021f99a673abe7df32f507e0d9a8f9b3f455b",
+          "bytes": 1182
+        },
+        {
+          "path": "src/simulation/matrix_variation.rs",
+          "sha256": "321560a4688051981636c72e1940b2978ebdc354255bd6192ddc700bdcf98866",
+          "bytes": 2765
+        },
+        {
+          "path": "src/simulation/mod.rs",
+          "sha256": "d9e9fa896cd34bcfb842ddb1fb928dc28ec3ca43db12d8deaed5e12ec15f540b",
+          "bytes": 7263
+        },
+        {
+          "path": "src/simulation/obstacle.rs",
+          "sha256": "29a6546b9db13decd75dac70815ecbf59f9130ed0a1a4e461a74758f6a1faef5",
+          "bytes": 2161
+        },
+        {
+          "path": "src/simulation/particle.rs",
+          "sha256": "e3c028b4644fef2130ef752e7c2b20c689fa316dec22c5c38ac75ff2f98ab89c",
+          "bytes": 13710
+        },
+        {
+          "path": "src/simulation/spatial_hash.rs",
+          "sha256": "57072f05d6fc2d5aa76b6baecb01fe1f8d7cf65323864adfa3739398d49045c9",
+          "bytes": 13986
+        },
+        {
+          "path": "src/video_recorder.rs",
+          "sha256": "7cf10958c8999690c6ec5a8ca523c5462af90919cfbacdf37951283b61f298db",
+          "bytes": 9963
+        },
+        {
+          "path": "tests/enhancement_features.rs",
+          "sha256": "f2df2019dc0e85532585a676b9ebda612b4c44d9179e0701e8449b559b585fe8",
+          "bytes": 13698
+        }
+      ]
+    },
+    {
+      "repository": "spherical-sound-society/CellFlow",
+      "url": "https://github.com/spherical-sound-society/CellFlow",
+      "commit": "9e7a65541fcecc7caa793652a84609d9d961736d",
+      "license": null,
+      "redistributed": false,
+      "integration": "Original Rust implementation of mathematical behavior; no upstream source or preset copied",
+      "files": []
+    },
+    {
+      "repository": "VladimirTechMan/g3dl",
+      "url": "https://github.com/VladimirTechMan/g3dl",
+      "commit": "1d2f5c516f800b1ede4fbe31ffcb3003140bb163",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357
+        },
+        {
+          "path": "README.md",
+          "sha256": "0c04eeb2ad82d6eda7f6453a7caa1cf6bc06ceb5a7bfbc8e193b50c870530850",
+          "bytes": 9916
+        },
+        {
+          "path": "_config.yml",
+          "sha256": "da5304fbdb475c33870aa4d093a668d19e52853c531f3aca457d2f5c1bf95eb9",
+          "bytes": 35
+        },
+        {
+          "path": "index.html",
+          "sha256": "03a2257f45f5429e6d7fa672333665e225e28c363ad236b5e1ae53116d0b0610",
+          "bytes": 21147
+        },
+        {
+          "path": "src/app/app.js",
+          "sha256": "f2b1f66c3ef50b3d7d17d6e2399e4329bcc908c23225405769640e4e0daa4ecb",
+          "bytes": 27061
+        },
+        {
+          "path": "src/app/cssLength.js",
+          "sha256": "ce536830ea5cf5efef4876d1957e96d3deae4a22fc55c9f3386d438fcc41d7ca",
+          "bytes": 3033
+        },
+        {
+          "path": "src/app/densityUi.js",
+          "sha256": "c04d5095e9aeba04e6f1201dbf021257997f9f2d26bfae6079461620fbb5fcce",
+          "bytes": 4487
+        },
+        {
+          "path": "src/app/domHelpers.js",
+          "sha256": "6e2b58ff2782b27171f5f8219b7873e6cffba08d84d1889a5380683afecca318",
+          "bytes": 754
+        },
+        {
+          "path": "src/app/fullscreen.js",
+          "sha256": "74db03267737d4b97f6cd9fc5414d0e56413cfbe4e8f57f451a196c61e7a5c23",
+          "bytes": 3992
+        },
+        {
+          "path": "src/app/gridSizeUi.js",
+          "sha256": "0423a95cf81c429367d2979a2adc23ce9a63688248a4de3ee68e4d9c265b7bc5",
+          "bytes": 8528
+        },
+        {
+          "path": "src/app/hotkeys.js",
+          "sha256": "86e36ac11e35f029f4ab4a0eee37ef8d0870610be39fe9753efc2bd3c727245c",
+          "bytes": 3942
+        },
+        {
+          "path": "src/app/layout.js",
+          "sha256": "bba5db76fdf5b38311ee2a1a1a88d020b70a0cb2e0b1a0e544a068da710df472",
+          "bytes": 4787
+        },
+        {
+          "path": "src/app/loop.js",
+          "sha256": "a59150a52e9fb0492739b7e7d6e347788db6eb92505d22a636d96793fd0fcbfe",
+          "bytes": 15908
+        },
+        {
+          "path": "src/app/loopHooks.js",
+          "sha256": "bbb08ce7ec213a51d7a0d9603d302c11acc6449cbbb63c5ce0e97ddf2ad0864e",
+          "bytes": 4245
+        },
+        {
+          "path": "src/app/messages.js",
+          "sha256": "21980f8a01aa6acd3948c357593cdc169c251dd5fad050b8e38e5b689387c8cd",
+          "bytes": 2195
+        },
+        {
+          "path": "src/app/orbitControls.js",
+          "sha256": "b519ad33eafbe6b53a5e44815a46abef5b829baa7b1b1bbf14a7164272b75c2d",
+          "bytes": 11579
+        },
+        {
+          "path": "src/app/rendererSettingsUi.js",
+          "sha256": "1c6aa3d21d9a29df3d67ecfa68ac9fd91750c590737e827d0368b6b0bdee7613",
+          "bytes": 6071
+        },
+        {
+          "path": "src/app/ruleParse.js",
+          "sha256": "43109f57740cee92e11b68d7ae86d58a1d247106c28ee847713ca6b4d19855a5",
+          "bytes": 3169
+        },
+        {
+          "path": "src/app/rulesUi.js",
+          "sha256": "72f2ed1db60e4385e62145f884fed2a8dcdd95e204ec7e28e8a5cf0df1eefb90",
+          "bytes": 6541
+        },
+        {
+          "path": "src/app/screenshow/controller.js",
+          "sha256": "8c20c5070213ce890fec4b91af6092284023ab7cebfb234ed3756f7cfc2b64d4",
+          "bytes": 35805
+        },
+        {
+          "path": "src/app/selfTest/selfTestSuite.js",
+          "sha256": "620738c6f2355b257fee19642300dece18a0121fe14a15c223d20e933a0a57b3",
+          "bytes": 16272
+        },
+        {
+          "path": "src/app/settings.js",
+          "sha256": "3867a8531fa3d5daace9af712c8b4a7170ab56a4ffb594a298e2a7ad8d6b4f63",
+          "bytes": 14495
+        },
+        {
+          "path": "src/app/simControl.js",
+          "sha256": "f23d5b0a3fe53f4ce4928220b4cd72034a0974065da5be1354ab371d836b2121",
+          "bytes": 5150
+        },
+        {
+          "path": "src/app/speedMapping.js",
+          "sha256": "9a264753943add6d7039431efe59a7510d62d24b36745dc7c1624be15b8021dc",
+          "bytes": 1607
+        },
+        {
+          "path": "src/app/startup.js",
+          "sha256": "4bd295c9d5893440b5a333f3ffde12f0b6ae6ceda6b17bf5b4db47e0092ae7ee",
+          "bytes": 11090
+        },
+        {
+          "path": "src/app/state.js",
+          "sha256": "97eeb8589fdd5965aca53b59b87ccaa99df053d4cd60dbe043961f6dcc766416",
+          "bytes": 3468
+        },
+        {
+          "path": "src/app/statsUi.js",
+          "sha256": "1b50463680e81a28be5f510a766f66aafc34cca395e1ca1108717c532023a4d7",
+          "bytes": 1199
+        },
+        {
+          "path": "src/gpu/cameraControls.js",
+          "sha256": "e2b313fcfa1d4149aaf1bf185a6b415c6a7c592027629b92914bddcdbc7a646b",
+          "bytes": 8718
+        },
+        {
+          "path": "src/gpu/constants.js",
+          "sha256": "0a7f1408c262361d9a4ec1b0d0a8116ebe71168bb1939fbd00fc1d33502feb6a",
+          "bytes": 699
+        },
+        {
+          "path": "src/gpu/dataLayout.js",
+          "sha256": "042b14f42e0ebaf5e25c54e74afdd0edae65543f36e95f8b5b33834d7e0cf607",
+          "bytes": 11039
+        },
+        {
+          "path": "src/gpu/pipelines/compute.js",
+          "sha256": "e3ddbdd9756169126694d7d19255169d2d8a57b1fa31130d50d8dd7f3441e449",
+          "bytes": 3455
+        },
+        {
+          "path": "src/gpu/pipelines/render.js",
+          "sha256": "f357d031d2016f1f27fe61c9faf13706f770d341939a99883abd14f768420194",
+          "bytes": 4214
+        },
+        {
+          "path": "src/gpu/readback.js",
+          "sha256": "71b35bf8e48d358b1428d9ca2f47b33449d823ca2045530d28daa2cb94f181b3",
+          "bytes": 8051
+        },
+        {
+          "path": "src/gpu/renderer.js",
+          "sha256": "ed3f565cf4f1693abaad08b1c99dddcc9c9cc87246ae56876c4e088234bfc76f",
+          "bytes": 32553
+        },
+        {
+          "path": "src/gpu/renderer/aabb.js",
+          "sha256": "7325934276f9ce4be3359db9568eeade8c7f5a78f0618f6465d527a38eee5707",
+          "bytes": 3515
+        },
+        {
+          "path": "src/gpu/renderer/lifecycle.js",
+          "sha256": "3ef67e5611a53bf46e4e8e0b0fc7893d3db1253e5445c594f0b25d229b862c34",
+          "bytes": 14561
+        },
+        {
+          "path": "src/gpu/renderer/render.js",
+          "sha256": "4f72a039ecc98b821c73e9273e3b02bce82e847ed48cc0e38810fba298e42bf9",
+          "bytes": 2020
+        },
+        {
+          "path": "src/gpu/renderer/step.js",
+          "sha256": "d1eb677c7428a76bdb704d116ed20ccdd66820c5b9273211543e24f58250c5a4",
+          "bytes": 8420
+        },
+        {
+          "path": "src/gpu/rendererApi.js",
+          "sha256": "22c9c2b96718b279887484584f830639cbf39c563f340c6abe3c6d480239a7c4",
+          "bytes": 1750
+        },
+        {
+          "path": "src/gpu/resources/bindGroups.js",
+          "sha256": "3937c7730a0b6a662275337f58b3d7ba9bdb95d6e9c17094a8294c519e1a3a6e",
+          "bytes": 4855
+        },
+        {
+          "path": "src/gpu/resources/frameUniforms.js",
+          "sha256": "fb72b171204b0a5ada2c8ceed8b9eee8a8e50247f26980499fc20c8b9be17e78",
+          "bytes": 7771
+        },
+        {
+          "path": "src/gpu/resources/geometry.js",
+          "sha256": "ca3da6c1835ddef2e6e717d4642474c8dee993a2c280948b6d5888ffbdcbaa4e",
+          "bytes": 2798
+        },
+        {
+          "path": "src/gpu/resources/grid.js",
+          "sha256": "9ddd9954a6858e5c51a3b7febe90e571dca0682ebfacc33a0f08014fbc35ce33",
+          "bytes": 5149
+        },
+        {
+          "path": "src/gpu/shaders.js",
+          "sha256": "eca0e9fbd5fd7207b8c6da2e6f3123e3d4c5a65de614f667df4c1255ffab7074",
+          "bytes": 27652
+        },
+        {
+          "path": "src/gpu/util/bufferManager.js",
+          "sha256": "aa7c3001a17924375412baaffba6cee435abadc7cbd8ca76cb909215bb8909ec",
+          "bytes": 5693
+        },
+        {
+          "path": "src/ui/bindings.js",
+          "sha256": "1cd8267312452de2a66c272a5a766b4476a5bc02d49d5885cb734b9c7a7f6fc9",
+          "bytes": 3630
+        },
+        {
+          "path": "src/ui/continuousInput.js",
+          "sha256": "477938e44ec5afefef349b416e98bb347b01bb61240dafbbe3c77e231230eb56",
+          "bytes": 6130
+        },
+        {
+          "path": "src/ui/controls.js",
+          "sha256": "27306f4c619799c883ef17f5f954fe0ad60935e3b4dd9641608ad8c7851a0fb2",
+          "bytes": 5721
+        },
+        {
+          "path": "src/ui/dom.js",
+          "sha256": "adb90d53232ef286b8ba38c12655ab8fa80a3ee2b1c86e5b43267e1d377ed976",
+          "bytes": 6978
+        },
+        {
+          "path": "src/ui/overlays.js",
+          "sha256": "1f8b97ca55c1293c16adef5cbe66a3309769c94d42a8497cbcce1a8540ca0815",
+          "bytes": 1072
+        },
+        {
+          "path": "src/ui/panels.js",
+          "sha256": "7c73019a7e63be42d60ddf3e6e31cce96a8edf152630060674454d5ad98615db",
+          "bytes": 7103
+        },
+        {
+          "path": "src/ui/throttledControl.js",
+          "sha256": "8a3cb2d3144fc112b278e2a9296d5a2765e6a8f89f48546e589d1c8ea24a0f70",
+          "bytes": 4106
+        },
+        {
+          "path": "src/ui/toast.js",
+          "sha256": "d6044a5b2d6abcb6aa295757167c72460039d170a680717c5143b9fded7cfddb",
+          "bytes": 4295
+        },
+        {
+          "path": "src/util/caps.js",
+          "sha256": "21720a4945d4ed3139c2e835380c039ceb23fdc186a67bd990a15217cfa88865",
+          "bytes": 2026
+        },
+        {
+          "path": "src/util/color.js",
+          "sha256": "5511d5e93eb5c7903aa9f1659036ddcab6342c72e8aafbc5ca85c425c2732fd9",
+          "bytes": 407
+        },
+        {
+          "path": "src/util/debug.js",
+          "sha256": "951dd343640564541c91c35e996d9fdf0b0eb7d28c6239e3c232d235b6256c25",
+          "bytes": 1660
+        },
+        {
+          "path": "src/util/log.js",
+          "sha256": "7ecccd13ddf89966ea10a335704f3b306a8f02b7c81e586a84046314df5ebe52",
+          "bytes": 815
+        },
+        {
+          "path": "src/util/math3d.js",
+          "sha256": "34b0f955724f4d898183bcd2fe48cc4b6fc65d3091cc8162964429aef14e0dbe",
+          "bytes": 5996
+        },
+        {
+          "path": "src/util/messages.js",
+          "sha256": "14f223f72ee5f47d1772c900037c3b57fc92959592a17abdd636db1cf884c7a8",
+          "bytes": 996
+        },
+        {
+          "path": "styles.css",
+          "sha256": "7818e20691f33abb596cddedec0d2e189a40546b41f4b835eb7455837e25fa16",
+          "bytes": 31887
+        }
+      ],
+      "source_root": "third_party/upstream/conway-VladimirTechMan"
+    },
+    {
+      "repository": "skeeto/webgl-game-of-life",
+      "url": "https://github.com/skeeto/webgl-game-of-life",
+      "commit": "8020164bf2cbb98efaf12c6176cf67e57454cc11",
+      "license": "Unlicense",
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "29094ac6df97b7b97c9f64b7d78a497176fcf9cb755246192e85e22ad49da04a",
+          "bytes": 256
+        },
+        {
+          "path": "UNLICENSE",
+          "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+          "bytes": 1211
+        },
+        {
+          "path": "glsl/copy.frag",
+          "sha256": "891d2559e2daca85ecaac5b3f836a6a6e3f7a5fc4efd8c116d6fb7033367769e",
+          "bytes": 170
+        },
+        {
+          "path": "glsl/gol.frag",
+          "sha256": "da8a92faa494fb649f69386ed95752502d8d8fedb05e00cb06232b787561dab0",
+          "bytes": 752
+        },
+        {
+          "path": "glsl/quad.vert",
+          "sha256": "9650b8455bf942904c6a06fb2086e8ae10d607e439f80ae040e74dc1557a83b5",
+          "bytes": 122
+        },
+        {
+          "path": "gol.css",
+          "sha256": "82653e918e2dda1a172f6c8bbc47e9faefbc81766d18a7ed43225eaee0923791",
+          "bytes": 881
+        },
+        {
+          "path": "index.html",
+          "sha256": "3a6cdd9a25f3344a3e731a0cea2ba636ba587a4b4a69e42de9ce3958cdbf4e5f",
+          "bytes": 1756
+        },
+        {
+          "path": "js/gol.js",
+          "sha256": "9aba5db279823001003e77b64c43a5decb9ce452e42d45b0f350bc38c8202552",
+          "bytes": 8582
+        }
+      ],
+      "source_root": "third_party/upstream/conway-skeeto"
+    },
+    {
+      "repository": "RandomGamingDev/ConwaysGameOfLife",
+      "url": "https://github.com/RandomGamingDev/ConwaysGameOfLife",
+      "commit": "ca320a4f9b544d26a3642f0203d152cb29295ea7",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "47b5d0f492fd09f40516280d4087a9c120d35ce8d83f2be45ccce38b4e44679c",
+          "bytes": 1072
+        },
+        {
+          "path": "README.md",
+          "sha256": "caf36f657dfe09c3546b03b512119a6f551ba888253ae87327f1bf9111bd58e8",
+          "bytes": 746
+        },
+        {
+          "path": "index.html",
+          "sha256": "b218c95404750c94857c8240fa177a6ef17e770a67b78c52c5fe87b61ce68db0",
+          "bytes": 920
+        },
+        {
+          "path": "src/buffersInit.js",
+          "sha256": "3417560365015ff00140a532abe6bb8e7f9ac4d9b6b57de83a5f2844fef663c6",
+          "bytes": 436
+        },
+        {
+          "path": "src/camera.js",
+          "sha256": "553e97ca21e1a20f7b2c80cf644a239d719aa8b86ea6fde350e315e34506b221",
+          "bytes": 555
+        },
+        {
+          "path": "src/globals.js",
+          "sha256": "95be6827f129bd1a3c472c60f7e14fad488bd2a66ca528bbdf7c6aa842672472",
+          "bytes": 899
+        },
+        {
+          "path": "src/keyboardInput.js",
+          "sha256": "8c2cc1ed4c5f70908dac9ec9a4f3b889620115efab2d8563e53753d2e7125d8c",
+          "bytes": 2650
+        },
+        {
+          "path": "src/main.js",
+          "sha256": "fa7612b91cd44199b4b25a652cf1024c1376e697f322f24c83217af63a284a10",
+          "bytes": 360
+        },
+        {
+          "path": "src/place.js",
+          "sha256": "11fc63099de4b4edda89e097b9053437a14e7eef96d6605497a004f6e2650f6e",
+          "bytes": 920
+        },
+        {
+          "path": "src/render.js",
+          "sha256": "668a537a6674581eba25cd85f9c137719865a5a5eff482b62b893cabdc46e3d3",
+          "bytes": 1219
+        },
+        {
+          "path": "src/shaders.js",
+          "sha256": "a7a11f21d092f03fefb022fd812e854e2868941ad710b5d2a0ab70ceb25c07da",
+          "bytes": 1587
+        },
+        {
+          "path": "src/step.js",
+          "sha256": "963fa1ff029909265732c934d11f79525452ae25db3314ac1afcd4af50fe170b",
+          "bytes": 1077
+        },
+        {
+          "path": "style.css",
+          "sha256": "39f85a7c6baf85e161d251d674340e56be7a959d1e7e08f4fbe2ef5e9b319319",
+          "bytes": 94
+        }
+      ],
+      "source_root": "third_party/upstream/conway-RandomGamingDev"
+    },
+    {
+      "repository": "Bridiro/game-of-life",
+      "url": "https://github.com/Bridiro/game-of-life",
+      "commit": "70005c5c8143f07c24ea4dc6cf66ceea8577d4eb",
+      "license": "MIT",
+      "files": [
+        {
+          "path": ".github/workflows/deploy.yml",
+          "sha256": "0bc6dd9b44ca8b239161f9f2cf4da5a180811f9b39d22cb6450f74b77b0e423d",
+          "bytes": 1547
+        },
+        {
+          "path": "Cargo.toml",
+          "sha256": "f935dd22cdc96ab2549e2848749dfdec5bb7655b67246e519af3ab3a7e1ce14b",
+          "bytes": 629
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "b8bd6dd07d4a1b0ad30485f681e73669846919cdfbf50668f695d92217112985",
+          "bytes": 1082
+        },
+        {
+          "path": "README.md",
+          "sha256": "981b9ede8804e0fb5dcd9e2ff1c43a5ec24f3a67716500f6e03a460cc6063a0d",
+          "bytes": 6843
+        },
+        {
+          "path": "serve.sh",
+          "sha256": "4b12e9ebd346cd2a3c0347033df9baebc69b0cba7392671b2d41f63c710e85e5",
+          "bytes": 329
+        },
+        {
+          "path": "src/lib.rs",
+          "sha256": "e9d54fbe35b4dc53a706a8f734de4efc941c6a30e4bcba0583e597e0192e1d27",
+          "bytes": 11627
+        },
+        {
+          "path": "src/patterns.rs",
+          "sha256": "50993968190e7d2622c6b81d4db49512d21a43a7b3984bf0bebfe6ac6076594b",
+          "bytes": 5821
+        },
+        {
+          "path": "src/shaders.rs",
+          "sha256": "f4bc4ac2ad3ba6d40a9618b055c258fa117484f46d1c2b4eb5fbef09feb2f890",
+          "bytes": 4429
+        },
+        {
+          "path": "src/texture.rs",
+          "sha256": "880d1a8dc8a401b4a0ce1e1498438dbb289a5e6975408cec65d3d4f2526b8448",
+          "bytes": 4534
+        },
+        {
+          "path": "src/webgl.rs",
+          "sha256": "121d8d4b8fa77211d415f81bb6362725e988d1d5f5b70b5aece3429cd464cadb",
+          "bytes": 3588
+        },
+        {
+          "path": "web/index.html",
+          "sha256": "b639b37e1656a754a2efed2ffb8e30cf318dde16033f398e70f9fec9df8d879b",
+          "bytes": 6197
+        },
+        {
+          "path": "web/script.js",
+          "sha256": "c0625c12d59788e320270b1f78e3b9223f7438d40e96c2861aa5b757ba0c2ca3",
+          "bytes": 16327
+        },
+        {
+          "path": "web/style.css",
+          "sha256": "16a2044ce245a2d769f6530f1fd556ff794f0fda63ea3a8bdb6bde5a52e8f413",
+          "bytes": 7671
+        }
+      ],
+      "source_root": "third_party/upstream/conway-Bridiro"
+    },
+    {
+      "repository": "varbrad/webgol",
+      "url": "https://github.com/varbrad/webgol",
+      "commit": "80391fadaf640ccf635b8f468c36d96abbfea795",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "ff00e092d66326961476edc265626f085fc5b484a6d2871e675a3c8166e04398",
+          "bytes": 1068
+        },
+        {
+          "path": "README.md",
+          "sha256": "991602e264abe30f3c4a4a1a6693dc816532945393f1aa1e43c39a291eb21f34",
+          "bytes": 57
+        }
+      ],
+      "source_root": "third_party/upstream/conway-WebGOL"
+    },
+    {
+      "repository": "rotblauer/CatConway",
+      "url": "https://github.com/rotblauer/CatConway",
+      "commit": "b29e71f70f7735b342c5fde626a9719a0b291803",
+      "license": null,
+      "files": [],
+      "redistributed": false,
+      "integration": "Independent implementation of general CA rule-space classification; no CatConway source copied"
+    },
+    {
+      "repository": "DicSo92/SandboxScience",
+      "url": "https://github.com/DicSo92/SandboxScience",
+      "commit": "ba43fde7ed3fc2224302c2682a3ecd3030717ba5",
+      "license": "AGPL-3.0-or-later",
+      "files": [],
+      "redistributed": false,
+      "integration": "Quality and UI organization reference; no source copied"
+    }
+  ]
+}

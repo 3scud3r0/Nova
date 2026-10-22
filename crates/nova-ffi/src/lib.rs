@@ -160,8 +160,8 @@ pub unsafe extern "C" fn nova_inject(
             phenotype: raw.phenotype,
             genome_tape: raw.genome_tape,
         };
-        if h.universe.config.mpm {
-            return Err("MPM membership is fixed for a run".into());
+        if h.universe.config.mpm || h.universe.fusion.is_some() {
+            return Err("MPM/fusion membership is fixed for a run".into());
         }
         if h.universe.particles.len() >= h.universe.config.max_particles {
             return Err("particle capacity exceeded".into());
@@ -189,5 +189,49 @@ pub unsafe extern "C" fn nova_last_error(destination: *mut c_char, capacity: usi
             }
         }
         bytes.len() + 1
+    })
+}
+
+/// Native upstream family: 0=hunar, 1=realethersim, 2=primordial-dish,
+/// 3=par-particle-life, 4=fusion, 5=cellflow (independent implementation).
+/// # Safety
+/// out must be a writable handle slot; destroy a successful result exactly once.
+#[no_mangle]
+pub unsafe extern "C" fn nova_create_fusion(
+    count: usize,
+    seed: u64,
+    family: u32,
+    out: *mut *mut NovaHandle,
+) -> i32 {
+    boundary(|| {
+        if out.is_null() {
+            return Err("null output pointer".into());
+        }
+        unsafe {
+            *out = ptr::null_mut();
+        }
+        let names = [
+            "hunar",
+            "realethersim",
+            "primordial-dish",
+            "par-particle-life",
+            "fusion",
+            "cellflow",
+        ];
+        let name = names.get(family as usize).ok_or("unknown fusion family")?;
+        let f = nova_physics::fusion_family(name).map_err(|e| e.to_string())?;
+        let universe = Universe::new(
+            count,
+            Config {
+                seed,
+                fusion: Some(f),
+                ..Default::default()
+            },
+        )
+        .map_err(|e| e.to_string())?;
+        unsafe {
+            *out = Box::into_raw(Box::new(NovaHandle { universe }));
+        }
+        Ok(())
     })
 }

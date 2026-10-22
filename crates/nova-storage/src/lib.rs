@@ -190,6 +190,17 @@ result.save_to_disk(str(root / 'huggingface'))
             self.previous_tick.is_none_or(|t| u.tick > t),
             "recorded ticks must increase"
         );
+        if let Some(model) = &u.fusion {
+            let mut rules = OpenOptions::new()
+                .create(true)
+                .append(true)
+                .open(self.root.join("fusion_frames.jsonl"))?;
+            writeln!(
+                rules,
+                "{}",
+                json!({"tick":u.tick,"settings":model.settings,"matrix":u.matrix,"rule_lineage":model.rule_history.last(),"upstream_manifest":"third_party/upstream.lock.json","seed":u.config.seed})
+            )?;
+        }
         let p = &u.particles;
         let relevance = relevance(p);
         // Observe every new genotype even when the frame relevance gate rejects its trajectory.

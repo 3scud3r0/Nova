@@ -1,3 +1,27 @@
+# Evidência da entrega nativa 0.7
+
+- `cargo check --workspace --locked`: passou, incluindo os novos crates, bindings, painel egui e validação dos shaders pelo Naga.
+- `cargo check --no-default-features --locked`: passou para o executável sem desktop/GPU.
+- Verificação estática de integridade: 436 arquivos de referência conferidos pelo SHA-256 registrado.
+- Os novos autômatos e controles gráficos foram apenas compilados; não foram executados ou validados visualmente.
+- Não foi executada uma suíte de testes desta revisão. Depois da instrução final de somente gerar código/TXT/PR, não foram executadas novas simulações ou benchmarks.
+
+Antes dessa delimitação final, houve execuções headless das seis famílias
+(512 partículas, 12 passos), um caso esparso fusion (8192 partículas, 120 passos)
+e uma execução CellFlow GPU pequena (128 partículas, dois passos). Esses casos
+não validam as alterações posteriores, equivalência numérica, desempenho geral,
+GPU dedicada ou qualidade visual. Houve também compilação release e instalação
+Maturin intermediárias, anteriores aos novos autômatos e painel.
+
+Entregáveis atuais: workspace Rust/WGSL, TXT de fontes Rust, TXT completo e PR.
+Nenhum novo pacote binário final ou Release foi produzido nesta revisão.
+Os TXT são fontes concatenados com hashes, não código de máquina compilado.
+Os detalhes de integração e limites estão em [FUSION.md](FUSION.md).
+
+---
+
+## Histórico da revisão anterior
+
 # Evidência da entrega nativa 0.6
 
 Solicitação: implementar e criar PR/TXT sem executar testes.

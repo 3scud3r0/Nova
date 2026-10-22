@@ -1,0 +1,1408 @@
+/* Game of 3D Life - Styles */
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-tertiary: #1a1a25;
+  --text-primary: #e8e8ec;
+  --text-secondary: #8888a0;
+  --accent-primary: #4a9eff;
+  --accent-secondary: #7b5cff;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --font-display: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "SF Mono", "Consolas", "Monaco", monospace;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  --transition-fast: 150ms ease;
+  --screenshow-fade-ms: 900ms;
+  /* Controls sizing: keep expanded panels the same width as the top button row */
+  --controls-pad-y: 16px;
+  --controls-edge-pad: 16px;
+  --icon-btn-size: 42px;
+  /* Range input sizing (track + thumb). */
+  --range-track-height: 4px;
+  --range-thumb-size: 16px;
+  --icon-btn-gap: 6px;
+  --controls-button-count: 6;
+  --controls-button-gap-count: 5;
+  --controls-content-width: calc(
+    (var(--icon-btn-size) * var(--controls-button-count)) +
+    (var(--icon-btn-gap) * var(--controls-button-gap-count)) +
+    (var(--controls-edge-pad) * 2)
+  );
+  /* Typography scale for UI elements */
+  --panel-font-size: 0.95rem;
+  --panel-line-height: 1.4;
+  /* Safe-area + comfort insets for HUD elements (iOS notch / Dynamic Island / home indicator). */
+  --safe-inset-top: env(safe-area-inset-top, 0px);
+  --safe-inset-left: env(safe-area-inset-left, 0px);
+  --safe-inset-right: env(safe-area-inset-right, 0px);
+  --safe-inset-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Spacing for HUD elements (panels / buttons / corner chrome). */
+  --hud-pad: 12px;
+  --hud-inset-top: max(var(--hud-pad), var(--safe-inset-top));
+  --hud-inset-left: max(var(--hud-pad), var(--safe-inset-left));
+  --hud-inset-right: max(var(--hud-pad), var(--safe-inset-right));
+  --hud-inset-bottom: max(var(--hud-pad), var(--safe-inset-bottom));
+
+  /*
+   * Viewport height used for scrollable UI chrome (Settings/Help).
+   *
+   * On iOS Safari, `100vh` is based on the *layout* viewport and can ignore
+   * dynamic toolbars in landscape, which may make the bottom of scrollable
+   * panels unreachable.
+   *
+   * CSS-only fix: prefer the *small* viewport height (`svh`) when supported.
+   * This guarantees scrollable UI fits when toolbars are present. When the
+   * toolbars are hidden, the UI may not fully fill the available height,
+   * which is acceptable and avoids content being obscured.
+   *
+   * If `svh` is not available, we fall back to `vh`.
+   */
+  --app-vh: 100vh;
+}
+
+
+@supports (height: 100svh) {
+  :root {
+    --app-vh: 100svh;
+  }
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Base font size - 16px on desktop, scales on mobile */
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-display);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#glCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity var(--screenshow-fade-ms) ease;
+  will-change: opacity;
+}
+
+#glCanvas.screen-show-dimmed {
+  opacity: 0;
+}
+
+#glCanvas:active {
+  cursor: grabbing;
+}
+
+#glCanvas.nav-disabled,
+#glCanvas.nav-disabled:active {
+  cursor: default;
+}
+
+/* UI Overlay */
+#ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+#ui-overlay > * {
+  pointer-events: auto;
+}
+
+/* Shared translucent "glass" chrome used by HUD surfaces */
+.glass-chrome {
+  /*
+   * To keep the visual design consistent across desktop + mobile while staying
+   * cheap to composite, we emulate the “frosted glass” look using layered
+   * translucent fills + highlights (no backdrop blur).
+   */
+  position: relative;
+  overflow: hidden;
+  /* Keep pseudo-element effects from leaking into the rest of the page. */
+  isolation: isolate;
+  background:
+    /* Subtle top highlight */
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 38%,
+      rgba(255, 255, 255, 0.0) 100%
+    ),
+    /* Base tint */
+    rgba(18, 18, 26, 0.78);
+  border: 1px solid var(--border-color);
+  /* Isolate painting/compositing to the panel bounds. */
+  contain: layout paint;
+}
+
+/* Inner sheen + a hint of texture to mimic glass without blur. */
+.glass-chrome::before,
+.glass-chrome::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure actual UI content sits above the decorative layers. */
+.glass-chrome > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Corner glow */
+.glass-chrome::before {
+  background:
+    radial-gradient(
+      120% 140% at 0% 0%,
+      rgba(74, 158, 255, 0.14) 0%,
+      rgba(74, 158, 255, 0.06) 30%,
+      rgba(74, 158, 255, 0.0) 60%
+    ),
+    radial-gradient(
+      140% 160% at 100% 0%,
+      rgba(123, 92, 255, 0.12) 0%,
+      rgba(123, 92, 255, 0.05) 28%,
+      rgba(123, 92, 255, 0.0) 60%
+    );
+  opacity: 0.9;
+}
+
+/* Fine-grain noise (very light). Keeping it subtle avoids banding on OLED. */
+.glass-chrome::after {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 1px,
+      rgba(0, 0, 0, 0.0) 1px,
+      rgba(0, 0, 0, 0.0) 6px
+    );
+  /*
+   * Avoid `mix-blend-mode`: it forces blending with the animated WebGPU canvas
+   * behind the panel, which can trigger extra offscreen composition work on mobile.
+   * A slightly lower opacity keeps the visual texture subtle without needing blending.
+   */
+  opacity: 0.18;
+}
+
+/* Loading overlay (shown until WebGPU + UI initialization completes) */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--hud-inset-top) var(--hud-inset-right) var(--hud-inset-bottom)
+    var(--hud-inset-left);
+  background: rgba(10, 10, 15, 0.82);
+  z-index: 1000;
+
+  /* Reduce “flash of loader” on fast loads:
+     keep the overlay present (so it can cover slow networks / slow JS),
+     but delay its fade-in slightly so it does not appear at all on the fast path. */
+  opacity: 0;
+  visibility: visible;
+  will-change: opacity;
+  animation: g3dl-loading-overlay-in 160ms ease-out 500ms both;
+
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+@keyframes g3dl-loading-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loading-overlay.is-hidden {
+  /* Cancel delayed fade-in if we hide quickly (fast path) */
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 48px var(--shadow-color);
+  max-width: min(520px, calc(100vw - 2 * var(--hud-inset-left)));
+}
+
+.loading-spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  border-top-color: var(--accent-primary);
+  animation: g3dl-spin 0.9s linear infinite;
+  flex: 0 0 auto;
+}
+
+.loading-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.loading-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.loading-subtitle {
+  margin-top: 2px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+@keyframes g3dl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+  .loading-overlay {
+    transition: none;
+    /* Still delay showing the overlay to avoid “flash of loader”, but avoid animation. */
+    animation: g3dl-loading-overlay-in 1ms linear 500ms both;
+  }
+}
+
+/* Not-supported error overlay */
+.not-supported-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-family: system-ui, sans-serif;
+  text-align: center;
+  padding: 20px;
+  z-index: 10000;
+}
+
+.not-supported-card {
+  max-width: 640px;
+}
+
+.not-supported-note {
+  margin-top: 18px;
+  color: #aaa;
+}
+
+.not-supported-hints {
+  text-align: left;
+  display: inline-block;
+  color: #aaa;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Header */
+#header {
+  position: absolute;
+  top: var(--hud-inset-top);
+  left: var(--hud-inset-left);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+}
+
+#header h1 {
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  white-space: nowrap;
+  /* Scale to match credit line width - credit is ~185px at 11px font */
+  font-size: clamp(18px, 5vw, 26px);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+#header .credit {
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* Controls Container (chrome + positioning) */
+#controls {
+  position: absolute;
+  top: var(--hud-inset-top);
+  right: var(--hud-inset-right);
+  border-radius: var(--radius-lg);
+  box-sizing: content-box;
+  padding: var(--controls-pad-y) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: var(--controls-content-width);
+  max-width: calc(100vw - var(--hud-inset-left) - var(--hud-inset-right));
+  max-height: calc(var(--app-vh) - var(--hud-inset-top) - var(--hud-inset-bottom) - (var(--controls-pad-y) * 2));
+  box-shadow: 0 8px 32px var(--shadow-color);
+  z-index: 100;
+}
+
+@supports (width: 100dvw) {
+  #controls {
+    max-width: calc(100dvw - var(--hud-inset-left) - var(--hud-inset-right));
+  }
+}
+
+
+/* Panel body (Settings/Help) */
+.panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-left: var(--controls-edge-pad);
+  padding-right: var(--controls-edge-pad);
+  /* Bottom padding keeps the last items comfortably reachable at the end of the scroll. */
+  padding-bottom: var(--controls-edge-pad);
+  -webkit-overflow-scrolling: touch;
+
+  --panel-scrollbar-width: 10px;
+  --panel-scrollbar-track-bg: rgba(255, 255, 255, 0.06);
+  --panel-scrollbar-track-radius: 10px;
+  --panel-scrollbar-thumb-bg: rgba(74, 158, 255, 0.55);
+  --panel-scrollbar-thumb-radius: 10px;
+  --panel-scrollbar-thumb-border: 2px solid rgba(18, 18, 26, 0.7);
+  --panel-scrollbar-thumb-hover-bg: rgba(74, 158, 255, 0.75);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74, 158, 255, 0.65) rgba(255, 255, 255, 0.06);
+
+  /* Use rem so mobile/root scaling affects readability without needing many overrides */
+  font-size: var(--panel-font-size);
+  line-height: var(--panel-line-height);
+}
+
+#settings-panel {
+  align-items: stretch;
+
+  --panel-scrollbar-track-radius: 8px;
+  --panel-scrollbar-thumb-bg: rgba(74, 158, 255, 0.65);
+  --panel-scrollbar-thumb-radius: 8px;
+  --panel-scrollbar-thumb-border: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Panel scrollbars (WebKit) */
+.panel-body::-webkit-scrollbar {
+  width: var(--panel-scrollbar-width);
+}
+
+.panel-body::-webkit-scrollbar-track {
+  background: var(--panel-scrollbar-track-bg);
+  border-radius: var(--panel-scrollbar-track-radius);
+}
+
+.panel-body::-webkit-scrollbar-thumb {
+  background: var(--panel-scrollbar-thumb-bg);
+  border-radius: var(--panel-scrollbar-thumb-radius);
+  border: var(--panel-scrollbar-thumb-border);
+}
+
+.panel-body::-webkit-scrollbar-thumb:hover {
+  background: var(--panel-scrollbar-thumb-hover-bg);
+}
+
+#settings-panel .control-group {
+  align-items: stretch;
+}
+
+/* Help button and panel */
+#helpBtn {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+#help-panel h2 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 0;
+}
+
+#help-panel h3 {
+  font-size: 1.05em;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+#help-panel p,
+#help-panel ul {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+#help-panel ul {
+  padding-left: 18px;
+}
+
+#help-panel li {
+  margin: 4px 0;
+}
+
+#help-panel .help-accent {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* Help links: keep text color consistent on dark background, use underline for affordance */
+#help-panel a,
+#help-panel a:visited {
+  color: inherit;
+}
+
+#help-panel a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  text-decoration-color: currentColor;
+}
+
+#help-panel a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button-row {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* Use gap + padding rather than per-button margins. This keeps each wrapped row
+     aligned and avoids layout drift on narrow viewports. */
+  gap: var(--icon-btn-gap);
+  padding-left: var(--controls-edge-pad);
+  padding-right: var(--controls-edge-pad);
+
+  /* Allow wrapping when max-width clamps the controls panel on narrow screens. */
+  flex-wrap: wrap;
+}
+
+/* Icon-only buttons */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-tertiary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    opacity var(--transition-fast),
+    color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.icon-btn svg {
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+}
+
+.icon-btn:hover {
+  background-color: var(--bg-primary);
+}
+
+.icon-btn:hover svg,
+.icon-btn:active {
+  transform: scale(0.97);
+}
+
+.icon-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.icon-btn:disabled:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.icon-btn:disabled:active {
+  transform: none;
+}
+
+.playing #playBtn,
+#settingsBtn.active {
+  background: var(--accent-primary);
+}
+
+/* Settings button active state */
+#settingsBtn.active svg {
+  opacity: 1;
+}
+
+/* Help button active state */
+#helpBtn.active {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* Speed slider - standalone horizontal layout */
+.slider-label.speed-slider {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.speed-slider > span:first-child {
+  flex-shrink: 0;
+}
+
+.speed-slider input[type="range"] {
+  /* In a horizontal flex row, avoid width: 100% forcing the container wider when panels open. */
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+/* Common label typography for Settings labels. */
+.control-label,
+.select-label,
+.color-label {
+  font-size: inherit;
+  color: var(--text-primary);
+}
+/* Sliders */
+.slider-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Horizontal row labels shared by speed slider, density slider, and color labels. */
+.slider-label.speed-slider,
+.density-slider-label,
+.color-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Density slider with tip */
+.density-slider-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.slider-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: var(--accent-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: inherit;
+  color: #000000;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+
+.slider-tip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--accent-primary);
+  border-bottom: none;
+}
+
+.density-slider-label:hover .slider-tip,
+.density-slider-wrapper:hover .slider-tip,
+.slider-tip.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: var(--range-thumb-size);
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: var(--range-track-height);
+  background: rgba(74, 158, 255, 0.3);
+  border-radius: calc(var(--range-track-height) / 2);
+}
+input[type="range"]::-moz-range-track {
+  height: var(--range-track-height);
+  background: rgba(74, 158, 255, 0.3);
+  border-radius: calc(var(--range-track-height) / 2);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--range-thumb-size);
+  height: var(--range-thumb-size);
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  margin-top: calc((var(--range-track-height) - var(--range-thumb-size)) / 2);
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--range-thumb-size);
+  height: var(--range-thumb-size);
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Rules Group */
+.rules-group,
+.color-pickers {
+  gap: 6px;
+}
+
+/* Size Inputs */
+.size-inputs {
+  flex-direction: row;
+  gap: 12px;
+}
+
+/* Stacked labels used for inputs and selects. */
+.rules-inputs label,
+.size-inputs .input-label,
+.select-label {
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+.size-inputs .input-label {
+  flex: 1;
+  gap: 4px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--bg-tertiary);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.input-wrapper input[type="number"],
+.input-wrapper input[type="text"] {
+  flex: 1;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: inherit;
+}
+
+.input-wrapper input[type="number"] {
+  -moz-appearance: textfield;
+}
+.input-wrapper input[type="number"]::-webkit-outer-spin-button,
+.input-wrapper input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+}
+.input-wrapper.invalid,
+.input-wrapper:has(input:invalid) {
+  border-color: #ff4a6a;
+}
+
+/* Also reflect native HTML validity (e.g., min/max) where supported */
+/* Color Labels - match slider-label style */
+.color-label > span:first-child {
+  flex: 1;
+}
+
+.color-gradient-pickers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gradient-arrow {
+  color: var(--text-primary);
+  opacity: 0.6;
+}
+
+.color-picker {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+  margin: 0;
+  outline: none;
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+.color-picker::-moz-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.color-picker:focus-visible {
+  outline: 2px solid rgba(74, 158, 255, 0.75);
+  outline-offset: 2px;
+}
+
+.rules-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.rules-inputs label {
+  flex: 1;
+  min-width: 0;
+  gap: 4px;
+}
+
+/* Select dropdown for presets */
+.select-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+/* Checkbox label layout: center text vertically next to the box */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.select-label select {
+  width: 100%;
+  padding: 9px 34px 9px 10px;
+  background: var(--bg-tertiary);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: inherit;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238888a0' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.select-label select:hover {
+  border-color: rgba(74, 158, 255, 0.55);
+}
+
+.select-label select:focus {
+  outline: none;
+  border-color: rgba(74, 158, 255, 0.85);
+}
+
+.select-label select option {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.checkbox-label input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background-color: var(--bg-tertiary);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 12px;
+  border: solid var(--bg-primary);
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.input-wrapper:focus-within,
+.checkbox-label input[type="checkbox"]:hover {
+  border-color: var(--accent-primary);
+}
+
+/* Toast (lightweight user-visible notifications)
+
+   This is intentionally minimal: it is used for non-fatal feedback that would
+   otherwise only be visible in the console (which is often inaccessible on mobile).
+*/
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--hud-inset-bottom);
+  transform: translateX(-50%);
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  min-width: 240px;
+  max-width: min(
+    560px,
+    calc(100vw - var(--hud-inset-left) - var(--hud-inset-right))
+  );
+  box-shadow: 0 8px 32px var(--shadow-color);
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+#toast[data-kind="error"] {
+  border-color: rgba(255, 90, 90, 0.8);
+}
+
+#toast[data-kind="success"] {
+  border-color: rgba(90, 220, 140, 0.78);
+}
+
+#toast[data-kind="warn"] {
+  border-color: rgba(255, 196, 90, 0.75);
+}
+
+#toast[data-kind="info"] {
+  border-color: rgba(74, 158, 255, 0.75);
+}
+
+.toast-message {
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  display: flex;
+  /* Center-align with the icon and close button for single-line toasts. */
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-message::before {
+  content: "";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: 1.35em;
+  line-height: 1;
+  margin-top: 0;
+  font-weight: 800;
+}
+
+#toast[data-kind="info"] .toast-message::before {
+  content: "ℹ";
+  color: rgba(74, 158, 255, 0.95);
+}
+
+#toast[data-kind="success"] .toast-message::before {
+  /*
+    Force text-style presentation (VS15) so iOS does not render this as an emoji
+    glyph (which can ignore CSS `color` and appear grey).
+  */
+  /* Use a CSS unicode escape (\FE0E), not a JS-style "\uFE0E" escape. */
+  content: "✔\FE0E";
+  color: rgba(90, 220, 140, 0.95);
+}
+
+#toast[data-kind="warn"] .toast-message::before {
+  /* Force text-style presentation (VS15) for consistent coloring on iOS. */
+  content: "⚠\FE0E";
+  color: rgba(255, 196, 90, 0.95);
+}
+
+#toast[data-kind="error"] .toast-message::before {
+  /* Force text-style presentation (VS15) for consistent coloring on iOS. */
+  content: "✖\FE0E";
+  color: rgba(255, 90, 90, 0.98);
+}
+
+.toast-close {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  transition: transform var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.toast-close:active {
+  transform: scale(0.98);
+}
+
+.toast-close:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Stats */
+#stats {
+  position: fixed;
+  bottom: var(--hud-inset-bottom);
+  left: var(--hud-inset-left);
+  pointer-events: auto;
+  touch-action: auto;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.credit {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Bottom-right info panel: GitHub link (desktop) + About/GitHub (mobile). */
+#infoPanel {
+  position: fixed;
+  right: var(--hud-inset-right);
+  bottom: var(--hud-inset-bottom);
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  padding: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  z-index: 95;
+}
+
+/* About button is mobile-only; GitHub is visible on all platforms. */
+#infoBtn {
+  display: none;
+}
+
+.corner-icon-btn,
+.corner-icon-link {
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  border-radius: 12px;
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.corner-icon-link {
+  text-decoration: none;
+}
+
+.corner-icon-btn:hover,
+.corner-icon-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Keep the About ("i") button background stable on touch devices.
+   iOS Safari can leave :hover styles "stuck" after a tap.
+*/
+#infoBtn.corner-icon-btn:hover,
+#infoBtn.corner-icon-btn:active {
+  background: transparent;
+}
+
+.corner-icon-btn:active,
+.corner-icon-link:active {
+  transform: scale(0.96);
+}
+
+.corner-icon-btn:focus-visible,
+.corner-icon-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+#githubLink svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: currentColor;
+}
+
+
+/* Touch ergonomics (coarse-pointer devices) */
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Settings: Copy URL button (flat, rounded, centered) */
+#settings-panel .copy-url-group {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+#settings-panel .copy-url-btn {
+  appearance: none;
+  border: 1px solid rgba(74, 158, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(232, 241, 255, 0.95);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font: inherit;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+#settings-panel .copy-url-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(74, 158, 255, 0.55);
+}
+
+#settings-panel .copy-url-btn:active {
+  transform: translateY(1px);
+}
+
+#settings-panel .copy-url-btn:focus-visible {
+  outline: 2px solid rgba(74, 158, 255, 0.65);
+  outline-offset: 2px;
+}
+
+/* Mobile styles */
+@media (hover: none) and (pointer: coarse) {
+  /* iOS: slightly larger base size and stable text rendering */
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Touch-first sizing: improve legibility and meet iOS tap/typing ergonomics */
+  :root {
+    /* Increase panel text size and leading on mobile (Settings/Help). */
+    --panel-font-size: 20px;
+    --panel-line-height: 1.5;
+
+    /* Ensure primary controls meet comfortable tap target size. */
+    --icon-btn-size: 48px;
+    --icon-btn-gap: 4px;
+
+    /* Slightly tighten edge padding to offset the wider buttons. */
+    --controls-edge-pad: 14px;
+  }
+
+  /* iOS Safari: prevent focus auto-zoom by keeping form controls at >= 16px.
+     We intentionally match the panel font size for readability. */
+  .panel-body input[type="text"],
+  .panel-body input[type="number"],
+  .panel-body select,
+  .panel-body textarea {
+    font-size: var(--panel-font-size);
+  }
+  /* Mobile: show About and GitHub as a combined bottom-right info panel. */
+  #infoPanel {
+    width: calc((var(--icon-btn-size) * 2) + 8px);
+    justify-content: space-between;
+  }
+
+  /* About/Info button: use typography instead of an SVG icon. */
+  #infoBtn {
+    display: flex;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    font-family: Georgia, serif;
+  }
+
+  #infoBtn.active {
+    background: transparent;
+  }
+
+  /* Keep the header hidden unless explicitly toggled via the "i" button. */
+  #header {
+    display: none;
+  }
+
+  #header.visible {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px 22px;
+    z-index: 120;
+  }
+
+  #header.visible h1 {
+    font-size: 1.9rem;
+    white-space: nowrap;
+  }
+
+  /* Very small phones: slightly reduce title size to prevent overflow. */
+  @media (max-width: 360px) {
+    #header.visible h1 {
+      font-size: 1.75rem;
+    }
+  }
+
+  #header.visible .credit {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    line-height: 1.25;
+  }
+
+  /* Touch devices: avoid sticky :hover states and reduce extra compositing work. */
+  .icon-btn:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  .icon-btn:hover svg {
+    transform: none;
+  }
+
+  /* Touch targets: keep control buttons comfortable on touch */
+  .icon-btn {
+    min-width: var(--icon-btn-size);
+    min-height: var(--icon-btn-size);
+  }
+
+  /* Help button: keep readable "?" */
+  #helpBtn {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+
+  /* iOS Safari: avoid focus auto-zoom by keeping form controls at >= 16px. */
+  #settings-panel .input-wrapper input[type="text"],
+  #settings-panel .input-wrapper input[type="number"] {
+    font-size: var(--panel-font-size); /* >=16px and matches panel text */
+    padding: 10px 12px;
+  }
+
+  #settings-panel .input-wrapper {
+    min-height: 44px; /* comfortable tap target */
+  }
+
+  /* Slightly larger icons inside the control buttons for touch */
+  .icon-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Color pickers: meet touch target guidance */
+  .color-picker {
+    width: 44px;
+    height: 44px;
+    padding: 2px;
+  }
+
+  /* Larger slider thumb/track for touch: override the CSS variables used by the base range styles. */
+  #settings-panel {
+    --range-track-height: 6px;
+    --range-thumb-size: 28px;
+  }
+
+  /* Larger checkbox box (label hit area is handled by padding/min-height below). */
+  #settings-panel .checkbox-label input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+  }
+
+  #settings-panel .checkbox-label {
+    min-height: 28px;
+    padding: 0.25rem 0.2rem;
+  }
+}

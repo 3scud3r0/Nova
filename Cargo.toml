@@ -1,13 +1,13 @@
 [workspace]
 resolver = "2"
 members = [".", "crates/*"]
-exclude = ["nova-core"]
+exclude = ["nova-core", "third_party/upstream/par-particle-life"]
 default-members = ["."]
 
 [workspace.package]
-version = "0.6.0"
+version = "0.7.0"
 edition = "2021"
-rust-version = "1.85"
+rust-version = "1.93"
 
 [workspace.dependencies]
 anyhow = "1"
@@ -21,6 +21,7 @@ pollster = "0.3"
 
 [package]
 name = "nova-engine"
+license = "AGPL-3.0-or-later"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
@@ -38,6 +39,8 @@ desktop = ["dep:nova-render"]
 anyhow.workspace = true
 serde_json.workspace = true
 clap = { version = "4", features = ["derive"] }
+nova-automata = { path = "crates/nova-automata" }
+nova-fusion = { path = "crates/nova-fusion" }
 nova-core = { path = "crates/nova-core" }
 nova-physics = { path = "crates/nova-physics" }
 nova-storage = { path = "crates/nova-storage" }

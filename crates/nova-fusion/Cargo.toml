@@ -1,0 +1,21 @@
+[package]
+name = "nova-fusion"
+version.workspace = true
+edition = "2024"
+rust-version = "1.93"
+license = "AGPL-3.0-or-later"
+[dependencies]
+nova-core = { path = "../nova-core" }
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon.workspace = true
+bytemuck.workspace = true
+sha2.workspace = true
+rand = "0.10"
+rand_chacha = "0.10"
+glam = "0.32"
+dirs = "6"
+
+log = "0.4"
+half = { version = "2", features = ["bytemuck"] }

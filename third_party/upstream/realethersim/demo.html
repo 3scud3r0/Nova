@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ETHERSIM — a tour of complex systems</title>
+    <meta name="description" content="A scrolling tour of ETHERSIM: strange attractors, fractals, emergent life, and gravity — 160 dynamical systems in the browser, open source, WebGPU." />
+    <style>
+      :root {
+        --bg: #05070d;
+        --text: #e6edf7;
+        --dim: #8a97ad;
+        --accent: #4ad6c8;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--bg); color: var(--text);
+        font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+      a { color: var(--accent); }
+      #bg { position: fixed; inset: 0; z-index: 0; display: block; }
+      #fade { position: fixed; inset: 0; z-index: 1; pointer-events: none;
+        background: radial-gradient(ellipse at center, transparent 55%, rgba(5,7,13,0.55) 100%); }
+      header.brand { position: fixed; top: 18px; left: 22px; z-index: 3; letter-spacing: 0.22em;
+        font-weight: 700; font-size: 14px; color: var(--accent); }
+      .hint { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 3;
+        color: var(--dim); font-size: 12px; letter-spacing: 0.18em; animation: bob 2s ease-in-out infinite; }
+      @keyframes bob { 0%,100% { opacity: 0.4; transform: translate(-50%,0); } 50% { opacity: 1; transform: translate(-50%,6px); } }
+      #scroller { position: relative; z-index: 2; }
+      section { min-height: 100vh; display: flex; align-items: flex-end; justify-content: center;
+        padding: 0 20px 13vh; scroll-snap-align: center; }
+      section.hero, section.outro { align-items: center; padding-bottom: 0; text-align: center; }
+      .card { max-width: 620px; background: rgba(8,12,20,0.42); border: 1px solid rgba(120,150,190,0.18);
+        border-radius: 14px; padding: 18px 22px; backdrop-filter: blur(7px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.35); }
+      .tag { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+      .card h2 { margin: 6px 0 8px; font-size: 26px; font-weight: 700; }
+      .card p { margin: 0; color: var(--dim); }
+      .card .eq { margin-top: 10px; color: #aeb9cc; font: 13px/1.5 ui-monospace, Menlo, monospace; }
+      .hero h1 { font-size: clamp(40px, 9vw, 96px); margin: 0; letter-spacing: 0.16em; font-weight: 800; }
+      .hero .sub { margin-top: 14px; color: var(--dim); font-size: clamp(15px, 2.4vw, 20px); letter-spacing: 0.04em; }
+      .hero .pills { margin-top: 20px; color: var(--accent); font-size: 13px; letter-spacing: 0.18em; }
+      .outro h2 { font-size: clamp(28px, 6vw, 56px); margin: 0 0 10px; letter-spacing: 0.04em; }
+      .outro p { color: var(--dim); }
+      .cta { display: inline-block; margin-top: 18px; padding: 12px 22px; border: 1px solid var(--accent);
+        border-radius: 10px; color: var(--accent); text-decoration: none; letter-spacing: 0.12em; font-size: 14px; transition: background .15s; }
+      .cta:hover { background: rgba(74,214,200,0.12); }
+      .hero .hero-cta { margin-top: 26px; font-size: 16px; padding: 14px 30px; background: rgba(74,214,200,0.10);
+        box-shadow: 0 10px 34px rgba(74,214,200,0.18); }
+      .hero .hero-cta:hover { background: rgba(74,214,200,0.22); }
+      .hero .scrollhint { margin-top: 18px; color: var(--dim); font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; }
+      /* one-shot install box (the classic copy-the-command UX) */
+      .install { margin-top: 24px; }
+      .hero .install { margin-top: 18px; }
+      .hero .scrollhint { margin-top: 14px; }
+      .install-label { color: var(--dim); font-size: 12px; letter-spacing: 0.06em; margin-bottom: 8px; }
+      .install-box { display: inline-flex; align-items: center; gap: 10px; max-width: 92vw;
+        background: #070b14; border: 1px solid rgba(120,150,190,0.28); border-radius: 10px;
+        padding: 11px 11px 11px 16px; text-align: left; }
+      .install-box code { color: #aee9dd; font: 13px/1.4 ui-monospace, Menlo, monospace; white-space: nowrap;
+        overflow-x: auto; }
+      .install-box code::before { content: "$ "; color: #5f6b85; }
+      .install-copy { flex: none; cursor: pointer; font: inherit; font-size: 12px; letter-spacing: 0.04em;
+        color: #051014; background: var(--accent); border: none; border-radius: 7px; padding: 8px 13px; }
+      .install-copy:hover { filter: brightness(1.12); }
+      .install-alt { margin-top: 12px; font-size: 12px; color: var(--dim); letter-spacing: 0.02em; }
+      .install-alt a { color: #7ae8dc; text-decoration: none; }
+      .install-alt a:hover { text-decoration: underline; }
+      @media (prefers-reduced-motion: no-preference) { html { scroll-snap-type: y proximity; } }
+      /* "What's new" band — same data as the in-app popup (rendered by demo.ts from the changelog). */
+      section.news { position: relative; z-index: 2; min-height: auto; display: block; max-width: 940px;
+        margin: 0 auto; padding: 70px 22px 10px; scroll-snap-align: none; text-align: left; }
+      .news h2 { font-size: clamp(24px, 5vw, 40px); margin: 0 0 6px; letter-spacing: 0.02em; }
+      .news .news-sub { color: var(--dim); margin: 0 0 28px; font-size: 14px; }
+      .news-rel { border-top: 1px solid #1a2238; padding: 20px 0; }
+      .news-rel:first-child { border-top: none; padding-top: 0; }
+      .news-relhead { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+      .news-ver { color: var(--accent); font-weight: 700; font: 700 14px/1 ui-monospace, Menlo, monospace; }
+      .news-title { font-size: 16px; font-weight: 600; }
+      .news-date { color: #5f6b85; font-size: 12px; }
+      .news-summary { color: var(--dim); font-size: 13.5px; margin: 6px 0 14px; max-width: 72ch; }
+      .news-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 11px; }
+      a.news-card { text-decoration: none; color: var(--text); border: 1px solid rgba(120,150,190,0.18);
+        border-radius: 10px; overflow: hidden; background: rgba(8,12,20,0.5); transition: border-color .15s, transform .15s; }
+      a.news-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+      .nc-thumb { display: block; width: 100%; aspect-ratio: 8 / 5; object-fit: cover;
+        background: linear-gradient(135deg, #0f2230, #15324a 55%, #0d1c2b); }
+      .nc-name { display: block; padding: 7px 9px 1px; font-size: 12.5px; line-height: 1.25; }
+      .nc-cat { display: block; padding: 0 9px 8px; font-size: 9px; letter-spacing: 0.05em;
+        text-transform: uppercase; color: #6fb6a4; }
+      .news-more { display: inline-block; margin: 22px 0 6px; color: var(--accent); text-decoration: none;
+        font-size: 14px; letter-spacing: 0.04em; }
+      .news-more:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <canvas id="bg"></canvas>
+    <div id="fade"></div>
+    <header class="brand">ETHERSIM</header>
+    <div class="hint">scroll ↓</div>
+    <main id="scroller">
+      <section class="hero" data-sim="lorenz">
+        <div>
+          <h1>ETHERSIM</h1>
+          <div class="sub">A tour of complex systems — chaos, fractals, life, and gravity,<br />simulated live in your browser.</div>
+          <div class="pills"><span id="sysCount">160</span> SYSTEMS · 17 FAMILIES · WEBGPU · OPEN SOURCE</div>
+          <a class="cta hero-cta" href="./index.html">launch ETHERSIM →</a>
+          <div class="install">
+            <div class="install-label">or run it locally — one line (macOS / Linux):</div>
+            <div class="install-box">
+              <code id="installCmd">curl -fsSL https://ethersim.ai/run.sh | bash</code>
+              <button class="install-copy" id="copyBtn" type="button">copy</button>
+            </div>
+            <div class="install-alt">
+              <a href="https://stackblitz.com/github/macncrash/realethersim">edit in StackBlitz</a> ·
+              <a href="https://github.com/macncrash/realethersim">source on GitHub</a>
+            </div>
+          </div>
+          <div class="scrollhint">or scroll to take the tour ↓</div>
+        </div>
+      </section>
+
+      <section data-sim="lorenz">
+        <div class="card"><div class="tag">Strange Attractor</div><h2>The Lorenz attractor</h2>
+          <p>A weather model so simple it fits on a napkin — yet it never repeats. Tiny differences explode: the original "butterfly effect."</p>
+          <div class="eq">ẋ = σ(y−x) · ẏ = x(ρ−z)−y · ż = xy−βz</div></div>
+      </section>
+
+      <section data-sim="thomas">
+        <div class="card"><div class="tag">Strange Attractor</div><h2>Thomas' labyrinth</h2>
+          <p>Three identical rules, cycled — each axis chases the sine of the next. The flow wanders a symmetric, maze-like tangle forever.</p>
+          <div class="eq">ẋ = sin(y) − b·x &nbsp;(and cyclic in y, z)</div></div>
+      </section>
+
+      <section data-sim="clifford">
+        <div class="card"><div class="tag">Iterated Map</div><h2>Clifford map</h2>
+          <p>One point, fed back through a pair of sine equations a hundred thousand times, settles into a fine woven web of light.</p>
+          <div class="eq">xₙ₊₁ = sin(a·y) + c·cos(a·x)</div></div>
+      </section>
+
+      <section data-sim="barnsley-fern">
+        <div class="card"><div class="tag">Fractal · IFS</div><h2>The Barnsley fern</h2>
+          <p>Four affine maps, chosen at random — that's the whole recipe. A lifelike fern condenses out of pure chance, self-similar to the tips.</p></div>
+      </section>
+
+      <section data-sim="mandelbrot">
+        <div class="card"><div class="tag">Fractal · Escape-time</div><h2>The Mandelbrot set</h2>
+          <p>Iterate z → z² + c for every pixel; colour by how fast it flees to infinity. The boundary is infinitely detailed — zoom forever.</p>
+          <div class="eq">zₙ₊₁ = zₙ² + c</div></div>
+      </section>
+
+      <section data-sim="particleLife">
+        <div class="card"><div class="tag">Emergent Life</div><h2>Particle Life</h2>
+          <p>A handful of species, a random table of who-likes-whom — and cells, membranes, and chasers assemble themselves. Life from a matrix.</p></div>
+      </section>
+
+      <section data-sim="nbody">
+        <div class="card"><div class="tag">Gravity</div><h2>Scale-invariant N-body</h2>
+          <p>Thousands of masses pulling on each other under softened gravity — clusters form, orbits wind, structure emerges from attraction alone.</p></div>
+      </section>
+
+      <section class="outro" data-sim="nbody">
+        <div>
+          <h2>Explore all <span id="sysCountOutro">160</span> systems</h2>
+          <p>Strange attractors · iterated maps · fractals · Particle Life · Boids · slime mold · vortices · Lenia · reaction-diffusion · N-body.<br />
+             Every one runs on the GPU, with built-in notes, math, and code.</p>
+          <a class="cta" id="appLink" href="./index.html">launch ETHERSIM →</a>
+          <p style="margin-top:16px;font-size:13px;color:#5f6b85">
+            run it locally with the one-liner at the top · open source · WebGPU · Three.js ·
+            <a href="https://github.com/macncrash/realethersim" style="color:#7ae8dc;text-decoration:none">GitHub</a>
+          </p>
+        </div>
+      </section>
+    </main>
+    <section class="news" id="news">
+      <h2>What's new</h2>
+      <p class="news-sub">Recent additions to the catalog — click any system to open it in ETHERSIM.</p>
+      <div id="newsBody"></div>
+      <a class="news-more" href="./index.html">Browse all <span id="sysCountNews">160</span> systems in the app →</a>
+    </section>
+    <footer style="max-width:760px;margin:0 auto;padding:40px 24px 64px;color:#5f6b85;font-size:12px;line-height:1.7;text-align:center;border-top:1px solid #1a2238">
+      ETHERSIM is open-source and self-hosted. We keep minimal, privacy-respecting analytics —
+      page visits, approximate country, referrer and browser type — entirely on our own server:
+      no third-party trackers, no cookies, no advertising, no data sharing. IPs aren't stored in
+      analytics (only a salted hash); full IPs are kept briefly in security logs to detect abuse.
+      <br />
+      <a href="/privacy.html" style="color:#7ae8dc">Privacy &amp; data</a> ·
+      <a href="/terms.html" style="color:#7ae8dc">Terms &amp; disclaimer</a> ·
+      <a href="/contact.html" style="color:#7ae8dc">Contact</a> ·
+      <a href="https://github.com/macncrash/realethersim" style="color:#7ae8dc">GitHub</a>
+    </footer>
+    <script type="module" src="/src/demo/demo.ts"></script>
+  </body>
+</html>

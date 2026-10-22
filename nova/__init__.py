@@ -1,3 +1,3 @@
 """NOVA: experimental continual learning and cognitive simulation components."""
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"

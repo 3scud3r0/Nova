@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ETHERSIM</title>
+    <style>
+      :root {
+        --bg: #05070d;
+        --panel: #0b0f1acc;
+        --panel-border: #1c2638;
+        --text: #cdd6e4;
+        --text-dim: #6b7689;
+        --accent: #4ad6c8;
+      }
+      html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+        font: 13px/1.5 ui-monospace, "SF Mono", Menlo, monospace; overflow: hidden; }
+      .layout { position: fixed; inset: 0; }
+      canvas.view { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+        touch-action: none; } /* let OrbitControls own touch gestures (no browser scroll/zoom) */
+      /* Immersive show/hide toggle for the control UI (phones default to hidden — clean full-screen). */
+      .ui-toggle { position: fixed; top: 10px; left: 10px; z-index: 40; font: inherit; font-size: 12px;
+        letter-spacing: 0.04em; color: #bdeee0; background: #10303cdd; border: 1px solid #2f8a6a;
+        border-radius: 999px; padding: 6px 13px; cursor: pointer; backdrop-filter: blur(6px); }
+      .ui-toggle:hover { border-color: var(--accent); }
+      aside.panel { position: absolute; top: 12px; right: 12px; width: 280px; max-height: calc(100vh - 24px);
+        overflow: auto; background: var(--panel); border: 1px solid var(--panel-border);
+        border-radius: 10px; padding: 12px; backdrop-filter: blur(8px); }
+      .brand { font-size: 15px; letter-spacing: 0.18em; color: var(--accent); margin: 0 0 10px; font-weight: 600; }
+      .section { margin-top: 12px; border-top: 1px solid var(--panel-border); padding-top: 10px; }
+      .section h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: 0.12em; color: var(--text-dim); text-transform: uppercase; }
+      .row { display: flex; justify-content: space-between; gap: 8px; }
+      .row .v { color: var(--accent); }
+      button { background: #14203a; color: var(--text); border: 1px solid var(--panel-border);
+        border-radius: 6px; padding: 6px 10px; cursor: pointer; font: inherit; }
+      button:hover { border-color: var(--accent); }
+      input[type="file"] { display: none; }
+      label.filebtn { display: inline-block; }
+      .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+      .tab { font-size: 12px; padding: 5px 9px; opacity: 0.7; }
+      .tab.active { opacity: 1; border-color: var(--accent); color: var(--accent); }
+      select.sysselect { width: 100%; margin-top: 6px; background: #14203a; color: var(--text);
+        border: 1px solid var(--panel-border); border-radius: 6px; padding: 5px 8px; font: inherit; cursor: pointer; }
+      select.sysselect:hover { border-color: var(--accent); }
+      .tree { display: flex; flex-direction: column; gap: 3px; }
+      .treenode { display: flex; justify-content: space-between; gap: 8px; text-align: left; opacity: 0.8; }
+      .treenode.active { opacity: 1; border-color: var(--accent); color: var(--accent); }
+      .tp-dfwv { width: 100% !important; }
+
+      /* Learn panel (bottom) */
+      .learn { position: absolute; left: 12px; bottom: 12px; right: 304px; z-index: 5; }
+      .learn.open { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 10px;
+        backdrop-filter: blur(8px); padding: 10px 12px; max-height: 42vh; display: flex; flex-direction: column; }
+      .learn.closed { right: auto; }
+      .learn-handle { font-size: 12px; opacity: 0.85; }
+      .learn-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+      .ltabs { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+      .ltitle { color: var(--accent); margin-right: 4px; letter-spacing: 0.04em; }
+      .learn-body { overflow: auto; margin-top: 8px; }
+      .ltext { margin: 0 0 8px; max-width: 78ch; }
+      .ltext.dim { color: var(--text-dim); }
+      .llinks { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
+      .llinks a { color: var(--accent); text-decoration: none; }
+      .llinks a:hover { text-decoration: underline; }
+      .leqs { display: flex; flex-direction: column; gap: 4px; }
+      .leq { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+      .leq-label { color: var(--text-dim); font-size: 11px; }
+      .lvals { margin-top: 10px; overflow-x: auto; }
+      .lparams { margin: 8px 0 0; padding-left: 16px; color: var(--text-dim); }
+      .lparams li { margin: 2px 0; }
+      .lparams .psym { color: var(--text); }
+      .lcode { margin: 0; padding: 10px; background: #0a0e18; border: 1px solid var(--panel-border);
+        border-radius: 6px; overflow: auto; white-space: pre; color: #b8c4d8; font-size: 12px; }
+
+      /* --- Phones (narrow / portrait): full-width panel below the toggle + full-width learn box,
+         instead of the fixed 280px side overlay. Landscape & tablets keep the side layout. --- */
+      @media (max-width: 640px) {
+        aside.panel { top: 48px; left: 8px; right: 8px; width: auto; max-height: 52vh; padding: 11px; }
+        .learn { left: 8px; right: 8px; bottom: 8px; }
+        .learn.open { max-height: 40vh; }
+        .ltext { max-width: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <ether-app></ether-app>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -15,3 +15,9 @@ pollster.workspace = true
 
 [build-dependencies]
 naga = { version = "0.19.2", features = ["wgsl-in"] }
+
+[dependencies.nova-fusion]
+path = "../nova-fusion"
+
+[dependencies.nova-automata]
+path = "../nova-automata"

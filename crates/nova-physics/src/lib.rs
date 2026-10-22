@@ -9,6 +9,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Config {
+    #[serde(default)]
+    pub fusion: Option<nova_fusion::Family>,
     pub seed: u64,
     pub dt: f32,
     pub cutoff: f32,
@@ -26,6 +28,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Self {
+            fusion: None,
             seed: 42,
             dt: 1. / 120.,
             cutoff: 0.35,
@@ -61,7 +64,7 @@ impl Config {
         );
         ensure!(
             self.dt > 0.
-                && self.dt <= 0.02
+                && self.dt <= if self.fusion.is_some() { 1. } else { 0.02 }
                 && self.cutoff > 0.
                 && self.beta > 0.
                 && self.beta < 1.
@@ -80,6 +83,10 @@ impl Config {
         ensure!(
             !self.mpm || (!self.pvm && self.curl == 0.),
             "MPM is an independent substrate"
+        );
+        ensure!(
+            self.fusion.is_none() || (!self.pvm && !self.mpm && self.curl == 0.),
+            "fusion is an independent substrate"
         );
         Ok(())
     }
@@ -105,6 +112,7 @@ pub fn curl(p: [f32; 4], time: f32) -> [f32; 3] {
     ]
 }
 pub struct Universe {
+    pub fusion: Option<nova_fusion::Model>,
     pub particles: Particles,
     pub config: Config,
     pub matrix: [[f32; 8]; 8],
@@ -130,6 +138,7 @@ impl Universe {
             }
         }
         let mut u = Self {
+            fusion: None,
             particles: Particles::default(),
             matrix,
             tick: 0,
@@ -141,6 +150,12 @@ impl Universe {
             config,
         };
         u.emit(count)?;
+        if let Some(family) = u.config.fusion {
+            let mut model = nova_fusion::Model::new(family);
+            model.initialize(&mut u.particles, &mut u.matrix, u.config.seed)?;
+            u.config.dt = model.settings.dt;
+            u.fusion = Some(model);
+        }
         if u.config.mpm {
             for i in 0..count {
                 for k in 0..3 {
@@ -157,7 +172,10 @@ impl Universe {
     }
     /// Opposing moving emitters with a long initial jet, in open space.
     pub fn emit(&mut self, count: usize) -> Result<()> {
-        ensure!(self.material.is_none(), "MPM membership is fixed for a run");
+        ensure!(
+            self.material.is_none() && self.fusion.is_none(),
+            "MPM/fusion membership is fixed; reset the scene to change count"
+        );
         ensure!(
             count <= self.config.max_particles - self.particles.len(),
             "emission exceeds particle budget"
@@ -207,6 +225,12 @@ impl Universe {
         Ok(())
     }
     fn advance(&mut self) -> Result<()> {
+        if let Some(model) = &mut self.fusion {
+            model.settings.dt = self.config.dt;
+            model.step(&mut self.particles, &self.matrix, self.tick)?;
+            self.tick += 1;
+            return Ok(());
+        }
         if let Some(material) = &mut self.material {
             material.dt = self.config.dt;
             material.step(&mut self.particles)?;
@@ -359,4 +383,46 @@ impl Universe {
         self.tick += 1;
         Ok(())
     }
+}
+
+pub use nova_fusion::breeding::Candidate as FusionCandidate;
+impl Universe {
+    pub fn breed_rules(&self) -> Result<Vec<FusionCandidate>> {
+        let m = self
+            .fusion
+            .as_ref()
+            .ok_or_else(|| anyhow::anyhow!("fusion scene required"))?;
+        let mate = nova_fusion::breeding::preset("symbiotes")?.matrix8()?;
+        nova_fusion::breeding::breed(
+            &self.matrix,
+            &mate,
+            m.settings.species,
+            self.config
+                .seed
+                .wrapping_add(self.tick)
+                .wrapping_add(m.rule_history.len() as u64),
+            m.rule_history.last().map(|x| x.generation + 1).unwrap_or(1),
+        )
+    }
+    pub fn choose_rules(&mut self, choice: &FusionCandidate) -> Result<()> {
+        let m = self
+            .fusion
+            .as_mut()
+            .ok_or_else(|| anyhow::anyhow!("fusion scene required"))?;
+        ensure!(
+            choice
+                .matrix
+                .iter()
+                .flatten()
+                .all(|x| x.is_finite() && x.abs() <= 1.),
+            "invalid selected rules"
+        );
+        self.matrix = choice.matrix;
+        m.rule_history.push(choice.lineage.clone());
+        Ok(())
+    }
+}
+
+pub fn fusion_family(name: &str) -> Result<nova_fusion::Family> {
+    nova_fusion::Family::parse(name)
 }
