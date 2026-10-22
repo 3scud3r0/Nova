@@ -6,6 +6,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORIES = (
     "nova",
+    "nova_engine",
+    "crates",
+    "src",
+    "include",
+    "examples",
+    "docs/native",
     "nova-core/src",
     "experiments",
     "tests",
@@ -14,6 +20,9 @@ DIRECTORIES = (
     ".github",
 )
 FILES = (
+    "Cargo.toml",
+    "Cargo.lock",
+    "rust-toolchain.toml",
     "pyproject.toml",
     "requirements-cpu.txt",
     "nova-core/Cargo.toml",
@@ -39,6 +48,9 @@ FILES = (
     "reports/STATUS.md",
 )
 EXTENSIONS = {
+    ".h",
+    ".c",
+    ".md",
     ".py",
     ".rs",
     ".sh",
@@ -62,7 +74,7 @@ def main():
         )
     ordered = sorted(paths, key=lambda p: p.relative_to(ROOT).as_posix())
     chunks = [
-        "NOVA — CÓDIGO-FONTE CONSOLIDADO\n\nPacote textual; não é um executável. Binários nativos são gerados por Maturin.\nNão inclui dados, chaves, ambientes virtuais, dependências baixadas ou checkpoints.\n\nÍNDICE\n"
+        "NOVA — CÓDIGO-FONTE CONSOLIDADO\n\nPacote textual; não é um executável. Binários nativos são gerados por Cargo/Maturin.\nNão inclui dados, chaves, ambientes virtuais, dependências baixadas ou checkpoints.\n\nÍNDICE\n"
     ]
     for path in ordered:
         content = path.read_bytes()

@@ -1,0 +1,11 @@
+[package]
+name = "nova-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+bytemuck.workspace = true
+serde.workspace = true
+sha2.workspace = true
+anyhow.workspace = true

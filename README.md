@@ -1,5 +1,20 @@
 # NOVA
 
+A revisão **0.6 Native** acrescenta um workspace Rust com CLI/janela nativa, PVM,
+Particle Life aberto, Conway SIMD, MPM, bibliotecas Python/C e exportação
+Arrow/Parquet/Zarr. Consulte [compilação, APIs e limites](docs/native/README.md) e
+[evidência da entrega](docs/native/STATUS.md).
+
+```sh
+cargo build --release --locked -p nova-engine -p nova-ffi
+./target/release/nova live --preset cosmic-ink --particles 65536
+./target/release/nova harvest --ticks 10000 --output runs/lake --record-all
+```
+
+O binário usa drivers do sistema; 60 FPS, interoperabilidade em execução e
+portabilidade não são presumidos pela compilação. O TXT consolidado continua
+disponível em `artifacts/NOVA_codigo_completo.txt`.
+
 A revisão **0.5 Chromatic** acrescenta Particle Life com interações entre espécies na GPU, superfícies líquidas reconstruídas de partículas, transmissão/iridescência, edição de matriz e captura/reprodução por sementes. Inclui referências independentes de MPM, química, óptica espectral e geometria. Veja [comandos e escopo](docs/chromatic.md) e [verificação da entrega](reports/chromatic/STATUS.md). Não equivale a um renderizador de cinema ou a física universal validada.
 
 ```bash

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nova-research"
-version = "0.5.0"
+version = "0.6.0"
 description = "Reproducible research platform for protected continual learning"
 requires-python = ">=3.11"
 dependencies = ["numpy>=2.0,<3", "scipy>=1.11,<2", "PyYAML>=6", "cryptography>=42"]
@@ -32,3 +32,11 @@ addopts = "-ra"
 
 [tool.setuptools.package-data]
 "nova.visuals" = ["*.html", "*.js", "shaders/*.wgsl"]
+
+# `maturin develop --release` builds the independent native Python API.
+# Existing `pip install -e .` remains the nova-research package.
+[tool.maturin]
+manifest-path = "crates/nova-python/Cargo.toml"
+python-source = "."
+python-packages = ["nova", "experiments", "nova_engine"]
+module-name = "nova_engine._native"

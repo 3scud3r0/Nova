@@ -1,0 +1,53 @@
+[workspace]
+resolver = "2"
+members = [".", "crates/*"]
+exclude = ["nova-core"]
+default-members = ["."]
+
+[workspace.package]
+version = "0.6.0"
+edition = "2021"
+rust-version = "1.85"
+
+[workspace.dependencies]
+anyhow = "1"
+bytemuck = { version = "1", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rayon = "1.10"
+sha2 = "0.10"
+wgpu = "0.19.4"
+pollster = "0.3"
+
+[package]
+name = "nova-engine"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "nova"
+path = "src/main.rs"
+
+[features]
+default = ["desktop", "gpu"]
+gpu = ["dep:nova-gpu"]
+desktop = ["dep:nova-render"]
+
+[dependencies]
+anyhow.workspace = true
+serde_json.workspace = true
+clap = { version = "4", features = ["derive"] }
+nova-core = { path = "crates/nova-core" }
+nova-physics = { path = "crates/nova-physics" }
+nova-storage = { path = "crates/nova-storage" }
+nova-science = { path = "crates/nova-science" }
+nova-render = { path = "crates/nova-render", optional = true }
+nova-gpu = { path = "crates/nova-gpu", optional = true }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "debuginfo"
+# Keep unwinding: the C ABI catches panics at its boundary.
+panic = "unwind"
