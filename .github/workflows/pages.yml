@@ -1,0 +1,72 @@
+name: NOVA web - validate and publish Pages
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: nova-pages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout NOVA and pinned Sandbox Science
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test NOVA data bridge
+        run: node --test tests/nova-data.test.mjs
+      - name: Prepare Sandbox Science source
+        run: node scripts/sync-upstream.mjs
+        env:
+          NUXT_APP_BASE_URL: /Nova/
+      - name: Install pinned web dependencies
+        working-directory: .web-build
+        run: npm ci --no-audit --no-fund
+      - name: Generate static site
+        working-directory: .web-build
+        env:
+          NODE_ENV: production
+          NUXT_APP_BASE_URL: /Nova/
+          NUXT_PUBLIC_SITE_URL: https://3scud3r0.github.io/Nova/
+          NUXT_PUBLIC_GTAG_ID: ''
+        run: npm run generate
+      - name: Verify website output
+        run: |
+          test -s .web-build/.output/public/index.html
+          test -s .web-build/.output/public/particle-life/index.html
+          test -s .web-build/.output/public/game-of-life/index.html
+          test -s .web-build/.output/public/nova-data/index.html
+          test -d .web-build/.output/public/_nuxt
+          touch .web-build/.output/public/.nojekyll
+          cp .web-build/.output/public/index.html .web-build/.output/public/404.html
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .web-build/.output/public
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,175 +1,45 @@
-# NOVA
+# NOVA Lab — browser-first scientific sandbox
 
-A revisão **0.7 Fusion** integra famílias Particle Life em Rust, autômatos
-2D/3D com kernels WGSL e um painel nativo de parâmetros, regras e reprodução.
-Veja [origens, comandos e escopo](docs/native/FUSION.md). SandboxScience orienta
-a organização dos controles; a interface ainda não foi validada visualmente.
+NOVA Lab replaces the public-facing interface of NOVA with the original [Sandbox Science](https://github.com/DicSo92/SandboxScience) Particle Life and Conway web simulators, licensed AGPL-3.0-or-later. The original NOVA Rust/Python source tree is preserved at [legacy/](legacy/).
 
-Fontes consolidados: [Rust/WGSL](artifacts/NOVA_Rust_completo.txt) e
-[projeto completo com referências](artifacts/NOVA_codigo_completo.txt).
-A distribuição combinada usa [AGPL-3.0-or-later](LICENSE), com
-[atribuições dos componentes](THIRD_PARTY_NOTICES.md).
+## Website
 
-A revisão **0.6 Native** acrescenta um workspace Rust com CLI/janela nativa, PVM,
-Particle Life aberto, Conway SIMD, MPM, bibliotecas Python/C e exportação
-Arrow/Parquet/Zarr. Consulte [compilação, APIs e limites](docs/native/README.md) e
-[evidência da entrega](docs/native/STATUS.md).
+After the PR is merged and GitHub Pages is configured to publish from GitHub Actions, visit:
 
-```sh
-cargo build --release --locked -p nova-engine -p nova-ffi
-./target/release/nova live --preset cosmic-ink --particles 65536
-./target/release/nova harvest --ticks 10000 --output runs/lake --record-all
-```
+**https://3scud3r0.github.io/Nova/**
 
-O binário usa drivers do sistema; 60 FPS, interoperabilidade em execução e
-portabilidade não são presumidos pela compilação. O TXT consolidado continua
-disponível em `artifacts/NOVA_codigo_completo.txt`.
+The site exposes /particle-life, /game-of-life and /nova-data. Particle Life uses the upstream built-in CPU fallback and optional WebGPU when supported. No universal FPS is promised.
 
-A revisão **0.5 Chromatic** acrescenta Particle Life com interações entre espécies na GPU, superfícies líquidas reconstruídas de partículas, transmissão/iridescência, edição de matriz e captura/reprodução por sementes. Inclui referências independentes de MPM, química, óptica espectral e geometria. Veja [comandos e escopo](docs/chromatic.md) e [verificação da entrega](reports/chromatic/STATUS.md). Não equivale a um renderizador de cinema ou a física universal validada.
+## Provenance and license
 
-```bash
-pip install -e .
-nova cosm paint --preset ink --open-browser
-nova cosm paint --preset life
-```
+- Upstream: [DicSo92/SandboxScience](https://github.com/DicSo92/SandboxScience), pinned Git submodule at commit ba43fde7ed3fc2224302c2682a3ecd3030717ba5.
+- Original copyright 2024–2026 Charly Luzzi / DicSo92; the upstream LICENSE remains in the clone.
+- NOVA-specific Vue overlays and browser data bridge are distributed under AGPL-3.0-or-later.
+- Previous NOVA native source and prior CI remain in the legacy directory, outside the static site.
 
-A revisão **0.4 Planetary** acrescenta campos residentes Rust/wgpu, sinalização de Lewis, busca não polinomial/Hamiltonianos, fila de provas e descoberta dinâmica de pares com migração/refutação limitadas. A sessão `start` reúne bioma, comunicações, atlas 3D e serviços locais. Consulte [comandos e limites da 0.4](docs/planetary.md) e [as verificações estáticas realizadas](reports/planetary/STATUS.md). A 0.3 não foi validada em execução; esta revisão também não demonstra escala planetária ou verdade científica universal.
+## Run locally
 
-```bash
-pip install -e .
-nova cosm start --seed 42 --directory runs/world-42 --open-browser
-# Sem WebGPU no navegador: acrescentar --renderer webgl
-# Rede externa requer bootstrap e configuração explícitos; sem eles há zero pares.
-```
+Install Node.js 22 and Git. Run from repository root:
 
-Não foram executados novos testes, simulações ou benchmarks. Passaram verificações de tipos Rust CPU/WebGPU e validação estática do shader de campos; desempenho, rede e browser continuam pendentes. Ausência de contraexemplo continua sendo evidência finita, sem promoção automática a teorema.
+    git submodule update --init --recursive
+    node --test tests/nova-data.test.mjs
+    node scripts/sync-upstream.mjs
+    cd .web-build
+    npm ci
+    NUXT_APP_BASE_URL=/Nova/ npm run dev
 
-A versão **0.3 Biocosm** acrescenta campos 2D/3D, organismos com genomas CPPN e grafos neurais mistos, busca evolutiva de arquiteturas, visualização volumétrica, descoberta polinomial, verificadores com escopo e troca P2P de sementes/artefatos assinados. Veja [comandos, matemática e limites](docs/biocosm.md) e [o estado da entrega](reports/biocosm/STATUS.md). É uma implementação experimental; nenhum novo teste, benchmark ou simulação foi executado, conforme solicitado.
+GitHub Actions generates .web-build/.output/public via npm run generate and uploads a Pages artifact. An administrator must first set Settings > Pages > Build and deployment > Source: GitHub Actions. The workflow cannot guarantee that Pages is enabled.
 
-```bash
-pip install -e .
-nova cosm serve --preset organisms --seed 42          # visualizador 3D local
-nova cosm run --preset ink --ticks 100 --output runs/ink-42
-nova cosm reproduce runs/ink-42/holoseed.json --require-signature
-nova cosm discover --dataset runs/ink-42/dataset/observations.jsonl --output runs/candidate.json
-```
+## Native data interoperability
 
-Os comandos são instruções para execução futura. Raymarching ilustra os campos; onda escalar não é eletromagnetismo. Regressão gera candidatos, provas se limitam ao modelo declarado e consenso numérico não atesta verdade física. Sementes incluem motor, parâmetros, eventos e hash de estado; ponto flutuante não garante reprodução idêntica entre máquinas.
+The /nova-data route reads files only inside the browser (no uploads): Conway .nca with SHA-256 verification; Life .rle; CSV, JSONL and JSON. CSV x/y columns or JSON position arrays show a 2D scatter projection. Files are capped at 32 MiB, grids at 4,194,304 cells. The import never executes arbitrary code.
 
-A versão 0.2 acrescenta memória adaptativa, inferência por equilíbrio/AdEx no caminho efetivo do latente e planejamento por energia, com configurações `adaptive` e `brain`. Veja [o projeto e suas equações](docs/adaptive-energy.md) e [o estado desta revisão](reports/adaptive/STATUS.md). Os novos componentes são experimentais; não foram executados novos testes ou benchmarks, conforme solicitado.
+GitHub Pages cannot run Rust binaries or long-lived backends. The original CLI remains in legacy/. Direct native Arrow, Parquet, Zarr, streaming and WASM are **not** implemented; convert datasets to CSV/JSONL before importing. This is an honest data bridge, not a claim that the Rust engine is running in the browser.
 
-```bash
-# Instalação NumPy/SciPy; PyTorch é opcional para esses perfis
-pip install -e .
-nova demo --profile adaptive --ticks 100 --checkpoint checkpoints/adaptive.npz
-nova demo --profile brain --ticks 100 --checkpoint checkpoints/brain.npz
-nova demo --resume checkpoints/adaptive.npz --ticks 100
-```
+## Performance and deployment
 
-Os comandos acima são instruções para reprodução futura. Sem checkpoint de mundo treinado, o demo usa pesos iniciais. Para o baseline anterior, instale `pip install -e '.[torch]'` e use `--profile baseline`. O script CPU de setup continua preparando todas as dependências do baseline.
+The actual upstream Nuxt and Canvas/WebGPU simulators are cloned and compiled into the static site; this is not an iframe or external runtime redirect. Rendering performance depends on device and selected mode. Nuxt prerendering produces static routes for Pages, with .nojekyll and a 404 SPA fallback.
 
+## Review / rollback
 
-Plataforma experimental de aprendizado contínuo, previsão latente e simulação cognitiva, em Python 3.11+ e Rust/PyO3. Especificação fornecida em [docs/specification-v2.md](docs/specification-v2.md).
-
-**Regra de honestidade:** nenhum módulo experimental é promovido ao fluxo padrão sem ganho mensurável contra baseline predefinido. Resultados negativos, limites de capacidade e dependências de hardware são parte da entrega. Inspiração biológica não equivale a validação contra dados biológicos.
-
-## Instalação
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-pip install -e '.[dev]'
-pytest -q
-```
-
-Use uma distribuição CUDA compatível do PyTorch para experimentos em GPU. O caminho CPU é suficiente para os testes e experimentos de bancada. Dados são baixados apenas pelos comandos de benchmark e ficam em `data/` (ignorado pelo Git).
-
-## Experimentos
-
-Execute da raiz do checkout:
-
-```bash
-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 python -m experiments.01_linear_nullspace_audit
-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 python -m experiments.02_jepa_latent_world
-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 python -m experiments.03_continual_split_mnist
-python -m experiments.plot_reports
-```
-
-O Split-MNIST padrão usa 1.500 exemplos por tarefa e quatro épocas, cinco sementes, sem oráculo de tarefa no teste. Use `--samples 0` para todos os dados; `--dataset permuted-mnist` ou `--dataset split-cifar100` seleciona os demais protocolos. Resultados de dados reduzidos não estabelecem desempenho nos protocolos completos.
-
-Os relatórios `reports/faseN.md` contêm as condições, métricas e limitações; os CSVs permitem comparar cada condição. O desvio reportado é amostral. Uma média misturando métodos não é uma comparação científica.
-
-## Garantia linear
-
-A atualização de `dW` é projetada no complemento de `U`. Retenção só vale no span calibrado, com entrada estável, precisão float64 e rank suficiente. Saturação impede aprender novas direções. A base ternária permanece congelada; o resíduo nunca é quantizado. Consulte [DEVIATIONS.md](DEVIATIONS.md).
-
-## Fluxo completo
-
-```bash
-# Ambiente CPU e extensão Rust, quando o toolchain estiver disponível
-bash scripts/setup.sh
-source .venv/bin/activate
-
-# Treino offline, antes de congelar as coordenadas da memória protegida
-nova train-world --steps 900 --output checkpoints/world.npz
-nova demo --ticks 100 --world checkpoints/world.npz
-nova demo --ticks 100 --resume checkpoints/demo.npz
-nova dashboard --metrics reports/demo.jsonl --output reports/dashboard.html
-
-# Qualquer fase, executada explicitamente
-nova benchmark 4
-nova benchmark 5
-nova benchmark 9
-```
-
-`nova demo` sem `--world` usa um encoder não treinado para demonstrar integração. O checkpoint v2 inclui estado cognitivo, modelos, cascata, memórias, RNGs, versões das características, trajetória do solver e estado do corpo virtual; o carregador reconhece o formato v1 anterior. A restauração usa NPZ/JSON, sem pickle. Alterar o encoder após consolidar memória é rejeitado, pois invalida as coordenadas protegidas.
-
-Busca deliberada é habilitada por `--planning`. O modo determinístico usa orçamento de operações fixo; o modo com orçamento de tempo pode truncar a busca, sem prometer tempo real. Neuromoduladores e hipóteses opcionais não são promovidos automaticamente pelo demonstrador.
-
-## Extensão Rust
-
-Instale Rust >= 1.85 e execute:
-
-```bash
-maturin build --manifest-path nova-core/Cargo.toml --release --locked -o .cache/wheels
-pip install .cache/wheels/*.whl
-```
-
-No ambiente preparado, o toolchain está em `.tools/cargo` e `.tools/rustup`:
-
-```bash
-export CARGO_HOME="$PWD/.tools/cargo"
-export RUSTUP_HOME="$PWD/.tools/rustup"
-export PATH="$CARGO_HOME/bin:$PATH"
-```
-
-A extensão exporta pesos ternários empacotados, Hadamard, AdEx, Kuramoto e cascata RK4, com Rayon. Falta da extensão gera erro explícito ao selecionar o backend Rust. O kernel Triton é opcional (`.[gpu]`) e requer CUDA.
-
-## Entregas e evidência
-
-| Fase | Código | Evidência e limite |
-|---|---|---|
-| 1 | `continual/ProtectedLinear` | Retenção float64 e violações de hipóteses: [relatório](reports/fase1.md) |
-| 2 | JEPA, EMA, anti-colapso, ambientes | Predição com distratores: [relatório](reports/fase2.md) |
-| 3 | Proteção profunda, EWC, replay, GPM, multitask | Split/Permuted-MNIST reduzidos; saturação é resultado negativo: [relatório](reports/fase3.md) |
-| 4 | Hopfield, cascata, neuromodulação, CEM, DDM | Ensaios de memória/controle, sem ganho geral atribuído às ablações: [relatório](reports/fase4.md) |
-| 5 | Rust/PyO3 e Triton opcional | Compactação medida; CPU mais lenta que PyTorch nas condições medidas; GPU/energia pendentes: [relatório](reports/fase5.md) |
-| 6 | Kuramoto, EqProp quadrático, Laplaciano de feixe | Equações verificadas; vantagem cognitiva não demonstrada: [relatório](reports/fase6.md) |
-| 7 | N0/N1/N2, percepção multimodal, microcircuito | F–I e espectro simulados; comparação com dados biológicos pendente: [relatório](reports/fase7.md) |
-| 8 | Ciclo, busca, calculadora, calibração, valores, checkpoint | Domínios finitos e integração: [relatório](reports/fase8.md) |
-| 9 | Cofre de identidade, proveniência, revisão, exclusão, linguagem | Perfis sintéticos; fidelidade de pessoa real e naturalidade não medidas: [relatório](reports/fase9.md) |
-
-Os experimentos novos 10–12 estão implementados para saturação adaptativa, EqProp não linear e planejamento em latentes maiores; seus resultados ainda não foram gerados. Use `nova benchmark 10`, `11` ou `12` apenas quando desejar executá-los.
-
-O [estado de aceitação](reports/STATUS.md) separa implementação de aprovação científica. Os protocolos completos, benchmarks de hardware, escalabilidade distribuída e validação com registros biológicos não são substituídos pelos ensaios reduzidos. CIFAR-100 requer acesso ao servidor oficial `www.cs.toronto.edu`, bloqueado pelo proxy nesta execução.
-
-## Identidade e linguagem
-
-Veja [docs/identity.md](docs/identity.md) para o formato de `consent.json`, fontes, chaves, revisão e apagamento. Não há dados pessoais reais neste repositório. O cofre exige consentimento e mantém o rótulo de simulação; dados pessoais não treinam pesos compartilhados. A exclusão reconstrói o estado derivado do perfil, sem alegar apagar cópias externas.
-
-OCR, ASR e LLM usam adaptadores opcionais com modelos locais. A saída factual padrão é determinística e fundamentada em fontes. O adaptador neural produz rascunhos não verificados, sujeitos a revisão.
-
-## Código consolidado
-
-[artifacts/NOVA_codigo_completo.txt](artifacts/NOVA_codigo_completo.txt) reúne código Python, Rust, testes, scripts e configurações em texto, com caminhos e hashes. Gere novamente com `python scripts/bundle_source.py`. Esse TXT é um pacote textual do código-fonte; o módulo binário é gerado separadamente por Maturin.
+This is intentionally a large replacement PR. It moves the old source tree to legacy/, preserves the original Git history, and replaces the root interface and CI. Review licensing, verify the three routes in GitHub Actions and enable Pages before merging. To rollback, revert the merge commit.

@@ -1,21 +1,3 @@
-.venv/
-__pycache__/
-*.py[cod]
-*.so
-*.egg-info/
-.pytest_cache/
-.ruff_cache/
-.cache/
-.tools/
-nova-core/target/
-data/
-checkpoints/
-private/
-
-# Local simulation output, peer stores and signing identities
-runs/
-*.key
-
-# Native workspace build products
-/target/
-/dist/
+.web-build/
+node_modules/
+.DS_Store
