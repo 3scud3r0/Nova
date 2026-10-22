@@ -42,7 +42,7 @@ const iconFiles=["favicon.ico","favicon-16x16.png","favicon-32x32.png",
 for(const file of iconFiles) {
   const old="href: '/"+file;
   if(!nuxt.includes(old))throw new Error("Expected upstream favicon/manifest not found: "+file);
-  nuxt=nuxt.replace(old,"href: '/Nova/"+file);
+  nuxt=nuxt.replaceAll(old,"href: '/Nova/"+file);
 }
 writeFileSync(cfg,nuxt);
 const constants=join(target,"constants","index.ts");
