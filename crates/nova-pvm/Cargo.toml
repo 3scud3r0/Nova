@@ -1,0 +1,8 @@
+[package]
+name = "nova-pvm"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+[dependencies]
+nova-physics = { path = "../nova-physics" }
+nova-vm = { path = "../nova-vm" }

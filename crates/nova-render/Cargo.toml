@@ -1,0 +1,21 @@
+[package]
+name = "nova-render"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+nova-core = { path = "../nova-core" }
+nova-physics = { path = "../nova-physics" }
+nova-gpu = { path = "../nova-gpu" }
+anyhow.workspace = true
+bytemuck.workspace = true
+wgpu.workspace = true
+pollster.workspace = true
+winit = { version = "0.29", default-features = false, features = ["rwh_06", "x11", "wayland", "wayland-dlopen"] }
+
+[dependencies.nova-storage]
+path = "../nova-storage"
+
+[build-dependencies]
+naga = { version = "0.19.2", features = ["wgsl-in"] }

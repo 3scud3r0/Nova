@@ -15,3 +15,7 @@ private/
 # Local simulation output, peer stores and signing identities
 runs/
 *.key
+
+# Native workspace build products
+/target/
+/dist/

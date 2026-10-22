@@ -1,0 +1,13 @@
+[package]
+name = "nova-physics"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+nova-core = { path = "../nova-core" }
+nova-spatial = { path = "../nova-spatial" }
+nova-vm = { path = "../nova-vm" }
+rayon.workspace = true
+serde.workspace = true
+anyhow.workspace = true

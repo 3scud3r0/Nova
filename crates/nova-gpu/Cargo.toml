@@ -1,0 +1,17 @@
+[package]
+name = "nova-gpu"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+nova-core = { path = "../nova-core" }
+nova-physics = { path = "../nova-physics" }
+nova-spatial = { path = "../nova-spatial" }
+anyhow.workspace = true
+bytemuck.workspace = true
+wgpu.workspace = true
+pollster.workspace = true
+
+[build-dependencies]
+naga = { version = "0.19.2", features = ["wgsl-in"] }

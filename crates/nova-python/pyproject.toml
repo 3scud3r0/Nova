@@ -1,0 +1,20 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+[project]
+name = "nova-engine"
+version = "0.6.0"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2,<3"]
+[project.optional-dependencies]
+arrow = ["pyarrow>=18"]
+torch = ["torch>=2.4"]
+lake = ["pyarrow>=18", "zarr>=3,<4", "duckdb>=1.1", "datasets>=3"]
+science = ["pysr>=1", "z3-solver>=4.13", "ripser>=0.6"]
+jax = ["jax-md>=0.2"]
+taichi = ["taichi>=1.7"]
+warp = ["warp-lang>=1.5"]
+[tool.maturin]
+module-name = "nova_engine._native"
+python-source = "../.."
+python-packages = ["nova_engine"]
