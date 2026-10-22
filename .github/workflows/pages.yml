@@ -48,6 +48,7 @@ jobs:
           test -d .web-build/.output/public/_nuxt
           touch .web-build/.output/public/.nojekyll
           cp .web-build/.output/public/index.html .web-build/.output/public/404.html
+          node scripts/verify-pages-static.mjs .web-build/.output/public
       - name: Attach static website preview to PR
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
