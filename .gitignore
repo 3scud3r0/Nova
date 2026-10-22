@@ -11,3 +11,7 @@ nova-core/target/
 data/
 checkpoints/
 private/
+
+# Local simulation output, peer stores and signing identities
+runs/
+*.key

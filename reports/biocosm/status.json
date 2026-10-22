@@ -1,0 +1,12 @@
+{
+  "version": "0.3.0",
+  "status": "experimental_implementation_unvalidated_at_runtime",
+  "new_tests_executed": false,
+  "new_benchmarks_executed": false,
+  "simulations_executed": false,
+  "reason": "User requested delivery without new tests",
+  "review": ["ruff undefined-name and import checks", "formatting", "git diff whitespace checks"],
+  "scientific_discoveries_claimed": [],
+  "portable_float_bit_identity_claimed": false,
+  "planetary_network_deployed": false
+}
