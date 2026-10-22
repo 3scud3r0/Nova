@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from dataclasses import dataclass, asdict
+from copy import deepcopy
 import hashlib
 import numpy as np
 from nova.checkpoint import save_state, load_state
@@ -82,7 +83,7 @@ class Organism:
             "energy": self.energy,
             "age": self.age,
             "grn_expression": self.grn.expression.copy(),
-            "body": self.body,
+            "body": deepcopy(self.body),
             "brain": None if self.brain is None else self.brain.state_dict(),
             "last_latent": self.last_latent.copy(),
             "language": self.language.state_dict(),
@@ -101,7 +102,7 @@ class Organism:
         obj.velocity = np.asarray(state["velocity"]).copy()
         obj.age = state["age"]
         obj.grn.expression = np.asarray(state["grn_expression"]).copy()
-        obj.body = state["body"]
+        obj.body = deepcopy(state["body"])
         obj.last_latent = np.asarray(state["last_latent"]).copy()
         obj.language = (
             LewisAgent.restore(state["language"])
@@ -435,13 +436,13 @@ class Ecosystem:
     def state_dict(self):
         return {
             "kind": self.protocol,
-            "genesis_genomes": self.genesis_genomes,
+            "genesis_genomes": deepcopy(self.genesis_genomes),
             "world": self.world.state_dict(),
             "config": asdict(self.config),
             "rng": self.rng.state,
             "organisms": [o.state_dict() for o in self.organisms],
-            "events": self.events,
-            "history": self.history,
+            "events": deepcopy(self.events),
+            "history": deepcopy(self.history),
             "births": self.births,
             "deaths": self.deaths,
             "spent_energy": self.spent_energy,
@@ -467,7 +468,7 @@ class Ecosystem:
         empty = asdict(cfg)
         empty["initial_population"] = 0
         obj = cls(PhysicsConfig(**wc), EcosystemConfig(**empty))
-        obj.genesis_genomes = state.get("genesis_genomes")
+        obj.genesis_genomes = deepcopy(state.get("genesis_genomes"))
         obj.config = cfg
         obj.world = PhysicsEngine.from_state_dict(state["world"])
         obj.rng.state = state["rng"]
@@ -482,7 +483,7 @@ class Ecosystem:
             "spent_energy",
             "food_energy",
         ):
-            setattr(obj, key, state[key])
+            setattr(obj, key, deepcopy(state[key]))
         if "acoustics" in state:
             obj.acoustics = AcousticChannel.restore(state["acoustics"])
         if "interpreter" in state:
