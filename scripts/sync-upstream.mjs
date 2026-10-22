@@ -33,11 +33,13 @@ nuxt=nuxt.replace(siteMarker,"        url: process.env.NUXT_PUBLIC_SITE_URL || a
          .replace(appMarker,"    app: {\n        baseURL: process.env.NUXT_APP_BASE_URL || '/Nova/',\n        head: {")
          .replace("['/', '/about', '/particle-life', '/game-of-life', '/hash-life', '/sitemap.xml', '/robots.txt']",
                   "['/', '/about', '/particle-life', '/game-of-life', '/nova-data', '/sitemap.xml', '/robots.txt']")
-         .replace("enabled: true,\n        debug: true","enabled: false,\n        debug: false");
+         .replace("enabled: true,\n        debug: true","enabled: false,\n        debug: false")
+         .replace("    seo: {", "    robots: { robotsTxt: false },\n    seo: {")
+         .replace(", '/robots.txt'", "");
 writeFileSync(cfg,nuxt);
 const constants=join(target,"constants","index.ts");
 let names=readFileSync(constants,"utf8");
-names=names.replace("const appURL = 'https://sandbox-science.com'","const appURL = 'https://3scud3r0.github.io/Nova/'")
+names=names.replace("const appURL = 'https://sandbox-science.com'","const appURL = 'https://3scud3r0.github.io'")
            .replace("const appName = 'Sandbox Science'","const appName = 'NOVA Lab'")
            .replace(/const appDescription = '[^\n]+'/, "const appDescription = 'NOVA Lab: Particle Life e Conway no navegador com integração de dados do motor NOVA.'");
 writeFileSync(constants,names);
