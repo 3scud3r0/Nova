@@ -269,6 +269,7 @@ pub struct Statistics {
 }
 pub struct Model {
     pub settings: Settings,
+    pub preserve_masses: bool,
     pub palette: Vec<[f32; 4]>,
     pub stats: Statistics,
     pub rule_history: Vec<breeding::RuleLineage>,
@@ -280,6 +281,7 @@ impl Model {
         let settings = Settings::for_family(family);
         Self {
             settings,
+            preserve_masses: false,
             palette: generate_colors(PaletteType::default(), 8),
             stats: Default::default(),
             rule_history: vec![],
@@ -459,8 +461,10 @@ impl Model {
                 .all(|x| (x[0] as usize) < self.settings.species),
             "particle type exceeds selected species count"
         );
-        for i in 0..p.len() {
-            p.velocities[i].0[3] = self.settings.masses[p.phenotypes[i][0] as usize];
+        if !self.preserve_masses {
+            for i in 0..p.len() {
+                p.velocities[i].0[3] = self.settings.masses[p.phenotypes[i][0] as usize];
+            }
         }
         let matrix = self.varied_matrix(base, tick);
         let s = &self.settings;

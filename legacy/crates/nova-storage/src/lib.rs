@@ -157,7 +157,7 @@ result.save_to_disk(str(root / 'huggingface'))
         )?;
         write_json(
             &root.join("manifest.json"),
-            &json!({"schema":"NOVA-LAKE-v1","dataset_id":id,"config":u.config,"affinities":u.matrix,"field_extent":extent,"field_grid":grid,"status":"recording","conservative":false,"proof_status":"pending","temperature_units":"specific kinetic variance, not kelvin","stress_definition":"coarse kinetic stress from within-voxel velocity fluctuations","field_domain":"fixed [-extent,extent)^3; out-of-domain count recorded per frame"}),
+            &json!({"schema":"NOVA-LAKE-v1","dataset_id":id,"config":u.config,"affinities":u.matrix,"field_extent":extent,"field_grid":grid,"status":"recording","conservative":false,"proof_status":"pending","neural_config":u.neural.as_ref().map(|n| &n.config),"genome_encoding":if u.neural.is_some(){"signed-nibble-contractile-rnn-v1"}else{"pvm-bytecode-or-inactive"},"temperature_units":"specific kinetic variance, not kelvin","stress_definition":"coarse kinetic stress from within-voxel velocity fluctuations","field_domain":"fixed [-extent,extent)^3; out-of-domain count recorded per frame"}),
         )?;
         let lineage = BufWriter::new(File::create(root.join("lineages.jsonl"))?);
         let index = BufWriter::new(File::create(root.join("lineages.index.jsonl"))?);
@@ -476,3 +476,5 @@ fn voxelize(p: &Particles, g: usize, extent: f32) -> (Vec<f32>, usize) {
     }
     (field, outside)
 }
+
+pub mod tensors;

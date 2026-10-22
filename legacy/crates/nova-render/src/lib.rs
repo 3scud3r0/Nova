@@ -1,4 +1,5 @@
 mod controls;
+pub mod substrate;
 // Native winit/wgpu fluid surface renderer; all shader assets embedded.
 use anyhow::{ensure, Result};
 use nova_physics::Universe;
@@ -882,7 +883,9 @@ pub fn run(mut universe: Universe, gpu: bool, output: Option<PathBuf>) -> Result
                                     )?;
                                 }
                             }
-                            if let Some(gpu) = &compute {
+                            if let Some(gpu) =
+                                compute.as_ref().filter(|_| universe.neural.is_none())
+                            {
                                 gpu.step(&mut universe)?;
                             } else {
                                 universe.step(1)?;

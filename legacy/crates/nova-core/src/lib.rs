@@ -155,3 +155,5 @@ pub fn norm(v: [f32; 3]) -> f32 {
 pub fn delta(a: [f32; 4], b: [f32; 4]) -> [f32; 3] {
     [b[0] - a[0], b[1] - a[1], b[2] - a[2]]
 }
+
+pub mod recurrent;

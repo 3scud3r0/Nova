@@ -26,7 +26,7 @@ def main():
     headers = sorted((build / "build").glob("nova-ffi-*/out/nova.h"), key=lambda p:p.stat().st_mtime)
     if not headers:
         raise SystemExit("generated C header missing; build nova-ffi first")
-    sources += [headers[-1], ROOT / "docs/native/README.md", ROOT / "docs/native/STATUS.md", ROOT / "docs/native/FUSION.md", ROOT / "LICENSE", ROOT / "THIRD_PARTY_NOTICES.md", ROOT / "artifacts/NOVA_codigo_completo.txt", ROOT / "artifacts/NOVA_Rust_completo.txt"]
+    sources += [headers[-1], ROOT / "docs/native/README.md", ROOT / "docs/native/STATUS.md", ROOT / "docs/native/FUSION.md", ROOT / "docs/native/EVOLUTION.md", ROOT / "LICENSE", ROOT / "THIRD_PARTY_NOTICES.md", ROOT / "artifacts/NOVA_codigo_completo.txt", ROOT / "artifacts/NOVA_Rust_completo.txt"]
     if not all(p.is_file() for p in sources):
         raise SystemExit("missing release artifacts; build nova-engine and nova-ffi first")
     destination = ROOT / "dist"

@@ -5,6 +5,8 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+nova-substrates = { path = "../nova-substrates" }
+nova-cognition = { path = "../nova-cognition" }
 nova-core = { path = "../nova-core" }
 nova-physics = { path = "../nova-physics" }
 nova-gpu = { path = "../nova-gpu" }

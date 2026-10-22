@@ -66,6 +66,14 @@ impl PyUniverse {
         let u=Arc::get_mut(&mut self.inner).ok_or_else(||PyRuntimeError::new_err("release Snapshot and all its array/tensor views before stepping; views pin simulation memory"))?;
         py.allow_threads(|| u.step(ticks)).map_err(value)
     }
+    fn enable_neural(&mut self) -> PyResult<()> {
+        let u = Arc::get_mut(&mut self.inner)
+            .ok_or_else(|| value("release snapshots before enabling neural organisms"))?;
+        u.enable_neural(Default::default()).map_err(value)
+    }
+    fn neural_statistics(&self) -> PyResult<String> {
+        serde_json::to_string(&self.inner.neural.as_ref().map(|n| &n.stats)).map_err(value)
+    }
     fn snapshot(&self) -> Snapshot {
         Snapshot {
             inner: self.inner.clone(),

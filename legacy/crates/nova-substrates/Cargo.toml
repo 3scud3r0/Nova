@@ -1,0 +1,16 @@
+[package]
+name = "nova-substrates"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "AGPL-3.0-or-later"
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+nova-core = { path = "../nova-core" }
+nova-physics = { path = "../nova-physics" }
+nova-fusion = { path = "../nova-fusion" }
+nova-automata = { path = "../nova-automata" }
+rustfft = "6.4"

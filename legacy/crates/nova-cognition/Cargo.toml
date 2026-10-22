@@ -1,0 +1,13 @@
+[package]
+name = "nova-cognition"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license = "AGPL-3.0-or-later"
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+nova-core = { path = "../nova-core" }
+nova-substrates = { path = "../nova-substrates" }

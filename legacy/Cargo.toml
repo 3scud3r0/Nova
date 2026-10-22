@@ -5,7 +5,7 @@ exclude = ["nova-core", "third_party/upstream/par-particle-life"]
 default-members = ["."]
 
 [workspace.package]
-version = "0.7.0"
+version = "0.8.0"
 edition = "2021"
 rust-version = "1.93"
 
@@ -13,7 +13,7 @@ rust-version = "1.93"
 anyhow = "1"
 bytemuck = { version = "1", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+serde_json = { version = "1", features = ["float_roundtrip"] }
 rayon = "1.10"
 sha2 = "0.10"
 wgpu = "0.19.4"
@@ -34,11 +34,13 @@ path = "src/main.rs"
 default = ["desktop", "gpu"]
 gpu = ["dep:nova-gpu"]
 desktop = ["dep:nova-render"]
+swarm = ["dep:nova-swarm", "dep:tokio"]
 
 [dependencies]
 anyhow.workspace = true
 serde_json.workspace = true
 clap = { version = "4", features = ["derive"] }
+serde.workspace = true
 nova-automata = { path = "crates/nova-automata" }
 nova-fusion = { path = "crates/nova-fusion" }
 nova-core = { path = "crates/nova-core" }
@@ -47,6 +49,12 @@ nova-storage = { path = "crates/nova-storage" }
 nova-science = { path = "crates/nova-science" }
 nova-render = { path = "crates/nova-render", optional = true }
 nova-gpu = { path = "crates/nova-gpu", optional = true }
+
+nova-substrates = { path = "crates/nova-substrates" }
+nova-cognition = { path = "crates/nova-cognition" }
+nova-evolution = { path = "crates/nova-evolution" }
+nova-swarm = { path = "crates/nova-swarm", optional = true }
+tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 
 [profile.release]
 lto = "thin"

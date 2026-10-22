@@ -1,3 +1,30 @@
+# Evidência da entrega nativa 0.8
+
+Workspace atual: `legacy/`, preservando a aplicação web na raiz.
+
+- `cargo check --workspace --all-features --locked`: passou, incluindo P2P opcional, GUI comum aos substratos, controladores e Naga/WGSL.
+- `cargo check --no-default-features --locked`: passou para a CLI headless.
+- `cargo check --locked --examples`: passou sem executar exemplos.
+- `cargo fmt --all`: aplicado; checagem final de formatação sem alterações pendentes.
+- `python -m py_compile`: sintaxe aprovada para o leitor de treinamento e scripts de TXT/empacotamento.
+- Manifestos JSON dos exemplos e workflow novo analisados estaticamente.
+- Integridade SHA-256: 436 arquivos upstream preservados.
+
+Não foram executados testes, simulações, buscas MAP-Elites, treinos, Lean,
+benchmarks, janelas ou rede P2P nesta revisão. Os resultados de compilação não
+demonstram qualidade visual, estabilidade em execução, aprendizado, paridade
+numérica, eficiência ou interoperabilidade. O novo CI compila três sistemas;
+as plataformas remotas não foram validadas localmente.
+
+Entregáveis: código-fonte, documentação, configurações de exemplo, TXT Rust/WGSL,
+TXT completo e PR. Não foi produzido um novo binário release ou wheel final.
+O escopo implementado e as diferenças em relação às hipóteses do anexo estão
+em [EVOLUTION.md](EVOLUTION.md).
+
+---
+
+## Histórico anterior à 0.8
+
 # Evidência da entrega nativa 0.7
 
 - `cargo check --workspace --locked`: passou, incluindo os novos crates, bindings, painel egui e validação dos shaders pelo Naga.

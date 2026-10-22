@@ -1,5 +1,10 @@
 # NOVA
 
+A revisão **0.8 Research** acrescenta substratos modulares, organismos neurais,
+MAP-Elites, observador preditivo/replay, leitores de treino e P2P opcional.
+Consulte [comandos, implementação e limites](docs/native/EVOLUTION.md).
+Este workspace está em `legacy/`; execute Cargo a partir desta pasta.
+
 A revisão **0.7 Fusion** integra famílias Particle Life em Rust, autômatos
 2D/3D com kernels WGSL e um painel nativo de parâmetros, regras e reprodução.
 Veja [origens, comandos e escopo](docs/native/FUSION.md). SandboxScience orienta

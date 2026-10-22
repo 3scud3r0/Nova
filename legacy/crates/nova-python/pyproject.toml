@@ -3,12 +3,13 @@ requires = ["maturin>=1.7,<2"]
 build-backend = "maturin"
 [project]
 name = "nova-engine"
-version = "0.7.0"
+version = "0.8.0"
 requires-python = ">=3.11"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 dependencies = ["numpy>=2,<3"]
 [project.optional-dependencies]
+training = ["pyarrow>=18", "zstandard>=0.23"]
 arrow = ["pyarrow>=18"]
 torch = ["torch>=2.4"]
 lake = ["pyarrow>=18", "zarr>=3,<4", "duckdb>=1.1", "datasets>=3"]

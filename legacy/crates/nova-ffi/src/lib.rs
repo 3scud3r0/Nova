@@ -235,3 +235,16 @@ pub unsafe extern "C" fn nova_create_fusion(
         Ok(())
     })
 }
+
+/// Enable signed-nibble recurrent organisms. Replaces genomes and resets neural memory.
+/// # Safety
+/// handle must be live and exclusively owned; all borrowed array views must be released.
+#[no_mangle]
+pub unsafe extern "C" fn nova_enable_neural(handle: *mut NovaHandle) -> i32 {
+    boundary(|| {
+        let h = unsafe { handle.as_mut() }.ok_or("null handle")?;
+        h.universe
+            .enable_neural(Default::default())
+            .map_err(|e| e.to_string())
+    })
+}

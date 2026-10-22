@@ -1,0 +1,14 @@
+{
+  "kind": "fusion",
+  "shape": [64, 64, 1],
+  "particles": 512,
+  "seed": 42,
+  "neural": {
+    "sensing_radius": 0.8,
+    "impulse": 0.25,
+    "nutrient_per_tick": 512,
+    "reproduction_energy": 1000,
+    "min_age": 32,
+    "birth_budget": 32
+  }
+}
